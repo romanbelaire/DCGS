@@ -1,0 +1,28 @@
+# Default: ignore everything in this repository.
+*
+
+# Keep this ignore file tracked.
+!.gitignore
+
+# Explicit secret and key patterns (redundant with *, kept for clarity).
+.env
+.env.*
+*.env
+*api_key*
+*apikey*
+*secret*
+*token*
+*credential*
+api.json
+openai_api.json
+hf_api
+ant_api
+
+# Explicitly ignore requested file types across repo.
+*.txt
+*.md
+*.sh
+
+# Keep only core methodology code.
+!src/
+!src/**
