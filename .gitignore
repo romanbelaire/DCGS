@@ -26,3 +26,13 @@ ant_api
 # Keep only core methodology code.
 !src/
 !src/**
+benchmark-artifacts/
+benchmark-artifacts/**
+
+# Keep the code-to-paper guide tracked.
+!README.md
+!docs/
+!docs/guides/
+!docs/guides/SIMULATED_USER_GUIDE.md
+!docs/superpowers/
+!docs/superpowers/*.md
