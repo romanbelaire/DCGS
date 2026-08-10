@@ -185,8 +185,13 @@ class HighLevelAgent(BaseAgent):
         return_debug_info: bool = False,
         chunk_size: Optional[int] = None,
         base_prompts: Optional[List[Optional[str]]] = None,
+        max_attempts_per_candidate: int = 3,
     ):
         """Batch generate candidates iteratively, one numbered item per generation step."""
+        if max_attempts_per_candidate < 1:
+            raise ValueError(
+                f"max_attempts_per_candidate must be >= 1, got {max_attempts_per_candidate}"
+            )
         if not histories:
             return ([], []) if return_debug_info else []
 
@@ -202,36 +207,57 @@ class HighLevelAgent(BaseAgent):
         )
 
         for candidate_idx in range(1, n_candidates + 1):
-            step_prompts = []
-            for history_idx, history in enumerate(histories):
-                bp = base_prompts[history_idx] if base_prompts is not None else None
-                step_prompts.append(
-                    self.prompt_manager.get_high_level_iterative_prompt(
-                        dialogue_history=history,
-                        n_candidates=n_candidates,
-                        next_candidate_index=candidate_idx,
-                        existing_candidates=candidate_texts_per_history[history_idx],
-                        base_prompt=bp,
+            pending_history_indices = list(range(len(histories)))
+            attempt_raw_by_history = {history_idx: [] for history_idx in pending_history_indices}
+
+            for attempt in range(max_attempts_per_candidate):
+                if not pending_history_indices:
+                    break
+
+                step_prompts = []
+                for history_idx in pending_history_indices:
+                    history = histories[history_idx]
+                    bp = base_prompts[history_idx] if base_prompts is not None else None
+                    step_prompts.append(
+                        self.prompt_manager.get_high_level_iterative_prompt(
+                            dialogue_history=history,
+                            n_candidates=n_candidates,
+                            next_candidate_index=candidate_idx,
+                            existing_candidates=candidate_texts_per_history[history_idx],
+                            base_prompt=bp,
+                        )
                     )
+
+                responses = batch_generate(
+                    model=self.model,
+                    tokenizer=self.tokenizer,
+                    prompts=step_prompts,
+                    max_new_tokens=max_new_tokens_per_candidate,
+                    temperature=temperature,
+                    do_sample=True,
+                    prefill_suffix=f"{candidate_idx}. ",
+                    chunk_size=chunk_size,
+                    logits_processor=logits_processor,
+                    enable_thinking=self.enable_thinking,
                 )
 
-            responses = batch_generate(
-                model=self.model,
-                tokenizer=self.tokenizer,
-                prompts=step_prompts,
-                max_new_tokens=max_new_tokens_per_candidate,
-                temperature=temperature,
-                do_sample=True,
-                prefill_suffix=f"{candidate_idx}. ",
-                chunk_size=chunk_size,
-                logits_processor=logits_processor,
-                enable_thinking=self.enable_thinking,
-            )
+                still_pending = []
+                for pending_idx, history_idx in enumerate(pending_history_indices):
+                    generated_text = responses[pending_idx]
+                    attempt_raw_by_history[history_idx].append(generated_text)
+                    parsed_candidate = self._parse_single_candidate(generated_text, candidate_idx)
+                    if parsed_candidate != "[SKIP]":
+                        candidate_texts_per_history[history_idx].append(parsed_candidate)
+                    elif attempt == max_attempts_per_candidate - 1:
+                        candidate_texts_per_history[history_idx].append("[SKIP]")
+                    else:
+                        still_pending.append(history_idx)
+                pending_history_indices = still_pending
 
-            for history_idx, generated_text in enumerate(responses):
-                parsed_candidate = self._parse_single_candidate(generated_text, candidate_idx)
-                candidate_texts_per_history[history_idx].append(parsed_candidate)
-                raw_outputs_per_history[history_idx].append(generated_text)
+            for history_idx in range(len(histories)):
+                raw_outputs_per_history[history_idx].append(
+                    "\n".join(attempt_raw_by_history[history_idx])
+                )
 
         all_belief_candidates = []
         joined_raw_outputs = []

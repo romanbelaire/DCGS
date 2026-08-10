@@ -1,0 +1,24 @@
+{
+  "description": "Hierarchical final-method regret critics only (CARES, WildJailbreak).",
+  "selection_rule": "Prefer value_function_final.pt; else value_function_latest.pt. No flat critics, ablations, DCR, or transfer models.",
+  "note": "HarmBench hierarchical configs use outputs/harmbench_regret_critic/.../value_function_final.pt (flat); that file is not staged.",
+  "tracked_via": "Git LFS at outputs/** paths used by experiment checkpoint_path configs",
+  "total_bytes": 503612920,
+  "total_gb": 0.469,
+  "entries": [
+    {
+      "experiment": "cares_hierarchical_regret_critic/hierarchical_regret_critic",
+      "kind": "latest_fallback",
+      "path": "outputs/cares_hierarchical_regret_critic/hierarchical_regret_critic/checkpoints/value_function_latest.pt",
+      "student_path": "models/cares_hierarchical_regret_critic/hierarchical_regret_critic/checkpoints/value_function.pt",
+      "bytes": 251806503
+    },
+    {
+      "experiment": "wildjailbreak_hierarchical_regret_critic/hierarchical_regret_critic",
+      "kind": "final",
+      "path": "outputs/wildjailbreak_hierarchical_regret_critic/hierarchical_regret_critic/checkpoints/value_function_final.pt",
+      "student_path": "models/wildjailbreak_hierarchical_regret_critic/hierarchical_regret_critic/checkpoints/value_function.pt",
+      "bytes": 251806417
+    }
+  ]
+}

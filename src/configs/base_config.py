@@ -88,6 +88,20 @@ class BaseConfig:
     # Random belief selection (skip Q-value computation, always randomly select from candidates)
     random_belief_selection: bool = False  # If True, always randomly selects from candidates (no Q-value computation, no value function)
 
+    # HL critic ablation: score each HL candidate with R(user, b) via env judge/guard on
+    # (last user utterance, belief text) — same input space as Q(o,b), no LL expansion.
+    # Pick argmax; then generate a single LL reply from the selected belief. No value function.
+    raw_judge_belief_selection: bool = False
+
+    # LL critic ablation: HL selection still uses the HL critic; generate K LL candidates,
+    # score each with R(user, a) (env judge/guard), pick argmax. Requires n_ll_candidates > 1
+    # and a loaded value function for HL scoring.
+    raw_judge_ll_selection: bool = False
+    # When True (and n_ll_candidates > 1), generate K LL candidates and select via token critic
+    # (or via raw_judge_ll_selection scores). Off by default so cares/wjb keep single-LL generation
+    # even though n_ll_candidates defaults may be unused for those environments.
+    ll_candidate_rerank: bool = False
+
     # Hierarchical setup
     use_hierarchical_agent: bool = False
     high_level_policy_type: str = "belief_candidates"  # "belief_candidates" | "freeform"
@@ -98,6 +112,7 @@ class BaseConfig:
     freeform_max_new_tokens: int = 96
     freeform_iterative_candidate_generation: bool = False
     freeform_per_instruction_max_new_tokens: int = 96
+    freeform_iterative_max_attempts_per_candidate: int = 3
     hierarchical_rejection_sampling: bool = True
     hierarchical_rejection_candidates: int = 3
     
@@ -216,6 +231,54 @@ class BaseConfig:
             raise ValueError("hierarchical_rejection_candidates must be positive.")
         if self.n_ll_candidates < 1:
             raise ValueError("n_ll_candidates must be >= 1.")
+        adversarial_envs = ("cares", "wildjailbreak", "redbench", "harmbench")
+        if self.raw_judge_belief_selection and self.raw_judge_ll_selection:
+            raise ValueError(
+                "raw_judge_belief_selection and raw_judge_ll_selection are mutually exclusive "
+                "(separate HL vs LL critic ablations)."
+            )
+        if self.raw_judge_belief_selection and self.random_belief_selection:
+            raise ValueError(
+                "raw_judge_belief_selection and random_belief_selection are mutually exclusive."
+            )
+        if self.raw_judge_belief_selection and self.use_regret_critic:
+            raise ValueError(
+                "raw_judge_belief_selection is a non-critic baseline; set use_regret_critic=False."
+            )
+        if self.raw_judge_belief_selection and self.baseline_mode:
+            raise ValueError(
+                "raw_judge_belief_selection requires HL candidate generation; set baseline_mode=False."
+            )
+        if self.raw_judge_belief_selection and self.environment_type not in adversarial_envs:
+            raise ValueError(
+                "raw_judge_belief_selection only supports cares/wildjailbreak/redbench/harmbench."
+            )
+        if self.raw_judge_ll_selection and self.random_belief_selection:
+            raise ValueError(
+                "raw_judge_ll_selection requires critic-based HL selection; set random_belief_selection=False."
+            )
+        if self.raw_judge_ll_selection and self.baseline_mode:
+            raise ValueError(
+                "raw_judge_ll_selection requires HL candidate generation; set baseline_mode=False."
+            )
+        if self.raw_judge_ll_selection and self.n_ll_candidates <= 1:
+            raise ValueError(
+                "raw_judge_ll_selection requires n_ll_candidates > 1 (LL candidate pool to rerank)."
+            )
+        if self.raw_judge_ll_selection:
+            self.ll_candidate_rerank = True
+        if self.ll_candidate_rerank and self.n_ll_candidates <= 1:
+            raise ValueError(
+                "ll_candidate_rerank requires n_ll_candidates > 1."
+            )
+        if self.raw_judge_ll_selection and self.environment_type not in adversarial_envs:
+            raise ValueError(
+                "raw_judge_ll_selection only supports cares/wildjailbreak/redbench/harmbench."
+            )
+        if self.ll_candidate_rerank and self.defender_backend != "standard":
+            raise ValueError(
+                "ll_candidate_rerank / raw_judge_ll_selection require defender_backend='standard'."
+            )
         valid_regret_min_target_modes = ["sampled_q_min"]
         if self.regret_min_target_mode not in valid_regret_min_target_modes:
             raise ValueError(
@@ -293,6 +356,9 @@ class BaseConfig:
             "tpo_mode": self.tpo_mode,
             "baseline_mode": getattr(self, 'baseline_mode', False),
             "random_belief_selection": getattr(self, 'random_belief_selection', False),
+            "raw_judge_belief_selection": getattr(self, 'raw_judge_belief_selection', False),
+            "raw_judge_ll_selection": getattr(self, 'raw_judge_ll_selection', False),
+            "ll_candidate_rerank": getattr(self, 'll_candidate_rerank', False),
             "use_hierarchical_agent": self.use_hierarchical_agent,
             "high_level_policy_type": self.high_level_policy_type,
             "critic_only_training": self.critic_only_training,
@@ -302,6 +368,7 @@ class BaseConfig:
             "freeform_max_new_tokens": self.freeform_max_new_tokens,
             "freeform_iterative_candidate_generation": self.freeform_iterative_candidate_generation,
             "freeform_per_instruction_max_new_tokens": self.freeform_per_instruction_max_new_tokens,
+            "freeform_iterative_max_attempts_per_candidate": self.freeform_iterative_max_attempts_per_candidate,
             "hierarchical_rejection_sampling": self.hierarchical_rejection_sampling,
             "hierarchical_rejection_candidates": self.hierarchical_rejection_candidates,
             "max_turns": self.max_turns,

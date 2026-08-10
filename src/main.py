@@ -104,6 +104,193 @@ def _regret_critic_selection(
     return random.choices(keys, weights=probs, k=1)[0]
 
 
+def _argmax_raw_judge_selection(scores: Dict[str, float], valid_candidates: List[str]) -> str:
+    """Pick the HL candidate with highest raw judge score; break ties uniformly at random."""
+    ranked = [c for c in valid_candidates if c in scores]
+    if not ranked:
+        raise RuntimeError(
+            f"raw_judge_belief_selection: no scored candidates among valid={valid_candidates}, scores={scores}"
+        )
+    best = max(scores[c] for c in ranked)
+    tops = [c for c in ranked if scores[c] == best]
+    return random.choice(tops)
+
+
+def _select_high_level_belief(
+    valid_candidates: List[str],
+    valid_q_values: Dict[str, float],
+    episode: EpisodeState,
+    config,
+    epsilon: float,
+) -> str:
+    """Shared HL candidate selection: random / raw-judge argmax / regret / softmax Q."""
+    if not valid_candidates:
+        raise RuntimeError("No valid high-level belief candidates available for selection.")
+    if config.random_belief_selection:
+        return random.choice(valid_candidates)
+    if config.raw_judge_belief_selection:
+        return _argmax_raw_judge_selection(valid_q_values, valid_candidates)
+    if not valid_q_values:
+        return random.choice(valid_candidates)
+    if random.random() < epsilon:
+        return random.choice(valid_candidates)
+    regret_values = getattr(episode, "_regret_values", None)
+    if (
+        config.use_regret_critic
+        and regret_values
+        and all(k in regret_values for k in valid_q_values)
+    ):
+        return _regret_critic_selection(valid_q_values, regret_values, config.regret_critic_beta)
+    return _softmax_sample_from_q_values(valid_q_values)
+
+
+def _user_prompt_for_raw_judge(episode: EpisodeState) -> str:
+    """User utterance that the agent is about to answer (same as cares env.step reward channel)."""
+    env = episode.env
+    if getattr(env, "_dialogue_history", None):
+        return env._dialogue_history[-1][1]
+    if episode.belief_state.history:
+        return episode.belief_state.history[-1][1]
+    return episode.initial_observation
+
+
+def batch_compute_raw_judge_scores_for_episodes(
+    episodes: List[EpisodeState],
+    ll_agent: LowLevelAgent,
+    config,
+) -> None:
+    """HL critic ablation: score each HL candidate with R(user, b), no LL expansion.
+
+    Passes the belief/instruction text as the assistant string into env._compute_reward
+    so the reward shares the (user, action-text) interface with step while scoring the same
+    object space as Q(o, b). Stores episode._q_values[belief] = r_nom for selection / logging.
+    """
+    del ll_agent  # HL ablation does not expand LL before scoring
+    active = [ep for ep in episodes if ep.is_active and not ep.done_from_env]
+    if not active:
+        return
+
+    filter_noise = config.contrastive_ablation_mode == "noise_in_candidates"
+    n_scored = 0
+    for episode in active:
+        episode._q_values = {}
+        high_level_candidates = [c.summary for c in episode.belief_state.candidates]
+        valid_candidates = _filter_candidates_for_value_min(high_level_candidates, filter_noise)
+        if not valid_candidates:
+            raise RuntimeError(
+                f"raw_judge_belief_selection: episode {episode.dialogue_id} has no valid HL candidates. "
+                f"candidates={high_level_candidates}"
+            )
+        user_prompt = _user_prompt_for_raw_judge(episode)
+        for cand in high_level_candidates:
+            if cand == "[SKIP]":
+                episode._q_values["[SKIP]"] = 0.0
+        for belief in valid_candidates:
+            _r_task, _r_harm, r_nom, _goal_ok = episode.env._compute_reward(user_prompt, belief)
+            episode._q_values[belief] = r_nom
+            n_scored += 1
+
+    print(
+        f"[raw_judge_hl] Scored {n_scored} HL candidates across {len(active)} episodes "
+        f"with R(user, b) — no LL expand."
+    )
+
+
+def _generate_or_select_ll_action(
+    episode: EpisodeState,
+    selected_belief: str,
+    ll_history: List[Tuple[str, str]],
+    ll_agent: LowLevelAgent,
+    value_function: Optional[ValueFunction],
+    tokenizer,
+    config,
+    *,
+    allow_ll_pool: bool = True,
+) -> str:
+    """Generate / select the LL reply for a chosen HL belief.
+
+    Multi-candidate rerank (K = n_ll_candidates) runs only when allow_ll_pool and
+    config.ll_candidate_rerank (automatically True when raw_judge_ll_selection):
+    - raw_judge_ll_selection: argmax R(user, a)
+    - else: softmax over token-critic scores
+    """
+    n_ll = config.n_ll_candidates
+    belief_only = config.ll_action_belief_only
+    baseline_mode = config.baseline_mode
+    ll_template = get_ll_action_template_name(
+        config, baseline_mode=baseline_mode, episode=episode
+    )
+    chunk_size = config.batch_generation_chunk_size
+    use_pool = (
+        allow_ll_pool
+        and n_ll > 1
+        and (
+            config.ll_candidate_rerank
+            or config.environment_type
+            not in ("cares", "wildjailbreak", "redbench", "harmbench")
+        )
+    )
+
+    if baseline_mode:
+        prompt = ll_agent.build_prompt(
+            belief_context="",
+            history=ll_history,
+            belief_only=False,
+            template_name=ll_template,
+        )
+        return ll_agent.generate_actions_from_prompts(
+            prompts=[prompt],
+            temperature=0.7,
+            do_sample=False,
+            chunk_size=1,
+            template_name=ll_template,
+        )[0]
+
+    if not use_pool:
+        prompt = ll_agent.build_prompt(
+            belief_context=selected_belief,
+            history=ll_history,
+            belief_only=belief_only,
+            template_name=ll_template,
+        )
+        return ll_agent.generate_actions_from_prompts(
+            prompts=[prompt],
+            temperature=0.7,
+            do_sample=False,
+            chunk_size=1,
+            template_name=ll_template,
+        )[0]
+
+    candidates = ll_agent.generate_ll_candidates(
+        belief_context=selected_belief,
+        history=ll_history,
+        n_candidates=n_ll,
+        template_name=ll_template,
+        temperature=0.7,
+        belief_only=belief_only,
+        chunk_size=chunk_size,
+    )
+    if config.raw_judge_ll_selection:
+        user_prompt = _user_prompt_for_raw_judge(episode)
+        scores = {}
+        for action in candidates:
+            _r_task, _r_harm, r_nom, _goal_ok = episode.env._compute_reward(user_prompt, action)
+            scores[action] = r_nom
+        selected = _argmax_raw_judge_selection(scores, candidates)
+        print(
+            f"[raw_judge_ll] episode={episode.dialogue_id} scored {len(candidates)} LL candidates "
+            f"with R(user, a); selected r_nom={scores[selected]:.3f}"
+        )
+        return selected
+
+    if value_function is None:
+        raise RuntimeError(
+            "Token-critic LL selection requires a value function; got value_function=None."
+        )
+    scores = value_function.predict_ll_candidate_scores(candidates, tokenizer)
+    return _softmax_sample_from_q_values(scores)
+
+
 def _compute_candidate_pool_q_metrics(
     episode: EpisodeState,
     candidate_beliefs: List[str],
@@ -648,6 +835,45 @@ def print_periodic_summary(
     sys.stdout.flush()
 
 
+def _hl_generate_candidate_beliefs_batch(
+    hl_agent: HighLevelAgent,
+    histories: List[List[Tuple[str, str]]],
+    n_candidates: int,
+    temperature: float,
+    max_new_tokens: int,
+    chunk_size: int,
+    base_prompts: Optional[List[Optional[str]]],
+    iterative_candidate_generation: bool,
+    per_instruction_max_new_tokens: int,
+    max_attempts_per_candidate: int,
+):
+    """Generate belief candidate sets; iterative path retries each numbered item up to max_attempts."""
+    if iterative_candidate_generation:
+        if per_instruction_max_new_tokens < 1:
+            raise ValueError(
+                f"per_instruction_max_new_tokens must be >= 1, got {per_instruction_max_new_tokens}"
+            )
+        return hl_agent.generate_candidate_beliefs_batch_iterative(
+            histories=histories,
+            n_candidates=n_candidates,
+            temperature=temperature,
+            max_new_tokens_per_candidate=per_instruction_max_new_tokens,
+            return_debug_info=True,
+            chunk_size=chunk_size,
+            base_prompts=base_prompts,
+            max_attempts_per_candidate=max_attempts_per_candidate,
+        )
+    return hl_agent.generate_candidate_beliefs_batch(
+        histories=histories,
+        n_candidates=n_candidates,
+        temperature=temperature,
+        max_new_tokens=max_new_tokens,
+        return_debug_info=True,
+        chunk_size=chunk_size,
+        base_prompts=base_prompts,
+    )
+
+
 def batch_generate_beliefs_for_episodes(
     episodes: List[EpisodeState],
     hl_agent: HighLevelAgent,
@@ -677,11 +903,22 @@ def batch_generate_beliefs_for_episodes(
     freeform_iterative_generation = False
     freeform_per_instruction_max_new_tokens = config.max_tokens
     if config.use_hierarchical_agent and config.high_level_policy_type == "freeform":
+        if config.freeform_n_instructions != config.n_candidates:
+            raise ValueError(
+                f"Hierarchical freeform requires freeform_n_instructions == n_candidates, "
+                f"got freeform_n_instructions={config.freeform_n_instructions} n_candidates={config.n_candidates}"
+            )
         n_high_level_candidates = config.freeform_n_instructions
         high_level_temperature = config.freeform_temperature
         high_level_max_new_tokens = config.freeform_max_new_tokens
         freeform_iterative_generation = config.freeform_iterative_candidate_generation
         freeform_per_instruction_max_new_tokens = config.freeform_per_instruction_max_new_tokens
+    freeform_iterative_max_attempts_per_candidate = config.freeform_iterative_max_attempts_per_candidate
+    if freeform_iterative_max_attempts_per_candidate < 1:
+        raise ValueError(
+            f"freeform_iterative_max_attempts_per_candidate must be >= 1, "
+            f"got {freeform_iterative_max_attempts_per_candidate}"
+        )
     
     # Clear frozen flags so all episodes get a belief attempt this iteration
     for episode in active_episodes:
@@ -731,25 +968,67 @@ def batch_generate_beliefs_for_episodes(
     for attempt in range(MAX_BELIEF_ATTEMPTS):
         if attempt == 0:
             if use_regret_critic and is_adversarial_env:
-                # Generate both nominal (benign) and adversarial candidates
-                nominal_candidates, nominal_raw = hl_agent.generate_candidate_beliefs_batch(
-                    histories=histories,
-                    n_candidates=n_high_level_candidates,
-                    temperature=high_level_temperature,
-                    max_new_tokens=high_level_max_new_tokens,
-                    return_debug_info=True,
-                    chunk_size=config.batch_generation_chunk_size,
-                    base_prompts=base_prompts_nominal,
-                )
-                adversarial_candidates, adversarial_raw = hl_agent.generate_candidate_beliefs_batch(
-                    histories=histories,
-                    n_candidates=n_high_level_candidates,
-                    temperature=high_level_temperature,
-                    max_new_tokens=high_level_max_new_tokens,
-                    return_debug_info=True,
-                    chunk_size=config.batch_generation_chunk_size,
-                    base_prompts=base_prompts_adversarial,
-                )
+                regret_per_side = n_high_level_candidates // 2
+                if freeform_iterative_generation:
+                    if regret_per_side == 0:
+                        nominal_candidates, nominal_raw = _hl_generate_candidate_beliefs_batch(
+                            hl_agent=hl_agent,
+                            histories=histories,
+                            n_candidates=1,
+                            temperature=high_level_temperature,
+                            max_new_tokens=high_level_max_new_tokens,
+                            chunk_size=config.batch_generation_chunk_size,
+                            base_prompts=base_prompts_nominal,
+                            iterative_candidate_generation=True,
+                            per_instruction_max_new_tokens=freeform_per_instruction_max_new_tokens,
+                            max_attempts_per_candidate=freeform_iterative_max_attempts_per_candidate,
+                        )
+                        adversarial_candidates = [[] for _ in histories]
+                        adversarial_raw = [""] * len(histories)
+                    else:
+                        nominal_candidates, nominal_raw = _hl_generate_candidate_beliefs_batch(
+                            hl_agent=hl_agent,
+                            histories=histories,
+                            n_candidates=regret_per_side,
+                            temperature=high_level_temperature,
+                            max_new_tokens=high_level_max_new_tokens,
+                            chunk_size=config.batch_generation_chunk_size,
+                            base_prompts=base_prompts_nominal,
+                            iterative_candidate_generation=True,
+                            per_instruction_max_new_tokens=freeform_per_instruction_max_new_tokens,
+                            max_attempts_per_candidate=freeform_iterative_max_attempts_per_candidate,
+                        )
+                        adversarial_candidates, adversarial_raw = _hl_generate_candidate_beliefs_batch(
+                            hl_agent=hl_agent,
+                            histories=histories,
+                            n_candidates=regret_per_side,
+                            temperature=high_level_temperature,
+                            max_new_tokens=high_level_max_new_tokens,
+                            chunk_size=config.batch_generation_chunk_size,
+                            base_prompts=base_prompts_adversarial,
+                            iterative_candidate_generation=True,
+                            per_instruction_max_new_tokens=freeform_per_instruction_max_new_tokens,
+                            max_attempts_per_candidate=freeform_iterative_max_attempts_per_candidate,
+                        )
+                else:
+                    nominal_candidates, nominal_raw = hl_agent.generate_candidate_beliefs_batch(
+                        histories=histories,
+                        n_candidates=n_high_level_candidates,
+                        temperature=high_level_temperature,
+                        max_new_tokens=high_level_max_new_tokens,
+                        return_debug_info=True,
+                        chunk_size=config.batch_generation_chunk_size,
+                        base_prompts=base_prompts_nominal,
+                    )
+                    adversarial_candidates, adversarial_raw = hl_agent.generate_candidate_beliefs_batch(
+                        histories=histories,
+                        n_candidates=n_high_level_candidates,
+                        temperature=high_level_temperature,
+                        max_new_tokens=high_level_max_new_tokens,
+                        return_debug_info=True,
+                        chunk_size=config.batch_generation_chunk_size,
+                        base_prompts=base_prompts_adversarial,
+                    )
                 # Merge: nominal + adversarial for each episode (up to 2*n_candidates)
                 all_candidates = []
                 raw_outputs = []
@@ -764,18 +1043,18 @@ def batch_generate_beliefs_for_episodes(
                     raw_outputs.append(nominal_raw[ep_idx] + "\n---\n" + adversarial_raw[ep_idx])
             else:
                 if config.use_hierarchical_agent and config.high_level_policy_type == "freeform":
-                    freeform_result = hl_agent.generate_instructions_batch(
+                    all_candidates, raw_outputs = _hl_generate_candidate_beliefs_batch(
+                        hl_agent=hl_agent,
                         histories=histories,
-                        n_instructions=n_high_level_candidates,
+                        n_candidates=n_high_level_candidates,
                         temperature=high_level_temperature,
                         max_new_tokens=high_level_max_new_tokens,
-                        iterative_candidate_generation=freeform_iterative_generation,
-                        per_instruction_max_new_tokens=freeform_per_instruction_max_new_tokens,
                         chunk_size=config.batch_generation_chunk_size,
                         base_prompts=base_prompts,
+                        iterative_candidate_generation=freeform_iterative_generation,
+                        per_instruction_max_new_tokens=freeform_per_instruction_max_new_tokens,
+                        max_attempts_per_candidate=freeform_iterative_max_attempts_per_candidate,
                     )
-                    all_candidates = freeform_result["candidates"]
-                    raw_outputs = freeform_result["raw_outputs"]
                 else:
                     all_candidates, raw_outputs = hl_agent.generate_candidate_beliefs_batch(
                         histories=histories,
@@ -791,25 +1070,69 @@ def batch_generate_beliefs_for_episodes(
             retry_base_prompts = [base_prompts[i] for i in still_all_skip]
             print(f"[DEBUG] All candidates are [SKIP] for {len(still_all_skip)} episode(s). Attempting batched retry {attempt + 1}/{MAX_BELIEF_ATTEMPTS}...")
             if use_regret_critic and is_adversarial_env:
-                retry_nominal, retry_nom_raw = hl_agent.generate_candidate_beliefs_batch(
-                    histories=retry_histories,
-                    n_candidates=n_high_level_candidates,
-                    temperature=high_level_temperature,
-                    max_new_tokens=high_level_max_new_tokens,
-                    return_debug_info=True,
-                    chunk_size=config.batch_generation_chunk_size,
-                    base_prompts=[None] * len(still_all_skip),
-                )
-                retry_adv_prompts = [base_prompts_adversarial[i] for i in still_all_skip]
-                retry_adversarial, retry_adv_raw = hl_agent.generate_candidate_beliefs_batch(
-                    histories=retry_histories,
-                    n_candidates=n_high_level_candidates,
-                    temperature=high_level_temperature,
-                    max_new_tokens=high_level_max_new_tokens,
-                    return_debug_info=True,
-                    chunk_size=config.batch_generation_chunk_size,
-                    base_prompts=retry_adv_prompts,
-                )
+                regret_per_side = n_high_level_candidates // 2
+                if freeform_iterative_generation:
+                    if regret_per_side == 0:
+                        retry_nominal, retry_nom_raw = _hl_generate_candidate_beliefs_batch(
+                            hl_agent=hl_agent,
+                            histories=retry_histories,
+                            n_candidates=1,
+                            temperature=high_level_temperature,
+                            max_new_tokens=high_level_max_new_tokens,
+                            chunk_size=config.batch_generation_chunk_size,
+                            base_prompts=[None] * len(still_all_skip),
+                            iterative_candidate_generation=True,
+                            per_instruction_max_new_tokens=freeform_per_instruction_max_new_tokens,
+                            max_attempts_per_candidate=freeform_iterative_max_attempts_per_candidate,
+                        )
+                        retry_adversarial = [[] for _ in retry_histories]
+                        retry_adv_raw = [""] * len(retry_histories)
+                    else:
+                        retry_nominal, retry_nom_raw = _hl_generate_candidate_beliefs_batch(
+                            hl_agent=hl_agent,
+                            histories=retry_histories,
+                            n_candidates=regret_per_side,
+                            temperature=high_level_temperature,
+                            max_new_tokens=high_level_max_new_tokens,
+                            chunk_size=config.batch_generation_chunk_size,
+                            base_prompts=[None] * len(still_all_skip),
+                            iterative_candidate_generation=True,
+                            per_instruction_max_new_tokens=freeform_per_instruction_max_new_tokens,
+                            max_attempts_per_candidate=freeform_iterative_max_attempts_per_candidate,
+                        )
+                        retry_adv_prompts = [base_prompts_adversarial[i] for i in still_all_skip]
+                        retry_adversarial, retry_adv_raw = _hl_generate_candidate_beliefs_batch(
+                            hl_agent=hl_agent,
+                            histories=retry_histories,
+                            n_candidates=regret_per_side,
+                            temperature=high_level_temperature,
+                            max_new_tokens=high_level_max_new_tokens,
+                            chunk_size=config.batch_generation_chunk_size,
+                            base_prompts=retry_adv_prompts,
+                            iterative_candidate_generation=True,
+                            per_instruction_max_new_tokens=freeform_per_instruction_max_new_tokens,
+                            max_attempts_per_candidate=freeform_iterative_max_attempts_per_candidate,
+                        )
+                else:
+                    retry_nominal, retry_nom_raw = hl_agent.generate_candidate_beliefs_batch(
+                        histories=retry_histories,
+                        n_candidates=n_high_level_candidates,
+                        temperature=high_level_temperature,
+                        max_new_tokens=high_level_max_new_tokens,
+                        return_debug_info=True,
+                        chunk_size=config.batch_generation_chunk_size,
+                        base_prompts=[None] * len(still_all_skip),
+                    )
+                    retry_adv_prompts = [base_prompts_adversarial[i] for i in still_all_skip]
+                    retry_adversarial, retry_adv_raw = hl_agent.generate_candidate_beliefs_batch(
+                        histories=retry_histories,
+                        n_candidates=n_high_level_candidates,
+                        temperature=high_level_temperature,
+                        max_new_tokens=high_level_max_new_tokens,
+                        return_debug_info=True,
+                        chunk_size=config.batch_generation_chunk_size,
+                        base_prompts=retry_adv_prompts,
+                    )
                 for retry_idx, original_idx in enumerate(still_all_skip):
                     nom = retry_nominal[retry_idx]
                     adv = retry_adversarial[retry_idx]
@@ -821,18 +1144,18 @@ def batch_generate_beliefs_for_episodes(
                     raw_outputs[original_idx] = retry_nom_raw[retry_idx] + "\n---\n" + retry_adv_raw[retry_idx]
             else:
                 if config.use_hierarchical_agent and config.high_level_policy_type == "freeform":
-                    retry_result = hl_agent.generate_instructions_batch(
+                    retry_candidates, retry_raw_outputs = _hl_generate_candidate_beliefs_batch(
+                        hl_agent=hl_agent,
                         histories=retry_histories,
-                        n_instructions=n_high_level_candidates,
+                        n_candidates=n_high_level_candidates,
                         temperature=high_level_temperature,
                         max_new_tokens=high_level_max_new_tokens,
-                        iterative_candidate_generation=freeform_iterative_generation,
-                        per_instruction_max_new_tokens=freeform_per_instruction_max_new_tokens,
                         chunk_size=config.batch_generation_chunk_size,
                         base_prompts=retry_base_prompts,
+                        iterative_candidate_generation=freeform_iterative_generation,
+                        per_instruction_max_new_tokens=freeform_per_instruction_max_new_tokens,
+                        max_attempts_per_candidate=freeform_iterative_max_attempts_per_candidate,
                     )
-                    retry_candidates = retry_result["candidates"]
-                    retry_raw_outputs = retry_result["raw_outputs"]
                 else:
                     retry_candidates, retry_raw_outputs = hl_agent.generate_candidate_beliefs_batch(
                         histories=retry_histories,
@@ -868,50 +1191,76 @@ def batch_generate_beliefs_for_episodes(
     
     # OPTIMIZED ALGORITHM for crossed_data_in_candidates (both online and offline):
     # 1) Generate candidates for all states (already done - all_candidates)
-    # 2) Add 3 candidates per state to a pool, keep remaining 2 per state
-    # 3) Without replacement, randomly sample 3 candidates from the pool back into each state
-    # 4) Each state ends up with 2 (kept) + 3 (redistributed) = 5 candidates
+    # 2) Add n_to_pool candidates per state to a pool, keep n_to_keep per state
+    # 3) Without replacement, randomly sample n_to_pool candidates from the pool back into each state
+    # 4) Each state ends up with n_to_keep (kept) + n_to_pool (redistributed) = n_candidates
     if ablation_mode == "crossed_data_in_candidates":
         import random
         
-        candidate_pool = []
-        n_to_pool = 3
-        kept_candidates_per_state = []
+        discarded_ep_indices = {
+            ep_idx for ep_idx, candidates in enumerate(all_candidates)
+            if all(c.summary == "[SKIP]" for c in candidates)
+        }
+        if discarded_ep_indices:
+            discarded_ids = [active_episodes[i].dialogue_idx for i in sorted(discarded_ep_indices)]
+            print(
+                f"[WARNING] crossed_data_in_candidates: skipping {len(discarded_ep_indices)} episode(s) "
+                f"with all-[SKIP] candidates after retries: {discarded_ids}"
+            )
         
-        for ep_idx, candidates in enumerate(all_candidates):
+        participating_indices = [i for i in range(len(all_candidates)) if i not in discarded_ep_indices]
+        if not participating_indices:
+            raise RuntimeError(
+                f"crossed_data_in_candidates: All {len(all_candidates)} episode(s) have all-[SKIP] candidates after retry. "
+                f"No episodes remain. Program cannot continue."
+            )
+        
+        candidate_pool = []
+        k_candidates = config.n_candidates
+        n_to_pool = min(3, k_candidates)
+        n_to_keep = 0 if k_candidates <= 1 else max(1, k_candidates - n_to_pool)
+        kept_candidates_per_state = [[] for _ in all_candidates]
+        
+        for ep_idx in participating_indices:
+            candidates = all_candidates[ep_idx]
             valid_candidates = [c for c in candidates if c.summary != "[SKIP]"]
             
-            if len(valid_candidates) == 0:
-                kept_candidates_per_state.append([])
-            elif len(valid_candidates) == 1:
-                kept_candidates_per_state.append(valid_candidates)
-            elif len(valid_candidates) == 2:
-                kept = [valid_candidates[0]]
-                candidate_pool.append(valid_candidates[1])
-                kept_candidates_per_state.append(kept)
-            else:
-                n_to_add = min(n_to_pool, len(valid_candidates) - 1)
+            if n_to_keep == 0:
+                n_to_add = min(n_to_pool, len(valid_candidates))
                 sampled_for_pool = random.sample(valid_candidates, n_to_add)
-                candidate_pool.extend(sampled_for_pool)
                 kept = [c for c in valid_candidates if c not in sampled_for_pool]
-                kept_candidates_per_state.append(kept)
+                candidate_pool.extend(sampled_for_pool)
+                kept_candidates_per_state[ep_idx] = kept
+            elif len(valid_candidates) <= n_to_keep:
+                kept_candidates_per_state[ep_idx] = valid_candidates
+            elif len(valid_candidates) == n_to_keep + 1:
+                kept = valid_candidates[:n_to_keep]
+                candidate_pool.append(valid_candidates[n_to_keep])
+                kept_candidates_per_state[ep_idx] = kept
+            else:
+                n_to_add = min(n_to_pool, len(valid_candidates) - n_to_keep)
+                pool_candidates = valid_candidates[n_to_keep:]
+                sampled_for_pool = random.sample(pool_candidates, n_to_add)
+                candidate_pool.extend(sampled_for_pool)
+                kept = valid_candidates[:n_to_keep]
+                kept_candidates_per_state[ep_idx] = kept
         
         if not candidate_pool:
             raise RuntimeError(
-                f"crossed_data_in_candidates: Pool is empty (all candidates are [SKIP] after retry). "
-                f"This indicates belief generation failed for all episodes. Program cannot continue."
+                f"crossed_data_in_candidates: Pool is empty for {len(participating_indices)} participating episode(s). "
+                f"This indicates belief generation failed for all remaining episodes. Program cannot continue."
             )
         
         random.shuffle(candidate_pool)
         
-        n_states = len(all_candidates)
-        min_needed_from_pool = n_states
-        total_target_from_pool = n_states * n_to_pool
+        n_participating = len(participating_indices)
+        min_needed_from_pool = n_participating
+        total_target_from_pool = n_participating * n_to_pool
         
         if len(candidate_pool) < min_needed_from_pool:
-            raise RuntimeError(
-                f"crossed_data_in_candidates: Pool size ({len(candidate_pool)}) < minimum needed ({min_needed_from_pool}). "
-                f"Cannot guarantee at least 1 redistributed candidate per state. Program cannot continue."
+            print(
+                f"[WARNING] crossed_data_in_candidates: Pool size ({len(candidate_pool)}) < minimum needed ({min_needed_from_pool}). "
+                f"Some participating episodes will receive fewer redistributed candidates."
             )
         
         if len(candidate_pool) < total_target_from_pool:
@@ -919,16 +1268,14 @@ def batch_generate_beliefs_for_episodes(
                   f"Some states will receive fewer than {n_to_pool} redistributed candidates.")
         
         pool_idx = 0
-        redistributed_per_state = []
+        redistributed_per_state = [[] for _ in all_candidates]
         
-        for ep_idx in range(n_states):
+        for ep_idx in participating_indices:
             if pool_idx < len(candidate_pool):
-                redistributed_per_state.append([candidate_pool[pool_idx]])
+                redistributed_per_state[ep_idx] = [candidate_pool[pool_idx]]
                 pool_idx += 1
-            else:
-                redistributed_per_state.append([])
         
-        for ep_idx in range(n_states):
+        for ep_idx in participating_indices:
             current_redistributed = redistributed_per_state[ep_idx]
             for _ in range(n_to_pool - len(current_redistributed)):
                 if pool_idx < len(candidate_pool):
@@ -937,26 +1284,28 @@ def batch_generate_beliefs_for_episodes(
                 else:
                     break
         
-        # Combine kept + redistributed for each state
-        for ep_idx, original_candidates in enumerate(all_candidates):
+        # Combine kept + redistributed for each participating state
+        for ep_idx in participating_indices:
+            original_candidates = all_candidates[ep_idx]
             kept = kept_candidates_per_state[ep_idx]
             redistributed = redistributed_per_state[ep_idx]
             
-            # Combine kept + redistributed candidates
-            n_expected = len(original_candidates)  # Should be config.n_candidates (5)
+            n_expected = len(original_candidates)
             new_candidates = kept + redistributed
             
-            # Verify guarantees: each state should have at least 1 kept + 1 redistributed
             n_kept = len(kept)
             n_redistributed = len(redistributed)
             if n_kept == 0 and n_redistributed == 0:
-                # This should not happen - all candidates were [SKIP] and pool was empty
-                raise RuntimeError(
-                    f"crossed_data_in_candidates: Episode {active_episodes[ep_idx].dialogue_idx} has no kept or redistributed candidates. "
-                    f"This should have been caught earlier. Program cannot continue."
+                episode = active_episodes[ep_idx]
+                episode.is_frozen = False
+                episode.is_active = False
+                episode.done_from_env = True
+                print(
+                    f"[WARNING] crossed_data_in_candidates: Episode {episode.dialogue_idx} discarded "
+                    f"(no kept or redistributed candidates after pooling)."
                 )
+                continue
             
-            # Pad to expected length if needed
             while len(new_candidates) < n_expected:
                 new_candidates.append(BeliefCandidate(
                     summary="[SKIP]",
@@ -964,31 +1313,24 @@ def batch_generate_beliefs_for_episodes(
                     probability=0.0
                 ))
             
-            # Truncate if more than expected (shouldn't happen)
             if len(new_candidates) > n_expected:
                 new_candidates = new_candidates[:n_expected]
             
-            # Replace the candidates for this episode
             all_candidates[ep_idx] = new_candidates
         
-        # Final check: Ensure no episode has all [SKIP] candidates after pooling
-        # This can happen if:
-        # 1. An episode had < 3 valid candidates initially (so all went to pool, kept 0)
-        # 2. Pool was exhausted before reaching this episode during redistribution
-        # 3. Episode got 0 redistributed candidates and was padded with [SKIP]
-        all_skip_episodes = []
-        for ep_idx, candidates in enumerate(all_candidates):
-            if all(c.summary == "[SKIP]" for c in candidates):
-                all_skip_episodes.append((ep_idx, active_episodes[ep_idx].dialogue_idx))
+        pooling_discarded = []
+        for ep_idx in participating_indices:
+            if all(c.summary == "[SKIP]" for c in all_candidates[ep_idx]):
+                episode = active_episodes[ep_idx]
+                episode.is_frozen = False
+                episode.is_active = False
+                episode.done_from_env = True
+                pooling_discarded.append(episode.dialogue_idx)
         
-        if all_skip_episodes:
-            failed_episode_ids = [ep_id for _, ep_id in all_skip_episodes]
-            raise RuntimeError(
-                f"crossed_data_in_candidates: {len(all_skip_episodes)} episode(s) have all-[SKIP] candidates after pooling. "
-                f"This occurred because the pool was exhausted before redistributing to these episodes. "
-                f"Failed episode indices: {failed_episode_ids}. "
-                f"Pool size was {len(candidate_pool)} but needed {n_states * n_to_pool} total. "
-                f"Program cannot continue."
+        if pooling_discarded:
+            print(
+                f"[WARNING] crossed_data_in_candidates: discarded {len(pooling_discarded)} episode(s) "
+                f"with all-[SKIP] candidates after pooling: {pooling_discarded}"
             )
     
     # Store candidates and debug info in episodes
@@ -1499,6 +1841,10 @@ def batch_generate_ll_actions_for_episodes(
     """
     if not _is_online_mode(config):
         return
+
+    # Multi-candidate LL selection needs per-episode env rewards / token critic; done in process_turn.
+    if config.ll_candidate_rerank:
+        return
     
     if config.use_hierarchical_agent:
         HierarchicalRolloutCoordinator(
@@ -1541,21 +1887,13 @@ def batch_generate_ll_actions_for_episodes(
             # Skip batching for this episode; it will error in process_turn as before
             continue
         
-        # Check if random_belief_selection is enabled
-        random_belief_selection = getattr(config, 'random_belief_selection', False)
-        use_regret_critic = getattr(config, 'use_regret_critic', False)
-        regret_values = getattr(episode, '_regret_values', None)
-        if random_belief_selection:
-            selected_belief = random.choice(valid_candidates)
-        elif not valid_q_values:
-            selected_belief = random.choice(valid_candidates)
-        elif random.random() < epsilon_to_use:
-            selected_belief = random.choice(valid_candidates)
-        elif use_regret_critic and regret_values and all(k in regret_values for k in valid_q_values):
-            beta = getattr(config, 'regret_critic_beta', 0.2)
-            selected_belief = _regret_critic_selection(valid_q_values, regret_values, beta)
-        else:
-            selected_belief = _softmax_sample_from_q_values(valid_q_values)
+        selected_belief = _select_high_level_belief(
+            valid_candidates=valid_candidates,
+            valid_q_values=valid_q_values,
+            episode=episode,
+            config=config,
+            epsilon=epsilon_to_use,
+        )
         
         ll_history = episode.belief_state.history
         if not ll_history:
@@ -1826,10 +2164,21 @@ def process_turn_for_episode(
     max_judge_retries = getattr(config, "max_judge_step_retries", 3)
     if episode.judge_step_pending:
         if episode.judge_step_retry_count >= max_judge_retries:
-            raise FulfillmentJudgeParseError(
-                f"Exceeded max judge step retries ({max_judge_retries}) for episode "
-                f"{episode.dialogue_id} (dialogue_idx={episode.dialogue_idx})"
+            if episode.turn_evaluation_data:
+                episode.turn_evaluation_data.pop()
+            episode.judge_step_pending = False
+            episode.pending_env_action = None
+            episode.judge_step_retry_count = 0
+            del episode._judge_retry_selected_belief
+            del episode._judge_retry_q_values
+            episode.is_frozen = False
+            episode.is_active = False
+            episode.done_from_env = True
+            print(
+                f"[WARNING] Episode {episode.dialogue_idx} ({episode.dialogue_id}) discarded after "
+                f"{max_judge_retries} fulfillment judge parse failures."
             )
+            return False
         selected_belief = episode._judge_retry_selected_belief
         q_values = episode._judge_retry_q_values
     else:
@@ -1864,27 +2213,20 @@ def process_turn_for_episode(
         epsilon_to_use = getattr(config, '_current_epsilon', config.epsilon)
         
         # Check if random_belief_selection is enabled
-        random_belief_selection = getattr(config, 'random_belief_selection', False)
+        random_belief_selection = config.random_belief_selection
         
         if hasattr(episode, "_preselected_belief"):
             selected_belief = episode._preselected_belief
             del episode._preselected_belief
         else:
             if valid_candidates:
-                use_regret_critic = getattr(config, 'use_regret_critic', False)
-                regret_values = getattr(episode, '_regret_values', None)
-                if random_belief_selection:
-                    selected_belief = random.choice(valid_candidates)
-                elif valid_q_values:
-                    if random.random() < epsilon_to_use:
-                        selected_belief = random.choice(valid_candidates)
-                    elif use_regret_critic and regret_values and all(k in regret_values for k in valid_q_values):
-                        beta = getattr(config, 'regret_critic_beta', 0.2)
-                        selected_belief = _regret_critic_selection(valid_q_values, regret_values, beta)
-                    else:
-                        selected_belief = _softmax_sample_from_q_values(valid_q_values)
-                else:
-                    selected_belief = random.choice(valid_candidates)
+                selected_belief = _select_high_level_belief(
+                    valid_candidates=valid_candidates,
+                    valid_q_values=valid_q_values,
+                    episode=episode,
+                    config=config,
+                    epsilon=epsilon_to_use,
+                )
             else:
                 candidate_snapshot = {
                     "candidates": high_level_candidates,
@@ -1977,36 +2319,15 @@ def process_turn_for_episode(
                             ll_agent.tokenizer.encode(episode.agent_response, add_special_tokens=False)
                         )
                     else:
-                        n_ll = getattr(config, 'n_ll_candidates', 1)
-                        belief_only = getattr(config, 'll_action_belief_only', True)
-                        baseline_mode = getattr(config, 'baseline_mode', False)
-                        ll_template = get_ll_action_template_name(config, baseline_mode=baseline_mode, episode=episode)
-                        if n_ll > 1:
-                            candidates = ll_agent.generate_ll_candidates(
-                                belief_context=selected_belief,
-                                history=ll_history,
-                                n_candidates=n_ll,
-                                template_name=ll_template,
-                                temperature=0.7,
-                                belief_only=belief_only,
-                                chunk_size=getattr(config, 'batch_generation_chunk_size', None),
-                            )
-                            scores = value_function.predict_ll_candidate_scores(candidates, tokenizer)
-                            episode.agent_response = _softmax_sample_from_q_values(scores)
-                        else:
-                            prompt = ll_agent.build_prompt(
-                                belief_context=selected_belief,
-                                history=ll_history,
-                                belief_only=belief_only,
-                                template_name=ll_template,
-                            )
-                            episode.agent_response = ll_agent.generate_actions_from_prompts(
-                                prompts=[prompt],
-                                temperature=0.7,
-                                do_sample=False,
-                                chunk_size=1,
-                                template_name=ll_template,
-                            )[0]
+                        episode.agent_response = _generate_or_select_ll_action(
+                            episode=episode,
+                            selected_belief=selected_belief,
+                            ll_history=ll_history,
+                            ll_agent=ll_agent,
+                            value_function=value_function,
+                            tokenizer=tokenizer,
+                            config=config,
+                        )
                         episode._test_time_agent_tokens = len(
                             ll_agent.tokenizer.encode(episode.agent_response, add_special_tokens=False)
                         )
@@ -2137,10 +2458,31 @@ def process_turn_for_episode(
                 elif hasattr(episode, "_precomputed_agent_response"):
                     episode.agent_response = episode._precomputed_agent_response
                     del episode._precomputed_agent_response
+                    episode._test_time_agent_tokens = len(
+                        ll_agent.tokenizer.encode(episode.agent_response, add_special_tokens=False)
+                    )
                 else:
-                    # Use appropriate template based on environment type and baseline mode
-                    baseline_mode = getattr(config, 'baseline_mode', False)
-                    if baseline_mode:
+                    baseline_mode = config.baseline_mode
+                    if (
+                        not baseline_mode
+                        and config.environment_type in ("cares", "wildjailbreak", "redbench", "harmbench")
+                        and config.ll_candidate_rerank
+                    ):
+                        # Multi-candidate LL path (token critic or raw-judge LL ablation)
+                        episode.agent_response = _generate_or_select_ll_action(
+                            episode=episode,
+                            selected_belief=selected_belief,
+                            ll_history=ll_history,
+                            ll_agent=ll_agent,
+                            value_function=value_function,
+                            tokenizer=tokenizer,
+                            config=config,
+                            allow_ll_pool=True,
+                        )
+                        episode._test_time_agent_tokens = len(
+                            ll_agent.tokenizer.encode(episode.agent_response, add_special_tokens=False)
+                        )
+                    elif baseline_mode:
                         template_name = get_ll_action_template_name(
                             config, baseline_mode=True, episode=episode
                         )
@@ -2295,8 +2637,13 @@ def process_turn_for_episode(
     if not baseline_mode:
         # Skip DPO updates in evaluation mode or when using random belief selection (no training needed)
         evaluation_mode = getattr(config, "_evaluation_mode", False)
-        random_belief_selection = getattr(config, 'random_belief_selection', False)
-        if not evaluation_mode and not random_belief_selection and not config.critic_only_training:
+        random_belief_selection = config.random_belief_selection
+        if (
+            not evaluation_mode
+            and not random_belief_selection
+            and not config.raw_judge_belief_selection
+            and not config.critic_only_training
+        ):
             # Compute log-probabilities for DPO ranking (using selected belief, not selected action)
             try:
                 log_probs = compute_log_probs_batch(
@@ -4244,13 +4591,17 @@ def main(config_path: Optional[str] = None, output_dir: Optional[str] = None):
     # Determine standard dtype based on bf16 parameter
     standard_dtype = torch.bfloat16 if config.use_bf16 else torch.float32
     
-    # Initialize value function (skip if random_belief_selection is True)
+    # Initialize value function (skip if random or raw-judge belief selection)
     # Note: ValueFunction uses the same model singleton as HL/LL agents, so we cannot
     # parallelize across GPUs. All components share the same model instance.
-    random_belief_selection = getattr(config, 'random_belief_selection', False)
+    random_belief_selection = config.random_belief_selection
+    raw_judge_belief_selection = config.raw_judge_belief_selection
     if random_belief_selection:
         value_function = None
         print("[INFO] Random belief selection enabled - skipping value function initialization")
+    elif raw_judge_belief_selection:
+        value_function = None
+        print("[INFO] Raw-judge belief selection enabled - skipping value function initialization")
     else:
         value_function_hidden_size = model.config.hidden_size
         value_function = ValueFunction(
@@ -4970,10 +5321,25 @@ def main(config_path: Optional[str] = None, output_dir: Optional[str] = None):
                         ]
                         episode._q_values = {"[BASELINE]": 0.0}
             else:
-                random_belief_selection = getattr(config, 'random_belief_selection', False)
+                random_belief_selection = config.random_belief_selection
+                raw_judge_belief_selection = config.raw_judge_belief_selection
                 if random_belief_selection:
                     for episode in active_episodes_to_process:
                         episode._q_values = {}
+                elif raw_judge_belief_selection:
+                    episodes_for_judge = [
+                        ep for ep in active_episodes_to_process if not ep.judge_step_pending
+                    ]
+                    if episodes_for_judge:
+                        print(
+                            f"Batch raw-judge scoring for {len(episodes_for_judge)} episodes..."
+                        )
+                        batch_compute_raw_judge_scores_for_episodes(
+                            episodes_for_judge, ll_agent, config
+                        )
+                        print(
+                            f"Raw-judge scores computed for {len(episodes_for_judge)} episodes..."
+                        )
                 else:
                     episodes_for_q = [
                         ep for ep in active_episodes_to_process if not ep.judge_step_pending
@@ -5057,22 +5423,14 @@ def main(config_path: Optional[str] = None, output_dir: Optional[str] = None):
                         sys.stdout.flush()
                     
                     epsilon_to_use = getattr(config, '_current_epsilon', config.epsilon)
-                    random_belief_selection = getattr(config, 'random_belief_selection', False)
-                    use_regret_critic = getattr(config, 'use_regret_critic', False)
-                    regret_values = getattr(episode, '_regret_values', None)
                     if valid_candidates:
-                        if random_belief_selection:
-                            selected_belief = random.choice(valid_candidates)
-                        elif valid_q_values:
-                            if random.random() < epsilon_to_use:
-                                selected_belief = random.choice(valid_candidates)
-                            elif use_regret_critic and regret_values and all(k in regret_values for k in valid_q_values):
-                                beta = getattr(config, 'regret_critic_beta', 0.2)
-                                selected_belief = _regret_critic_selection(valid_q_values, regret_values, beta)
-                            else:
-                                selected_belief = _softmax_sample_from_q_values(valid_q_values)
-                        else:
-                            selected_belief = random.choice(valid_candidates)
+                        selected_belief = _select_high_level_belief(
+                            valid_candidates=valid_candidates,
+                            valid_q_values=valid_q_values,
+                            episode=episode,
+                            config=config,
+                            epsilon=epsilon_to_use,
+                        )
                     else:
                         raise RuntimeError(
                             f"No valid high-level belief candidates for episode {episode.dialogue_idx}. "
@@ -5239,22 +5597,14 @@ def main(config_path: Optional[str] = None, output_dir: Optional[str] = None):
                         sys.stdout.flush()
                     
                     epsilon_to_use = getattr(config, '_current_epsilon', config.epsilon)
-                    random_belief_selection = getattr(config, 'random_belief_selection', False)
-                    use_regret_critic = getattr(config, 'use_regret_critic', False)
-                    regret_values = getattr(episode, '_regret_values', None)
                     if valid_candidates:
-                        if random_belief_selection:
-                            selected_belief = random.choice(valid_candidates)
-                        elif valid_q_values:
-                            if random.random() < epsilon_to_use:
-                                selected_belief = random.choice(valid_candidates)
-                            elif use_regret_critic and regret_values and all(k in regret_values for k in valid_q_values):
-                                beta = getattr(config, 'regret_critic_beta', 0.2)
-                                selected_belief = _regret_critic_selection(valid_q_values, regret_values, beta)
-                            else:
-                                selected_belief = _softmax_sample_from_q_values(valid_q_values)
-                        else:
-                            selected_belief = random.choice(valid_candidates)
+                        selected_belief = _select_high_level_belief(
+                            valid_candidates=valid_candidates,
+                            valid_q_values=valid_q_values,
+                            episode=episode,
+                            config=config,
+                            epsilon=epsilon_to_use,
+                        )
                     else:
                         raise RuntimeError(
                             f"No valid high-level belief candidates for episode {episode.dialogue_idx} (DPO update). "

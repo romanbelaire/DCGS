@@ -27,6 +27,9 @@ class HierarchicalRolloutCoordinator:
         if not eligible:
             return
 
+        if config.ll_candidate_rerank:
+            return
+
         belief_contexts = []
         histories = []
         target_episodes = []
@@ -86,17 +89,23 @@ class HierarchicalRolloutCoordinator:
                 ep.env.env_state.ll_agent_outputs.append(action)
 
     def _select_high_level_belief(self, valid_candidates, valid_q_values, episode, config, epsilon):
-        random_belief_selection = config.random_belief_selection
-        use_regret_critic = config.use_regret_critic
-        regret_values = getattr(episode, "_regret_values", None)
-
-        if random_belief_selection:
+        if config.random_belief_selection:
             return random.choice(valid_candidates)
+        if config.raw_judge_belief_selection:
+            ranked = [c for c in valid_candidates if c in valid_q_values]
+            if not ranked:
+                raise RuntimeError(
+                    f"raw_judge_belief_selection: no scored candidates among valid={valid_candidates}"
+                )
+            best = max(valid_q_values[c] for c in ranked)
+            tops = [c for c in ranked if valid_q_values[c] == best]
+            return random.choice(tops)
         if not valid_q_values:
             return random.choice(valid_candidates)
         if random.random() < epsilon:
             return random.choice(valid_candidates)
-        if use_regret_critic and regret_values and all(k in regret_values for k in valid_q_values):
+        regret_values = getattr(episode, "_regret_values", None)
+        if config.use_regret_critic and regret_values and all(k in regret_values for k in valid_q_values):
             beta = config.regret_critic_beta
             return self.regret_selector(valid_q_values, regret_values, beta)
         return self.softmax_selector(valid_q_values)

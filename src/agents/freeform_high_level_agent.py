@@ -17,6 +17,7 @@ class FreeformHighLevelAgent(HighLevelAgent):
         max_new_tokens: int,
         iterative_candidate_generation: bool = False,
         per_instruction_max_new_tokens: Optional[int] = None,
+        max_attempts_per_candidate: int = 3,
         chunk_size: Optional[int] = None,
         base_prompts: Optional[List[Optional[str]]] = None,
     ) -> Dict[str, List]:
@@ -31,6 +32,7 @@ class FreeformHighLevelAgent(HighLevelAgent):
                 return_debug_info=True,
                 chunk_size=chunk_size,
                 base_prompts=base_prompts,
+                max_attempts_per_candidate=max_attempts_per_candidate,
             )
         else:
             all_candidates, raw_outputs = self.generate_candidate_beliefs_batch(

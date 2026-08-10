@@ -1,8 +1,9 @@
 # Default: ignore everything in this repository.
 *
 
-# Keep this ignore file tracked.
+# Keep tracked metadata files.
 !.gitignore
+!.gitattributes
 
 # Explicit secret and key patterns (redundant with *, kept for clarity).
 .env
@@ -23,6 +24,19 @@ ant_api
 *.md
 *.sh
 
-# Keep only core methodology code.
-!src/
-!src/**
+# Allow directory traversal so selective un-ignores can match nested files.
+!*/
+
+# Keep core methodology code (Python sources only).
+!src/**/*.py
+src/**/__pycache__/
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Curated model index for students.
+!models/MANIFEST.json
+
+# Hierarchical final-method regret critics (Git LFS).
+!outputs/cares_hierarchical_regret_critic/hierarchical_regret_critic/checkpoints/value_function_latest.pt
+!outputs/wildjailbreak_hierarchical_regret_critic/hierarchical_regret_critic/checkpoints/value_function_final.pt
