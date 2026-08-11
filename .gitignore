@@ -36,3 +36,5 @@ benchmark-artifacts/**
 !docs/guides/SIMULATED_USER_GUIDE.md
 !docs/superpowers/
 !docs/superpowers/*.md
+!docs/reviews/
+!docs/reviews/*.md
