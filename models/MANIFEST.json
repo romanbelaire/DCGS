@@ -3,8 +3,8 @@
   "selection_rule": "Prefer value_function_final.pt; else value_function_latest.pt. No flat critics, ablations, DCR, or transfer models.",
   "note": "HarmBench hierarchical configs use outputs/harmbench_regret_critic/.../value_function_final.pt (flat); that file is not staged.",
   "tracked_via": "Git LFS at outputs/** paths used by experiment checkpoint_path configs",
-  "total_bytes": 755394040,
-  "total_gb": 0.704,
+  "total_bytes": 1259006960,
+  "total_gb": 1.173,
   "entries": [
     {
       "experiment": "cares_hierarchical_regret_critic/hierarchical_regret_critic",
@@ -15,11 +15,25 @@
       "recipe": "heads-only (critic_lora_r=0), mlp_width_mult=2.0, gamma=0.99, API judges, terminal-transition fix"
     },
     {
+      "experiment": "cares_hierarchical_regret_critic/hierarchical_regret_critic",
+      "kind": "reference_aug11",
+      "path": "outputs/cares_hierarchical_regret_critic/hierarchical_regret_critic/checkpoints/value_function_latest_aug11.pt",
+      "bytes": 251806503,
+      "recipe": "Aug 11 LFS canonical; mlp_width_mult=1.0, pre terminal-fix / stabilization retrain"
+    },
+    {
       "experiment": "wildjailbreak_hierarchical_regret_critic/hierarchical_regret_critic",
       "kind": "final",
       "path": "outputs/wildjailbreak_hierarchical_regret_critic/hierarchical_regret_critic/checkpoints/value_function_final.pt",
       "student_path": "models/wildjailbreak_hierarchical_regret_critic/hierarchical_regret_critic/checkpoints/value_function.pt",
       "bytes": 251806417
+    },
+    {
+      "experiment": "wildjailbreak_hierarchical_regret_critic/hierarchical_regret_critic",
+      "kind": "reference_aug11",
+      "path": "outputs/wildjailbreak_hierarchical_regret_critic/hierarchical_regret_critic/checkpoints/value_function_final_aug11.pt",
+      "bytes": 251806417,
+      "recipe": "Aug 11 LFS canonical; mlp_width_mult=1.0, pre stabilization retrain (same blob as value_function_final.pt at ae2cdf2)"
     }
   ]
 }

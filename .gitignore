@@ -39,4 +39,6 @@ __pycache__/
 
 # Hierarchical final-method regret critics (Git LFS).
 !outputs/cares_hierarchical_regret_critic/hierarchical_regret_critic/checkpoints/value_function_latest.pt
+!outputs/cares_hierarchical_regret_critic/hierarchical_regret_critic/checkpoints/value_function_latest_aug11.pt
 !outputs/wildjailbreak_hierarchical_regret_critic/hierarchical_regret_critic/checkpoints/value_function_final.pt
+!outputs/wildjailbreak_hierarchical_regret_critic/hierarchical_regret_critic/checkpoints/value_function_final_aug11.pt
