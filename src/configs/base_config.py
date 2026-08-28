@@ -20,7 +20,10 @@ class BaseConfig:
     # GPT agent settings (for using OpenAI API for agents instead of local model)
     use_gpt_for_agents: bool = False  # If True, use GPT API for high-level and low-level agents
     use_gpt_for_user: bool = False  # If True, use GPT API for user agent (in addition to agents)
+    use_gpt_for_patient: bool = False  # If True, CARES/WJB patient sim via CMU/OpenAI gateway (no local user model)
+    use_gpt_for_judge: bool = False  # If True, fulfillment/assistance judges via CMU/OpenAI gateway
     gpt_agent_model: str = "gpt-4o-mini"  # GPT model to use for agents (e.g., "gpt-4o-mini", "gpt-4o")
+    gpt_judge_model: Optional[str] = None  # Judge/guard API model; defaults to gpt_agent_model when unset
     gpt_reasoning_effort: Optional[str] = None  # GPT reasoning effort for gpt-5 family (e.g., "none", "medium")
     gpt_agent_api_key: Optional[str] = None  # OpenAI API key (if None, uses OPENAI_API_KEY env var)
     hl_enable_thinking: Optional[bool] = None  # If None, defaults to True for Qwen3.5 and False otherwise
@@ -42,6 +45,23 @@ class BaseConfig:
     discount_factor: float = 0.9
     learning_rate: float = 1e-4
     entropy_coef: float = 0.1
+    # Stabilization (target nets, capacity, schedules)
+    critic_target_tau: float = 0.0  # >0 enables Polyak target V/Q heads
+    mlp_width_mult: float = 1.0  # 2.0 = 2x mid-layer width
+    critic_lora_r: int = 0  # 0 = frozen backbone only; >0 LoRA on last critic_lora_layers
+    critic_lora_alpha: int = 16
+    critic_lora_layers: int = 4
+    critic_lora_lr: float = 2e-5
+    normalize_td_targets: bool = False
+    reward_norm_momentum: float = 0.99
+    reward_norm_clip: float = 10.0
+    use_behavior_snapshot: bool = False
+    behavior_refresh_episodes: int = 50
+    match_epsilon_candidates: bool = False  # if True, no dual-template merge (i.i.d. π^ref)
+    critic_warmup_updates: int = 0
+    critic_head_anneal_end: float = 0.3
+    critic_lora_anneal_end: float = 0.1
+    critic_anneal_total_updates: int = 10000
     
     # Marginal token rewards parameters
     use_marginal_token_rewards: bool = False  # Enable marginal token reward computation

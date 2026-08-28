@@ -830,8 +830,9 @@ def batch_generate_gpt(
     if api_key is None:
         raise ValueError("OpenAI API key not provided and OPENAI_API_KEY environment variable not set")
     
-    # Initialize OpenAI client
-    client = OpenAI(api_key=api_key)
+    # Initialize OpenAI client (OPENAI_BASE_URL for CMU AI Gateway / LiteLLM)
+    base_url = os.getenv("OPENAI_BASE_URL")
+    client = OpenAI(api_key=api_key, base_url=base_url) if base_url else OpenAI(api_key=api_key)
     
     # If chunk_size is provided, process in chunks
     if chunk_size is not None and len(prompts) > chunk_size:

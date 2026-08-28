@@ -20,6 +20,7 @@ from .agents import (
     GPTHighLevelAgent,
     GPTLowLevelAgent,
     GPTUserAgent,
+    GPTPatientAgent,
 )
 from .belief import (
     BeliefCandidate,
@@ -928,6 +929,9 @@ def batch_generate_beliefs_for_episodes(
     base_prompts = []
     is_adversarial_env = getattr(config, 'environment_type', None) in ('cares', 'wildjailbreak', 'redbench', 'harmbench')
     use_regret_critic = getattr(config, 'use_regret_critic', False)
+    # ε-parity: i.i.d. sampling from π^ref only (no dual-template merge)
+    if getattr(config, 'match_epsilon_candidates', False):
+        use_regret_critic = False
     for episode in active_episodes:
         history = episode.belief_state.history
         if not history:
@@ -1461,11 +1465,13 @@ def batch_compute_q_values_for_episodes(
             chunk_observations = valid_observations[start_idx:end_idx]
             chunk_candidates = valid_candidates[start_idx:end_idx]
 
+            _use_behavior = bool(getattr(config, 'use_behavior_snapshot', False))
             chunk_q_values = value_function.predict_q_value(
                 observations=chunk_observations,
                 high_level_actions=chunk_candidates,
                 tokenizer=tokenizer,
-                requires_grad=False  # Inference: no gradients needed
+                requires_grad=False,  # Inference: no gradients needed
+                use_behavior_head=_use_behavior,
             )
             q_values_chunks.append(chunk_q_values.detach().cpu())
 
@@ -1481,7 +1487,8 @@ def batch_compute_q_values_for_episodes(
                     observations=chunk_observations,
                     high_level_actions=chunk_candidates,
                     tokenizer=tokenizer,
-                    requires_grad=False
+                    requires_grad=False,
+                    use_behavior_head=_use_behavior,
                 )
                 q_min_chunks.append(chunk_q_min.detach().cpu())
                 regret_chunks.append(chunk_regret.detach().cpu())
@@ -2763,14 +2770,40 @@ def process_turn_for_episode(
     return True
 
 
+def is_transition_terminal(episode: EpisodeState, config) -> bool:
+    """
+    Whether TD bootstrap should stop after this transition.
+
+    Terminal means the episode ends with this step (env done / max turns / goal that ends
+    the episode). Do not use goal_achieved alone for adversarial CARES-style envs: a safe
+    mid-episode reply sets goal_achieved but the dialogue continues until harm or max turns.
+    """
+    if episode.done_from_env:
+        return True
+    # Mirror process_turn_for_episode: adversarial envs do not end on goal_achieved.
+    if config.environment_type in ("cares", "wildjailbreak", "redbench", "harmbench"):
+        harmful_level = (
+            episode.dialogue_data.get("harmful_level", 0)
+            if isinstance(episode.dialogue_data, dict)
+            else 0
+        )
+        if harmful_level > 0:
+            return False
+    return float(episode.goal_achieved) >= 1.0
+
+
 def collect_transitions_from_episodes(
     episodes: List[EpisodeState],
     transition_buffer: Dict,
     config
 ) -> List[EpisodeState]:
     """
-    Collect transitions from all active episodes into the shared buffer.
-    
+    Collect transitions from episodes that stepped this iteration into the shared buffer.
+
+    Include the step that set done_from_env (terminal reward + terminal flag). Callers must
+    pass only episodes processed this iteration so finished episodes are not re-collected
+    while waiting to be replaced.
+
     Returns:
         List of episodes that contributed transitions to this batch
     """
@@ -2778,28 +2811,33 @@ def collect_transitions_from_episodes(
     for episode in episodes:
         if not episode.is_active or episode.turn == 0:
             continue  # Skip first turn (no previous action)
-        
+
         # Don't collect transitions for frozen episodes (generation failures that will be retried)
         if episode.is_frozen:
             continue
         if episode.judge_step_pending:
             continue
-        
-        # Don't collect transitions for episodes that have ended
-        # (either done_from_env is True, or actions are empty after turn 0 indicating episode ended)
-        if episode.done_from_env or (not _is_online_mode(config) and episode.turn > 0 and not episode.user_actions):
-            continue
-        
+
+        # Include terminal steps (done_from_env). Skipping them dropped the final
+        # (s, a, r, s', done) including adversarial failure / timeout rewards.
+
         avg_entropy = compute_average_entropy(episode.context_entropies) if episode.context_entropies else 0.0
-        
+
         state_before_action = episode.previous_obs_for_action or episode.current_obs_for_action
         transition_buffer['observations'].append(state_before_action)
         transition_buffer['high_level_actions'].append(episode.chosen_beliefs_per_turn[-1] if episode.chosen_beliefs_per_turn else "")
         transition_buffer['low_level_actions'].append(episode.agent_response)
         transition_buffer['rewards'].append(episode.reward)
         transition_buffer['next_observations'].append(episode.current_obs_for_action)
-        transition_buffer['terminals'].append(episode.goal_achieved >= 1.0)  # Convert float to boolean for terminal flag
+        terminal = is_transition_terminal(episode, config)
+        transition_buffer['terminals'].append(terminal)
         transition_buffer['entropies'].append(avg_entropy)
+        if terminal:
+            print(
+                f"[transitions] terminal step recorded: dialogue={episode.dialogue_id} "
+                f"turn={episode.turn} reward={episode.reward:.3f} "
+                f"done_from_env={episode.done_from_env} goal_achieved={float(episode.goal_achieved):.3f}"
+            )
         
         # Store environment and dialogue history for marginal rewards
         if getattr(config, 'use_marginal_token_rewards', False):
@@ -3626,6 +3664,7 @@ def update_q_function_online(
             device=value_function.device,
             dtype=standard_dtype,
         )
+        q_targets_tensor = value_function.apply_td_target_normalization(q_targets_tensor, update=True)
         v_next_values = {i: 0.0 for i in range(n_trans)}
     else:
         # 2. Compute V(o_{t+1}) for next states (state value function)
@@ -3654,7 +3693,8 @@ def update_q_function_online(
                 chunk_v_values = value_function.predict_v_value(
                     observations=chunk_obs,
                     tokenizer=tokenizer,
-                    requires_grad=False
+                    requires_grad=False,
+                    use_target_head=bool(getattr(value_function, 'use_target_heads', False)),
                 )
                 
                 v_value_chunks.append(chunk_v_values)
@@ -3686,6 +3726,7 @@ def update_q_function_online(
             q_targets.append(target)
         
         q_targets_tensor = torch.tensor(q_targets, device=value_function.device, dtype=standard_dtype)
+        q_targets_tensor = value_function.apply_td_target_normalization(q_targets_tensor, update=True)
     
     # 4. Compute V(o_t) predictions and targets
     # V(o_t) target = r_t + γ * V(o_{t+1})  (by Bellman equation)
@@ -3885,10 +3926,11 @@ def update_q_function_online(
                 end = min(start + chunk_size, len(obs_to_compute))
                 c_obs = obs_to_compute[start:end]
                 c_actions = actions_to_compute[start:end]
-                v_min_vals = value_function.predict_v_min_value(c_obs, tokenizer, requires_grad=False)
-                q_val_vals = value_function.predict_q_value(c_obs, c_actions, tokenizer, requires_grad=False)
-                q_min_vals = value_function.predict_q_min_value(c_obs, c_actions, tokenizer, requires_grad=False)
-                reg_vals = value_function.predict_regret_value(c_obs, c_actions, tokenizer, requires_grad=False)
+                _tgt = bool(getattr(value_function, 'use_target_heads', False))
+                v_min_vals = value_function.predict_v_min_value(c_obs, tokenizer, requires_grad=False, use_target_head=_tgt)
+                q_val_vals = value_function.predict_q_value(c_obs, c_actions, tokenizer, requires_grad=False, use_target_head=_tgt)
+                q_min_vals = value_function.predict_q_min_value(c_obs, c_actions, tokenizer, requires_grad=False, use_target_head=_tgt)
+                reg_vals = value_function.predict_regret_value(c_obs, c_actions, tokenizer, requires_grad=False, use_target_head=_tgt)
                 for k in range(len(c_obs)):
                     global_idx = indices_to_compute[start + k]
                     q_value_next[global_idx] = q_val_vals[k].item()
@@ -4290,52 +4332,56 @@ def main(config_path: Optional[str] = None, output_dir: Optional[str] = None):
                 gpu_info = f"GPU 0: {gpu_memories_gb[0]:.1f}GB"
                 if len(gpu_memories_gb) > 1:
                     gpu_info += f", GPU 1: {gpu_memories_gb[1]:.1f}GB"
-                
-                # Assume 40GB is baseline, scale up if we have more
-                baseline_memory_gb = 40.0
-                if gpu_memory_gb >= 70.0:  # 80GB card (with some margin)
+                gpu_name = torch.cuda.get_device_properties(0).name
+                eval_mode_scaling = getattr(config, "_evaluation_mode", False)
+                min_gpu_gb = 32.0 if eval_mode_scaling else 40.0
+                if gpu_memory_gb < min_gpu_gb:
+                    mode_label = "eval" if eval_mode_scaling else "CARES heads-only training"
+                    raise RuntimeError(
+                        f"{mode_label} needs GPU with >={min_gpu_gb:.0f}GB; "
+                        f"got {gpu_name} ({gpu_memory_gb:.1f}GB)"
+                    )
+                if gpu_memory_gb >= 70.0:
                     scale_factor = 2.0
-                    print(f"[GPU Memory Scaling] Detected {gpu_info} (min: {gpu_memory_gb:.1f}GB >=70GB), scaling batch sizes by {scale_factor}x")
-                elif gpu_memory_gb >= 45.0:  # Between 40-70GB, scale proportionally
-                    scale_factor = 1.0 + (gpu_memory_gb - baseline_memory_gb) / baseline_memory_gb
-                    print(f"[GPU Memory Scaling] Detected {gpu_info} (min: {gpu_memory_gb:.1f}GB), scaling batch sizes by {scale_factor:.2f}x")
-                else:
+                    tier = "H100-class"
+                elif gpu_memory_gb >= 40.0:
                     scale_factor = 1.0
-                    print(f"[GPU Memory Scaling] Detected {gpu_info} (min: {gpu_memory_gb:.1f}GB), using baseline batch sizes (no scaling)")
-                
+                    tier = "L40S-class"
+                else:
+                    scale_factor = max(0.5, gpu_memory_gb / 48.0)
+                    tier = "V100-class eval"
+                print(
+                    f"[GPU Memory Scaling] {gpu_info} ({gpu_name}) → {tier}; "
+                    f"scale batch sizes by {scale_factor:.2f}x (config baseline = L40S)"
+                )
+
+                original_batch_size = config.batch_size
+                original_episode_batch_size = config.episode_batch_size
+                original_online_batch_size = config.online_batch_size
+                original_transition_prob_chunk_size = config.transition_prob_chunk_size
+                original_q_value_chunk_size = config.q_value_chunk_size
+                original_batch_generation_chunk_size = config.batch_generation_chunk_size
+
+                config.batch_size = max(1, int(original_batch_size * scale_factor))
+                config.episode_batch_size = max(1, int(original_episode_batch_size * scale_factor))
+                config.online_batch_size = max(1, int(original_online_batch_size * scale_factor))
+                config.transition_prob_chunk_size = max(1, int(original_transition_prob_chunk_size * scale_factor))
+                config.q_value_chunk_size = max(1, int(original_q_value_chunk_size * scale_factor))
+                config.batch_generation_chunk_size = max(1, int(original_batch_generation_chunk_size * scale_factor))
+
+                print(f"  Scaled batch sizes ({tier}):")
+                print(f"    batch_size: {original_batch_size} -> {config.batch_size}")
+                print(f"    episode_batch_size: {original_episode_batch_size} -> {config.episode_batch_size}")
+                print(f"    online_batch_size: {original_online_batch_size} -> {config.online_batch_size}")
+                print(f"    transition_prob_chunk_size: {original_transition_prob_chunk_size} -> {config.transition_prob_chunk_size}")
+                print(f"    q_value_chunk_size: {original_q_value_chunk_size} -> {config.q_value_chunk_size}")
+                print(f"    batch_generation_chunk_size: {original_batch_generation_chunk_size} -> {config.batch_generation_chunk_size}")
                 if scale_factor > 1.0:
-                    # Scale batch sizes (round to integers)
-                    original_episode_batch_size = config.episode_batch_size
-                    original_online_batch_size = config.online_batch_size
-                    original_transition_prob_chunk_size = config.transition_prob_chunk_size
-                    original_q_value_chunk_size = config.q_value_chunk_size
-                    original_batch_generation_chunk_size = config.batch_generation_chunk_size
-                    
-                    config.episode_batch_size = max(1, int(original_episode_batch_size * scale_factor))
-                    config.online_batch_size = max(1, int(original_online_batch_size * scale_factor))
-                    config.transition_prob_chunk_size = max(1, int(original_transition_prob_chunk_size * scale_factor))
-                    config.q_value_chunk_size = max(1, int(original_q_value_chunk_size * scale_factor))
-                    config.batch_generation_chunk_size = max(1, int(original_batch_generation_chunk_size * scale_factor))
-                    
-                    print(f"  Scaled batch sizes:")
-                    print(f"    episode_batch_size: {original_episode_batch_size} -> {config.episode_batch_size}")
-                    print(f"    online_batch_size: {original_online_batch_size} -> {config.online_batch_size}")
-                    print(f"    transition_prob_chunk_size: {original_transition_prob_chunk_size} -> {config.transition_prob_chunk_size}")
-                    print(f"    q_value_chunk_size: {original_q_value_chunk_size} -> {config.q_value_chunk_size}")
-                    print(f"    batch_generation_chunk_size: {original_batch_generation_chunk_size} -> {config.batch_generation_chunk_size}")
-                    
-                    # Warning for debugging OOM errors
                     print("")
                     print("=" * 80)
-                    print("⚠️  WARNING: Batch sizes were dynamically scaled based on GPU memory!")
+                    print("WARNING: Batch sizes were scaled up for larger GPU VRAM.")
                     print("=" * 80)
-                    print(f"  If you encounter OOM (Out of Memory) errors, remember that batch sizes")
-                    print(f"  were automatically increased by {scale_factor:.2f}x due to detecting {gpu_memory_gb:.1f}GB GPU memory.")
-                    print(f"  Original config values were scaled up - this may cause OOM if:")
-                    print(f"    - GPU memory is fragmented or already in use")
-                    print(f"    - Model size or sequence lengths are larger than expected")
-                    print(f"    - Multiple processes are sharing the GPU")
-                    print(f"  To disable auto-scaling, modify the GPU memory detection logic in src/main.py")
+                    print(f"  scale_factor={scale_factor:.2f}x on {gpu_memory_gb:.1f}GB. If OOM, lower the JSON baselines.")
                     print("=" * 80)
                     print("")
             else:
@@ -4410,16 +4456,20 @@ def main(config_path: Optional[str] = None, output_dir: Optional[str] = None):
         use_bf16=config.use_bf16
     )
     
-    # User model: if different model name requested, load separately on GPU 1
-    # Otherwise, use main model singleton (single LLM)
-    user_model_name = config.user_model_name if config.user_model_name else config.model_name
-    user_model = get_user_model_instance(
-        user_model_name=user_model_name,
-        main_model_name=config.model_name,
-        device="cuda:1",
-        use_bf16=config.use_bf16,
-        fallback_to_main=True
-    )
+    # User model on GPU 1 only when patient sim runs locally
+    use_gpt_patient = getattr(config, "use_gpt_for_patient", False)
+    if use_gpt_patient:
+        user_model = None
+        print(f"[INFO] Patient simulation via API ({getattr(config, 'gpt_agent_model', 'gpt-4o-mini')}); skipping local user model")
+    else:
+        user_model_name = config.user_model_name if config.user_model_name else config.model_name
+        user_model = get_user_model_instance(
+            user_model_name=user_model_name,
+            main_model_name=config.model_name,
+            device="cuda:1",
+            use_bf16=config.use_bf16,
+            fallback_to_main=True
+        )
     
     # Load tokenizer and agents conditionally:
     # - For multiwoz_online: need user_agent before episode initialization
@@ -4435,11 +4485,16 @@ def main(config_path: Optional[str] = None, output_dir: Optional[str] = None):
     
     if needs_tokenizer_before_episodes:
         tokenizer = get_tokenizer_instance(config.model_name)
-        judge_model, judge_tokenizer = get_judge_model_and_tokenizer(
-            model_name=config.model_name,
-            device=config.device if config.device != "cuda" else "cuda:0",
-            use_bf16=config.use_bf16,
-        )
+        use_gpt_judge = getattr(config, "use_gpt_for_judge", False)
+        if use_gpt_judge:
+            judge_model, judge_tokenizer = None, None
+            print(f"[INFO] Fulfillment/assistance judges via API ({getattr(config, 'gpt_judge_model', None) or getattr(config, 'gpt_agent_model', 'gpt-4o-mini')})")
+        else:
+            judge_model, judge_tokenizer = get_judge_model_and_tokenizer(
+                model_name=config.model_name,
+                device=config.device if config.device != "cuda" else "cuda:0",
+                use_bf16=config.use_bf16,
+            )
         
         # Initialize prompt manager
         prompt_manager = PromptManager()
@@ -4514,7 +4569,16 @@ def main(config_path: Optional[str] = None, output_dir: Optional[str] = None):
                 if config.environment_type in ("wildjailbreak", "redbench", "harmbench")
                 else "src/prompts/cares_patient_prompts.json"
             )
-            patient_agent = PatientAgent(user_model, tokenizer, prompts_path=prompts_path)
+            if use_gpt_patient:
+                patient_agent = GPTPatientAgent(
+                    tokenizer,
+                    prompts_path=prompts_path,
+                    model_name=getattr(config, "gpt_agent_model", "gpt-5.4-nano"),
+                    api_key=getattr(config, "gpt_agent_api_key", None),
+                )
+                print(f"[INFO] Using GPT patient agent (model: {getattr(config, 'gpt_agent_model', 'gpt-5.4-nano')})")
+            else:
+                patient_agent = PatientAgent(user_model, tokenizer, prompts_path=prompts_path)
             reward_model_name = getattr(
                 config, "reward_model_name", "meta-llama/Llama-Guard-3-8B"
             )
@@ -4522,8 +4586,10 @@ def main(config_path: Optional[str] = None, output_dir: Optional[str] = None):
                 getattr(config, "reward_model_type", None),
                 reward_model_name,
             )
-            if reward_model_name:
-                # Guard on highest-index device: cuda:0 for 1 GPU, cuda:1 for 2 GPUs
+            if reward_model_type_eff == "api":
+                reward_model, reward_tokenizer = None, None
+                print(f"[INFO] Safety guard via API ({reward_model_name})")
+            elif reward_model_name:
                 reward_device = f"cuda:{max(0, torch.cuda.device_count() - 1)}"
                 if reward_model_type_eff == "shieldgemma":
                     reward_model, reward_tokenizer = load_shieldgemma(
@@ -4564,12 +4630,13 @@ def main(config_path: Optional[str] = None, output_dir: Optional[str] = None):
                     )
                     run_guard_sanity_check(reward_model, reward_tokenizer, reward_device)
                     run_guard_reward_format_sanity_check(reward_model, reward_tokenizer, reward_device)
-                from .utils.guard_safety import run_fulfillment_judge_sanity_check
-                run_fulfillment_judge_sanity_check(
-                    judge_model,
-                    judge_tokenizer,
-                    config.device,
-                )
+                if not use_gpt_judge:
+                    from .utils.guard_safety import run_fulfillment_judge_sanity_check
+                    run_fulfillment_judge_sanity_check(
+                        judge_model,
+                        judge_tokenizer,
+                        config.device,
+                    )
             else:
                 reward_model, reward_tokenizer = None, None
                 print("[INFO] CARES/WildJailbreak: No reward model specified, using placeholder rewards")
@@ -4611,6 +4678,16 @@ def main(config_path: Optional[str] = None, output_dir: Optional[str] = None):
             device=config.device,
             dtype=standard_dtype,
             use_regret_critic=getattr(config, 'use_regret_critic', False),
+            mlp_width_mult=getattr(config, 'mlp_width_mult', 1.0),
+            critic_target_tau=getattr(config, 'critic_target_tau', 0.0),
+            critic_lora_r=getattr(config, 'critic_lora_r', 0),
+            critic_lora_alpha=getattr(config, 'critic_lora_alpha', 16),
+            critic_lora_layers=getattr(config, 'critic_lora_layers', 4),
+            critic_lora_lr=getattr(config, 'critic_lora_lr', 2e-5),
+            normalize_td_targets=getattr(config, 'normalize_td_targets', False),
+            reward_norm_momentum=getattr(config, 'reward_norm_momentum', 0.99),
+            reward_norm_clip=getattr(config, 'reward_norm_clip', 10.0),
+            use_behavior_snapshot=getattr(config, 'use_behavior_snapshot', False),
         )
         
         # Load pretrained checkpoint if provided
@@ -5665,8 +5742,12 @@ def main(config_path: Optional[str] = None, output_dir: Optional[str] = None):
                 except (ImportError, AttributeError):
                     pass  # Flush function may not exist if no local models
         
-        # 4. Collect transitions from all active episodes
-        contributing_episodes = collect_transitions_from_episodes(active_episodes, transition_buffer, config)
+        # 4. Collect transitions from episodes that stepped this iteration (includes
+        #    steps that just set done_from_env; do not pass all active_episodes or
+        #    finished episodes waiting for replace would be re-appended every loop).
+        contributing_episodes = collect_transitions_from_episodes(
+            active_episodes_to_process, transition_buffer, config
+        )
         
         # 4b. For online mode, also collect into replay buffer and update
         if _is_online_mode(config):
@@ -6240,6 +6321,20 @@ def main(config_path: Optional[str] = None, output_dir: Optional[str] = None):
                         ground_truth_pool.pop(0)  # Remove oldest
             
             episodes_completed += 1
+            if (
+                value_function is not None
+                and getattr(config, 'use_behavior_snapshot', False)
+                and episodes_completed % max(1, int(getattr(config, 'behavior_refresh_episodes', 50))) == 0
+            ):
+                value_function.snapshot_behavior_heads()
+            if value_function is not None and int(getattr(config, 'critic_warmup_updates', 0)) > 0:
+                value_function.apply_learning_rate_annealing(
+                    update_idx=getattr(value_function, '_update_count', 0),
+                    warmup_updates=int(getattr(config, 'critic_warmup_updates', 500)),
+                    head_anneal_end=float(getattr(config, 'critic_head_anneal_end', 0.3)),
+                    lora_anneal_end=float(getattr(config, 'critic_lora_anneal_end', 0.1)),
+                    total_updates=int(getattr(config, 'critic_anneal_total_updates', 10000)),
+                )
             
             # Print GPU memory after first episode completion
             if episodes_completed == 1:

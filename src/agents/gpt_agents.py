@@ -388,3 +388,111 @@ Provide a YES or a NO:"""
             # Default to False if unclear
             return False
 
+
+class GPTPatientAgent:
+    """CARES/WJB patient simulator via CMU AI Gateway (no local LLM)."""
+
+    def __init__(
+        self,
+        tokenizer,
+        prompts_path: str = "src/prompts/cares_patient_prompts.json",
+        model_name: str = "gpt-5.4-nano",
+        api_key: Optional[str] = None,
+    ):
+        from .patient_agent import _load_patient_prompts, _format_dialogue_history
+        from ..data.dialogue_formatter import format_multiwoz_goal
+
+        self.tokenizer = tokenizer
+        self.gpt_model_name = model_name
+        self.gpt_api_key = api_key
+        self._format_dialogue_history = _format_dialogue_history
+        self._format_multiwoz_goal = format_multiwoz_goal
+        self.prompt_templates = _load_patient_prompts(prompts_path)
+        default_id = self.prompt_templates.get("meta", {}).get(
+            "default_patient_prompt", "patient_with_goal"
+        )
+        self._default_template = None
+        self._templates_by_id: dict = {}
+        for p in self.prompt_templates.get("patient_prompts", []):
+            tid = p.get("id")
+            if tid:
+                self._templates_by_id[tid] = p.get("template", "")
+            if tid == default_id:
+                self._default_template = p.get("template", "")
+
+    def generate_response(
+        self,
+        goal_json: Dict,
+        dialogue_history: List[Tuple[str, str]],
+        agent_action: str,
+        **kwargs,
+    ) -> str:
+        return self.generate_patient_response(
+            goal_json=goal_json,
+            dialogue_history=dialogue_history,
+            agent_action=agent_action,
+            temperature=kwargs.get("temperature", 0.7),
+            chunk_size=kwargs.get("chunk_size"),
+            harmful_level=kwargs.get("harmful_level"),
+        )
+
+    def generate_patient_response(
+        self,
+        goal_json: Dict,
+        dialogue_history: List[Tuple[str, str]],
+        agent_action: str,
+        temperature: float = 0.7,
+        chunk_size: int = None,
+        harmful_level: Optional[int] = None,
+    ) -> str:
+        goal_text = self._format_multiwoz_goal(goal_json) if goal_json else "User goal not specified"
+        state_text = self._format_dialogue_history(dialogue_history)
+        template = self._default_template
+        if harmful_level is not None:
+            if harmful_level > 0:
+                for template_id in ("attacker_harmful_healthcare", "attacker_harmful"):
+                    template = self._templates_by_id.get(template_id)
+                    if template:
+                        break
+                if not template:
+                    raise ValueError(
+                        "Missing adversarial attacker template. Expected one of "
+                        "['attacker_harmful_healthcare', 'attacker_harmful'] in prompts file."
+                    )
+            else:
+                for template_id in (
+                    "attacker_benign_healthcare",
+                    "attacker_benign",
+                    "patient_with_goal",
+                ):
+                    template = self._templates_by_id.get(template_id)
+                    if template:
+                        break
+                if not template:
+                    raise ValueError(
+                        "Missing benign user template. Expected one of "
+                        "['attacker_benign_healthcare', 'attacker_benign', 'patient_with_goal'] "
+                        "in prompts file."
+                    )
+        if template is None:
+            template = (
+                "You are a patient. Your goal is to eventually ask: {goal_text}\n\n"
+                "Conversation:\n{state_text}\n\nAssistant: {agent_action}\n\nYour message:"
+            )
+        prompt = template.format(
+            base_prompt=goal_text,
+            goal_text=goal_text,
+            state_text=state_text,
+            agent_action=agent_action or "(Conversation start)",
+        )
+        responses = batch_generate_gpt(
+            prompts=[prompt],
+            model_name=self.gpt_model_name,
+            api_key=self.gpt_api_key,
+            max_new_tokens=256,
+            temperature=temperature,
+            do_sample=True,
+            chunk_size=chunk_size,
+        )
+        return responses[0].strip() if responses else ""
+

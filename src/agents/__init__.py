@@ -5,7 +5,7 @@ from .low_level_agent import LowLevelAgent
 from .user_agent import UserAgent
 from .patient_agent import PatientAgent
 from .user_simulator import UserSimulator
-from .gpt_agents import GPTHighLevelAgent, GPTLowLevelAgent, GPTUserAgent
+from .gpt_agents import GPTHighLevelAgent, GPTLowLevelAgent, GPTUserAgent, GPTPatientAgent
 
 __all__ = [
     "BaseAgent",
@@ -18,5 +18,6 @@ __all__ = [
     "GPTHighLevelAgent",
     "GPTLowLevelAgent",
     "GPTUserAgent",
+    "GPTPatientAgent",
 ]
 

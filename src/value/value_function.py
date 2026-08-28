@@ -31,11 +31,12 @@ class ValueFunction:
     """Value function with MLP head on top of base LLM."""
 
     def _make_mlp_head(self, device: str, dtype: torch.dtype):
-        """Create a standard MLP head for value prediction."""
+        """Create MLP head; mid width = hidden_size * mlp_width_mult // 2 (default H/2)."""
+        mid = max(1, int(self.hidden_size * self.mlp_width_mult) // 2)
         return nn.Sequential(
-            nn.Linear(self.hidden_size, self.hidden_size // 2),
+            nn.Linear(self.hidden_size, mid),
             nn.ReLU(),
-            nn.Linear(self.hidden_size // 2, 1)
+            nn.Linear(mid, 1)
         ).to(device=device, dtype=dtype)
 
     def __init__(
@@ -46,19 +47,50 @@ class ValueFunction:
         device: str = "cuda",
         dtype: torch.dtype = torch.bfloat16,
         use_regret_critic: bool = False,
+        mlp_width_mult: float = 1.0,
+        critic_target_tau: float = 0.0,
+        critic_lora_r: int = 0,
+        critic_lora_alpha: int = 16,
+        critic_lora_layers: int = 4,
+        critic_lora_lr: float = 2e-5,
+        normalize_td_targets: bool = False,
+        reward_norm_momentum: float = 0.99,
+        reward_norm_clip: float = 10.0,
+        use_behavior_snapshot: bool = False,
     ):
         self.model = model
         self.hidden_size = hidden_size
         self.device = device
         self.dtype = dtype
         self.use_regret_critic = use_regret_critic
+        self.mlp_width_mult = float(mlp_width_mult)
+        self.critic_target_tau = float(critic_target_tau)
+        self.critic_lora_r = int(critic_lora_r)
+        self.normalize_td_targets = bool(normalize_td_targets)
+        self.reward_norm_momentum = float(reward_norm_momentum)
+        self.reward_norm_clip = float(reward_norm_clip)
+        self.use_behavior_snapshot = bool(use_behavior_snapshot)
+        self._td_norm_mean = 0.0
+        self._td_norm_var = 1.0
+        self._td_norm_count = 0
+        self._update_count = 0
+        self._head_lr = float(learning_rate)
+        self._lora_lr = float(critic_lora_lr)
 
-        # Freeze base model parameters (no gradients needed)
+        # Freeze base model parameters (no gradients needed unless critic LoRA)
         base_param_count = 0
         for param in self.model.parameters():
             param.requires_grad = False
             base_param_count += 1
         self.model.eval()  # Ensure model is in eval mode
+
+        self._lora_params = []
+        if self.critic_lora_r > 0:
+            self._apply_critic_lora(
+                r=self.critic_lora_r,
+                alpha=critic_lora_alpha,
+                n_layers=critic_lora_layers,
+            )
 
         # Initialize separate MLP heads for Q and V in specified dtype
         self.q_mlp_head = self._make_mlp_head(device, dtype)
@@ -73,6 +105,43 @@ class ValueFunction:
 
         # Regret critic head - learns cumulative value gap (value - min_value)
         self.regret_mlp_head = self._make_mlp_head(device, dtype) if use_regret_critic else None
+
+        # Polyak target heads (bootstrap); disabled when tau==0 and not requested via copies
+        self.use_target_heads = self.critic_target_tau > 0.0
+        self.target_q_mlp_head = None
+        self.target_v_mlp_head = None
+        self.target_q_min_mlp_head = None
+        self.target_v_min_mlp_head = None
+        self.target_regret_mlp_head = None
+        if self.use_target_heads:
+            import copy
+            self.target_q_mlp_head = copy.deepcopy(self.q_mlp_head).eval()
+            self.target_v_mlp_head = copy.deepcopy(self.v_mlp_head).eval()
+            for p in list(self.target_q_mlp_head.parameters()) + list(self.target_v_mlp_head.parameters()):
+                p.requires_grad = False
+            if use_regret_critic:
+                self.target_q_min_mlp_head = copy.deepcopy(self.q_min_mlp_head).eval()
+                self.target_v_min_mlp_head = copy.deepcopy(self.v_min_mlp_head).eval()
+                self.target_regret_mlp_head = copy.deepcopy(self.regret_mlp_head).eval()
+                for p in (
+                    list(self.target_q_min_mlp_head.parameters())
+                    + list(self.target_v_min_mlp_head.parameters())
+                    + list(self.target_regret_mlp_head.parameters())
+                ):
+                    p.requires_grad = False
+
+        # Behavior-policy snapshot heads for selection (decouple data collection)
+        self.behavior_q_mlp_head = None
+        self.behavior_regret_mlp_head = None
+        if self.use_behavior_snapshot:
+            import copy
+            self.behavior_q_mlp_head = copy.deepcopy(self.q_mlp_head).eval()
+            for p in self.behavior_q_mlp_head.parameters():
+                p.requires_grad = False
+            if use_regret_critic:
+                self.behavior_regret_mlp_head = copy.deepcopy(self.regret_mlp_head).eval()
+                for p in self.behavior_regret_mlp_head.parameters():
+                    p.requires_grad = False
 
         # Ensure MLP head parameters require gradients
         for param in self.q_mlp_head.parameters():
@@ -101,11 +170,23 @@ class ValueFunction:
                 list(self.regret_mlp_head.parameters())
             )
 
-        self.optimizer = torch.optim.Adam(all_trainable_params, lr=learning_rate)
+        self.optimizer = torch.optim.Adam(
+            [
+                {"params": all_trainable_params, "lr": learning_rate},
+                {"params": self._lora_params, "lr": critic_lora_lr},
+            ]
+            if self._lora_params
+            else all_trainable_params,
+            lr=learning_rate,
+        )
 
         # Verify setup
         print(f"[ValueFunction] Initialized:")
-        print(f"  Base model: {base_param_count} parameters, all frozen (requires_grad=False)")
+        print(f"  Base model: {base_param_count} parameters, frozen (LoRA r={self.critic_lora_r})")
+        print(f"  MLP width mult: {self.mlp_width_mult}")
+        print(f"  Target heads: tau={self.critic_target_tau}")
+        print(f"  Behavior snapshot: {self.use_behavior_snapshot}")
+        print(f"  TD target Z-norm: {self.normalize_td_targets}")
         print(f"  Q MLP head: trainable")
         print(f"  V MLP head: trainable")
         print(f"  Token critic head: trainable")
@@ -113,63 +194,231 @@ class ValueFunction:
             print(f"  Q_min MLP head: trainable (adversarial robustness)")
             print(f"  V_min MLP head: trainable (adversarial robustness)")
             print(f"  Regret MLP head: trainable (adversarial robustness)")
-        print(f"  Optimizer: Adam with lr={learning_rate}")
+        print(f"  Optimizer: Adam heads_lr={learning_rate} lora_lr={critic_lora_lr}")
     
+
+    def _apply_critic_lora(self, r: int, alpha: int, n_layers: int) -> None:
+        """Attach LoRA to the last n_layers of the frozen backbone for critic encoding."""
+        from peft import LoraConfig, get_peft_model, TaskType
+
+        target_modules = ["q_proj", "k_proj", "v_proj", "o_proj", "gate_proj", "up_proj", "down_proj"]
+        # Restrict to last N transformer layers by name filter after wrap if needed
+        lora_config = LoraConfig(
+            r=r,
+            lora_alpha=alpha,
+            lora_dropout=0.05,
+            bias="none",
+            task_type=TaskType.CAUSAL_LM,
+            target_modules=target_modules,
+        )
+        self.model = get_peft_model(self.model, lora_config)
+        # Freeze all then unfreeze only LoRA on last n_layers
+        for name, param in self.model.named_parameters():
+            param.requires_grad = False
+        n_layers_total = getattr(self.model.config, "num_hidden_layers", None)
+        if n_layers_total is None:
+            n_layers_total = getattr(self.model.config, "n_layer", None)
+        if n_layers_total is None:
+            raise RuntimeError("Cannot determine num_hidden_layers for critic LoRA layer filter")
+        start_layer = max(0, int(n_layers_total) - int(n_layers))
+        self._lora_params = []
+        for name, param in self.model.named_parameters():
+            if "lora_" not in name:
+                continue
+            # layer index in name like ...layers.27...
+            keep = False
+            for i in range(start_layer, int(n_layers_total)):
+                if f"layers.{i}." in name or f"layer.{i}." in name:
+                    keep = True
+                    break
+            if keep:
+                param.requires_grad = True
+                self._lora_params.append(param)
+            else:
+                param.requires_grad = False
+        if not self._lora_params:
+            raise RuntimeError(
+                f"critic_lora_r={r} set but no LoRA params matched last {n_layers} layers "
+                f"(start_layer={start_layer}, n_layers_total={n_layers_total})"
+            )
+        print(f"[ValueFunction] Critic LoRA: r={r} last {n_layers} layers, "
+              f"{len(self._lora_params)} trainable tensors")
+
+    def polyak_update_target_heads(self) -> None:
+        if not self.use_target_heads:
+            return
+        tau = self.critic_target_tau
+        pairs = [
+            (self.q_mlp_head, self.target_q_mlp_head),
+            (self.v_mlp_head, self.target_v_mlp_head),
+        ]
+        if self.use_regret_critic:
+            pairs += [
+                (self.q_min_mlp_head, self.target_q_min_mlp_head),
+                (self.v_min_mlp_head, self.target_v_min_mlp_head),
+                (self.regret_mlp_head, self.target_regret_mlp_head),
+            ]
+        with torch.no_grad():
+            for src, tgt in pairs:
+                for p, tp in zip(src.parameters(), tgt.parameters()):
+                    tp.data.mul_(1.0 - tau).add_(p.data, alpha=tau)
+
+    def snapshot_behavior_heads(self) -> None:
+        if not self.use_behavior_snapshot:
+            raise RuntimeError("snapshot_behavior_heads called but use_behavior_snapshot=False")
+        import copy
+        self.behavior_q_mlp_head = copy.deepcopy(self.q_mlp_head).eval()
+        for p in self.behavior_q_mlp_head.parameters():
+            p.requires_grad = False
+        if self.use_regret_critic:
+            self.behavior_regret_mlp_head = copy.deepcopy(self.regret_mlp_head).eval()
+            for p in self.behavior_regret_mlp_head.parameters():
+                p.requires_grad = False
+        print("[ValueFunction] Behavior-policy selection heads refreshed from online heads")
+
+    def apply_td_target_normalization(self, targets: torch.Tensor, update: bool = True) -> torch.Tensor:
+        """Running Z-score on TD targets. Raises if normalize_td_targets enabled incorrectly."""
+        if not self.normalize_td_targets:
+            return targets
+        flat = targets.detach().float().reshape(-1)
+        if flat.numel() == 0:
+            return targets
+        batch_mean = float(flat.mean().item())
+        batch_var = float(flat.var(unbiased=False).item())
+        if update:
+            m = self.reward_norm_momentum
+            if self._td_norm_count == 0:
+                self._td_norm_mean = batch_mean
+                self._td_norm_var = max(batch_var, 1e-6)
+            else:
+                self._td_norm_mean = m * self._td_norm_mean + (1.0 - m) * batch_mean
+                self._td_norm_var = m * self._td_norm_var + (1.0 - m) * batch_var
+            self._td_norm_count += 1
+        std = (self._td_norm_var + 1e-8) ** 0.5
+        out = (targets - self._td_norm_mean) / std
+        return torch.clamp(out, -self.reward_norm_clip, self.reward_norm_clip)
+
+    def apply_learning_rate_annealing(
+        self,
+        update_idx: int,
+        warmup_updates: int = 500,
+        head_anneal_end: float = 0.3,
+        lora_anneal_end: float = 0.1,
+        total_updates: int = 10000,
+    ) -> None:
+        if update_idx < warmup_updates:
+            factor_h = (update_idx + 1) / max(warmup_updates, 1)
+            factor_l = factor_h
+        else:
+            progress = (update_idx - warmup_updates) / max(total_updates - warmup_updates, 1)
+            progress = min(1.0, max(0.0, progress))
+            factor_h = 1.0 + (head_anneal_end - 1.0) * progress
+            factor_l = 1.0 + (lora_anneal_end - 1.0) * progress
+        if len(self.optimizer.param_groups) >= 1:
+            self.optimizer.param_groups[0]["lr"] = self._head_lr * factor_h
+        if len(self.optimizer.param_groups) >= 2:
+            self.optimizer.param_groups[1]["lr"] = self._lora_lr * factor_l
+
+    def _body_requires_grad(self, requires_grad: bool) -> bool:
+        """Body autograd only when training critic LoRA; heads-only keeps body frozen."""
+        return bool(requires_grad) and self.critic_lora_r > 0
+
+    def _forward_body(self, encoded: Dict[str, torch.Tensor], requires_grad: bool):
+        """
+        Run the LLM body. When critic_lora_r==0, always use inference_mode even if the
+        caller requested head gradients (requires_grad=True for MLP heads only).
+        """
+        body_requires_grad = self._body_requires_grad(requires_grad)
+        if body_requires_grad:
+            self.model.train()
+            outputs = self.model(**encoded, output_hidden_states=True)
+            self.model.eval()
+        else:
+            with torch.inference_mode():
+                outputs = self.model(**encoded, output_hidden_states=True)
+        return outputs, body_requires_grad
+
+    def _escape_inference_tensor(self, tensor: torch.Tensor, body_requires_grad: bool) -> torch.Tensor:
+        """Clone out of inference_mode so MLP heads can still receive gradients."""
+        if body_requires_grad:
+            return tensor
+        return tensor.clone()
+
+    def _resolve_q_head(self, use_target_head: bool = False, use_behavior_head: bool = False):
+        if use_behavior_head:
+            if self.behavior_q_mlp_head is None:
+                raise RuntimeError("use_behavior_head=True but behavior_q_mlp_head is None")
+            return self.behavior_q_mlp_head
+        if use_target_head:
+            if self.target_q_mlp_head is None:
+                raise RuntimeError("use_target_head=True but target_q_mlp_head is None (set critic_target_tau>0)")
+            return self.target_q_mlp_head
+        return self.q_mlp_head
+
+    def _resolve_v_head(self, use_target_head: bool = False):
+        if use_target_head:
+            if self.target_v_mlp_head is None:
+                raise RuntimeError("use_target_head=True but target_v_mlp_head is None (set critic_target_tau>0)")
+            return self.target_v_mlp_head
+        return self.v_mlp_head
+
     def predict_q_value(
         self,
         observations: List[str],
         high_level_actions: List[str],
         tokenizer,
-        requires_grad: bool = False
+        requires_grad: bool = False,
+        use_target_head: bool = False,
+        use_behavior_head: bool = False,
     ) -> torch.Tensor:
-        """
-        Predict Q-value for observation-high_level_action pairs (Q_high).
-
-        Q_high takes: (observation, high_level_action) where high_level_action is the context/instruction.
-
-        Args:
-            observations: List of observation strings
-            high_level_actions: List of high-level actions/contexts (belief summaries)
-            tokenizer: Tokenizer for encoding
-            requires_grad: If True, enable gradients for MLP head (for training).
-                          Base model is always frozen.
-
-        Returns:
-            Tensor of Q-value predictions
-        """
-        return self._predict_q_like(observations, high_level_actions, tokenizer, self.q_mlp_head, requires_grad)
+        """Predict Q(s,a). Target/behavior heads for bootstrap/selection."""
+        head = self._resolve_q_head(use_target_head=use_target_head, use_behavior_head=use_behavior_head)
+        return self.predict_sa_value(observations, high_level_actions, tokenizer, head, requires_grad)
 
     def predict_q_min_value(
         self,
         observations: List[str],
         high_level_actions: List[str],
         tokenizer,
-        requires_grad: bool = False
+        requires_grad: bool = False,
+        use_target_head: bool = False,
     ) -> torch.Tensor:
-        """
-        Predict Q_min-value (adversarial / min-value critic) for (obs, action) pairs.
-        Same interface as predict_q_value but uses q_min_mlp_head.
-        """
+        """Predict Q_min(s,a)."""
         if not self.use_regret_critic or self.q_min_mlp_head is None:
             raise RuntimeError("predict_q_min_value requires use_regret_critic=True")
-        return self._predict_q_like(observations, high_level_actions, tokenizer, self.q_min_mlp_head, requires_grad)
+        if use_target_head:
+            if self.target_q_min_mlp_head is None:
+                raise RuntimeError("use_target_head=True but target_q_min_mlp_head is None")
+            head = self.target_q_min_mlp_head
+        else:
+            head = self.q_min_mlp_head
+        return self.predict_sa_value(observations, high_level_actions, tokenizer, head, requires_grad)
 
     def predict_regret_value(
         self,
         observations: List[str],
         high_level_actions: List[str],
         tokenizer,
-        requires_grad: bool = False
+        requires_grad: bool = False,
+        use_target_head: bool = False,
+        use_behavior_head: bool = False,
     ) -> torch.Tensor:
-        """
-        Predict regret value Regret(s,a) for (obs, action) pairs.
-        Learns cumulative value gap: value - min_value.
-        """
+        """Predict Regret(s,a)."""
         if not self.use_regret_critic or self.regret_mlp_head is None:
             raise RuntimeError("predict_regret_value requires use_regret_critic=True")
-        return self._predict_q_like(observations, high_level_actions, tokenizer, self.regret_mlp_head, requires_grad)
+        if use_behavior_head:
+            if self.behavior_regret_mlp_head is None:
+                raise RuntimeError("use_behavior_head=True but behavior_regret_mlp_head is None")
+            head = self.behavior_regret_mlp_head
+        elif use_target_head:
+            if self.target_regret_mlp_head is None:
+                raise RuntimeError("use_target_head=True but target_regret_mlp_head is None")
+            head = self.target_regret_mlp_head
+        else:
+            head = self.regret_mlp_head
+        return self.predict_sa_value(observations, high_level_actions, tokenizer, head, requires_grad)
 
-    def _predict_q_like(
+    def predict_sa_value(
         self,
         observations: List[str],
         high_level_actions: List[str],
@@ -177,7 +426,14 @@ class ValueFunction:
         head: nn.Module,
         requires_grad: bool
     ) -> torch.Tensor:
-        """Shared encoding + head forward for Q-style (obs, action) prediction."""
+        """
+        Encode a state–action pair and score it with an MLP head.
+
+        Builds the text ``Observation: {s}\\nHigh-Level Context: {a}``, runs the frozen
+        LLM body (inference_mode unless critic LoRA is on), mean-pools the last hidden
+        state, and applies ``head``. Used by Q, Q_min, and regret predictors — same (s, a)
+        encoding, different head weights.
+        """
         max_seq_length = 1500
         input_texts = []
         for obs, action in zip(observations, high_level_actions):
@@ -198,12 +454,7 @@ class ValueFunction:
             return_tensors="pt",
         )
         encoded = {k: v.to(self.device) for k, v in encoded.items()}
-
-        if requires_grad:
-            outputs = self.model(**encoded, output_hidden_states=True)
-        else:
-            with torch.inference_mode():
-                outputs = self.model(**encoded, output_hidden_states=True)
+        outputs, body_requires_grad = self._forward_body(encoded, requires_grad=requires_grad)
         if hasattr(outputs, 'hidden_states') and outputs.hidden_states:
             hidden_states = outputs.hidden_states[-1]
             pooled = hidden_states.mean(dim=1)
@@ -215,7 +466,7 @@ class ValueFunction:
                 else self.model.get_input_embeddings()(encoded['input_ids']).mean(dim=1)
             )
         del outputs, encoded
-        pooled = pooled.detach().to(dtype=self.dtype)
+        pooled = self._escape_inference_tensor(pooled, body_requires_grad).to(dtype=self.dtype)
         if requires_grad:
             values = head(pooled)
         else:
@@ -227,24 +478,34 @@ class ValueFunction:
         self,
         observations: List[str],
         tokenizer,
-        requires_grad: bool = False
+        requires_grad: bool = False,
+        use_target_head: bool = False,
     ) -> torch.Tensor:
-        """
-        Predict V_min-value (adversarial state value) for observations.
-        Same interface as predict_v_value but uses v_min_mlp_head.
-        """
+        """Predict V_min(s)."""
         if not self.use_regret_critic or self.v_min_mlp_head is None:
             raise RuntimeError("predict_v_min_value requires use_regret_critic=True")
-        return self._predict_v_like(observations, tokenizer, self.v_min_mlp_head, requires_grad)
+        if use_target_head:
+            if self.target_v_min_mlp_head is None:
+                raise RuntimeError("use_target_head=True but target_v_min_mlp_head is None")
+            head = self.target_v_min_mlp_head
+        else:
+            head = self.v_min_mlp_head
+        return self.predict_s_value(observations, tokenizer, head, requires_grad)
 
-    def _predict_v_like(
+    def predict_s_value(
         self,
         observations: List[str],
         tokenizer,
         head: nn.Module,
         requires_grad: bool
     ) -> torch.Tensor:
-        """Shared encoding + head forward for V-style (obs only) prediction."""
+        """
+        Encode a state and score it with an MLP head.
+
+        Builds the text ``Observation: {s}``, runs the frozen LLM body (inference_mode
+        unless critic LoRA is on), mean-pools the last hidden state, and applies ``head``.
+        Used by V and V_min predictors — same state encoding, different head weights.
+        """
         max_seq_length = 1500
         input_texts = []
         for obs in observations:
@@ -264,11 +525,7 @@ class ValueFunction:
             return_tensors="pt",
         )
         encoded = {k: v.to(self.device) for k, v in encoded.items()}
-        if requires_grad:
-            outputs = self.model(**encoded, output_hidden_states=True)
-        else:
-            with torch.inference_mode():
-                outputs = self.model(**encoded, output_hidden_states=True)
+        outputs, body_requires_grad = self._forward_body(encoded, requires_grad=requires_grad)
         if hasattr(outputs, 'hidden_states') and outputs.hidden_states:
             hidden_states = outputs.hidden_states[-1]
             pooled = hidden_states.mean(dim=1)
@@ -280,7 +537,7 @@ class ValueFunction:
                 else self.model.get_input_embeddings()(encoded['input_ids']).mean(dim=1)
             )
         del outputs, encoded
-        pooled = pooled.detach().to(dtype=self.dtype)
+        pooled = self._escape_inference_tensor(pooled, body_requires_grad).to(dtype=self.dtype)
         if requires_grad:
             values = head(pooled)
         else:
@@ -292,24 +549,12 @@ class ValueFunction:
         self,
         observations: List[str],
         tokenizer,
-        requires_grad: bool = False
+        requires_grad: bool = False,
+        use_target_head: bool = False,
     ) -> torch.Tensor:
-        """
-        Predict V-value for observations (state value function).
-
-        V(s) estimates the expected return from state s under the optimal policy.
-        This is faster than Q(s,a) because it doesn't require generating action candidates.
-
-        Args:
-            observations: List of observation strings
-            tokenizer: Tokenizer for encoding
-            requires_grad: If True, enable gradients for MLP head (for training).
-                          Base model is always frozen.
-
-        Returns:
-            Tensor of V-value predictions
-        """
-        return self._predict_v_like(observations, tokenizer, self.v_mlp_head, requires_grad)
+        """Predict V(s). use_target_head selects Polyak target V for TD bootstrap."""
+        head = self._resolve_v_head(use_target_head=use_target_head)
+        return self.predict_s_value(observations, tokenizer, head, requires_grad)
     
     def predict_token_values(
         self,
@@ -345,14 +590,9 @@ class ValueFunction:
             return_tensors="pt",
         )
         encoded = {k: v.to(self.device) for k, v in encoded.items()}
-        
-        # Get hidden states from base model
-        if requires_grad:
-            outputs = self.model(**encoded, output_hidden_states=True)
-        else:
-            with torch.inference_mode():
-                outputs = self.model(**encoded, output_hidden_states=True)
-        
+
+        outputs, body_requires_grad = self._forward_body(encoded, requires_grad=requires_grad)
+
         # Use last hidden state (per-token, not pooled)
         if hasattr(outputs, 'hidden_states') and outputs.hidden_states:
             hidden_states = outputs.hidden_states[-1]  # [batch, seq_len, hidden_size]
@@ -360,11 +600,10 @@ class ValueFunction:
             hidden_states = outputs.last_hidden_state
         else:
             hidden_states = self.model.get_input_embeddings()(encoded['input_ids'])
-        
+
         del outputs
-        
-        # Detach from computation graph since base model is frozen
-        hidden_states = hidden_states.detach().to(dtype=self.dtype)
+
+        hidden_states = self._escape_inference_tensor(hidden_states, body_requires_grad).to(dtype=self.dtype)
         
         # Pass through token critic head (per-token predictions)
         batch_size, seq_len, hidden_size = hidden_states.shape
@@ -865,17 +1104,18 @@ class ValueFunction:
         """
         # MSE loss
         mse_loss = nn.functional.mse_loss(value_predictions, targets)
-        
-        # Entropy regularization term
-        entropy_term = entropy_coef * (avg_entropy - model_entropy)
-        
-        # Total loss (subtract entropy term to encourage accounting for uncertainty)
-        total_loss = mse_loss - entropy_term
-        
-        # Add contrastive loss if provided
+
+        # Belief entropy is detached from MLP params — refuse inert "regularization".
+        if entropy_coef != 0.0:
+            raise RuntimeError(
+                f"entropy_coef={entropy_coef} but avg_entropy/model_entropy are non-differentiable "
+                "w.r.t. value heads. Set entropy_coef=0 (stabilized default)."
+            )
+        total_loss = mse_loss
+
         if contrastive_loss is not None:
             total_loss = total_loss + contrastive_loss
-        
+
         return total_loss
     
     def update(self, loss: torch.Tensor) -> None:
@@ -927,21 +1167,15 @@ class ValueFunction:
             for name, grad_norm in grad_norms:
                 print(f"    {name}: grad_norm={grad_norm:.6f}")
         
-        # Verify base model has no gradients (should be frozen)
-        base_model_has_grads = False
         for name, param in self.model.named_parameters():
-            if param.requires_grad:
-                base_model_has_grads = True
-                if self._update_count <= 3:
-                    print(f"    WARNING: Base model parameter {name} has requires_grad=True!")
-        
-        if base_model_has_grads:
-            raise RuntimeError(
-                "Base model parameters have requires_grad=True! "
-                "Base model should be frozen."
-            )
-        
+            if param.requires_grad and "lora_" not in name:
+                raise RuntimeError(
+                    f"Non-LoRA base parameter {name} has requires_grad=True; "
+                    "only critic LoRA adapters may train."
+                )
+
         self.optimizer.step()
+        self.polyak_update_target_heads()
     
     def save_checkpoint(self, checkpoint_path: str) -> None:
         """

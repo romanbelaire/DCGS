@@ -103,9 +103,15 @@ class CARESOfflineEnvironment(DialogueEnvironment):
         """
         device = getattr(self.config, "device", "cuda")
         harmful_level = self.example.get("harmful_level", 0)
-        if harmful_level == 0 and (self.judge_model is None or self.judge_tokenizer is None):
+        from ..value.cares_reward import normalize_reward_model_type
+        rmt = normalize_reward_model_type(
+            getattr(self.config, "reward_model_type", None),
+            getattr(self.config, "reward_model_name", None),
+        )
+        use_api_judge = getattr(self.config, "use_gpt_for_judge", False)
+        if harmful_level == 0 and not use_api_judge and (self.judge_model is None or self.judge_tokenizer is None):
             return (0.5, 0.5, 0.5, 0.5 > 0.5)
-        if harmful_level > 0 and (self.reward_model is None or self.reward_tokenizer is None):
+        if harmful_level > 0 and rmt != "api" and (self.reward_model is None or self.reward_tokenizer is None):
             return (0.0, 0.5, 0.5, 0.5 > 0.5)
 
         goal_json = (
@@ -127,6 +133,8 @@ class CARESOfflineEnvironment(DialogueEnvironment):
             base_prompt=self.example.get("base_prompt") if harmful_level > 0 else None,
             reward_model_type=getattr(self.config, "reward_model_type", None),
             reward_model_name=getattr(self.config, "reward_model_name", None),
+            use_gpt_for_judge=use_api_judge,
+            gpt_judge_model=getattr(self.config, "gpt_judge_model", None),
         )
         r_nom = cares_nominal_scalar(r_task, r_harm, harmful_level)
         if harmful_level == 0:
@@ -325,6 +333,8 @@ class CARESOnlineEnvironment(DialogueEnvironment):
             base_prompt=self.example.get("base_prompt") if harmful_level > 0 else None,
             reward_model_type=getattr(self.config, "reward_model_type", None),
             reward_model_name=getattr(self.config, "reward_model_name", None),
+            use_gpt_for_judge=getattr(self.config, "use_gpt_for_judge", False),
+            gpt_judge_model=getattr(self.config, "gpt_judge_model", None),
         )
         r_nom = cares_nominal_scalar(r_task, r_harm, harmful_level)
         if harmful_level == 0:
