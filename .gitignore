@@ -35,7 +35,9 @@ __pycache__/
 *$py.class
 
 # Curated model index for students.
-!models/MANIFEST.json
+# !models/ only un-ignores the directory; nested files still match * and *token*.
+!models/
+!models/**
 
 # Hierarchical final-method regret critics (Git LFS).
 !outputs/cares_hierarchical_regret_critic/hierarchical_regret_critic/checkpoints/value_function_latest.pt
