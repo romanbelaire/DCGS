@@ -34,8 +34,7 @@ __pycache__/
 *.py[cod]
 *$py.class
 
-# Curated model index for students.
-# !models/ only un-ignores the directory; nested files still match * and *token*.
+# Curated model index
 !models/
 !models/**
 
