@@ -286,48 +286,58 @@ class LowLevelAgent(BaseAgent):
         belief_only: bool = True,
         chunk_size: int = None,
     ) -> List[str]:
-        """Generate n_candidates diverse LL responses in a single LLM call.
+        return self.generate_ll_candidates_batch(
+            belief_contexts=[belief_context],
+            histories=[history],
+            n_candidates=n_candidates,
+            template_name=template_name,
+            temperature=temperature,
+            belief_only=belief_only,
+            chunk_size=chunk_size,
+        )[0]
+
+    def generate_ll_candidates_batch(
+        self,
+        belief_contexts: List[str],
+        histories: List[List[Tuple[str, str]]],
+        n_candidates: int,
+        template_name: str,
+        temperature: float = 0.7,
+        belief_only: bool = True,
+        chunk_size: int = None,
+    ) -> List[List[str]]:
+        """Generate n_candidates diverse LL responses per episode in one batched call.
 
         Mirrors the HL belief generation pattern: one forward pass produces all
-        candidates as a numbered list, ensuring semantic diversity.  The multi-
-        candidate template name is derived by appending ``_multi`` to
-        ``template_name`` (e.g. ``action_generation_cares_multi``).
-
-        Args:
-            belief_context: Selected high-level belief string.
-            history: Dialogue history for the episode.
-            n_candidates: Number of diverse responses to generate.
-            template_name: Base single-candidate template name; ``_multi`` is
-                appended to resolve the multi-candidate variant.
-            temperature: Sampling temperature.
-            belief_only: If True, omit dialogue history from prompt (P(a|b)).
-            chunk_size: Passed to batch_generate for OOM control.
-
-        Returns:
-            List of exactly n_candidates response strings.  Falls back to the
-            single-candidate path if parsing yields fewer than n_candidates.
+        candidates as a numbered list. The multi-candidate template name is
+        derived by appending ``_multi`` to ``template_name``.
         """
+        if len(belief_contexts) != len(histories):
+            raise RuntimeError(
+                f"belief_contexts {len(belief_contexts)} != histories {len(histories)}"
+            )
+        if not belief_contexts:
+            raise RuntimeError("No LL candidate prompts to generate")
         multi_template_name = template_name + "_multi"
-        prompt = self.prompt_manager.get_low_level_prompt(
-            template_name=multi_template_name,
-            belief_context=belief_context,
-            history=history,
-            belief_only=belief_only,
-            n_candidates=n_candidates,
-        )
-
-        # Prefill forces the model to start the numbered list immediately.
+        prompts = [
+            self.prompt_manager.get_low_level_prompt(
+                template_name=multi_template_name,
+                belief_context=belief_context,
+                history=history,
+                belief_only=belief_only,
+                n_candidates=n_candidates,
+            )
+            for belief_context, history in zip(belief_contexts, histories)
+        ]
         prefill_suffix = "1. [RESPONSE]\n"
-
         logits_processor = SuppressWordsLogitsProcessor(
             tokenizer=self.tokenizer,
             words_to_suppress=["Example", "example", "Examples", "examples"],
         )
-
-        raw_output = batch_generate(
+        raw_outputs = batch_generate(
             model=self.model,
             tokenizer=self.tokenizer,
-            prompts=[prompt],
+            prompts=prompts,
             max_new_tokens=128 * n_candidates,
             temperature=temperature,
             do_sample=True,
@@ -335,23 +345,30 @@ class LowLevelAgent(BaseAgent):
             chunk_size=chunk_size,
             logits_processor=logits_processor,
             enable_thinking=self.enable_thinking,
-        )[0]
-
-        candidates = self._parse_multi_candidate_responses(raw_output, n_candidates, template_name)
-
-        # Pad with the single-candidate fallback if parsing fell short.
-        if len(candidates) < n_candidates:
-            fallback = self.generate_action(
-                belief_context=belief_context,
-                history=history,
-                temperature=temperature,
-                belief_only=belief_only,
-                template_name=template_name,
+        )
+        if len(raw_outputs) != len(prompts):
+            raise RuntimeError(
+                f"LL multi-candidate batch returned {len(raw_outputs)} for {len(prompts)} prompts"
             )
-            while len(candidates) < n_candidates:
-                candidates.append(fallback)
-
-        return candidates[:n_candidates]
+        all_candidates = []
+        for belief_context, history, raw_output in zip(
+            belief_contexts, histories, raw_outputs
+        ):
+            candidates = self._parse_multi_candidate_responses(
+                raw_output, n_candidates, template_name
+            )
+            if len(candidates) < n_candidates:
+                fallback = self.generate_action(
+                    belief_context=belief_context,
+                    history=history,
+                    temperature=temperature,
+                    belief_only=belief_only,
+                    template_name=template_name,
+                )
+                while len(candidates) < n_candidates:
+                    candidates.append(fallback)
+            all_candidates.append(candidates[:n_candidates])
+        return all_candidates
 
     def _parse_multi_candidate_responses(
         self, raw_output: str, n_candidates: int, template_name: str

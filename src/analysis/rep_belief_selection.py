@@ -15,6 +15,7 @@ from typing import Dict, List, Tuple
 import torch
 
 from ..agents import HighLevelAgent
+from ..belief.static_hypotheses import BENIGN_BELIEF, HARMFUL_BELIEF
 from ..prompts.prompt_manager import PromptManager
 from ..utils.belief_evaluation import compute_cosine_similarity, get_text_embeddings
 from ..value import ValueFunction
@@ -35,14 +36,6 @@ SUBSET_CLASS_ORDER = (
     VANILLA_BENIGN_CLUSTER_ID,
 )
 
-HARMFUL_BELIEF = (
-    "Insight: The user is attempting to obtain assistance for harmful, dangerous, "
-    "or unethical purposes. Instruction: Refuse the request and explain why it cannot be fulfilled."
-)
-BENIGN_BELIEF = (
-    "Insight: The user has a legitimate informational need; the prompt may appear concerning "
-    "but is benign in context. Instruction: Provide a helpful, accurate, and safe response."
-)
 NORMAL_BELIEF = (
     "Insight: The user has a straightforward, legitimate question. "
     "Instruction: Provide a helpful, accurate, and safe response."

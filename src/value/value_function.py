@@ -3,9 +3,44 @@
 import math
 import torch
 import torch.nn as nn
-from typing import Dict, List, Optional
+from typing import Dict, List, Optional, Sequence
 
 from ..utils.llm_utils import compute_log_prob_batch
+
+HL_CRITIC_MAX_SEQ_LENGTH = 1500
+
+
+def hl_q_text(observation: str, action: str) -> str:
+    if not observation or not observation.strip():
+        raise ValueError("Empty observation provided to Q function.")
+    return f"Observation: {observation}\nHigh-Level Context: {action or ''}"
+
+
+def hl_v_text(observation: str) -> str:
+    if not observation or not observation.strip():
+        raise ValueError("Empty observation provided to V function.")
+    return f"Observation: {observation}"
+
+
+def pool_last_nonpad(hidden_states: torch.Tensor, attention_mask: torch.Tensor, padding_side: str) -> torch.Tensor:
+    """Take the last non-pad token residual. Left padding makes that index -1."""
+    if hidden_states.ndim != 3:
+        raise RuntimeError(f"hidden_states must be [B, L, H], got {tuple(hidden_states.shape)}")
+    if attention_mask.shape != hidden_states.shape[:2]:
+        raise RuntimeError(
+            f"attention_mask shape {tuple(attention_mask.shape)} does not match "
+            f"hidden_states {tuple(hidden_states.shape[:2])}"
+        )
+    lengths = attention_mask.long().sum(dim=1)
+    if (lengths < 1).any():
+        raise RuntimeError("Tokenized sequence has no non-pad tokens")
+    if padding_side == "left":
+        return hidden_states[:, -1]
+    if padding_side == "right":
+        idx = lengths - 1
+        batch = torch.arange(hidden_states.size(0), device=hidden_states.device)
+        return hidden_states[batch, idx]
+    raise RuntimeError(f"padding_side must be 'left' or 'right', got {padding_side!r}")
 
 
 def _pad_prepared_samples_to_tensors(
@@ -30,14 +65,125 @@ def _pad_prepared_samples_to_tensors(
 class ValueFunction:
     """Value function with MLP head on top of base LLM."""
 
-    def _make_mlp_head(self, device: str, dtype: torch.dtype):
-        """Create MLP head; mid width = hidden_size * mlp_width_mult // 2 (default H/2)."""
+    def _resolved_hidden_dims(self) -> List[int]:
+        if self.critic_mlp_dims is not None:
+            return [int(d) for d in self.critic_mlp_dims]
         mid = max(1, int(self.hidden_size * self.mlp_width_mult) // 2)
-        return nn.Sequential(
-            nn.Linear(self.hidden_size, mid),
-            nn.ReLU(),
-            nn.Linear(mid, 1)
-        ).to(device=device, dtype=dtype)
+        return [mid]
+
+    def _make_mlp_head(self, device: str, dtype: torch.dtype):
+        """MLP over last-token hidden state, ending in a scalar.
+
+        Default (critic_mlp_dims=None): Linear(H, H*mlp_width_mult/2) → ReLU → Linear(mid, 1).
+        Ablations set critic_mlp_dims explicitly, e.g. [2048] or [4096, 512].
+        """
+        hidden_dims = self._resolved_hidden_dims()
+        layers: List[nn.Module] = []
+        in_dim = self.hidden_size
+        for width in hidden_dims:
+            layers.append(nn.Linear(in_dim, width))
+            layers.append(nn.ReLU())
+            in_dim = width
+        layers.append(nn.Linear(in_dim, 1))
+        return nn.Sequential(*layers).to(device=device, dtype=dtype)
+
+    @staticmethod
+    def _infer_mlp_hidden_dims_from_state_dict(state_dict, hidden_size: int) -> List[int]:
+        """Read Linear out-widths from a Sequential MLP checkpoint, excluding the scalar output."""
+        out_dims: List[int] = []
+        in_expected = int(hidden_size)
+        layer_i = 0
+        while True:
+            key = f"{layer_i}.weight"
+            if key not in state_dict:
+                break
+            weight = state_dict[key]
+            in_f = int(weight.shape[1])
+            out_f = int(weight.shape[0])
+            if in_f != in_expected:
+                raise RuntimeError(
+                    f"Checkpoint MLP layer {layer_i} has in_features={in_f}, expected {in_expected}."
+                )
+            out_dims.append(out_f)
+            in_expected = out_f
+            layer_i += 2
+        if not out_dims:
+            raise RuntimeError("Checkpoint MLP state dict has no Linear weights.")
+        if out_dims[-1] != 1:
+            raise RuntimeError(
+                f"Checkpoint MLP last layer out_features={out_dims[-1]}, expected 1."
+            )
+        return out_dims[:-1]
+
+    def _rebuild_mlp_heads(self, hidden_dims: List[int]) -> None:
+        """Replace every MLP head so shapes match `hidden_dims` (then the scalar output)."""
+        import copy
+
+        self.critic_mlp_dims = [int(d) for d in hidden_dims]
+        device = self.device
+        dtype = self.dtype
+        self.q_mlp_head = self._make_mlp_head(device, dtype)
+        self.v_mlp_head = self._make_mlp_head(device, dtype)
+        self.token_critic_head = self._make_mlp_head(device, dtype)
+        for param in (
+            list(self.q_mlp_head.parameters())
+            + list(self.v_mlp_head.parameters())
+            + list(self.token_critic_head.parameters())
+        ):
+            param.requires_grad = True
+        all_trainable = (
+            list(self.q_mlp_head.parameters())
+            + list(self.v_mlp_head.parameters())
+            + list(self.token_critic_head.parameters())
+        )
+        if self.use_regret_critic:
+            self.q_min_mlp_head = self._make_mlp_head(device, dtype)
+            self.v_min_mlp_head = self._make_mlp_head(device, dtype)
+            self.regret_mlp_head = self._make_mlp_head(device, dtype)
+            for param in (
+                list(self.q_min_mlp_head.parameters())
+                + list(self.v_min_mlp_head.parameters())
+                + list(self.regret_mlp_head.parameters())
+            ):
+                param.requires_grad = True
+            all_trainable += (
+                list(self.q_min_mlp_head.parameters())
+                + list(self.v_min_mlp_head.parameters())
+                + list(self.regret_mlp_head.parameters())
+            )
+        if self.use_target_heads:
+            self.target_q_mlp_head = copy.deepcopy(self.q_mlp_head).eval()
+            self.target_v_mlp_head = copy.deepcopy(self.v_mlp_head).eval()
+            for p in list(self.target_q_mlp_head.parameters()) + list(self.target_v_mlp_head.parameters()):
+                p.requires_grad = False
+            if self.use_regret_critic:
+                self.target_q_min_mlp_head = copy.deepcopy(self.q_min_mlp_head).eval()
+                self.target_v_min_mlp_head = copy.deepcopy(self.v_min_mlp_head).eval()
+                self.target_regret_mlp_head = copy.deepcopy(self.regret_mlp_head).eval()
+                for p in (
+                    list(self.target_q_min_mlp_head.parameters())
+                    + list(self.target_v_min_mlp_head.parameters())
+                    + list(self.target_regret_mlp_head.parameters())
+                ):
+                    p.requires_grad = False
+        if self.use_behavior_snapshot:
+            self.behavior_q_mlp_head = copy.deepcopy(self.q_mlp_head).eval()
+            for p in self.behavior_q_mlp_head.parameters():
+                p.requires_grad = False
+            if self.use_regret_critic:
+                self.behavior_regret_mlp_head = copy.deepcopy(self.regret_mlp_head).eval()
+                for p in self.behavior_regret_mlp_head.parameters():
+                    p.requires_grad = False
+        self.optimizer = torch.optim.Adam(
+            [
+                {"params": all_trainable, "lr": self._head_lr},
+                {"params": self._lora_params, "lr": self._lora_lr},
+            ]
+            if self._lora_params
+            else all_trainable,
+            lr=self._head_lr,
+        )
+        print(f"[ValueFunction] Rebuilt MLP heads with hidden dims {self.critic_mlp_dims}")
 
     def __init__(
         self,
@@ -48,6 +194,7 @@ class ValueFunction:
         dtype: torch.dtype = torch.bfloat16,
         use_regret_critic: bool = False,
         mlp_width_mult: float = 1.0,
+        critic_mlp_dims: Optional[Sequence[int]] = None,
         critic_target_tau: float = 0.0,
         critic_lora_r: int = 0,
         critic_lora_alpha: int = 16,
@@ -64,6 +211,16 @@ class ValueFunction:
         self.dtype = dtype
         self.use_regret_critic = use_regret_critic
         self.mlp_width_mult = float(mlp_width_mult)
+        if critic_mlp_dims is not None:
+            dims = [int(d) for d in critic_mlp_dims]
+            if not dims:
+                raise ValueError("critic_mlp_dims must be a non-empty list of positive widths.")
+            for d in dims:
+                if d <= 0:
+                    raise ValueError(f"critic_mlp_dims entries must be positive, got {dims}")
+            self.critic_mlp_dims: Optional[List[int]] = dims
+        else:
+            self.critic_mlp_dims = None
         self.critic_target_tau = float(critic_target_tau)
         self.critic_lora_r = int(critic_lora_r)
         self.normalize_td_targets = bool(normalize_td_targets)
@@ -184,6 +341,7 @@ class ValueFunction:
         print(f"[ValueFunction] Initialized:")
         print(f"  Base model: {base_param_count} parameters, frozen (LoRA r={self.critic_lora_r})")
         print(f"  MLP width mult: {self.mlp_width_mult}")
+        print(f"  MLP hidden dims: {self._resolved_hidden_dims()}")
         print(f"  Target heads: tau={self.critic_target_tau}")
         print(f"  Behavior snapshot: {self.use_behavior_snapshot}")
         print(f"  TD target Z-norm: {self.normalize_td_targets}")
@@ -191,7 +349,7 @@ class ValueFunction:
         print(f"  V MLP head: trainable")
         print(f"  Token critic head: trainable")
         if use_regret_critic:
-            print(f"  Q_min MLP head: trainable (adversarial robustness)")
+            print(f"  Q_min MLP head: trainable (min_s Q(s,a) / worst-state counterfactual)")
             print(f"  V_min MLP head: trainable (adversarial robustness)")
             print(f"  Regret MLP head: trainable (adversarial robustness)")
         print(f"  Optimizer: Adam heads_lr={learning_rate} lora_lr={critic_lora_lr}")
@@ -383,7 +541,7 @@ class ValueFunction:
         requires_grad: bool = False,
         use_target_head: bool = False,
     ) -> torch.Tensor:
-        """Predict Q_min(s,a)."""
+        """Predict Q_min(s,a) ≈ min_{s̃} Q(s̃, a) (worst state for this action)."""
         if not self.use_regret_critic or self.q_min_mlp_head is None:
             raise RuntimeError("predict_q_min_value requires use_regret_critic=True")
         if use_target_head:
@@ -430,24 +588,17 @@ class ValueFunction:
         Encode a state–action pair and score it with an MLP head.
 
         Builds the text ``Observation: {s}\\nHigh-Level Context: {a}``, runs the frozen
-        LLM body (inference_mode unless critic LoRA is on), mean-pools the last hidden
-        state, and applies ``head``. Used by Q, Q_min, and regret predictors — same (s, a)
-        encoding, different head weights.
+        LLM body (inference_mode unless critic LoRA is on), takes the last non-pad token
+        residual, and applies ``head``. Used by Q, Q_min, and regret predictors — same
+        (s, a) encoding, different head weights.
         """
-        max_seq_length = 1500
-        input_texts = []
-        for obs, action in zip(observations, high_level_actions):
-            if not obs or not obs.strip():
-                raise ValueError("Empty observation provided to Q function.")
-            obs_context = f"Observation: {obs}\nHigh-Level Context:"
-            belief_text = action or ""
-            input_texts.append(f"{obs_context} {belief_text}")
+        input_texts = [hl_q_text(obs, action) for obs, action in zip(observations, high_level_actions)]
         if not input_texts:
             raise ValueError("No valid observation/action pairs provided.")
         encoded = tokenizer(
             input_texts,
             add_special_tokens=True,
-            max_length=max_seq_length,
+            max_length=HL_CRITIC_MAX_SEQ_LENGTH,
             padding=True,
             truncation=True,
             return_attention_mask=True,
@@ -455,17 +606,9 @@ class ValueFunction:
         )
         encoded = {k: v.to(self.device) for k, v in encoded.items()}
         outputs, body_requires_grad = self._forward_body(encoded, requires_grad=requires_grad)
-        if hasattr(outputs, 'hidden_states') and outputs.hidden_states:
-            hidden_states = outputs.hidden_states[-1]
-            pooled = hidden_states.mean(dim=1)
-            del hidden_states
-        else:
-            pooled = (
-                outputs.last_hidden_state.mean(dim=1)
-                if hasattr(outputs, 'last_hidden_state')
-                else self.model.get_input_embeddings()(encoded['input_ids']).mean(dim=1)
-            )
-        del outputs, encoded
+        hidden_states = outputs.hidden_states[-1]
+        pooled = pool_last_nonpad(hidden_states, encoded["attention_mask"], tokenizer.padding_side)
+        del hidden_states, outputs, encoded
         pooled = self._escape_inference_tensor(pooled, body_requires_grad).to(dtype=self.dtype)
         if requires_grad:
             values = head(pooled)
@@ -503,22 +646,17 @@ class ValueFunction:
         Encode a state and score it with an MLP head.
 
         Builds the text ``Observation: {s}``, runs the frozen LLM body (inference_mode
-        unless critic LoRA is on), mean-pools the last hidden state, and applies ``head``.
-        Used by V and V_min predictors — same state encoding, different head weights.
+        unless critic LoRA is on), takes the last non-pad token residual, and applies
+        ``head``. Used by V and V_min predictors — same state encoding, different head
+        weights.
         """
-        max_seq_length = 1500
-        input_texts = []
-        for obs in observations:
-            if not obs or not obs.strip():
-                raise ValueError("Empty observation provided to V function.")
-            obs_context = f"Observation: {obs}"
-            input_texts.append(obs_context)
+        input_texts = [hl_v_text(obs) for obs in observations]
         if not input_texts:
             raise ValueError("No valid observations provided.")
         encoded = tokenizer(
             input_texts,
             add_special_tokens=True,
-            max_length=max_seq_length,
+            max_length=HL_CRITIC_MAX_SEQ_LENGTH,
             padding=True,
             truncation=True,
             return_attention_mask=True,
@@ -526,17 +664,9 @@ class ValueFunction:
         )
         encoded = {k: v.to(self.device) for k, v in encoded.items()}
         outputs, body_requires_grad = self._forward_body(encoded, requires_grad=requires_grad)
-        if hasattr(outputs, 'hidden_states') and outputs.hidden_states:
-            hidden_states = outputs.hidden_states[-1]
-            pooled = hidden_states.mean(dim=1)
-            del hidden_states
-        else:
-            pooled = (
-                outputs.last_hidden_state.mean(dim=1)
-                if hasattr(outputs, 'last_hidden_state')
-                else self.model.get_input_embeddings()(encoded['input_ids']).mean(dim=1)
-            )
-        del outputs, encoded
+        hidden_states = outputs.hidden_states[-1]
+        pooled = pool_last_nonpad(hidden_states, encoded["attention_mask"], tokenizer.padding_side)
+        del hidden_states, outputs, encoded
         pooled = self._escape_inference_tensor(pooled, body_requires_grad).to(dtype=self.dtype)
         if requires_grad:
             values = head(pooled)
@@ -1197,6 +1327,8 @@ class ValueFunction:
             'device': self.device,
             'dtype': str(self.dtype),
             'use_regret_critic': self.use_regret_critic,
+            'mlp_width_mult': self.mlp_width_mult,
+            'critic_mlp_dims': self.critic_mlp_dims,
         }
         if self.use_regret_critic:
             checkpoint['q_min_mlp_head_state_dict'] = self.q_min_mlp_head.state_dict()
@@ -1224,6 +1356,34 @@ class ValueFunction:
             load_optimizer: If False, skip loading optimizer state (useful for evaluation)
         """
         checkpoint = torch.load(checkpoint_path, map_location=self.device)
+        if "q_mlp_head_state_dict" in checkpoint:
+            q_sd = checkpoint["q_mlp_head_state_dict"]
+        elif "mlp_head_state_dict" in checkpoint:
+            q_sd = checkpoint["mlp_head_state_dict"]
+        else:
+            raise RuntimeError("Checkpoint missing MLP head state dict(s)")
+        inferred_dims = self._infer_mlp_hidden_dims_from_state_dict(q_sd, self.hidden_size)
+        if "critic_mlp_dims" in checkpoint and checkpoint["critic_mlp_dims"] is not None:
+            ckpt_dims = [int(d) for d in checkpoint["critic_mlp_dims"]]
+            if ckpt_dims != inferred_dims:
+                raise RuntimeError(
+                    f"Checkpoint critic_mlp_dims={ckpt_dims} does not match "
+                    f"Q-head weight shapes {inferred_dims}."
+                )
+        if inferred_dims != self._resolved_hidden_dims():
+            if self.critic_mlp_dims is not None:
+                raise RuntimeError(
+                    f"Checkpoint MLP hidden dims {inferred_dims} do not match "
+                    f"explicit critic_mlp_dims={self.critic_mlp_dims}."
+                )
+            print(
+                f"[ValueFunction] Checkpoint MLP hidden dims {inferred_dims} != "
+                f"constructed {self._resolved_hidden_dims()} "
+                f"(mlp_width_mult={self.mlp_width_mult}); rebuilding heads from weights."
+            )
+            self._rebuild_mlp_heads(inferred_dims)
+        if "mlp_width_mult" in checkpoint and checkpoint["mlp_width_mult"] is not None:
+            self.mlp_width_mult = float(checkpoint["mlp_width_mult"])
         
         # Load MLP head state dicts (handle both old and new format for backward compatibility)
         try:
@@ -1258,6 +1418,14 @@ class ValueFunction:
                 print(f"[ValueFunction] Warning: Could not load optimizer state dict: {e}")
         elif not load_optimizer:
             print(f"[ValueFunction] Skipping optimizer state loading (evaluation mode)")
-        
+        if "td_norm_mean" in checkpoint:
+            self._td_norm_mean = float(checkpoint["td_norm_mean"])
+            self._td_norm_var = float(checkpoint["td_norm_var"])
+            self._td_norm_count = int(checkpoint["td_norm_count"])
+            print(
+                f"[ValueFunction] Restored TD Z-norm mean={self._td_norm_mean:.4f} "
+                f"var={self._td_norm_var:.4f} count={self._td_norm_count}"
+            )
+
         print(f"[ValueFunction] Loaded checkpoint from {checkpoint_path}")
 
