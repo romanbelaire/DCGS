@@ -24,9 +24,8 @@ ant_api
 *.md
 *.sh
 
-# Keep the reproducible environment guide and dependency declaration.
+# Keep dependency declarations and baseline entrypoints.
 !requirements.txt
-!runbook.md
 !scripts/test_openai_connection.py
 !scripts/run_safedial_baseline.py
 !scripts/judge_safedial.py
@@ -51,9 +50,6 @@ __pycache__/
 !outputs/wildjailbreak_hierarchical_regret_critic/hierarchical_regret_critic/checkpoints/value_function_final_aug11.pt
 
 # SafeDialBench implementation, launchers, and reproducibility evidence.
-!AGENTS.md
-!.agents.md
-!handover.md
 !EXPERIMENT_LOGBOOK.md
 !safedial_dcgs.json
 !cares_smoke.json
@@ -83,3 +79,13 @@ ant_api
 
 # Timestamped SafeDialBench result snapshots (no model weights or credentials).
 !results/safedialbench/**
+
+# Public project overview.
+!/README.md
+
+# Local operational context (keep on disk, do not track at repository root).
+/handover.md
+/runbook.md
+/AGENTS.md
+/agents.md
+/.agents.md
