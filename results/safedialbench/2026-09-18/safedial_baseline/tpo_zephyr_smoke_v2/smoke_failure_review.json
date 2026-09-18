@@ -1,0 +1,29 @@
+{
+  "job_id": 249899,
+  "state": "FAILED",
+  "exit_code": "2:0",
+  "wall_seconds": 550,
+  "successful_turns": 4,
+  "failed_turn_index": 4,
+  "event_index": 26,
+  "error": "Two opening tags, one closing tag; second opening tag appears only after the complete answer span in trailing instruction text.",
+  "new_calls": {
+    "generate": 37,
+    "reward": 29
+  },
+  "cumulative_calls": {
+    "generate": 92,
+    "reward": 71
+  },
+  "peak_gpu_allocated_gib": 28.514081478118896,
+  "peak_gpu_reserved_gib": 29.08984375,
+  "prior_missing_close_candidate_selected": false,
+  "original_file_sha256": {
+    "run_config.json": "fed2ccba0e4c74ab3a367b897bd29881fdb6d3e86b1631efeb5dfe7d1049938c",
+    "events.jsonl": "2ba41647a405c275631cb0c3521138b01bf01f005d8c8d0f91e2b90018d1cf49",
+    "turns.jsonl": "0afa6ddeda715e3c45da324f4ad2d76f8d7cac76383dae6911929e4cab864bb9",
+    "answers.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "invocations.jsonl": "3c824c5d7d8ee03deb018e7f2821eb8fd6704ac74d17e87679b6b6414ee91da8"
+  },
+  "full_smoke_passed": false
+}

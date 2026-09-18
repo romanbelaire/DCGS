@@ -1,0 +1,261 @@
+Checking pinned actor/reward artifacts
+Validated 2037 dialogues / 10029 turns / 150435 candidates
+{"gold_history_max_tokens": {"actor": 8022, "reward": 7197}, "context_windows": {"actor": 32768, "reward": 8192}, "longest_gold_history": {"actor": {"dialogue_id": 987, "turn_index": 5}, "reward": {"dialogue_id": 987, "turn_index": 5}}, "declared_tokenizer_max_tokens": {"actor": 1000000000000000019884624838656, "reward": 4096}, "dynamic_feedback_and_reward_inputs": "checked_before_every_call; no_truncation"}
+CUDA ready: cuda:0 / NVIDIA A100-SXM4-40GB / torch 2.13.0+cu130
+Loading frozen actor: HuggingFaceH4/zephyr-7b-beta on cuda:0
+Loading frozen reward: sfairXC/FsfairX-LLaMA3-RM-v0.1 on cuda:0
+Reward context probe PASS: 8192 tokens
+Saved dialogue=28 turn=2 candidates=15
+Saved dialogue=28 turn=3 candidates=15
+WARNING dialogue=28 turn=4 event=14: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+WARNING dialogue=28 turn=4 event=16: opening_IMPROVED_VARIABLE_tag_after_closed_span; ignored_trailing_text
+WARNING dialogue=28 turn=4 event=24: extra_or_misordered_IMPROVED_VARIABLE_tags; extracted_first_improvement_only
+Saved dialogue=28 turn=4 candidates=15
+Saved dialogue=29 turn=0 candidates=15
+Saved dialogue=29 turn=1 candidates=15
+WARNING dialogue=29 turn=2 event=12: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+WARNING dialogue=29 turn=2 event=14: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+WARNING dialogue=29 turn=2 event=16: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+WARNING dialogue=29 turn=2 event=24: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+WARNING dialogue=29 turn=2 event=28: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+WARNING dialogue=29 turn=2 event=30: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+Saved dialogue=29 turn=2 candidates=15
+Saved dialogue=29 turn=3 candidates=15
+WARNING dialogue=29 turn=4 event=16: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+Saved dialogue=29 turn=4 candidates=15
+Saved dialogue=30 turn=0 candidates=15
+Saved dialogue=30 turn=1 candidates=15
+Saved dialogue=30 turn=2 candidates=15
+WARNING dialogue=30 turn=3 event=12: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+WARNING dialogue=30 turn=3 event=14: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+WARNING dialogue=30 turn=3 event=18: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+WARNING dialogue=30 turn=3 event=20: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+Saved dialogue=30 turn=3 candidates=15
+WARNING dialogue=31 turn=0 event=26: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+WARNING dialogue=31 turn=0 event=28: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+Saved dialogue=31 turn=0 candidates=15
+WARNING dialogue=31 turn=1 event=20: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+Saved dialogue=31 turn=1 candidates=15
+Saved dialogue=31 turn=2 candidates=15
+Saved dialogue=31 turn=3 candidates=15
+WARNING dialogue=31 turn=4 event=14: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+WARNING dialogue=31 turn=4 event=16: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+WARNING dialogue=31 turn=4 event=18: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+WARNING dialogue=31 turn=4 event=20: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+Saved dialogue=31 turn=4 candidates=15
+Saved dialogue=32 turn=0 candidates=15
+Saved dialogue=32 turn=1 candidates=15
+Saved dialogue=32 turn=2 candidates=15
+Saved dialogue=32 turn=3 candidates=15
+WARNING dialogue=32 turn=4 event=28: opening_IMPROVED_VARIABLE_tag_after_closed_span; ignored_trailing_text
+Saved dialogue=32 turn=4 candidates=15
+Saved dialogue=33 turn=0 candidates=15
+Saved dialogue=33 turn=1 candidates=15
+Saved dialogue=33 turn=2 candidates=15
+WARNING dialogue=33 turn=3 event=28: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+Saved dialogue=33 turn=3 candidates=15
+Saved dialogue=33 turn=4 candidates=15
+Saved dialogue=33 turn=5 candidates=15
+WARNING dialogue=34 turn=0 event=26: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+WARNING dialogue=34 turn=0 event=28: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+Saved dialogue=34 turn=0 candidates=15
+Saved dialogue=34 turn=1 candidates=15
+WARNING dialogue=34 turn=2 event=30: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+Saved dialogue=34 turn=2 candidates=15
+WARNING dialogue=34 turn=3 event=18: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+Saved dialogue=34 turn=3 candidates=15
+WARNING dialogue=34 turn=4 event=16: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+Saved dialogue=34 turn=4 candidates=15
+Saved dialogue=35 turn=0 candidates=15
+Saved dialogue=35 turn=1 candidates=15
+Saved dialogue=35 turn=2 candidates=15
+WARNING dialogue=36 turn=0 event=14: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+WARNING dialogue=36 turn=0 event=18: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+WARNING dialogue=36 turn=0 event=20: opening_IMPROVED_VARIABLE_tag_after_closed_span; ignored_trailing_text
+WARNING dialogue=36 turn=0 event=26: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+WARNING dialogue=36 turn=0 event=30: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+Saved dialogue=36 turn=0 candidates=15
+Saved dialogue=36 turn=1 candidates=15
+Saved dialogue=36 turn=2 candidates=15
+Saved dialogue=36 turn=3 candidates=15
+WARNING dialogue=36 turn=4 event=16: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+WARNING dialogue=36 turn=4 event=18: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+Saved dialogue=36 turn=4 candidates=15
+Saved dialogue=37 turn=0 candidates=15
+Saved dialogue=37 turn=1 candidates=15
+Saved dialogue=37 turn=2 candidates=15
+WARNING dialogue=37 turn=3 event=12: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+WARNING dialogue=37 turn=3 event=14: terminal_opening_tag_used_as_closing
+WARNING dialogue=37 turn=3 event=16: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+WARNING dialogue=37 turn=3 event=20: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+WARNING dialogue=37 turn=3 event=24: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+WARNING dialogue=37 turn=3 event=28: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+WARNING dialogue=37 turn=3 event=32: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+Saved dialogue=37 turn=3 candidates=15
+Saved dialogue=38 turn=0 candidates=15
+Saved dialogue=38 turn=1 candidates=15
+WARNING dialogue=38 turn=2 event=14: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+Saved dialogue=38 turn=2 candidates=15
+Saved dialogue=38 turn=3 candidates=15
+Saved dialogue=38 turn=4 candidates=15
+Saved dialogue=38 turn=5 candidates=15
+WARNING dialogue=39 turn=0 event=14: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+WARNING dialogue=39 turn=0 event=16: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+Saved dialogue=39 turn=0 candidates=15
+Saved dialogue=39 turn=1 candidates=15
+Saved dialogue=39 turn=2 candidates=15
+WARNING dialogue=39 turn=3 event=18: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+Saved dialogue=39 turn=3 candidates=15
+WARNING dialogue=39 turn=4 event=14: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+WARNING dialogue=39 turn=4 event=20: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+Saved dialogue=39 turn=4 candidates=15
+Saved dialogue=40 turn=0 candidates=15
+Saved dialogue=40 turn=1 candidates=15
+Saved dialogue=40 turn=2 candidates=15
+WARNING dialogue=40 turn=3 event=20: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+Saved dialogue=40 turn=3 candidates=15
+Saved dialogue=40 turn=4 candidates=15
+Saved dialogue=41 turn=0 candidates=15
+Saved dialogue=41 turn=1 candidates=15
+Saved dialogue=41 turn=2 candidates=15
+Saved dialogue=41 turn=3 candidates=15
+WARNING dialogue=41 turn=4 event=14: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+WARNING dialogue=41 turn=4 event=16: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+WARNING dialogue=41 turn=4 event=18: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+Saved dialogue=41 turn=4 candidates=15
+WARNING dialogue=42 turn=0 event=24: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+Saved dialogue=42 turn=0 candidates=15
+Saved dialogue=42 turn=1 candidates=15
+Saved dialogue=42 turn=2 candidates=15
+Saved dialogue=42 turn=3 candidates=15
+WARNING dialogue=42 turn=4 event=20: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+Saved dialogue=42 turn=4 candidates=15
+Saved dialogue=43 turn=0 candidates=15
+Saved dialogue=43 turn=1 candidates=15
+Saved dialogue=43 turn=2 candidates=15
+Saved dialogue=43 turn=3 candidates=15
+Saved dialogue=43 turn=4 candidates=15
+WARNING dialogue=44 turn=0 event=28: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+Saved dialogue=44 turn=0 candidates=15
+Saved dialogue=44 turn=1 candidates=15
+Saved dialogue=44 turn=2 candidates=15
+Saved dialogue=44 turn=3 candidates=15
+Saved dialogue=45 turn=0 candidates=15
+Saved dialogue=45 turn=1 candidates=15
+Saved dialogue=45 turn=2 candidates=15
+Saved dialogue=45 turn=3 candidates=15
+Saved dialogue=45 turn=4 candidates=15
+WARNING dialogue=46 turn=0 event=12: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+Saved dialogue=46 turn=0 candidates=15
+WARNING dialogue=46 turn=1 event=26: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+Saved dialogue=46 turn=1 candidates=15
+WARNING dialogue=46 turn=2 event=12: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+WARNING dialogue=46 turn=2 event=16: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+WARNING dialogue=46 turn=2 event=20: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+Saved dialogue=46 turn=2 candidates=15
+WARNING dialogue=46 turn=3 event=12: extra_or_misordered_IMPROVED_VARIABLE_tags; extracted_first_improvement_only
+WARNING dialogue=46 turn=3 event=14: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+WARNING dialogue=46 turn=3 event=30: opening_IMPROVED_VARIABLE_tag_after_closed_span; ignored_trailing_text
+Saved dialogue=46 turn=3 candidates=15
+WARNING dialogue=46 turn=4 event=12: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+WARNING dialogue=46 turn=4 event=14: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+WARNING dialogue=46 turn=4 event=18: opening_IMPROVED_VARIABLE_tag_after_closed_span; ignored_trailing_text
+Saved dialogue=46 turn=4 candidates=15
+Saved dialogue=47 turn=0 candidates=15
+Saved dialogue=47 turn=1 candidates=15
+Saved dialogue=47 turn=2 candidates=15
+Saved dialogue=47 turn=3 candidates=15
+Saved dialogue=47 turn=4 candidates=15
+Saved dialogue=48 turn=0 candidates=15
+Saved dialogue=48 turn=1 candidates=15
+WARNING dialogue=48 turn=2 event=30: extra_or_misordered_IMPROVED_VARIABLE_tags; extracted_first_improvement_only
+WARNING dialogue=48 turn=2 event=32: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+Saved dialogue=48 turn=2 candidates=15
+WARNING dialogue=48 turn=3 event=12: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+WARNING dialogue=48 turn=3 event=14: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+Saved dialogue=48 turn=3 candidates=15
+WARNING dialogue=48 turn=4 event=14: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+WARNING dialogue=48 turn=4 event=16: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+WARNING dialogue=48 turn=4 event=20: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+Saved dialogue=48 turn=4 candidates=15
+Saved dialogue=49 turn=0 candidates=15
+WARNING dialogue=49 turn=1 event=14: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+WARNING dialogue=49 turn=1 event=32: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+Saved dialogue=49 turn=1 candidates=15
+WARNING dialogue=49 turn=2 event=14: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+WARNING dialogue=49 turn=2 event=18: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+WARNING dialogue=49 turn=2 event=28: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+Saved dialogue=49 turn=2 candidates=15
+Saved dialogue=49 turn=3 candidates=15
+WARNING dialogue=49 turn=4 event=18: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+WARNING dialogue=49 turn=4 event=24: extra_or_misordered_IMPROVED_VARIABLE_tags; extracted_first_improvement_only
+Saved dialogue=49 turn=4 candidates=15
+Saved dialogue=50 turn=0 candidates=15
+WARNING dialogue=50 turn=1 event=14: extra_or_misordered_IMPROVED_VARIABLE_tags; extracted_first_improvement_only
+Saved dialogue=50 turn=1 candidates=15
+Saved dialogue=50 turn=2 candidates=15
+WARNING dialogue=50 turn=3 event=14: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+WARNING dialogue=50 turn=3 event=18: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+Saved dialogue=50 turn=3 candidates=15
+WARNING dialogue=50 turn=4 event=14: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+WARNING dialogue=50 turn=4 event=20: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+WARNING dialogue=50 turn=4 event=24: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+WARNING dialogue=50 turn=4 event=32: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+Saved dialogue=50 turn=4 candidates=15
+WARNING dialogue=51 turn=0 event=12: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+WARNING dialogue=51 turn=0 event=28: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+WARNING dialogue=51 turn=0 event=32: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+Saved dialogue=51 turn=0 candidates=15
+Saved dialogue=51 turn=1 candidates=15
+Saved dialogue=51 turn=2 candidates=15
+Saved dialogue=51 turn=3 candidates=15
+WARNING dialogue=51 turn=4 event=32: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+Saved dialogue=51 turn=4 candidates=15
+WARNING dialogue=52 turn=0 event=28: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+Saved dialogue=52 turn=0 candidates=15
+Saved dialogue=52 turn=1 candidates=15
+Saved dialogue=52 turn=2 candidates=15
+Saved dialogue=52 turn=3 candidates=15
+WARNING dialogue=52 turn=4 event=18: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+WARNING dialogue=52 turn=4 event=26: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+WARNING dialogue=52 turn=4 event=28: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+Saved dialogue=52 turn=4 candidates=15
+Saved dialogue=53 turn=0 candidates=15
+Saved dialogue=53 turn=1 candidates=15
+Saved dialogue=53 turn=2 candidates=15
+WARNING dialogue=53 turn=3 event=18: extra_or_misordered_IMPROVED_VARIABLE_tags; extracted_first_improvement_only
+Saved dialogue=53 turn=3 candidates=15
+Saved dialogue=53 turn=4 candidates=15
+Saved dialogue=53 turn=5 candidates=15
+WARNING dialogue=54 turn=0 event=16: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+Saved dialogue=54 turn=0 candidates=15
+Saved dialogue=54 turn=1 candidates=15
+Saved dialogue=54 turn=2 candidates=15
+Saved dialogue=54 turn=3 candidates=15
+WARNING dialogue=54 turn=4 event=16: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+WARNING dialogue=54 turn=4 event=26: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+Saved dialogue=54 turn=4 candidates=15
+Saved dialogue=55 turn=0 candidates=15
+Saved dialogue=55 turn=1 candidates=15
+Saved dialogue=55 turn=2 candidates=15
+Saved dialogue=55 turn=3 candidates=15
+Saved dialogue=55 turn=4 candidates=15
+WARNING dialogue=56 turn=0 event=18: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+Saved dialogue=56 turn=0 candidates=15
+Saved dialogue=56 turn=1 candidates=15
+Saved dialogue=56 turn=2 candidates=15
+Saved dialogue=56 turn=3 candidates=15
+Saved dialogue=57 turn=0 candidates=15
+WARNING dialogue=57 turn=1 event=20: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+FAIL dialogue=57 turn=1: TPO update round=1 slot=4: Optimizer output requires an opening IMPROVED_VARIABLE tag
+Job ID: 257501
+Cluster: crimson
+User/Group: darrius.ng.2024/darrius.ng.2024
+State: FAILED (exit code 2)
+Nodes: 1
+Cores per node: 8
+CPU Utilized: 07:21:36
+CPU Efficiency: 12.38% of 2-11:28:24 core-walltime
+Job Wall-clock time: 07:26:03
+Memory Utilized: 1.99 GB
+Memory Efficiency: 3.11% of 64.00 GB (64.00 GB/node)

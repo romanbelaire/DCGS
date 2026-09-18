@@ -1,0 +1,8 @@
+{
+  "passed": true,
+  "dialogues": 1,
+  "turns": 5,
+  "input_truncated_turns": 0,
+  "adapter_required": true,
+  "judge_calls": 0
+}

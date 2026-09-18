@@ -1,0 +1,30 @@
+{
+  "job_id": 254257,
+  "state": "FAILED",
+  "exit_code": "2:0",
+  "elapsed": "00:07:05",
+  "successful_turns": 126,
+  "error_turns": 1,
+  "complete_dialogues": 24,
+  "previous_failure_turn_recovered": true,
+  "new_failure_key": [
+    25,
+    4,
+    16
+  ],
+  "opening_tags": 3,
+  "closing_tags": 2,
+  "two_complete_blocks_exactly_equal": true,
+  "suffix_after_last_close": "\n\nSend ONLY the improved variable between the <IMPROVED_VARIABLE> tags, and nothing else.",
+  "result_metadata": {
+    "completion_tokens": 799,
+    "hit_token_cap": false,
+    "input_truncated": false,
+    "latency_seconds": 28.233223361021373,
+    "original_prompt_tokens": 5284,
+    "prompt_tokens": 5284
+  },
+  "error": "ValueError: Optimizer output requires one opening tag and at most one ordered closing tag",
+  "runtime_repair_this_turn": false,
+  "diagnosis": "Equivalent duplicate blocks followed by a quoted opening tag; v5 exact tag sequence check rejects extra opening tag."
+}

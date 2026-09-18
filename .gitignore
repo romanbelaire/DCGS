@@ -80,3 +80,6 @@ api.json
 openai_api.json
 hf_api
 ant_api
+
+# Timestamped SafeDialBench result snapshots (no model weights or credentials).
+!results/safedialbench/**

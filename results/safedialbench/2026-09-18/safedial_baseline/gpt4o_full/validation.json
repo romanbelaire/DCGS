@@ -1,0 +1,15 @@
+{
+  "complete": false,
+  "complete_dialogues": 2036,
+  "excluded_dialogue_ids": [
+    1436
+  ],
+  "expected_dialogues": 2037,
+  "expected_turns": 10029,
+  "filtered_turns": 1,
+  "judge_calls": 0,
+  "passed": true,
+  "pending_turns": 0,
+  "processing_complete": true,
+  "successful_turns": 10028
+}

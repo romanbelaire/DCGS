@@ -1,0 +1,27 @@
+{
+  "tests": {
+    "passed": true,
+    "count": 130
+  },
+  "full_preflight": {
+    "passed": true,
+    "dialogues": 2037,
+    "turns": 10029,
+    "actor_gold_prefix_max": 8022,
+    "reward_gold_prefix_max": 7197
+  },
+  "native_fixtures_passed": true,
+  "launcher_bash_n_passed": true,
+  "gpu_smoke_executed": false,
+  "model_calls": 0,
+  "paid_api_calls": 0,
+  "job_mutations": 0,
+  "new_files_sha256": {
+    "scripts/safedial_tpo_upstream.py": "8c95a3ec8673d1c675052b1bbfcc6690a79043548af701cbb89aead73dfba4f5",
+    "scripts/run_safedial_tpo_upstream.py": "46ba6e49cb55616290f2a9f6c3d08383eb67f331f3713c6d2f15f6851e30f102",
+    "scripts/run_safedial_tpo_upstream_full.py": "a9a114627953fde5f3d60e1968ee0fae6e327548330f31e54f6f770f9a48f06b",
+    "scripts/validate_safedial_tpo_upstream.py": "278328a7f61459a6889752ed47364833365878098806a05dda63725bb0c29a8f",
+    "scripts/slurm/run_safedial_tpo_upstream_smoke.sbatch": "d279ccb7ab5e2bab032a5633adce72611a60ebe9b7708928d07861920003c5e4",
+    "tests/test_safedial_tpo_upstream.py": "ec7f6ffe9efe4931a5c7d3c6af0c5d225b881012d86003703eab6005c5caa628"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "elapsed_seconds": 2461.014961285051,
+  "device": "cuda:0",
+  "exit_code": 2,
+  "failure": null,
+  "actual_calls": {
+    "generate": 177,
+    "hl_score": 150,
+    "ll_score": 146
+  },
+  "model_loading_performed": true,
+  "cuda_ready": true,
+  "torch_version": "2.13.0+cu130",
+  "gpu_name": "NVIDIA RTX A5000",
+  "gpu_devices": {
+    "cuda:0": {
+      "name": "NVIDIA RTX A5000",
+      "peak_allocated_bytes": 17177641984,
+      "peak_reserved_bytes": 18268291072
+    },
+    "cuda:1": {
+      "name": "NVIDIA RTX A5000",
+      "peak_allocated_bytes": 15690819072,
+      "peak_reserved_bytes": 16296968192
+    }
+  },
+  "ll_device": "cuda:1",
+  "peak_gpu_allocated_bytes": 17177641984,
+  "peak_gpu_reserved_bytes": 18268291072,
+  "scope": "current_invocation_includes_both_backbones_loading_and_synthetic_context_probe; excludes_artifact_preflight"
+}

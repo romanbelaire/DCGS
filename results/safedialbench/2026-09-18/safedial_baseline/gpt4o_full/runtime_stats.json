@@ -1,0 +1,12 @@
+{
+  "device": "api",
+  "gpu_name": null,
+  "elapsed_seconds": 9913.185806368943,
+  "scope": "current_invocation",
+  "processing_complete": true,
+  "complete": false,
+  "dialogues": 2036,
+  "turns": 10028,
+  "filtered_turns": 1,
+  "usage_source": "api_attempts.jsonl includes all returned responses; unknown usage on transport failures"
+}

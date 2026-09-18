@@ -1,0 +1,32 @@
+{
+  "timestamp_sgt": "2026-09-14 20:21",
+  "unit_tests_passed": 68,
+  "full_artifact_tokenizer_preflight_passed": true,
+  "batch_bash_syntax_passed": true,
+  "original_and_archived_hashes_verified": true,
+  "all_321_raw_requests_results_preserved": true,
+  "smoothllm_runtime_hashes_unchanged": true,
+  "model_calls_during_preparation": 0,
+  "real_gpu_continuation_submitted": false,
+  "offline_fixture_directory": "/tmp/tpo-v4-offline-continuation-1waeqssc",
+  "offline_fixture_review": {
+    "passed": true,
+    "dialogues": 2,
+    "turns": 10,
+    "input_truncated_turns": 0,
+    "adapter_required": false,
+    "judge_calls": 0,
+    "tpo_audit_passed": true,
+    "candidates": 150,
+    "feedback_generations": 40,
+    "generations_at_token_cap": 1,
+    "optimizer_missing_closing_tag_warnings": 1,
+    "optimizer_trailing_opening_tag_warnings": 2,
+    "optimizer_terminal_opening_tag_warnings": 1,
+    "reward_context_tokens": 8192,
+    "fixture_only": true,
+    "model_calls": 0,
+    "injected_missing_calls": 19,
+    "reused_saved_calls": 321
+  }
+}

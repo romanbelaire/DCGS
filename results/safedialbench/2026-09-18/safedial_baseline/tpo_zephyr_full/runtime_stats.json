@@ -1,0 +1,18 @@
+{
+  "elapsed_seconds": 2402.1937652780034,
+  "device": "cuda:0",
+  "gpu_name": "NVIDIA A40",
+  "cuda_ready": true,
+  "failure": null,
+  "torch_version": "2.13.0+cu130",
+  "peak_gpu_allocated_bytes": 30615547392,
+  "peak_gpu_reserved_bytes": 31176261632,
+  "scope": "current_invocation_includes_loading_and_context_probe; excludes_hashing_and_tokenizer_preflight",
+  "actual_calls": {
+    "generate": 180,
+    "reward": 141
+  },
+  "startup_reward_probe_calls": 1,
+  "model_loading_performed": true,
+  "exit_code": 2
+}

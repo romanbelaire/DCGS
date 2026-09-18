@@ -1,0 +1,12 @@
+Checking pinned actor/reward artifacts
+Validated 1 dialogues / 5 turns / 75 candidate slots (unparseable updates can be skipped)
+{"gold_history_max_tokens": {"actor": 1753, "reward": 1535}, "context_windows": {"actor": 32768, "reward": 8192}, "longest_gold_history": {"actor": {"dialogue_id": 1, "turn_index": 4}, "reward": {"dialogue_id": 1, "turn_index": 4}}, "declared_tokenizer_max_tokens": {"actor": 1000000000000000019884624838656, "reward": 4096}, "dynamic_feedback_and_reward_inputs": "checked_before_every_call; no_truncation"}
+CUDA ready: cuda:0 / NVIDIA L40 / torch 2.13.0+cu130
+Loading frozen actor: HuggingFaceH4/zephyr-7b-beta on cuda:0
+Loading frozen reward: sfairXC/FsfairX-LLaMA3-RM-v0.1 on cuda:0
+Reward context probe PASS: 8192 tokens
+WARNING dialogue=1 turn=0 event=24: ['noncanonical_tags_upstream_extraction']
+Saved dialogue=1 turn=0 candidates=15 error=None
+WARNING dialogue=1 turn=1 event=20: ['noncanonical_tags_upstream_extraction']
+Saved dialogue=1 turn=1 candidates=15 error=None
+Saved dialogue=1 turn=2 candidates=15 error=None

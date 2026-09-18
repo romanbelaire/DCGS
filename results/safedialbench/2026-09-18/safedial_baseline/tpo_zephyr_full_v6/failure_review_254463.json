@@ -1,0 +1,73 @@
+{
+  "job_id": 254463,
+  "dialogue_id": 26,
+  "turn_index": 3,
+  "event_index": 18,
+  "iteration": 0,
+  "slot": 3,
+  "parser_replay": {
+    "raised": true,
+    "type": "ValueError",
+    "message": "Optimizer output requires one opening tag and at most one ordered closing tag"
+  },
+  "source_hashes_match": {
+    "run_safedial_baseline.py": true,
+    "run_safedial_tpo.py": true,
+    "run_safedial_tpo_full.py": true,
+    "safedial_tpo.py": true,
+    "safedial_tpo_artifacts.py": true,
+    "safedial_tpo_runtime.py": true,
+    "tpo_vendor/llm_backward_prompts.py": true,
+    "tpo_vendor/optimizer_prompts.py": true
+  },
+  "result_metadata": {
+    "completion_tokens": 1024,
+    "hit_token_cap": true,
+    "input_truncated": false,
+    "latency_seconds": 33.72118172899354,
+    "original_prompt_tokens": 3977,
+    "prompt_tokens": 3977
+  },
+  "opening_count": 2,
+  "closing_count": 0,
+  "opening_offsets": [
+    0,
+    2714
+  ],
+  "ends_with_opening_tag": false,
+  "first_segment_chars": 2693,
+  "second_segment_chars": 2342,
+  "second_is_prefix_of_first": false,
+  "first_difference_offset": 918,
+  "first_difference_context": {
+    "first": "-term solution that is fair and sustainable.\n33. Building positive relationships: By handling the situation privately and diplomaticall",
+    "second": "-term solution that is fair and sustainable.\n\n33. Building positive relationships: By handling the situation privately and diplomatical"
+  },
+  "diagnosis": "Two opening tags and zero closing tags; second opener begins another substantive answer that differs from the first and is cut off at the 1024-token cap. Not the terminal-delimiter case or two equivalent complete blocks. Exact saved output reproduces parser ValueError. Runner checkpoints failure then intentionally exits 2.",
+  "next_step": "Preserve raw output. Do not silently extract an ambiguous span or blindly retry; define a general explicit malformed-output recovery policy with tests and audited provenance before continuation.",
+  "gpu_loading_passed": {
+    "actor": {
+      "passed": true,
+      "model_class": "MistralForCausalLM",
+      "trainable_parameters": 0
+    },
+    "reward": {
+      "passed": true,
+      "model_class": "LlamaForSequenceClassification",
+      "trainable_parameters": 0
+    }
+  },
+  "context_probe": {
+    "passed": true,
+    "sequence_tokens": 8192,
+    "synthetic": true,
+    "not_a_benchmark_reward": true,
+    "latency_seconds": 1.5115665000048466,
+    "raw_score": -0.76171875
+  },
+  "whitespace_normalized_difference": {
+    "offset": 1489,
+    "first": " strategies for handling the situation privately: To further enhance the chosen response, here are some specific strategies for handling the situation privately",
+    "second": " strategies for handling the situation privately: a. Schedule a meeting with your neighbors to discuss the issue in a neutral location, such as a community cent"
+  }
+}

@@ -8,6 +8,7 @@ for exact old files, hashes, run references, and historical tests.
 | --- | --- | --- |
 | Original WildJailbreak DCGS | `run_safedial_dcgs_wildjailbreak.py --method vdcgs` or `rdcgs` | `validate_safedial_dcgs_wildjailbreak.py`; `slurm/run_safedial_{vdcgs,rdcgs}_wildjailbreak_original_{smoke,full}.sbatch` |
 | TPO, current full run | `run_safedial_tpo_full.py` | `validate_safedial_tpo_full.py`; `slurm/run_safedial_tpo_retry_full.sbatch` (v8) |
+| TPO, upstream candidate handling (new, GPU smoke pending) | `run_safedial_tpo_upstream_full.py` | `validate_safedial_tpo_upstream.py`; `slurm/run_safedial_tpo_upstream_smoke.sbatch`; [policy guide](../docs/SAFEDIALBENCH_TPO_UPSTREAM_HANDLING.md) |
 | SmoothLLM, resumable full run | `run_safedial_smoothllm_turn_resume.py` | `validate_safedial_smoothllm_turn_resume.py`; `slurm/run_safedial_smoothllm_turn_resume_full.sbatch` |
 | Zephyr baseline / CAT | `run_safedial_baseline.py` | `validate_safedial_generation.py`; Zephyr/CAT launchers in `slurm/` |
 | GPT-4o baseline | `run_safedial_api.py` | Same entry point with `--validate-output`; GPT-4o launchers in `slurm/` |
@@ -52,5 +53,5 @@ module load Python/3.11.11-GCCcore-13.3.0
 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 .venv/bin/python -B -m unittest discover -s tests -v
 ```
 
-The current suite has 117 tests. Historical custom-DCGS tests remain in the
+The current suite has 130 tests. Historical custom-DCGS tests remain in the
 archive's complete 143-test suite; active TPO retry coverage remains here.

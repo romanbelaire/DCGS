@@ -2,11 +2,133 @@
 
 ## Current Goal
 
-User submitted full original-DCGS jobs VDCGS257632 and RDCGS257633.
-Monitor these actual jobs read-only; preserve pinned runtime code. At latest
-check VDCGS is running and RDCGS is waiting for resources. No agent job mutations.
+Code and saved results committed on local saefdialbench-run branch.
+GitHub push blocked by missing HTTPS credentials/rejected SSH key.
+Preserve running job sources; monitor user-owned L40 TPO smoke257858 read-only.
 
 ## Current State
+
+2026-09-18 — Commit/update of saefdialbench-run COMPLETE LOCALLY in
+/tmp/dcgs-saefdialbench-run (read git log -1 for final hash). PUSH BLOCKED:
+HTTPS git push failed "could not read Username for https://github.com";
+existing SSH identity with strict verified hosts failed Permission denied
+(publickey). Neither failure is a sandbox denial; no further retry until
+GitHub credentials/access are configured. No remote branch was created.
+Retry after authentication: git -C /tmp/dcgs-saefdialbench-run push -u origin
+saefdialbench-run. Original origin URL and main checkout/index unchanged
+(96 pre-existing staged deletions). Branch commit contains272 changed/new
+files including31-run result snapshot;236 core result files hash/JSON/gzip/
+record-count checks PASS,271 staged files credential-pattern scan PASS,
+130 worktree tests PASS. Largest result blob23.1MB; total core snapshot153.9MB.
+Whitespace check flags only four preserved raw test-log trailing spaces.
+Latest incidental logs: old A40 smoke257857 FAILED2 after duplicate-writer
+startup; L40 smoke257858 loaded both models,8192 context probe passed,3turns
+saved at inspection. No job mutations; result snapshot is explicitly partial.
+
+2026-09-18 — User again requested commit/push exact saefdialbench-run branch,
+now including results. Existing branch ee9e132 is in isolated worktree
+/tmp/dcgs-saefdialbench-run; remote head did not exist at read-only check.
+Copied new upstream TPO code/tests/docs and user L40 launcher there, preserved
+original checkout's main/index/runtime. Branch worktree130 tests PASS.
+Created results/safedialbench/2026-09-18 snapshot of31 local historical/current
+run dirs: saved answers, judgments, JSON manifests/reports, compact deduplicated
+turn_status, and current-job logs.236 core files,~154MB stored; large JSONL gzip.
+Explicit live-prefix/partial-run labels; no new validation/judging/inference.
+Full turn/call journals, weights,caches,dataset and credentials remain local.
+Snapshot script scripts/snapshot_safedial_results.py added in branch worktree.
+Current source still runs v8/full DCGS/SmoothLLM/L40 smoke; no jobs mutated.
+Commit/push pending final verification/authentication attempt; inspect git log
+and remote in worktree for final outcome. Earlier auth failure remains relevant.
+
+2026-09-18 16:39 SGT — User changed upstream TPO smoke launcher GPU from
+A40 to L40 and submitted257858. Read-only scheduler:257858 RUNNING on lagoon,
+elapsed28s; stdout checking pinned actor/reward artifacts, no stderr error and
+no output directory yet. Old A40 submission257857 remains PENDING(Resources).
+Both target the same output directory; advise user to cancel only257857 via
+scancel257857 (agent must not execute it).257858 is the intended replacement.
+User GPU change is authorized; preserve it. Algorithm/runtime files unchanged.
+GPU generation, context probe, and final smoke validation still pending.
+
+2026-09-18 — User submitted new TPO upstream-handling smoke257857.
+Read-only squeue/sacct: PENDING(Resources), elapsed0, no assigned node.
+No Slurm logs or tpo_zephyr_upstream_smoke_v1 output directory yet; execution
+has not started and no runtime outcome is available. Preserve this job's
+runtime sources/manifests; do not submit/cancel/requeue jobs. GPU gate pending.
+
+2026-09-18 — User requested upstream TPO handling with recorded failures and
+continued processing. IMPLEMENTED isolated upstream-handling-v1 (v8 untouched).
+New algorithm safedial_tpo_upstream.py uses exact pinned multi-sample split
+expression; missing opener incl blank update is logged/skipped with no reward
+call; empty extracted/initial candidates and feedback retained as upstream.
+No extra generation retries. Cumulative selection preserved; indexed duplicate
+pool remains a documented upstream difference. Selected-empty final answer is
+recorded terminal failure, next turn proceeds; no alternate answer selected.
+Infrastructure/context/integrity/nonfinite failures record evidence and stop.
+New run_safedial_tpo_upstream{,_full}.py, validator, failures.jsonl, coverage,
+replay/no-op resume; no v8 import/policy mixing. Only fully successful dialogues
+export. Terminal failure yields exit2 AFTER all processing; audit vs successful
+coverage distinct. Smoke launcher always audits after generator exit2.
+130 tests PASS; full real artifact/tokenizer preflight2037/10029 PASS;
+native5-turn injected success/skips and failed-turn continuation fixtures PASS,
+byte-identical no-op resume PASS; bash-n PASS;44 prior scripts/launchers hashed
+unchanged. No actual actor/reward inference, paid API calls, or Slurm mutations.
+Guide docs/SAFEDIALBENCH_TPO_UPSTREAM_HANDLING.md; evidence
+ docs/verification/tpo_upstream_handling_20260918/ (tests, preflight, native
+fixture, source preservation and verification.json).
+User manual smoke: sbatch scripts/slurm/run_safedial_tpo_upstream_smoke.sbatch
+from DCGS; oneA40/64GB/8CPU/4h, gold dialogue1/5turns, fresh
+outputs/safedial_baseline/tpo_zephyr_upstream_smoke_v1. GPU validation pending.
+Do not stop/cancel active257501; it still uses v8. Do not submit a new full
+policy run before reviewing its real smoke; no replacement full launcher yet.
+
+2026-09-18 — Upstream TPO parser verification corrects attribution nuance:
+Downloaded official pinned395c3d7 optimizer/optimizer.py and tpo_utils.py to
+/tmp/tpo-upstream-{optimizer,utils}-395c3.py. Multi-sample optimizer uses
+text.split(START)[1].split(END)[0].strip(); missing closing accepted, repeated
+openings select first span, parse exceptions silently skip candidate, no format
+repair/resample in optimizer; empty extracted strings not rejected there.
+Replayed exact upstream expression on53/index3/event18: byte-identical saved
+candidate (1617 chars), including VARIABLE echo. Thus this specific acceptance/
+echo retention matches upstream, not a divergence introduced by our adapter.
+Our explicit warnings, nonempty enforcement, fixed indexed candidate accounting
+and separately configured empty-generation retries are implementation differences.
+Web raw fetch cache-missed; direct curl succeeded. No runtime/job changes.
+
+2026-09-18 16:06 SGT — Follow-up clarified SmoothLLM remaining coverage:
+prior69=68 unprocessed+1 unresolved failed turn; now9962 unique successes,
+66 unprocessed(all dialogue IDs2025–2037;2028 has6 turns, others5), same1failed.
+Dialogue344/index4 (fifth turn) candidate0 recorded blank message after1024
+completion tokens,3489 input,no input truncation. Imported+current retry have
+same turn/candidate seeds and same failure; two records mean one failed key.
+Runner continues other turns but returns2 if any error remains; launcher set-e
+therefore skips subsequent validator/judge dry-run if that remains at finish.
+TPO current-job log97 warnings:85 missing close,5 trailing opener,6 extra/
+misordered tags,1 terminal opener. No failure.json. Example53/index3/event18:
+500 tokens,EOS,no input truncation/no token cap; two opening IMPROVED_VARIABLE
+and zero closing tags. Parser keeps first nonempty span until next recognized
+opening/closing tag. Embedded VARIABLE prompt echo remains in extracted span.
+Candidate8 scored-4.09375 and was not selected(final candidate3,-0.1787109375),
+but was round1 rejected feedback example, so may affect optimization indirectly.
+Raw output retained. These are handled format warnings, not clean-format or
+quality guarantees. No runtime edits/inference/job mutations.
+
+2026-09-18 16:02–16:03 SGT — Read-only live status: all four full jobs RUNNING.
+VDCGS257632 avenue elapsed4h28m:1999 successful saved turns/10029,412 native
+complete dialogues; one terminal beliefs_exhausted at dialogue327/index2
+(all-SKIP attempts exhausted), continued under declared policy. RDCGS257633
+avenue elapsed1h32m:351 successful turns,71 exported dialogues,no failure ledger.
+TPO257501 analog elapsed6h36m:265 successful turns,52 exported dialogues;
+no failure.json; nonfatal first-improvement parser warnings. SmoothLLM256253
+lexicon elapsed38h55m:9960 unique successful turns/10029, one unresolved failed
+turn dialogue344/index4 (empty candidate0); duplicate failure records mean raw
+JSONL line counts are not coverage. 69 turns still lack successful answers,
+including that failure.2023 native dialogue records include failed-dialogue
+coverage and must not be described as all successful. All logs continue to
+advance; no fatal traceback or global failure marker observed. No final full
+validation/judging yet. Counts are moving snapshots and resume totals include
+inherited work. No runtime changes or job mutations. Sandbox scheduler socket
+denial resolved with approved read-only escalation; use login=false to avoid
+shell-startup sinfo queries.
 
 2026-09-18 — Branch `saefdialbench-run` committed locally in isolated worktree
 `/tmp/dcgs-saefdialbench-run`; PUSH BLOCKED by GitHub authentication. Tests117
@@ -1617,6 +1739,12 @@ Cleanup:102 active tests PASS;143 archived tests PASS; archived historical GPU s
   `Judge response did not contain three parseable scores`.
 
 ## Failed Attempts
+
+2026-09-18 upstream handling: initial new-test run expected ValueError for a
+manifest mismatch, but shared ensure_manifest correctly raises RuntimeError;
+corrected test expectation. Full suite with only LD_LIBRARY_PATH failed to
+import libbz2; loading the complete Python/3.11.11-GCCcore-13.3.0 module resolved
+it. Final130 tests PASS. Neither failure required changing runtime policy.
 
 V2 initial8-test pass had one exception-contract mismatch: strict replay now rejects unused events with ValueError rather than always PolicyFailure. Test accepts both valid rejection types; expanded117-test suite PASS. Read-only squeue sandbox socket denial resolved with approved escalation; no job mutation.
 

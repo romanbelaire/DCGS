@@ -1,0 +1,65 @@
+{
+  "note": "Independent live-log copies; last lines may reflect in-progress operations.",
+  "logs": [
+    {
+      "file": "safedial-smoothllm-turn-resume-256253.out",
+      "captured_at": "2026-09-18T16:52:35.280886+08:00",
+      "bytes": 90847
+    },
+    {
+      "file": "safedial-smoothllm-turn-resume-256253.err",
+      "captured_at": "2026-09-18T16:52:35.281345+08:00",
+      "bytes": 999
+    },
+    {
+      "file": "safedial-tpo-retry-full-257501.out",
+      "captured_at": "2026-09-18T16:52:35.282230+08:00",
+      "bytes": 17126
+    },
+    {
+      "file": "safedial-tpo-retry-full-257501.err",
+      "captured_at": "2026-09-18T16:52:35.282726+08:00",
+      "bytes": 1299
+    },
+    {
+      "file": "safedial-vdcgs-original-full-257632.out",
+      "captured_at": "2026-09-18T16:52:35.285096+08:00",
+      "bytes": 156841
+    },
+    {
+      "file": "safedial-vdcgs-original-full-257632.err",
+      "captured_at": "2026-09-18T16:52:35.285570+08:00",
+      "bytes": 1164
+    },
+    {
+      "file": "safedial-rdcgs-original-full-257633.out",
+      "captured_at": "2026-09-18T16:52:35.286738+08:00",
+      "bytes": 66377
+    },
+    {
+      "file": "safedial-rdcgs-original-full-257633.err",
+      "captured_at": "2026-09-18T16:52:35.287335+08:00",
+      "bytes": 1164
+    },
+    {
+      "file": "safedial-tpo-upstream-smoke-257857.out",
+      "captured_at": "2026-09-18T16:52:35.288114+08:00",
+      "bytes": 39
+    },
+    {
+      "file": "safedial-tpo-upstream-smoke-257857.err",
+      "captured_at": "2026-09-18T16:52:35.288437+08:00",
+      "bytes": 0
+    },
+    {
+      "file": "safedial-tpo-upstream-smoke-257858.out",
+      "captured_at": "2026-09-18T16:52:35.289170+08:00",
+      "bytes": 1057
+    },
+    {
+      "file": "safedial-tpo-upstream-smoke-257858.err",
+      "captured_at": "2026-09-18T16:52:35.289576+08:00",
+      "bytes": 1206
+    }
+  ]
+}

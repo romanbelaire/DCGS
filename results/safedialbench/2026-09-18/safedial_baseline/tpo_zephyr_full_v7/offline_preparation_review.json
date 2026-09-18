@@ -1,0 +1,71 @@
+{
+  "original_source_and_archive_hashes_passed": true,
+  "nested_provenance_hashes_passed": true,
+  "all_4439_raw_requests_and_results_unchanged": true,
+  "reclassified_event_keys": [
+    [
+      26,
+      3,
+      18
+    ]
+  ],
+  "all_130_successful_turns_unchanged_except_run_identifiers": true,
+  "all_25_answers_unchanged_except_run_identifiers": true,
+  "fixture_directory": "/tmp/tpo-v7-offline-continuation-ap9c4l8m",
+  "fixture_only_injected_calls": 83,
+  "fixture_validation": {
+    "passed": true,
+    "dialogues": 26,
+    "turns": 133,
+    "input_truncated_turns": 0,
+    "adapter_required": false,
+    "judge_calls": 0,
+    "tpo_audit_passed": true,
+    "candidates": 1995,
+    "feedback_generations": 532,
+    "generations_at_token_cap": 20,
+    "optimizer_missing_closing_tag_warnings": 15,
+    "optimizer_trailing_opening_tag_warnings": 8,
+    "optimizer_terminal_opening_tag_warnings": 2,
+    "optimizer_duplicate_block_warnings": 2,
+    "optimizer_first_improvement_warnings": 1,
+    "reward_context_tokens": 8192
+  },
+  "fixture_no_op_resume_unchanged": true,
+  "benchmark_model_calls": 0,
+  "next_real_call": "reward score recovered answer at dialogue 26/index 3 round 0 slot 3",
+  "repository_tests": {
+    "passed": 86
+  },
+  "full_artifact_tokenizer_preflight": {
+    "passed": true,
+    "dialogues": 2037,
+    "turns": 10029,
+    "planned_candidates": 150435,
+    "gold_history_max_tokens": {
+      "actor": 8022,
+      "reward": 7197
+    },
+    "context_windows": {
+      "actor": 32768,
+      "reward": 8192
+    },
+    "longest_gold_history": {
+      "actor": {
+        "dialogue_id": 987,
+        "turn_index": 5
+      },
+      "reward": {
+        "dialogue_id": 987,
+        "turn_index": 5
+      }
+    },
+    "declared_tokenizer_max_tokens": {
+      "actor": 1000000000000000019884624838656,
+      "reward": 4096
+    },
+    "dynamic_feedback_and_reward_inputs": "checked_before_every_call; no_truncation"
+  },
+  "batch_bash_syntax_passed": true,
+  "smoothllm_source_hashes_unchanged": true
+}

@@ -1,0 +1,67 @@
+{
+  "completed_job_id": 250500,
+  "state": "COMPLETED",
+  "exit_code": "0:0",
+  "node": "avenue",
+  "job_wall_seconds": 99,
+  "validation": {
+    "passed": true,
+    "dialogues": 1,
+    "turns": 5,
+    "input_truncated_turns": 0,
+    "adapter_required": false,
+    "judge_calls": 0,
+    "tpo_audit_passed": true,
+    "candidates": 75,
+    "feedback_generations": 20,
+    "generations_at_token_cap": 1,
+    "optimizer_missing_closing_tag_warnings": 1,
+    "optimizer_trailing_opening_tag_warnings": 2
+  },
+  "total_actual_calls_across_generation_allocations": {
+    "generate": 95,
+    "reward": 75
+  },
+  "generation_job_ids": [
+    249814,
+    249899,
+    250500
+  ],
+  "sum_generation_allocation_wall_seconds": 1481,
+  "sum_runner_elapsed_seconds": 1394.4416673459928,
+  "timing_scope": "Three generation allocations including model reloads; runner time excludes artifact hashing/preflight. Separate pre-generation CUDA failure 249773 is excluded.",
+  "peak_allocated_gib_across_generation_allocations": 28.514743328094482,
+  "peak_reserved_gib_across_generation_allocations": 29.08984375,
+  "warned_candidates": [
+    {
+      "turn_index": 2,
+      "candidate_id": 12,
+      "warnings": [
+        "missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output"
+      ],
+      "reward": -2.828125,
+      "selected": false
+    },
+    {
+      "turn_index": 4,
+      "candidate_id": 11,
+      "warnings": [
+        "opening_IMPROVED_VARIABLE_tag_after_closed_span; ignored_trailing_text"
+      ],
+      "reward": -6.125,
+      "selected": false
+    },
+    {
+      "turn_index": 4,
+      "candidate_id": 13,
+      "warnings": [
+        "opening_IMPROVED_VARIABLE_tag_after_closed_span; ignored_trailing_text"
+      ],
+      "reward": -6.28125,
+      "selected": false
+    }
+  ],
+  "judge_dry_run_passed": true,
+  "paid_judging_performed": false,
+  "original_v1_v2_hashes_unchanged": true
+}
