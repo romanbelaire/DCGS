@@ -1,0 +1,11 @@
+{
+  "gold_history_max_tokens": {
+    "actor": 1753,
+    "reward": 1535
+  },
+  "context_windows": {
+    "actor": 32768,
+    "reward": 4096
+  },
+  "dynamic_feedback_and_reward_inputs": "checked_before_every_call; no_truncation"
+}

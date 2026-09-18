@@ -1,6 +1,6 @@
 # SafeDialBench experiment status
 
-Status checked **18 September 2026, 17:32 SGT (UTC+8)**. Turn counts captured at `2026-09-18T17:30:17.791710+08:00`.
+Status checked **19 September 2026, 01:32 SGT (UTC+8)**. Result files captured independently during `2026-09-19T01:30:35+08:00`–`2026-09-19T01:31:33+08:00`. Both full DCGS jobs still reported running; requested pause is not verified.
 
 This branch contains SafeDialBench generation, validation, and judging code plus saved results. A full benchmark has **2,037 dialogues and 10,029 turns**. Active-run counts are snapshots, not final results.
 
@@ -13,8 +13,8 @@ This branch contains SafeDialBench generation, validation, and judging code plus
 | CAT + Zephyr | Generation and judging complete | 10,029/10,029 | Validation passed; all 10,029 turn judgments complete. |
 | SmoothLLM + Zephyr | Finished with one failed turn (256253) | 10,028/10,029 | All turns processed; dialogue 344, turn index 4 has an empty candidate. Exit 2; final validation/judging not reached. |
 | TPO v8 + Zephyr | Stopped on parser failure (257501) | 281/10,029 | Dialogue 57, turn index 1: missing IMPROVED_VARIABLE opening tag. Exit 2; no final judge score. |
-| VDCGS, original WildJailbreak | Running (257632) | 2,639/10,029 | One terminal all-SKIP belief failure: dialogue 327, turn index 2. Generation continues; judging pending. |
-| RDCGS, original WildJailbreak | Running (257633) | 758/10,029 | No terminal failures recorded at this check; judging pending. |
+| VDCGS, original WildJailbreak | Running (257632) | 6,237/10,029 | Five terminal all-SKIP belief failures, retained in the failure ledger. Generation continues; judging pending. |
+| RDCGS, original WildJailbreak | Running (257633) | 2,982/10,029 | No terminal failures recorded at this check; judging pending. |
 | TPO upstream-handling smoke | Passed on L40 (257858) | 5/5 | 5/5 turns; 75 candidates; GPU audit and judge dry-run passed. No skipped candidates in this real smoke; skip handling has offline tests. Full run not launched. |
 
 Counts include inherited results for resumed runs and deduplicate repeated records by dialogue/turn. A saved turn or completed Slurm job does not by itself establish successful validation or a final benchmark score. Turn indices in failure notes are zero-based.
@@ -53,7 +53,9 @@ Earlier A40 TPO smoke submission **257857** failed because L40 job **257858** al
 
 ## Results and reproducibility
 
-- [Current status evidence](docs/verification/benchmark_status_20260918.json): per-run counts, failures, saved validations, judge aggregates, and scheduler states supporting this README.
+- [Current snapshot evidence](results/safedialbench/2026-09-19/snapshot.json): per-run counts, file hashes, saved validations, judge aggregates, and terminal failure counts. [Scheduler state](results/safedialbench/2026-09-19/scheduler.txt) and Slurm logs were captured separately.
+- [Latest saved results](results/safedialbench/2026-09-19/README.md): saved results from all 31 run directories. Independent file snapshots are not resumable checkpoints.
+- [Previous status evidence](docs/verification/benchmark_status_20260918.json): status recorded on 18 September.
 - [Saved result snapshot](results/safedialbench/2026-09-18/README.md): answers, judgments, manifests, and compact turn records from 31 run directories. **This snapshot predates the status update above**; its live-run outputs may be less complete. See its [timestamp and checksums](results/safedialbench/2026-09-18/snapshot.json).
 - [Script index](scripts/README.md): generation, validation, and Slurm entrypoints.
 - [Upstream TPO handling](docs/SAFEDIALBENCH_TPO_UPSTREAM_HANDLING.md): skip-and-record policy and resume behavior.

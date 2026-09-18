@@ -1,0 +1,13 @@
+{
+  "expected_turns": 5,
+  "processed_turns": 5,
+  "successful_turns": 5,
+  "failed_turns": 0,
+  "pending_turns": 0,
+  "processing_complete": true,
+  "complete_without_failures": true,
+  "exported_dialogues": 1,
+  "skipped_candidates": 0,
+  "empty_candidates_scored": 0,
+  "fatal_events": 0
+}

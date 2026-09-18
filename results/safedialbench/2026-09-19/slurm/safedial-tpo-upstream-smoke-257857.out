@@ -1,0 +1,14 @@
+Checking pinned actor/reward artifacts
+Validated 1 dialogues / 5 turns / 75 candidate slots (unparseable updates can be skipped)
+{"gold_history_max_tokens": {"actor": 1753, "reward": 1535}, "context_windows": {"actor": 32768, "reward": 8192}, "longest_gold_history": {"actor": {"dialogue_id": 1, "turn_index": 4}, "reward": {"dialogue_id": 1, "turn_index": 4}}, "declared_tokenizer_max_tokens": {"actor": 1000000000000000019884624838656, "reward": 4096}, "dynamic_feedback_and_reward_inputs": "checked_before_every_call; no_truncation"}
+Job ID: 257857
+Cluster: crimson
+User/Group: darrius.ng.2024/darrius.ng.2024
+State: FAILED (exit code 2)
+Nodes: 1
+Cores per node: 8
+CPU Utilized: 00:00:28
+CPU Efficiency: 11.67% of 00:04:00 core-walltime
+Job Wall-clock time: 00:00:30
+Memory Utilized: 3.14 MB
+Memory Efficiency: 0.00% of 64.00 GB (64.00 GB/node)

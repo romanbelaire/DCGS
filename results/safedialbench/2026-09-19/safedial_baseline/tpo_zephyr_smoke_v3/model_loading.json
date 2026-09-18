@@ -1,0 +1,12 @@
+{
+  "actor": {
+    "passed": true,
+    "model_class": "MistralForCausalLM",
+    "trainable_parameters": 0
+  },
+  "reward": {
+    "passed": true,
+    "model_class": "LlamaForSequenceClassification",
+    "trainable_parameters": 0
+  }
+}

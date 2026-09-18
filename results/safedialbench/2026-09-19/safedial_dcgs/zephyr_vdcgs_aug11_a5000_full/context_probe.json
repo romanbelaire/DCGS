@@ -1,0 +1,6 @@
+{
+  "passed": true,
+  "sequence_tokens": 10240,
+  "elapsed_seconds": 8.867127442033961,
+  "scope": "synthetic_actor_and_ll_forwards_with_both_backbones_resident; excluded_from_benchmark_calls"
+}

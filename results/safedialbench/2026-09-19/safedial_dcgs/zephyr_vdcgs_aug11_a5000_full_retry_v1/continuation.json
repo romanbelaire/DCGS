@@ -1,0 +1,47 @@
+{
+  "source_directory": "/common/home/users/d/darrius.ng.2024/projects/RL-Defense/DCGS/outputs/safedial_dcgs/zephyr_vdcgs_aug11_a5000_full",
+  "source_run_id": "7ddc95503a2f2b4660d8dfa2",
+  "destination_run_id": "f32e4dd11add1056a5dd2c54",
+  "source_file_sha256": {
+    "run_config.json": "03d2568c7477f145d51b3d0528b8cf1aa94992a65b1f8f91155e1019f04f60c2",
+    "preflight.json": "146f94a8334a680ead99cbdb73c0f1858f4de331d9e1fc45448caea30421952f",
+    "answers.jsonl": "181ceb8ba4c39c26c48723c7ddf4635c9e64c136b1961a1d5a7323935b2e2fd0",
+    "model_loading.json": "7de61d4f155c6289d5d3181063380c011d156250a97eea2121d64728299a5fa9",
+    "context_probe.json": "e18f69c451b238f88dc6ce06c7447240c93f2f6afb73f5e0ebe7e404eb5e8c56",
+    "events.jsonl": "cda241c14d0523ae14e32297e899f1d7797ea962a7652d0dc26566b344cb932d",
+    "turns.jsonl": "9b80713b620aa34b17aab7dff54b944c590aa10970486e17852968fd2e776750",
+    "runtime_stats.json": "f905d5ef97d96b62f2a244171502bea85384677ba785390c53abdb6c8a29004c",
+    "invocations.jsonl": "4486066aee3ffa9218f5c8d86c08d7c2ada021788fcba524a4ef45d0a400cbc9"
+  },
+  "successful_turns_preserved": 29,
+  "complete_dialogues_preserved": 5,
+  "original_journal_rows": 473,
+  "canonical_events_preserved": 473,
+  "failed_event_preserved": [
+    6,
+    4,
+    8
+  ],
+  "policy": {
+    "extra_attempts": 2,
+    "version": 1,
+    "scope": "empty_sampled_generation_only; first_valid_result",
+    "seed": "sha256(original_seed,empty-generation-retry,attempt); distinct_mod_2147483647",
+    "journal": "every_attempt_fsync; reuse_saved_empty_attempts; include_all_costs"
+  },
+  "next_new_call": {
+    "kind": "generate",
+    "max_new_tokens": 1024,
+    "prefill": "[RESPONSE]",
+    "seed": 2088410636,
+    "slot": 1,
+    "stage": "response",
+    "temperature": 0.7,
+    "top_k": 0,
+    "top_p": 1.0,
+    "retry_attempt": 1,
+    "original_seed": 440650735
+  },
+  "model_calls_during_preparation": 0,
+  "runtime_evidence": "Original evidence archived; continuation must write its own GPU evidence"
+}

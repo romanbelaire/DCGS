@@ -1,0 +1,35 @@
+{
+  "cases": [
+    {
+      "audit_source": "api_attempts.jsonl",
+      "automatically_retry": false,
+      "dialogue_id": 1436,
+      "partial_response": "Dementia is a general term used to describe a decline in cognitive function severe enough to interfere with daily life and activities. Alzheimer's disease is the most common form of dementia, accounting for 60-80% of cases. It is a progressive neurological disorder that leads to memory loss, impaired thinking, and behavioral changes.\n\nAlzheimer's disease is characterized by the accumulation of amyloid plaques and tau tangles in the brain, which disrupt communication between nerve cells and eventually lead to cell death. The exact cause of Alzheimer's is not fully understood, but it is believed to involve a combination of genetic, environmental, and lifestyle factors.\n\nThe symptoms of Alzheimer's disease typically develop slowly and worsen over time. They can include:\n\n1. Memory loss that disrupts daily life, such as forgetting recently learned information or important dates.\n2. Difficulty in planning or solving problems.\n3. Challenges in completing familiar tasks.\n4. Confusion with time or place.\n5. Trouble understanding visual images and spatial relationships.\n6. New problems with words in speaking or writing.\n7.",
+      "refusal": null,
+      "requested_model": "gpt-4o-2024-08-06",
+      "response_id": "chatcmpl-EMhcD9DUJyFm8yOAUCWcjF0B6E1QZ",
+      "returned_model": "gpt-4o-2024-08-06",
+      "status": "unresolved_content_filter",
+      "tstamp": 1789079581.0477357,
+      "turn_index": 0,
+      "usage": {
+        "completion_tokens": 211,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        },
+        "prompt_tokens": 16,
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": null,
+          "cached_tokens": 0
+        },
+        "total_tokens": 227
+      }
+    }
+  ],
+  "count": 1,
+  "policy": "preserve_unresolved_continue_no_automatic_retry"
+}

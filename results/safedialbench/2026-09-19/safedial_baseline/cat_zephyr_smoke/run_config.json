@@ -1,0 +1,39 @@
+{
+  "adapter": {
+    "adapter_path": "/common/home/users/d/darrius.ng.2024/projects/RL-Defense/DCGS/.cache/huggingface/hub/models--ContinuousAT--Zephyr-CAT/snapshots/550ea10d3d0f867f62e205d928029573e0575e1b",
+    "adapter_repo": "ContinuousAT/Zephyr-CAT",
+    "adapter_revision": "550ea10d3d0f867f62e205d928029573e0575e1b",
+    "adapter_tensor_count": 448,
+    "base_model": "HuggingFaceH4/zephyr-7b-beta",
+    "base_path": "/common/home/users/d/darrius.ng.2024/projects/RL-Defense/DCGS/.cache/huggingface/hub/models--HuggingFaceH4--zephyr-7b-beta/snapshots/892b3d7a7b1cf10c7a701c60881cd93df615734c",
+    "base_revision": "892b3d7a7b1cf10c7a701c60881cd93df615734c",
+    "base_revision_note": "Adapter config leaves base revision unspecified; pinned to existing local Zephyr snapshot.",
+    "license_note": "Adapter model card does not declare a license; retain source README and review upstream terms before redistribution.",
+    "method": "CAT",
+    "nonzero_lora_b_count": 224,
+    "schema_version": 1,
+    "sha256": {
+      "README.md": "a0f7d5dfab34e8ceffc6a15dffd09d848c006659eb626279cb1c21dc5a6404ef",
+      "adapter_config.json": "42b3160f69690c2348f46d2b73d017a0451bab9074bb509970c438969fec0d14",
+      "adapter_model.safetensors": "48119f54d8a2db7e6613c28a3525d83d40fdb8c8805b66dfd8086e04ca9d51da"
+    }
+  },
+  "benchmark": "SafeDialBench",
+  "dataset": "/common/home/users/d/darrius.ng.2024/projects/RL-Defense/DCGS/benchmark-artifacts/SafeDialBench-Dataset/data/complete/datasets_en.jsonl",
+  "dataset_sha256": "a5429b6477ab7d3f6e47da55e0a9c889bbbba7575dd2ba7e1672379a412bc988",
+  "dtype": "bfloat16",
+  "generation_only": true,
+  "max_input_tokens": null,
+  "max_new_tokens": 1024,
+  "model": "HuggingFaceH4/zephyr-7b-beta",
+  "model_id": "zephyr-7b-beta-cat",
+  "num_choices": 1,
+  "protocol": "safedial_gold_assistant_history_v1",
+  "revision": "892b3d7a7b1cf10c7a701c60881cd93df615734c",
+  "seed": 0,
+  "selected_ids": [
+    1
+  ],
+  "temperature": 0.7,
+  "top_p": 1.0
+}

@@ -1,0 +1,8 @@
+{
+  "passed": true,
+  "sequence_tokens": 8192,
+  "synthetic": true,
+  "not_a_benchmark_reward": true,
+  "latency_seconds": 2.0069995030062273,
+  "raw_score": -0.734375
+}

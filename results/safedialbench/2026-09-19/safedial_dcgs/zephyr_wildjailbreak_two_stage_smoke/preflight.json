@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "dialogues": 1,
+  "turns": 5,
+  "max_input_tokens": {
+    "intent_generation": 2045,
+    "response_generation_placeholder": 1820,
+    "hl_placeholder": 1735,
+    "ll_placeholder": 1743
+  },
+  "actor_context_tokens": 32768,
+  "hl_context_tokens": 8192,
+  "ll_context_tokens": 8192,
+  "dynamic_inputs": "every actual prompt, belief and action checked at runtime without truncation"
+}

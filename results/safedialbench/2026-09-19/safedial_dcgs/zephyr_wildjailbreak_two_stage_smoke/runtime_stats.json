@@ -1,0 +1,18 @@
+{
+  "elapsed_seconds": 385.99359476199606,
+  "device": "cuda:0",
+  "exit_code": 0,
+  "failure": null,
+  "actual_calls": {
+    "generate": 35,
+    "hl_score": 50,
+    "ll_score": 25
+  },
+  "model_loading_performed": true,
+  "cuda_ready": true,
+  "torch_version": "2.13.0+cu130",
+  "gpu_name": "NVIDIA A100-SXM4-40GB",
+  "peak_gpu_allocated_bytes": 29393395712,
+  "peak_gpu_reserved_bytes": 29555163136,
+  "scope": "current_invocation_includes_both_backbones_loading; excludes_artifact_preflight"
+}

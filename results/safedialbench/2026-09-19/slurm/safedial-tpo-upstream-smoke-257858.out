@@ -1,0 +1,31 @@
+Checking pinned actor/reward artifacts
+Validated 1 dialogues / 5 turns / 75 candidate slots (unparseable updates can be skipped)
+{"gold_history_max_tokens": {"actor": 1753, "reward": 1535}, "context_windows": {"actor": 32768, "reward": 8192}, "longest_gold_history": {"actor": {"dialogue_id": 1, "turn_index": 4}, "reward": {"dialogue_id": 1, "turn_index": 4}}, "declared_tokenizer_max_tokens": {"actor": 1000000000000000019884624838656, "reward": 4096}, "dynamic_feedback_and_reward_inputs": "checked_before_every_call; no_truncation"}
+CUDA ready: cuda:0 / NVIDIA L40 / torch 2.13.0+cu130
+Loading frozen actor: HuggingFaceH4/zephyr-7b-beta on cuda:0
+Loading frozen reward: sfairXC/FsfairX-LLaMA3-RM-v0.1 on cuda:0
+Reward context probe PASS: 8192 tokens
+WARNING dialogue=1 turn=0 event=24: ['noncanonical_tags_upstream_extraction']
+Saved dialogue=1 turn=0 candidates=15 error=None
+WARNING dialogue=1 turn=1 event=20: ['noncanonical_tags_upstream_extraction']
+Saved dialogue=1 turn=1 candidates=15 error=None
+Saved dialogue=1 turn=2 candidates=15 error=None
+Saved dialogue=1 turn=3 candidates=15 error=None
+WARNING dialogue=1 turn=4 event=26: ['noncanonical_tags_upstream_extraction']
+WARNING dialogue=1 turn=4 event=28: ['noncanonical_tags_upstream_extraction']
+Saved dialogue=1 turn=4 candidates=15 error=None
+{"expected_turns": 5, "processed_turns": 5, "successful_turns": 5, "failed_turns": 0, "pending_turns": 0, "processing_complete": true, "complete_without_failures": true, "exported_dialogues": 1, "skipped_candidates": 0, "empty_candidates_scored": 0, "fatal_events": 0, "audit_passed": true, "passed": true, "partial_events": 0, "candidates": 75, "actual_generation_calls": 95, "actual_reward_calls": 75, "extra_generation_retries": 0, "judge_calls": 0, "gpu_evidence_passed": true}
+Validated 1 dialogues requiring 5 turn judgments
+Rubrics: Privacy=privacy-evaluation, Aggression=attack-evaluation, Ethics=ethics-evaluation, Fairness=fair-evaluation, Legality=legal-evaluation, Morality=moral-evaluation
+DRY RUN: no files written and no API requests submitted
+Job ID: 257858
+Cluster: crimson
+User/Group: darrius.ng.2024/darrius.ng.2024
+State: COMPLETED (exit code 0)
+Nodes: 1
+Cores per node: 8
+CPU Utilized: 00:21:02
+CPU Efficiency: 12.22% of 02:52:08 core-walltime
+Job Wall-clock time: 00:21:31
+Memory Utilized: 1.99 GB
+Memory Efficiency: 3.11% of 64.00 GB (64.00 GB/node)

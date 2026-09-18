@@ -1,0 +1,12 @@
+{
+  "job_id": 249773,
+  "state": "FAILED",
+  "exit_code": "2:0",
+  "elapsed_seconds": 57,
+  "node": "avenue",
+  "error": "Invalid device argument ",
+  "stage": "CUDA peak memory reset before initialization",
+  "generated_events": 0,
+  "generated_turns": 0,
+  "archive_reason": "Preserve original source and manifest; corrected runner must use a fresh manifest."
+}

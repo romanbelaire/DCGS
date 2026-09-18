@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "dialogues": 1,
+  "turns": 5,
+  "input_truncated_turns": 0,
+  "adapter_required": false,
+  "judge_calls": 0,
+  "tpo_audit_passed": true,
+  "candidates": 75,
+  "feedback_generations": 20,
+  "generations_at_token_cap": 1,
+  "optimizer_missing_closing_tag_warnings": 1,
+  "optimizer_trailing_opening_tag_warnings": 2
+}

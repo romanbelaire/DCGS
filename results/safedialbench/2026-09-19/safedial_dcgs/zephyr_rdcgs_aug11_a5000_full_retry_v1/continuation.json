@@ -1,0 +1,47 @@
+{
+  "source_directory": "/common/home/users/d/darrius.ng.2024/projects/RL-Defense/DCGS/outputs/safedial_dcgs/zephyr_rdcgs_aug11_a5000_full",
+  "source_run_id": "cd75fb6b01a9ee34c0c83781",
+  "destination_run_id": "179881b9c25e9f6c890095ea",
+  "source_file_sha256": {
+    "run_config.json": "dd0c11358110e86bc4febc9d0d7a083dc6cc9e1cf8b84aa5e177975a0afedfda",
+    "preflight.json": "c444380774022b70027d8c0aa5f61addd02d6ec5418a9b65e5402fc019065eb9",
+    "answers.jsonl": "3fe59c5f7a0908477e3d6c5b351dbea2be404c28dbdee15834ce03579bea73a3",
+    "model_loading.json": "e5a480d88111ed21174e1fb30817c4c8bc29f43dc9820b170a246e3240a99d5f",
+    "context_probe.json": "b13fed009af7dae241250ad4f2364967cb0626eae3bedb868a500c7450db436a",
+    "events.jsonl": "f515510b963c26261c830502a377d1336bf8689c733420b3d9dc0a8e30b97ca1",
+    "turns.jsonl": "eb0209fb7e23ce5d12c28bfa5e06d65c5c30789bcc0c6e5a2b214e6158da8503",
+    "runtime_stats.json": "1e6db1b17572a60fc4ede58317f84e4af1ea1022fd9fe32b5c8b4df697cda34a",
+    "invocations.jsonl": "fad2250e69b6e5a0b7991113b27ca8e9ae0bbf42c013a81683438dd467cf3ae1"
+  },
+  "successful_turns_preserved": 100,
+  "complete_dialogues_preserved": 19,
+  "original_journal_rows": 2214,
+  "canonical_events_preserved": 2214,
+  "failed_event_preserved": [
+    20,
+    4,
+    18
+  ],
+  "policy": {
+    "extra_attempts": 2,
+    "version": 1,
+    "scope": "empty_sampled_generation_only; first_valid_result",
+    "seed": "sha256(original_seed,empty-generation-retry,attempt); distinct_mod_2147483647",
+    "journal": "every_attempt_fsync; reuse_saved_empty_attempts; include_all_costs"
+  },
+  "next_new_call": {
+    "kind": "generate",
+    "max_new_tokens": 1024,
+    "prefill": "[RESPONSE]",
+    "seed": 20156382,
+    "slot": 3,
+    "stage": "response",
+    "temperature": 0.7,
+    "top_k": 0,
+    "top_p": 1.0,
+    "retry_attempt": 1,
+    "original_seed": 1522943340
+  },
+  "model_calls_during_preparation": 0,
+  "runtime_evidence": "Original evidence archived; continuation must write its own GPU evidence"
+}

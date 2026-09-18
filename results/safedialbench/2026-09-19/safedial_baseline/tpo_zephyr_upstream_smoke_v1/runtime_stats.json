@@ -1,0 +1,18 @@
+{
+  "elapsed_seconds": 1230.5049143479555,
+  "device": "cuda:0",
+  "gpu_name": "NVIDIA L40",
+  "cuda_ready": true,
+  "failure": null,
+  "torch_version": "2.13.0+cu130",
+  "peak_gpu_allocated_bytes": 30562115072,
+  "peak_gpu_reserved_bytes": 31035752448,
+  "scope": "current_invocation_includes_loading_and_context_probe; excludes_hashing_and_tokenizer_preflight",
+  "actual_calls": {
+    "generate": 95,
+    "reward": 75
+  },
+  "startup_reward_probe_calls": 1,
+  "model_loading_performed": true,
+  "exit_code": 0
+}

@@ -1,0 +1,3214 @@
+{
+  "files": [
+    {
+      "bytes": 2796111,
+      "incomplete_tail_bytes_omitted": 0,
+      "path": "safedial_baseline/cat_zephyr_full/answers.jsonl.gz",
+      "records": 2037,
+      "sha256": "47e91602bd421b0b3ee128be7f57ead91d5143054e762ee68f867822f954c7d9",
+      "source": "outputs/safedial_baseline/cat_zephyr_full/answers.jsonl",
+      "uncompressed_sha256": "03ac2028ae772055183771a0c0e4897816751f696f27d4727bd0a45c5b9a33fe"
+    },
+    {
+      "bytes": 121,
+      "path": "safedial_baseline/cat_zephyr_full/adapter_validation.json",
+      "sha256": "61d417708ebacfa99fd7560e0752d9b5978d36d730844939c52b32435913af35",
+      "source": "outputs/safedial_baseline/cat_zephyr_full/adapter_validation.json",
+      "uncompressed_sha256": "61d417708ebacfa99fd7560e0752d9b5978d36d730844939c52b32435913af35"
+    },
+    {
+      "bytes": 21242,
+      "path": "safedial_baseline/cat_zephyr_full/run_config.json",
+      "sha256": "69f105c985d3673c24bf6183523a89d7b5b20102a5311673c82284210471c5d2",
+      "source": "outputs/safedial_baseline/cat_zephyr_full/run_config.json",
+      "uncompressed_sha256": "69f105c985d3673c24bf6183523a89d7b5b20102a5311673c82284210471c5d2"
+    },
+    {
+      "bytes": 278,
+      "path": "safedial_baseline/cat_zephyr_full/runtime_stats.json",
+      "sha256": "c1537df8722f48ded4c262f9b0fd8acb8a7a05629621c417e4e2f629b6254bfd",
+      "source": "outputs/safedial_baseline/cat_zephyr_full/runtime_stats.json",
+      "uncompressed_sha256": "c1537df8722f48ded4c262f9b0fd8acb8a7a05629621c417e4e2f629b6254bfd"
+    },
+    {
+      "bytes": 138,
+      "path": "safedial_baseline/cat_zephyr_full/validation.json",
+      "sha256": "626168cf842ccb11138514353f81e124b7e9500aee4562b6e33b58f05c46246f",
+      "source": "outputs/safedial_baseline/cat_zephyr_full/validation.json",
+      "uncompressed_sha256": "626168cf842ccb11138514353f81e124b7e9500aee4562b6e33b58f05c46246f"
+    },
+    {
+      "bytes": 2866,
+      "path": "safedial_baseline/cat_zephyr_full/judgments_gpt-4o-mini/aggregate.json",
+      "sha256": "0c90487f80be4d078d29de54c935379c5e99894f4c09b25a2d8e5ee480c81dfa",
+      "source": "outputs/safedial_baseline/cat_zephyr_full/judgments_gpt-4o-mini/aggregate.json",
+      "uncompressed_sha256": "0c90487f80be4d078d29de54c935379c5e99894f4c09b25a2d8e5ee480c81dfa"
+    },
+    {
+      "bytes": 15367405,
+      "incomplete_tail_bytes_omitted": 0,
+      "path": "safedial_baseline/cat_zephyr_full/judgments_gpt-4o-mini/dialogue_scores.jsonl.gz",
+      "records": 2037,
+      "sha256": "b3b93073e675a6392f9a7e33aee822a6ba24e75f6970ca5941950bcedb33987d",
+      "source": "outputs/safedial_baseline/cat_zephyr_full/judgments_gpt-4o-mini/dialogue_scores.jsonl",
+      "uncompressed_sha256": "a98f985e50be64d5db558e4044bdf33864371f2ac0afa5211c8be774a3b46fe2"
+    },
+    {
+      "bytes": 138,
+      "path": "safedial_baseline/cat_zephyr_full/judgments_gpt-4o-mini/generation_validation.json",
+      "sha256": "626168cf842ccb11138514353f81e124b7e9500aee4562b6e33b58f05c46246f",
+      "source": "outputs/safedial_baseline/cat_zephyr_full/judgments_gpt-4o-mini/generation_validation.json",
+      "uncompressed_sha256": "626168cf842ccb11138514353f81e124b7e9500aee4562b6e33b58f05c46246f"
+    },
+    {
+      "bytes": 1773,
+      "path": "safedial_baseline/cat_zephyr_full/judgments_gpt-4o-mini/human_adjudication.json",
+      "sha256": "dc081ce27da623fbe2b9170b195d1c70a5dbca54dc2eafaeafef0cc887c8f9e8",
+      "source": "outputs/safedial_baseline/cat_zephyr_full/judgments_gpt-4o-mini/human_adjudication.json",
+      "uncompressed_sha256": "dc081ce27da623fbe2b9170b195d1c70a5dbca54dc2eafaeafef0cc887c8f9e8"
+    },
+    {
+      "bytes": 939,
+      "path": "safedial_baseline/cat_zephyr_full/judgments_gpt-4o-mini/judge_config.json",
+      "sha256": "b18ed8e216e73d1f4c0a27a52979f1754b668a903038f3bcc5e9759dc6728a1f",
+      "source": "outputs/safedial_baseline/cat_zephyr_full/judgments_gpt-4o-mini/judge_config.json",
+      "uncompressed_sha256": "b18ed8e216e73d1f4c0a27a52979f1754b668a903038f3bcc5e9759dc6728a1f"
+    },
+    {
+      "bytes": 17918449,
+      "incomplete_tail_bytes_omitted": 0,
+      "path": "safedial_baseline/cat_zephyr_full/judgments_gpt-4o-mini/judgments.jsonl.gz",
+      "records": 10029,
+      "sha256": "d57116498f4e9d923bc13c0c33b1e6134597a4a66b9f17b8b433174a6493b4ef",
+      "source": "outputs/safedial_baseline/cat_zephyr_full/judgments_gpt-4o-mini/judgments.jsonl",
+      "uncompressed_sha256": "e1fd80f7c460fa5a78ec9178e0bc2790c161c52400b8ed5095c465e49d6dcc52"
+    },
+    {
+      "bytes": 585921,
+      "derived": true,
+      "incomplete_tail_bytes_omitted": 0,
+      "path": "safedial_baseline/cat_zephyr_full/turn_status.jsonl.gz",
+      "sha256": "166b5baa02c30759011a64b1a75377d5eab407e3008959918c93667e94ffdd79",
+      "source": "outputs/safedial_baseline/cat_zephyr_full/turns.jsonl",
+      "source_records": 10029,
+      "uncompressed_sha256": "632141f5570ddf0122a9cfd74a105b29f187c87324f7b30fe427b2d62dd9c44f"
+    },
+    {
+      "bytes": 7100,
+      "incomplete_tail_bytes_omitted": 0,
+      "path": "safedial_baseline/cat_zephyr_smoke/answers.jsonl",
+      "records": 1,
+      "sha256": "3b0c8307dee2f5893f836076b880fef9852fa1a43bffd6c93808d3f73b9d1158",
+      "source": "outputs/safedial_baseline/cat_zephyr_smoke/answers.jsonl",
+      "uncompressed_sha256": "3b0c8307dee2f5893f836076b880fef9852fa1a43bffd6c93808d3f73b9d1158"
+    },
+    {
+      "bytes": 121,
+      "path": "safedial_baseline/cat_zephyr_smoke/adapter_validation.json",
+      "sha256": "f33f05eafd79707c7d60b74db2b3d22c9183b29f3d8ae07f0c245b09aae966c0",
+      "source": "outputs/safedial_baseline/cat_zephyr_smoke/adapter_validation.json",
+      "uncompressed_sha256": "f33f05eafd79707c7d60b74db2b3d22c9183b29f3d8ae07f0c245b09aae966c0"
+    },
+    {
+      "bytes": 1986,
+      "path": "safedial_baseline/cat_zephyr_smoke/run_config.json",
+      "sha256": "e2c2edae32ef4f5eae7dfe0f5b933a1e718d7ddf3d184903e2c6d862d5b4d9b5",
+      "source": "outputs/safedial_baseline/cat_zephyr_smoke/run_config.json",
+      "uncompressed_sha256": "e2c2edae32ef4f5eae7dfe0f5b933a1e718d7ddf3d184903e2c6d862d5b4d9b5"
+    },
+    {
+      "bytes": 278,
+      "path": "safedial_baseline/cat_zephyr_smoke/runtime_stats.json",
+      "sha256": "ebebd5ff95976a8e867fd0a3f8bfde0ad22685a748d63b3e400c3a9ba193766b",
+      "source": "outputs/safedial_baseline/cat_zephyr_smoke/runtime_stats.json",
+      "uncompressed_sha256": "ebebd5ff95976a8e867fd0a3f8bfde0ad22685a748d63b3e400c3a9ba193766b"
+    },
+    {
+      "bytes": 131,
+      "path": "safedial_baseline/cat_zephyr_smoke/validation.json",
+      "sha256": "d058997a2273a994d4fb0136e88fe3c25cf776e11a7672b39675a4bed83c6099",
+      "source": "outputs/safedial_baseline/cat_zephyr_smoke/validation.json",
+      "uncompressed_sha256": "d058997a2273a994d4fb0136e88fe3c25cf776e11a7672b39675a4bed83c6099"
+    },
+    {
+      "bytes": 1688,
+      "path": "safedial_baseline/cat_zephyr_smoke/judgments_gpt-4o-mini/aggregate.json",
+      "sha256": "c85859c0eb87d63caaa262320c9d707b739e34188be37afef15f7008d8dddd30",
+      "source": "outputs/safedial_baseline/cat_zephyr_smoke/judgments_gpt-4o-mini/aggregate.json",
+      "uncompressed_sha256": "c85859c0eb87d63caaa262320c9d707b739e34188be37afef15f7008d8dddd30"
+    },
+    {
+      "bytes": 38028,
+      "incomplete_tail_bytes_omitted": 0,
+      "path": "safedial_baseline/cat_zephyr_smoke/judgments_gpt-4o-mini/dialogue_scores.jsonl",
+      "records": 1,
+      "sha256": "01a28e007633c013b9f4ea3fdb354e8617a679981bafe5041bce76bc2d426709",
+      "source": "outputs/safedial_baseline/cat_zephyr_smoke/judgments_gpt-4o-mini/dialogue_scores.jsonl",
+      "uncompressed_sha256": "01a28e007633c013b9f4ea3fdb354e8617a679981bafe5041bce76bc2d426709"
+    },
+    {
+      "bytes": 1775,
+      "path": "safedial_baseline/cat_zephyr_smoke/judgments_gpt-4o-mini/human_adjudication.json",
+      "sha256": "ed6bb04b3ea750d775f2ee5b1d647a83cd28c591fa9bb0aaa95387937291beed",
+      "source": "outputs/safedial_baseline/cat_zephyr_smoke/judgments_gpt-4o-mini/human_adjudication.json",
+      "uncompressed_sha256": "ed6bb04b3ea750d775f2ee5b1d647a83cd28c591fa9bb0aaa95387937291beed"
+    },
+    {
+      "bytes": 940,
+      "path": "safedial_baseline/cat_zephyr_smoke/judgments_gpt-4o-mini/judge_config.json",
+      "sha256": "2f9c02f60eabad23714a3c9ab9ed816f2a4c1ae93c182468228db322c243b1d6",
+      "source": "outputs/safedial_baseline/cat_zephyr_smoke/judgments_gpt-4o-mini/judge_config.json",
+      "uncompressed_sha256": "2f9c02f60eabad23714a3c9ab9ed816f2a4c1ae93c182468228db322c243b1d6"
+    },
+    {
+      "bytes": 70167,
+      "incomplete_tail_bytes_omitted": 0,
+      "path": "safedial_baseline/cat_zephyr_smoke/judgments_gpt-4o-mini/judgments.jsonl",
+      "records": 5,
+      "sha256": "e7a14b148aea22cb447b31c9ef3180c7e9000f890c3f6dad91665054b78db451",
+      "source": "outputs/safedial_baseline/cat_zephyr_smoke/judgments_gpt-4o-mini/judgments.jsonl",
+      "uncompressed_sha256": "e7a14b148aea22cb447b31c9ef3180c7e9000f890c3f6dad91665054b78db451"
+    },
+    {
+      "bytes": 1361,
+      "derived": true,
+      "incomplete_tail_bytes_omitted": 0,
+      "path": "safedial_baseline/cat_zephyr_smoke/turn_status.jsonl",
+      "sha256": "85cb90cfa3c3be8aab3573b8c8af399d48471ee78b18d18508eb4b0e6d9d62f5",
+      "source": "outputs/safedial_baseline/cat_zephyr_smoke/turns.jsonl",
+      "source_records": 5,
+      "uncompressed_sha256": "85cb90cfa3c3be8aab3573b8c8af399d48471ee78b18d18508eb4b0e6d9d62f5"
+    },
+    {
+      "bytes": 7121364,
+      "incomplete_tail_bytes_omitted": 0,
+      "path": "safedial_baseline/gpt4o_full/answers.jsonl.gz",
+      "records": 2036,
+      "sha256": "eaa009b068dd8acea0aba9ca2200db6ab7aead9d3612214aefdb948c282c2798",
+      "source": "outputs/safedial_baseline/gpt4o_full/answers.jsonl",
+      "uncompressed_sha256": "fbee10eda5e7c08fe944f08024906d052eee2d893c14c5153493f1fb66cece9b"
+    },
+    {
+      "bytes": 2126,
+      "path": "safedial_baseline/gpt4o_full/filtered_cases.json",
+      "sha256": "54a492ede9f0df4404414777a516e34d86525e178950cb450345ae2600987f4f",
+      "source": "outputs/safedial_baseline/gpt4o_full/filtered_cases.json",
+      "uncompressed_sha256": "54a492ede9f0df4404414777a516e34d86525e178950cb450345ae2600987f4f"
+    },
+    {
+      "bytes": 20160,
+      "path": "safedial_baseline/gpt4o_full/run_config.json",
+      "sha256": "0f109a98bbd5645488da5036fd7daf74f1e769360aa9fd51853ffab77d70cb01",
+      "source": "outputs/safedial_baseline/gpt4o_full/run_config.json",
+      "uncompressed_sha256": "0f109a98bbd5645488da5036fd7daf74f1e769360aa9fd51853ffab77d70cb01"
+    },
+    {
+      "bytes": 338,
+      "path": "safedial_baseline/gpt4o_full/runtime_stats.json",
+      "sha256": "4d1a9c3102f63455094db8578e683f8415e282e6090485a363ed6e50e1cfe9ea",
+      "source": "outputs/safedial_baseline/gpt4o_full/runtime_stats.json",
+      "uncompressed_sha256": "4d1a9c3102f63455094db8578e683f8415e282e6090485a363ed6e50e1cfe9ea"
+    },
+    {
+      "bytes": 297,
+      "path": "safedial_baseline/gpt4o_full/validation.json",
+      "sha256": "9a527af10aacbf4ba153fca3b59f855773d5041a9319303757a40a589dd604ad",
+      "source": "outputs/safedial_baseline/gpt4o_full/validation.json",
+      "uncompressed_sha256": "9a527af10aacbf4ba153fca3b59f855773d5041a9319303757a40a589dd604ad"
+    },
+    {
+      "bytes": 8223710,
+      "incomplete_tail_bytes_omitted": 0,
+      "path": "safedial_baseline/gpt4o_full/api_attempts.jsonl.gz",
+      "records": 10029,
+      "sha256": "b28f280497a27e2c18c3480311b54e28bd5959530f062a0a8c2b853feb74d73c",
+      "source": "outputs/safedial_baseline/gpt4o_full/api_attempts.jsonl",
+      "uncompressed_sha256": "22a3e9f920e411f9e16fb5dfdf74db2ec6472bdbe50d28f68751c3a5d7e30f46"
+    },
+    {
+      "bytes": 2868,
+      "path": "safedial_baseline/gpt4o_full/judgments_gpt-4o-mini/aggregate.json",
+      "sha256": "1f7528bd4b8900bbe060b15d72881faf79c7fb3644814f17fda405535f8a01bb",
+      "source": "outputs/safedial_baseline/gpt4o_full/judgments_gpt-4o-mini/aggregate.json",
+      "uncompressed_sha256": "1f7528bd4b8900bbe060b15d72881faf79c7fb3644814f17fda405535f8a01bb"
+    },
+    {
+      "bytes": 19542348,
+      "incomplete_tail_bytes_omitted": 0,
+      "path": "safedial_baseline/gpt4o_full/judgments_gpt-4o-mini/dialogue_scores.jsonl.gz",
+      "records": 2036,
+      "sha256": "4daff90fe384035c38a54664b417e71fc294760a198e886263196affa0352feb",
+      "source": "outputs/safedial_baseline/gpt4o_full/judgments_gpt-4o-mini/dialogue_scores.jsonl",
+      "uncompressed_sha256": "0473c771cdca940c94a2ec5191cc5ec3ec236ca8effab6f0987b8003704d1f15"
+    },
+    {
+      "bytes": 297,
+      "path": "safedial_baseline/gpt4o_full/judgments_gpt-4o-mini/generation_validation.json",
+      "sha256": "9a527af10aacbf4ba153fca3b59f855773d5041a9319303757a40a589dd604ad",
+      "source": "outputs/safedial_baseline/gpt4o_full/judgments_gpt-4o-mini/generation_validation.json",
+      "uncompressed_sha256": "9a527af10aacbf4ba153fca3b59f855773d5041a9319303757a40a589dd604ad"
+    },
+    {
+      "bytes": 1763,
+      "path": "safedial_baseline/gpt4o_full/judgments_gpt-4o-mini/human_adjudication.json",
+      "sha256": "8e98af51b6fadf6c0b4e3ea14b3959c4c72b73cd1dae243774736019f43c9d16",
+      "source": "outputs/safedial_baseline/gpt4o_full/judgments_gpt-4o-mini/human_adjudication.json",
+      "uncompressed_sha256": "8e98af51b6fadf6c0b4e3ea14b3959c4c72b73cd1dae243774736019f43c9d16"
+    },
+    {
+      "bytes": 934,
+      "path": "safedial_baseline/gpt4o_full/judgments_gpt-4o-mini/judge_config.json",
+      "sha256": "12f77ebeff7acf79e1a9bd4bce4fdae5aa221a53d7626f8ff45ded48ae8a7462",
+      "source": "outputs/safedial_baseline/gpt4o_full/judgments_gpt-4o-mini/judge_config.json",
+      "uncompressed_sha256": "12f77ebeff7acf79e1a9bd4bce4fdae5aa221a53d7626f8ff45ded48ae8a7462"
+    },
+    {
+      "bytes": 23117160,
+      "incomplete_tail_bytes_omitted": 0,
+      "path": "safedial_baseline/gpt4o_full/judgments_gpt-4o-mini/judgments.jsonl.gz",
+      "records": 10024,
+      "sha256": "4ce13ef8d4e863b61f8617debf39798fa399d35401fd74033d981e6e2930d36a",
+      "source": "outputs/safedial_baseline/gpt4o_full/judgments_gpt-4o-mini/judgments.jsonl",
+      "uncompressed_sha256": "8500250ab38cb0d7dfd2090a670ddb7bf399f28af30a8b2bc68ee915f1ef6c27"
+    },
+    {
+      "bytes": 703016,
+      "derived": true,
+      "incomplete_tail_bytes_omitted": 0,
+      "path": "safedial_baseline/gpt4o_full/turn_status.jsonl.gz",
+      "sha256": "b5e79e19684ccca065c8dc77152ff9d4051c1abf24b889388cde85a430a3a9d2",
+      "source": "outputs/safedial_baseline/gpt4o_full/turns.jsonl",
+      "source_records": 10028,
+      "uncompressed_sha256": "840c3782d31ebf474dbd162ab7146aa8b791ac00813522fd0fd98fa7b2e4a5e8"
+    },
+    {
+      "bytes": 2975688,
+      "incomplete_tail_bytes_omitted": 0,
+      "path": "safedial_baseline/smoothllm_zephyr_full/answers.jsonl.gz",
+      "records": 1605,
+      "sha256": "8a8767c7817a9d469179a89a9854f07ff6af8b09af87a6dbd3887d323f5b9eb1",
+      "source": "outputs/safedial_baseline/smoothllm_zephyr_full/answers.jsonl",
+      "uncompressed_sha256": "9ca801ee047f5648372866fa8d252d5c9133bf2dd2beb70e0b2e43c7f34ad5c2"
+    },
+    {
+      "bytes": 21621,
+      "path": "safedial_baseline/smoothllm_zephyr_full/run_config.json",
+      "sha256": "92cc38afdd57d6017df2881d1e385c4608bd18a581e42387da40fa1b4043cb62",
+      "source": "outputs/safedial_baseline/smoothllm_zephyr_full/run_config.json",
+      "uncompressed_sha256": "92cc38afdd57d6017df2881d1e385c4608bd18a581e42387da40fa1b4043cb62"
+    },
+    {
+      "bytes": 561687,
+      "derived": true,
+      "incomplete_tail_bytes_omitted": 0,
+      "path": "safedial_baseline/smoothllm_zephyr_full/turn_status.jsonl.gz",
+      "sha256": "6a1a674594830cb513b88b656437ac83425ed4a383f662c54110e2e89d43e603",
+      "source": "outputs/safedial_baseline/smoothllm_zephyr_full/turns.jsonl",
+      "source_records": 7847,
+      "uncompressed_sha256": "ca011a79afa33e16da300b17c164072b24c490f781bd6d3cabbd18e8694d669c"
+    },
+    {
+      "bytes": 3898308,
+      "incomplete_tail_bytes_omitted": 0,
+      "path": "safedial_baseline/smoothllm_zephyr_full_turn_resume/answers.jsonl.gz",
+      "records": 2037,
+      "sha256": "b4bbc0eb1608b505a3b1fa0fc43ecafb0dba216bd3f3e41738c23c21361b73fd",
+      "source": "outputs/safedial_baseline/smoothllm_zephyr_full_turn_resume/answers.jsonl",
+      "uncompressed_sha256": "3335d5abfda5090b2c47dc57f11bf7f9870eb86305eb8a08cf4e5cfd98402099"
+    },
+    {
+      "bytes": 681,
+      "path": "safedial_baseline/smoothllm_zephyr_full_turn_resume/continuation.json",
+      "sha256": "ce055552cced9c85c7a53d7d4ef8658943d822d7bdb004d5d4fefa24a161e127",
+      "source": "outputs/safedial_baseline/smoothllm_zephyr_full_turn_resume/continuation.json",
+      "uncompressed_sha256": "ce055552cced9c85c7a53d7d4ef8658943d822d7bdb004d5d4fefa24a161e127"
+    },
+    {
+      "bytes": 21836,
+      "path": "safedial_baseline/smoothllm_zephyr_full_turn_resume/run_config.json",
+      "sha256": "d73e130ac25be49353e368077a5fa513f9eefe919fdff76c6ed977bbcb592ae7",
+      "source": "outputs/safedial_baseline/smoothllm_zephyr_full_turn_resume/run_config.json",
+      "uncompressed_sha256": "d73e130ac25be49353e368077a5fa513f9eefe919fdff76c6ed977bbcb592ae7"
+    },
+    {
+      "bytes": 297,
+      "path": "safedial_baseline/smoothllm_zephyr_full_turn_resume/runtime_stats.json",
+      "sha256": "f6050ec5beab8c0242d5f258221b125fc1e838a025a7106d6498559d14aefd43",
+      "source": "outputs/safedial_baseline/smoothllm_zephyr_full_turn_resume/runtime_stats.json",
+      "uncompressed_sha256": "f6050ec5beab8c0242d5f258221b125fc1e838a025a7106d6498559d14aefd43"
+    },
+    {
+      "bytes": 277,
+      "incomplete_tail_bytes_omitted": 0,
+      "path": "safedial_baseline/smoothllm_zephyr_full_turn_resume/invocations.jsonl",
+      "records": 1,
+      "sha256": "7576efbd97df0017f596831ad5a5be41d55365a94b7a1016d9bbdd9b952f32d5",
+      "source": "outputs/safedial_baseline/smoothllm_zephyr_full_turn_resume/invocations.jsonl",
+      "uncompressed_sha256": "7576efbd97df0017f596831ad5a5be41d55365a94b7a1016d9bbdd9b952f32d5"
+    },
+    {
+      "bytes": 738164,
+      "derived": true,
+      "incomplete_tail_bytes_omitted": 0,
+      "path": "safedial_baseline/smoothllm_zephyr_full_turn_resume/turn_status.jsonl.gz",
+      "sha256": "caef603ae8ee8258a334fd166896dd7d5c2cc4e827f4cdc7f69158f688ebed59",
+      "source": "outputs/safedial_baseline/smoothllm_zephyr_full_turn_resume/turns.jsonl",
+      "source_records": 10029,
+      "uncompressed_sha256": "4d287e1c2a7bb96c5bb6442da259a1154a95f0ae2f25f68529bba24f5f7135d5"
+    },
+    {
+      "bytes": 4550,
+      "incomplete_tail_bytes_omitted": 0,
+      "path": "safedial_baseline/smoothllm_zephyr_smoke/answers.jsonl",
+      "records": 1,
+      "sha256": "7d459558a2051327677d102eb0391bdfc1cf7bdc39343371ff06a200150947b4",
+      "source": "outputs/safedial_baseline/smoothllm_zephyr_smoke/answers.jsonl",
+      "uncompressed_sha256": "7d459558a2051327677d102eb0391bdfc1cf7bdc39343371ff06a200150947b4"
+    },
+    {
+      "bytes": 2365,
+      "path": "safedial_baseline/smoothllm_zephyr_smoke/run_config.json",
+      "sha256": "68ad73a895cd4d68eccc44b8b0e59014b60a1b4324c0ea7bb47c2a9c52e40dca",
+      "source": "outputs/safedial_baseline/smoothllm_zephyr_smoke/run_config.json",
+      "uncompressed_sha256": "68ad73a895cd4d68eccc44b8b0e59014b60a1b4324c0ea7bb47c2a9c52e40dca"
+    },
+    {
+      "bytes": 298,
+      "path": "safedial_baseline/smoothllm_zephyr_smoke/runtime_stats.json",
+      "sha256": "4c94cedb5694e75ed2c3c6d563c72c75c162e4e178c72b1423861e061204996d",
+      "source": "outputs/safedial_baseline/smoothllm_zephyr_smoke/runtime_stats.json",
+      "uncompressed_sha256": "4c94cedb5694e75ed2c3c6d563c72c75c162e4e178c72b1423861e061204996d"
+    },
+    {
+      "bytes": 186,
+      "path": "safedial_baseline/smoothllm_zephyr_smoke/validation.json",
+      "sha256": "b6c4bd93e102d40077e04622904abf5d3ca5b9c879ee8478eabc640fcd3a33bf",
+      "source": "outputs/safedial_baseline/smoothllm_zephyr_smoke/validation.json",
+      "uncompressed_sha256": "b6c4bd93e102d40077e04622904abf5d3ca5b9c879ee8478eabc640fcd3a33bf"
+    },
+    {
+      "bytes": 1375,
+      "derived": true,
+      "incomplete_tail_bytes_omitted": 0,
+      "path": "safedial_baseline/smoothllm_zephyr_smoke/turn_status.jsonl",
+      "sha256": "7b7708787e0d4b5da4caf5a6b891a857c8abf4122f59f24a7066fa2eebee65c3",
+      "source": "outputs/safedial_baseline/smoothllm_zephyr_smoke/turns.jsonl",
+      "source_records": 5,
+      "uncompressed_sha256": "7b7708787e0d4b5da4caf5a6b891a857c8abf4122f59f24a7066fa2eebee65c3"
+    },
+    {
+      "bytes": 13832,
+      "incomplete_tail_bytes_omitted": 0,
+      "path": "safedial_baseline/tpo_zephyr_full/answers.jsonl",
+      "records": 1,
+      "sha256": "74f8c8b83dd5eedbc2e89b083ec30e8fd88c511569f6f023f339ce8910ed2a83",
+      "source": "outputs/safedial_baseline/tpo_zephyr_full/answers.jsonl",
+      "uncompressed_sha256": "74f8c8b83dd5eedbc2e89b083ec30e8fd88c511569f6f023f339ce8910ed2a83"
+    },
+    {
+      "bytes": 170,
+      "path": "safedial_baseline/tpo_zephyr_full/context_probe.json",
+      "sha256": "d149c91924f85e94546dc31334cd4c7ceca07f2090591492dc0d02d837d3618f",
+      "source": "outputs/safedial_baseline/tpo_zephyr_full/context_probe.json",
+      "uncompressed_sha256": "d149c91924f85e94546dc31334cd4c7ceca07f2090591492dc0d02d837d3618f"
+    },
+    {
+      "bytes": 234,
+      "path": "safedial_baseline/tpo_zephyr_full/model_loading.json",
+      "sha256": "e7e40c077db2c404acd609990c8b537b18fd53bd28dcbd65a7687fcb863bd45f",
+      "source": "outputs/safedial_baseline/tpo_zephyr_full/model_loading.json",
+      "uncompressed_sha256": "e7e40c077db2c404acd609990c8b537b18fd53bd28dcbd65a7687fcb863bd45f"
+    },
+    {
+      "bytes": 508,
+      "path": "safedial_baseline/tpo_zephyr_full/preflight.json",
+      "sha256": "8ee2178cd1264e3dbbfc4221520c46223b3df14be643aa5ccf581ae9b14dd154",
+      "source": "outputs/safedial_baseline/tpo_zephyr_full/preflight.json",
+      "uncompressed_sha256": "8ee2178cd1264e3dbbfc4221520c46223b3df14be643aa5ccf581ae9b14dd154"
+    },
+    {
+      "bytes": 26158,
+      "path": "safedial_baseline/tpo_zephyr_full/run_config.json",
+      "sha256": "f639fbaa9dc32c11ee27d3e7bc4e5a2b62852ec12915a6c43fa6dcbb0d85f409",
+      "source": "outputs/safedial_baseline/tpo_zephyr_full/run_config.json",
+      "uncompressed_sha256": "f639fbaa9dc32c11ee27d3e7bc4e5a2b62852ec12915a6c43fa6dcbb0d85f409"
+    },
+    {
+      "bytes": 517,
+      "path": "safedial_baseline/tpo_zephyr_full/runtime_stats.json",
+      "sha256": "14fbcfac2ebb932a8966d46ea027cc70970a0f6ef179f50cbf971ac4dae76865",
+      "source": "outputs/safedial_baseline/tpo_zephyr_full/runtime_stats.json",
+      "uncompressed_sha256": "14fbcfac2ebb932a8966d46ea027cc70970a0f6ef179f50cbf971ac4dae76865"
+    },
+    {
+      "bytes": 477,
+      "incomplete_tail_bytes_omitted": 0,
+      "path": "safedial_baseline/tpo_zephyr_full/invocations.jsonl",
+      "records": 1,
+      "sha256": "ebacd48d571225a2309fa182f6a9241d4881ac518fea059317d501f5b8fe80cb",
+      "source": "outputs/safedial_baseline/tpo_zephyr_full/invocations.jsonl",
+      "uncompressed_sha256": "ebacd48d571225a2309fa182f6a9241d4881ac518fea059317d501f5b8fe80cb"
+    },
+    {
+      "bytes": 3552,
+      "derived": true,
+      "incomplete_tail_bytes_omitted": 0,
+      "path": "safedial_baseline/tpo_zephyr_full/turn_status.jsonl",
+      "sha256": "d308dafe0826f9f3c07eb9358929fcc74f76d305f8b17970e17b72def8d8d6c9",
+      "source": "outputs/safedial_baseline/tpo_zephyr_full/turns.jsonl",
+      "source_records": 10,
+      "uncompressed_sha256": "d308dafe0826f9f3c07eb9358929fcc74f76d305f8b17970e17b72def8d8d6c9"
+    },
+    {
+      "bytes": 211375,
+      "incomplete_tail_bytes_omitted": 0,
+      "path": "safedial_baseline/tpo_zephyr_full_v4/answers.jsonl",
+      "records": 24,
+      "sha256": "821dda2588670b64d438b878ebbee4746520779e3d1080652302fd4f458cbba7",
+      "source": "outputs/safedial_baseline/tpo_zephyr_full_v4/answers.jsonl",
+      "uncompressed_sha256": "821dda2588670b64d438b878ebbee4746520779e3d1080652302fd4f458cbba7"
+    },
+    {
+      "bytes": 171,
+      "path": "safedial_baseline/tpo_zephyr_full_v4/context_probe.json",
+      "sha256": "4386ceb4ae86ec40e1b0dd7e48b15f119ac14ce84eda91f2cf8a62c25e9e4a79",
+      "source": "outputs/safedial_baseline/tpo_zephyr_full_v4/context_probe.json",
+      "uncompressed_sha256": "4386ceb4ae86ec40e1b0dd7e48b15f119ac14ce84eda91f2cf8a62c25e9e4a79"
+    },
+    {
+      "bytes": 1885,
+      "path": "safedial_baseline/tpo_zephyr_full_v4/continuation.json",
+      "sha256": "adc52a1e3b8177e0bb0dd38f4fa8a98553992a22e2c295f655ac52017141fbbc",
+      "source": "outputs/safedial_baseline/tpo_zephyr_full_v4/continuation.json",
+      "uncompressed_sha256": "adc52a1e3b8177e0bb0dd38f4fa8a98553992a22e2c295f655ac52017141fbbc"
+    },
+    {
+      "bytes": 234,
+      "path": "safedial_baseline/tpo_zephyr_full_v4/model_loading.json",
+      "sha256": "e7e40c077db2c404acd609990c8b537b18fd53bd28dcbd65a7687fcb863bd45f",
+      "source": "outputs/safedial_baseline/tpo_zephyr_full_v4/model_loading.json",
+      "uncompressed_sha256": "e7e40c077db2c404acd609990c8b537b18fd53bd28dcbd65a7687fcb863bd45f"
+    },
+    {
+      "bytes": 1054,
+      "path": "safedial_baseline/tpo_zephyr_full_v4/offline_preparation_review.json",
+      "sha256": "930d0a31c030ce015de6adb6e45c5a52792189a8d96d36c5aed3b7a3e7de8f9e",
+      "source": "outputs/safedial_baseline/tpo_zephyr_full_v4/offline_preparation_review.json",
+      "uncompressed_sha256": "930d0a31c030ce015de6adb6e45c5a52792189a8d96d36c5aed3b7a3e7de8f9e"
+    },
+    {
+      "bytes": 508,
+      "path": "safedial_baseline/tpo_zephyr_full_v4/preflight.json",
+      "sha256": "8ee2178cd1264e3dbbfc4221520c46223b3df14be643aa5ccf581ae9b14dd154",
+      "source": "outputs/safedial_baseline/tpo_zephyr_full_v4/preflight.json",
+      "uncompressed_sha256": "8ee2178cd1264e3dbbfc4221520c46223b3df14be643aa5ccf581ae9b14dd154"
+    },
+    {
+      "bytes": 26236,
+      "path": "safedial_baseline/tpo_zephyr_full_v4/run_config.json",
+      "sha256": "f30e8d328cb53ad802c13ab08d1842dcecc0fc734381807cc4477d78421c38a8",
+      "source": "outputs/safedial_baseline/tpo_zephyr_full_v4/run_config.json",
+      "uncompressed_sha256": "f30e8d328cb53ad802c13ab08d1842dcecc0fc734381807cc4477d78421c38a8"
+    },
+    {
+      "bytes": 530,
+      "path": "safedial_baseline/tpo_zephyr_full_v4/runtime_stats.json",
+      "sha256": "8fdf136021001b83a36d5cc6d5a3dd3ca23bfdd6ed17ff9332af628d4e07da5c",
+      "source": "outputs/safedial_baseline/tpo_zephyr_full_v4/runtime_stats.json",
+      "uncompressed_sha256": "8fdf136021001b83a36d5cc6d5a3dd3ca23bfdd6ed17ff9332af628d4e07da5c"
+    },
+    {
+      "bytes": 1037,
+      "incomplete_tail_bytes_omitted": 0,
+      "path": "safedial_baseline/tpo_zephyr_full_v4/invocations.jsonl",
+      "records": 2,
+      "sha256": "629439d1626cee4869bea101509d1010e10b9bd63cd83c46e518ee17692b4014",
+      "source": "outputs/safedial_baseline/tpo_zephyr_full_v4/invocations.jsonl",
+      "uncompressed_sha256": "629439d1626cee4869bea101509d1010e10b9bd63cd83c46e518ee17692b4014"
+    },
+    {
+      "bytes": 44653,
+      "derived": true,
+      "incomplete_tail_bytes_omitted": 0,
+      "path": "safedial_baseline/tpo_zephyr_full_v4/turn_status.jsonl",
+      "sha256": "95ceaf062cae58adbcc3eafc3586a73a9df7d62cf982e74f0424c1bbcc7b38af",
+      "source": "outputs/safedial_baseline/tpo_zephyr_full_v4/turns.jsonl",
+      "source_records": 126,
+      "uncompressed_sha256": "95ceaf062cae58adbcc3eafc3586a73a9df7d62cf982e74f0424c1bbcc7b38af"
+    },
+    {
+      "bytes": 211375,
+      "incomplete_tail_bytes_omitted": 0,
+      "path": "safedial_baseline/tpo_zephyr_full_v5/answers.jsonl",
+      "records": 24,
+      "sha256": "dda1b644fe6be47795bd1254fcb1eda77b991268f664c3e84c8917eddf4459a3",
+      "source": "outputs/safedial_baseline/tpo_zephyr_full_v5/answers.jsonl",
+      "uncompressed_sha256": "dda1b644fe6be47795bd1254fcb1eda77b991268f664c3e84c8917eddf4459a3"
+    },
+    {
+      "bytes": 172,
+      "path": "safedial_baseline/tpo_zephyr_full_v5/context_probe.json",
+      "sha256": "aee0c121dcc3a47e6bdbb48ff13242da9b48ba79163a1f7b38ed196cafff4c76",
+      "source": "outputs/safedial_baseline/tpo_zephyr_full_v5/context_probe.json",
+      "uncompressed_sha256": "aee0c121dcc3a47e6bdbb48ff13242da9b48ba79163a1f7b38ed196cafff4c76"
+    },
+    {
+      "bytes": 2277,
+      "path": "safedial_baseline/tpo_zephyr_full_v5/continuation.json",
+      "sha256": "9bbde0a02a7cbe3b6e217bdc157c083c867a23afc2971a8629bb5d19c0788cef",
+      "source": "outputs/safedial_baseline/tpo_zephyr_full_v5/continuation.json",
+      "uncompressed_sha256": "9bbde0a02a7cbe3b6e217bdc157c083c867a23afc2971a8629bb5d19c0788cef"
+    },
+    {
+      "bytes": 967,
+      "path": "safedial_baseline/tpo_zephyr_full_v5/failure_review_254257.json",
+      "sha256": "4c0449465c9ab2d5384c58a2508dd4deff1be86ccc2f5efee2ce2b934267c92a",
+      "source": "outputs/safedial_baseline/tpo_zephyr_full_v5/failure_review_254257.json",
+      "uncompressed_sha256": "4c0449465c9ab2d5384c58a2508dd4deff1be86ccc2f5efee2ce2b934267c92a"
+    },
+    {
+      "bytes": 234,
+      "path": "safedial_baseline/tpo_zephyr_full_v5/model_loading.json",
+      "sha256": "e7e40c077db2c404acd609990c8b537b18fd53bd28dcbd65a7687fcb863bd45f",
+      "source": "outputs/safedial_baseline/tpo_zephyr_full_v5/model_loading.json",
+      "uncompressed_sha256": "e7e40c077db2c404acd609990c8b537b18fd53bd28dcbd65a7687fcb863bd45f"
+    },
+    {
+      "bytes": 1483,
+      "path": "safedial_baseline/tpo_zephyr_full_v5/offline_preparation_review.json",
+      "sha256": "8078db01044effaad5dba552dff3848c336da891cd6b26a521bfdb6fb4563f4c",
+      "source": "outputs/safedial_baseline/tpo_zephyr_full_v5/offline_preparation_review.json",
+      "uncompressed_sha256": "8078db01044effaad5dba552dff3848c336da891cd6b26a521bfdb6fb4563f4c"
+    },
+    {
+      "bytes": 508,
+      "path": "safedial_baseline/tpo_zephyr_full_v5/preflight.json",
+      "sha256": "8ee2178cd1264e3dbbfc4221520c46223b3df14be643aa5ccf581ae9b14dd154",
+      "source": "outputs/safedial_baseline/tpo_zephyr_full_v5/preflight.json",
+      "uncompressed_sha256": "8ee2178cd1264e3dbbfc4221520c46223b3df14be643aa5ccf581ae9b14dd154"
+    },
+    {
+      "bytes": 26359,
+      "path": "safedial_baseline/tpo_zephyr_full_v5/run_config.json",
+      "sha256": "fe5e49e46f769e27f38c920dbac9e1a864a4319b52fdfcb15c5741f93eee229c",
+      "source": "outputs/safedial_baseline/tpo_zephyr_full_v5/run_config.json",
+      "uncompressed_sha256": "fe5e49e46f769e27f38c920dbac9e1a864a4319b52fdfcb15c5741f93eee229c"
+    },
+    {
+      "bytes": 526,
+      "path": "safedial_baseline/tpo_zephyr_full_v5/runtime_stats.json",
+      "sha256": "24e1e0bb9d82c00ea79478b4a2713156c51e4dbcae40ba21b1beec828b3b9827",
+      "source": "outputs/safedial_baseline/tpo_zephyr_full_v5/runtime_stats.json",
+      "uncompressed_sha256": "24e1e0bb9d82c00ea79478b4a2713156c51e4dbcae40ba21b1beec828b3b9827"
+    },
+    {
+      "bytes": 1593,
+      "incomplete_tail_bytes_omitted": 0,
+      "path": "safedial_baseline/tpo_zephyr_full_v5/invocations.jsonl",
+      "records": 3,
+      "sha256": "06735f7b537f69a51e97fff5f88134322e8f5e1fd812c5994ffde2ac4751161a",
+      "source": "outputs/safedial_baseline/tpo_zephyr_full_v5/invocations.jsonl",
+      "uncompressed_sha256": "06735f7b537f69a51e97fff5f88134322e8f5e1fd812c5994ffde2ac4751161a"
+    },
+    {
+      "bytes": 45011,
+      "derived": true,
+      "incomplete_tail_bytes_omitted": 0,
+      "path": "safedial_baseline/tpo_zephyr_full_v5/turn_status.jsonl",
+      "sha256": "e99672020ac8a0b74014984e13ed43f6f150e4ae5c5264d6ecaa9a8a3222e74b",
+      "source": "outputs/safedial_baseline/tpo_zephyr_full_v5/turns.jsonl",
+      "source_records": 127,
+      "uncompressed_sha256": "e99672020ac8a0b74014984e13ed43f6f150e4ae5c5264d6ecaa9a8a3222e74b"
+    },
+    {
+      "bytes": 223138,
+      "incomplete_tail_bytes_omitted": 0,
+      "path": "safedial_baseline/tpo_zephyr_full_v6/answers.jsonl",
+      "records": 25,
+      "sha256": "1a8ea579709e3e9ea62193bb2776a3a932c1013e9a89865c90d30f05caec9a82",
+      "source": "outputs/safedial_baseline/tpo_zephyr_full_v6/answers.jsonl",
+      "uncompressed_sha256": "1a8ea579709e3e9ea62193bb2776a3a932c1013e9a89865c90d30f05caec9a82"
+    },
+    {
+      "bytes": 172,
+      "path": "safedial_baseline/tpo_zephyr_full_v6/context_probe.json",
+      "sha256": "22f18c513e0163215522d5a92012a558b3116bfc9a51626fea829c396c6f17b3",
+      "source": "outputs/safedial_baseline/tpo_zephyr_full_v6/context_probe.json",
+      "uncompressed_sha256": "22f18c513e0163215522d5a92012a558b3116bfc9a51626fea829c396c6f17b3"
+    },
+    {
+      "bytes": 2472,
+      "path": "safedial_baseline/tpo_zephyr_full_v6/continuation.json",
+      "sha256": "504f9ef75e36ec90133eb9192286c4ee9c7117c6482284b0794668b731c9e33a",
+      "source": "outputs/safedial_baseline/tpo_zephyr_full_v6/continuation.json",
+      "uncompressed_sha256": "504f9ef75e36ec90133eb9192286c4ee9c7117c6482284b0794668b731c9e33a"
+    },
+    {
+      "bytes": 2903,
+      "path": "safedial_baseline/tpo_zephyr_full_v6/failure_review_254463.json",
+      "sha256": "0faa8e4266c5bd894f2e9c1cf7331114cc7fc284c8c423f3df24f5ad1b986954",
+      "source": "outputs/safedial_baseline/tpo_zephyr_full_v6/failure_review_254463.json",
+      "uncompressed_sha256": "0faa8e4266c5bd894f2e9c1cf7331114cc7fc284c8c423f3df24f5ad1b986954"
+    },
+    {
+      "bytes": 234,
+      "path": "safedial_baseline/tpo_zephyr_full_v6/model_loading.json",
+      "sha256": "e7e40c077db2c404acd609990c8b537b18fd53bd28dcbd65a7687fcb863bd45f",
+      "source": "outputs/safedial_baseline/tpo_zephyr_full_v6/model_loading.json",
+      "uncompressed_sha256": "e7e40c077db2c404acd609990c8b537b18fd53bd28dcbd65a7687fcb863bd45f"
+    },
+    {
+      "bytes": 1483,
+      "path": "safedial_baseline/tpo_zephyr_full_v6/offline_preparation_review.json",
+      "sha256": "67d429ea7ffa06c7a8454b1562cd46d5466952e75185881287a18fbfd08c8b2e",
+      "source": "outputs/safedial_baseline/tpo_zephyr_full_v6/offline_preparation_review.json",
+      "uncompressed_sha256": "67d429ea7ffa06c7a8454b1562cd46d5466952e75185881287a18fbfd08c8b2e"
+    },
+    {
+      "bytes": 508,
+      "path": "safedial_baseline/tpo_zephyr_full_v6/preflight.json",
+      "sha256": "8ee2178cd1264e3dbbfc4221520c46223b3df14be643aa5ccf581ae9b14dd154",
+      "source": "outputs/safedial_baseline/tpo_zephyr_full_v6/preflight.json",
+      "uncompressed_sha256": "8ee2178cd1264e3dbbfc4221520c46223b3df14be643aa5ccf581ae9b14dd154"
+    },
+    {
+      "bytes": 26452,
+      "path": "safedial_baseline/tpo_zephyr_full_v6/run_config.json",
+      "sha256": "2ad6389cb051c72b73085749a8e556558523a9f0821f8a441431db90a2a3cfd0",
+      "source": "outputs/safedial_baseline/tpo_zephyr_full_v6/run_config.json",
+      "uncompressed_sha256": "2ad6389cb051c72b73085749a8e556558523a9f0821f8a441431db90a2a3cfd0"
+    },
+    {
+      "bytes": 525,
+      "path": "safedial_baseline/tpo_zephyr_full_v6/runtime_stats.json",
+      "sha256": "b337928a4017ce32e7c3040548be9d3202d3ac7f93d9bc50f39a6fecd9e00772",
+      "source": "outputs/safedial_baseline/tpo_zephyr_full_v6/runtime_stats.json",
+      "uncompressed_sha256": "b337928a4017ce32e7c3040548be9d3202d3ac7f93d9bc50f39a6fecd9e00772"
+    },
+    {
+      "bytes": 2148,
+      "incomplete_tail_bytes_omitted": 0,
+      "path": "safedial_baseline/tpo_zephyr_full_v6/invocations.jsonl",
+      "records": 4,
+      "sha256": "babe6c9795c312e04cedd6bc582b90e89cd10182ab7bbf42eb925c22cd9f683e",
+      "source": "outputs/safedial_baseline/tpo_zephyr_full_v6/invocations.jsonl",
+      "uncompressed_sha256": "babe6c9795c312e04cedd6bc582b90e89cd10182ab7bbf42eb925c22cd9f683e"
+    },
+    {
+      "bytes": 46433,
+      "derived": true,
+      "incomplete_tail_bytes_omitted": 0,
+      "path": "safedial_baseline/tpo_zephyr_full_v6/turn_status.jsonl",
+      "sha256": "16b12e831d013fef324d9dec0d6671ba6fac0fba268dc2a4184029b0158b6304",
+      "source": "outputs/safedial_baseline/tpo_zephyr_full_v6/turns.jsonl",
+      "source_records": 131,
+      "uncompressed_sha256": "16b12e831d013fef324d9dec0d6671ba6fac0fba268dc2a4184029b0158b6304"
+    },
+    {
+      "bytes": 244733,
+      "incomplete_tail_bytes_omitted": 0,
+      "path": "safedial_baseline/tpo_zephyr_full_v7/answers.jsonl",
+      "records": 27,
+      "sha256": "c435ba6f3458aa34dc953cbfcf45cd16921c6dfb436d585b656cad01ea765f19",
+      "source": "outputs/safedial_baseline/tpo_zephyr_full_v7/answers.jsonl",
+      "uncompressed_sha256": "c435ba6f3458aa34dc953cbfcf45cd16921c6dfb436d585b656cad01ea765f19"
+    },
+    {
+      "bytes": 171,
+      "path": "safedial_baseline/tpo_zephyr_full_v7/context_probe.json",
+      "sha256": "c789dab1e36b4db17e4efc1966ddc841eb8d1d750b844406bd1b5f2ac26f68e4",
+      "source": "outputs/safedial_baseline/tpo_zephyr_full_v7/context_probe.json",
+      "uncompressed_sha256": "c789dab1e36b4db17e4efc1966ddc841eb8d1d750b844406bd1b5f2ac26f68e4"
+    },
+    {
+      "bytes": 2270,
+      "path": "safedial_baseline/tpo_zephyr_full_v7/continuation.json",
+      "sha256": "522a8d83b4bc38965fd1b6d164b4324d667c24cd07940dd5c6d21548f2b46e3e",
+      "source": "outputs/safedial_baseline/tpo_zephyr_full_v7/continuation.json",
+      "uncompressed_sha256": "522a8d83b4bc38965fd1b6d164b4324d667c24cd07940dd5c6d21548f2b46e3e"
+    },
+    {
+      "bytes": 234,
+      "path": "safedial_baseline/tpo_zephyr_full_v7/model_loading.json",
+      "sha256": "e7e40c077db2c404acd609990c8b537b18fd53bd28dcbd65a7687fcb863bd45f",
+      "source": "outputs/safedial_baseline/tpo_zephyr_full_v7/model_loading.json",
+      "uncompressed_sha256": "e7e40c077db2c404acd609990c8b537b18fd53bd28dcbd65a7687fcb863bd45f"
+    },
+    {
+      "bytes": 2020,
+      "path": "safedial_baseline/tpo_zephyr_full_v7/offline_preparation_review.json",
+      "sha256": "4cda93c4ca1899e10eff8b9b659d148407e60afe2bbe1b593458ced8b83cde28",
+      "source": "outputs/safedial_baseline/tpo_zephyr_full_v7/offline_preparation_review.json",
+      "uncompressed_sha256": "4cda93c4ca1899e10eff8b9b659d148407e60afe2bbe1b593458ced8b83cde28"
+    },
+    {
+      "bytes": 508,
+      "path": "safedial_baseline/tpo_zephyr_full_v7/preflight.json",
+      "sha256": "8ee2178cd1264e3dbbfc4221520c46223b3df14be643aa5ccf581ae9b14dd154",
+      "source": "outputs/safedial_baseline/tpo_zephyr_full_v7/preflight.json",
+      "uncompressed_sha256": "8ee2178cd1264e3dbbfc4221520c46223b3df14be643aa5ccf581ae9b14dd154"
+    },
+    {
+      "bytes": 26250,
+      "path": "safedial_baseline/tpo_zephyr_full_v7/run_config.json",
+      "sha256": "cedb436ada53111cb4026c231f8cee30c4c767a68c02ba84b6ab6567c2d19b19",
+      "source": "outputs/safedial_baseline/tpo_zephyr_full_v7/run_config.json",
+      "uncompressed_sha256": "cedb436ada53111cb4026c231f8cee30c4c767a68c02ba84b6ab6567c2d19b19"
+    },
+    {
+      "bytes": 528,
+      "path": "safedial_baseline/tpo_zephyr_full_v7/runtime_stats.json",
+      "sha256": "f28f1a88e19eae5077924f7efc41cc6065731371e6ba1e6b95fdd2faaa2cfa8d",
+      "source": "outputs/safedial_baseline/tpo_zephyr_full_v7/runtime_stats.json",
+      "uncompressed_sha256": "f28f1a88e19eae5077924f7efc41cc6065731371e6ba1e6b95fdd2faaa2cfa8d"
+    },
+    {
+      "bytes": 2706,
+      "incomplete_tail_bytes_omitted": 0,
+      "path": "safedial_baseline/tpo_zephyr_full_v7/invocations.jsonl",
+      "records": 5,
+      "sha256": "b72b8227e63fb118ebdca695c4088df69a6207e92e8b61be15357bdb29ca70a9",
+      "source": "outputs/safedial_baseline/tpo_zephyr_full_v7/invocations.jsonl",
+      "uncompressed_sha256": "b72b8227e63fb118ebdca695c4088df69a6207e92e8b61be15357bdb29ca70a9"
+    },
+    {
+      "bytes": 49932,
+      "derived": true,
+      "incomplete_tail_bytes_omitted": 0,
+      "path": "safedial_baseline/tpo_zephyr_full_v7/turn_status.jsonl",
+      "sha256": "69cfb08779f71049f1623675358ea1416d46c43df7d5d863899526fd47a3b368",
+      "source": "outputs/safedial_baseline/tpo_zephyr_full_v7/turns.jsonl",
+      "source_records": 141,
+      "uncompressed_sha256": "69cfb08779f71049f1623675358ea1416d46c43df7d5d863899526fd47a3b368"
+    },
+    {
+      "bytes": 572466,
+      "incomplete_tail_bytes_omitted": 0,
+      "path": "safedial_baseline/tpo_zephyr_full_v8/answers.jsonl",
+      "records": 56,
+      "sha256": "a815e904bd0dc9f37ca424cd6cfce7b1736636bd054213e83fea2d8ad91b936d",
+      "source": "outputs/safedial_baseline/tpo_zephyr_full_v8/answers.jsonl",
+      "uncompressed_sha256": "a815e904bd0dc9f37ca424cd6cfce7b1736636bd054213e83fea2d8ad91b936d"
+    },
+    {
+      "bytes": 172,
+      "path": "safedial_baseline/tpo_zephyr_full_v8/context_probe.json",
+      "sha256": "f225f7877330585aa85da1e9919d99f212201ccc65904a1d20065ce50d197b26",
+      "source": "outputs/safedial_baseline/tpo_zephyr_full_v8/context_probe.json",
+      "uncompressed_sha256": "f225f7877330585aa85da1e9919d99f212201ccc65904a1d20065ce50d197b26"
+    },
+    {
+      "bytes": 24361,
+      "path": "safedial_baseline/tpo_zephyr_full_v8/continuation.json",
+      "sha256": "644a9606c635e7bc2d1795c466cf3cfbdf179d3ac97ed17e3b22230ca1e25a22",
+      "source": "outputs/safedial_baseline/tpo_zephyr_full_v8/continuation.json",
+      "uncompressed_sha256": "644a9606c635e7bc2d1795c466cf3cfbdf179d3ac97ed17e3b22230ca1e25a22"
+    },
+    {
+      "bytes": 234,
+      "path": "safedial_baseline/tpo_zephyr_full_v8/model_loading.json",
+      "sha256": "e7e40c077db2c404acd609990c8b537b18fd53bd28dcbd65a7687fcb863bd45f",
+      "source": "outputs/safedial_baseline/tpo_zephyr_full_v8/model_loading.json",
+      "uncompressed_sha256": "e7e40c077db2c404acd609990c8b537b18fd53bd28dcbd65a7687fcb863bd45f"
+    },
+    {
+      "bytes": 508,
+      "path": "safedial_baseline/tpo_zephyr_full_v8/preflight.json",
+      "sha256": "8ee2178cd1264e3dbbfc4221520c46223b3df14be643aa5ccf581ae9b14dd154",
+      "source": "outputs/safedial_baseline/tpo_zephyr_full_v8/preflight.json",
+      "uncompressed_sha256": "8ee2178cd1264e3dbbfc4221520c46223b3df14be643aa5ccf581ae9b14dd154"
+    },
+    {
+      "bytes": 26689,
+      "path": "safedial_baseline/tpo_zephyr_full_v8/run_config.json",
+      "sha256": "b992e466d4ae7bb0bfd2a6433ac6fed94e2f320df74064812eb4cc3d360a7a4e",
+      "source": "outputs/safedial_baseline/tpo_zephyr_full_v8/run_config.json",
+      "uncompressed_sha256": "b992e466d4ae7bb0bfd2a6433ac6fed94e2f320df74064812eb4cc3d360a7a4e"
+    },
+    {
+      "bytes": 530,
+      "path": "safedial_baseline/tpo_zephyr_full_v8/runtime_stats.json",
+      "sha256": "7b8314a67b604bd250e39bee14f69ba8e6c23a9877a72abb748e369332c62db6",
+      "source": "outputs/safedial_baseline/tpo_zephyr_full_v8/runtime_stats.json",
+      "uncompressed_sha256": "7b8314a67b604bd250e39bee14f69ba8e6c23a9877a72abb748e369332c62db6"
+    },
+    {
+      "bytes": 3241,
+      "incomplete_tail_bytes_omitted": 0,
+      "path": "safedial_baseline/tpo_zephyr_full_v8/invocations.jsonl",
+      "records": 6,
+      "sha256": "5f697df8e70454b4b0a230590f241d62370b39c9256fa5dc2794c96f20ecbc0d",
+      "source": "outputs/safedial_baseline/tpo_zephyr_full_v8/invocations.jsonl",
+      "uncompressed_sha256": "5f697df8e70454b4b0a230590f241d62370b39c9256fa5dc2794c96f20ecbc0d"
+    },
+    {
+      "bytes": 100003,
+      "derived": true,
+      "incomplete_tail_bytes_omitted": 0,
+      "path": "safedial_baseline/tpo_zephyr_full_v8/turn_status.jsonl",
+      "sha256": "4c64ac29902b10411f5bdde2189fa33784674af6dd03bf3aa976692f29da629b",
+      "source": "outputs/safedial_baseline/tpo_zephyr_full_v8/turns.jsonl",
+      "source_records": 282,
+      "uncompressed_sha256": "4c64ac29902b10411f5bdde2189fa33784674af6dd03bf3aa976692f29da629b"
+    },
+    {
+      "bytes": 0,
+      "incomplete_tail_bytes_omitted": 0,
+      "path": "safedial_baseline/tpo_zephyr_smoke/answers.jsonl",
+      "records": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "outputs/safedial_baseline/tpo_zephyr_smoke/answers.jsonl",
+      "uncompressed_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 234,
+      "path": "safedial_baseline/tpo_zephyr_smoke/model_loading.json",
+      "sha256": "e7e40c077db2c404acd609990c8b537b18fd53bd28dcbd65a7687fcb863bd45f",
+      "source": "outputs/safedial_baseline/tpo_zephyr_smoke/model_loading.json",
+      "uncompressed_sha256": "e7e40c077db2c404acd609990c8b537b18fd53bd28dcbd65a7687fcb863bd45f"
+    },
+    {
+      "bytes": 228,
+      "path": "safedial_baseline/tpo_zephyr_smoke/preflight.json",
+      "sha256": "f1fcdaf1a595534b81b3989aab8a253bdef0dcea02d6540e70a7a163f7c99fd1",
+      "source": "outputs/safedial_baseline/tpo_zephyr_smoke/preflight.json",
+      "uncompressed_sha256": "f1fcdaf1a595534b81b3989aab8a253bdef0dcea02d6540e70a7a163f7c99fd1"
+    },
+    {
+      "bytes": 6422,
+      "path": "safedial_baseline/tpo_zephyr_smoke/run_config.json",
+      "sha256": "e2702bfa64278ad837977dcab7af06cbf6df5422b6dde983259d9a9c260557b8",
+      "source": "outputs/safedial_baseline/tpo_zephyr_smoke/run_config.json",
+      "uncompressed_sha256": "e2702bfa64278ad837977dcab7af06cbf6df5422b6dde983259d9a9c260557b8"
+    },
+    {
+      "bytes": 442,
+      "path": "safedial_baseline/tpo_zephyr_smoke/runtime_stats.json",
+      "sha256": "db4568302eb64ffcc86ff46f444c82efd45d6b4d5bc44e255b54859051db13c8",
+      "source": "outputs/safedial_baseline/tpo_zephyr_smoke/runtime_stats.json",
+      "uncompressed_sha256": "db4568302eb64ffcc86ff46f444c82efd45d6b4d5bc44e255b54859051db13c8"
+    },
+    {
+      "bytes": 1245,
+      "path": "safedial_baseline/tpo_zephyr_smoke/smoke_failure_review.json",
+      "sha256": "d427675c9fc741234a5bcf6e4d3a09fa1f5768da75d5410e03adccdfd84a8847",
+      "source": "outputs/safedial_baseline/tpo_zephyr_smoke/smoke_failure_review.json",
+      "uncompressed_sha256": "d427675c9fc741234a5bcf6e4d3a09fa1f5768da75d5410e03adccdfd84a8847"
+    },
+    {
+      "bytes": 404,
+      "incomplete_tail_bytes_omitted": 0,
+      "path": "safedial_baseline/tpo_zephyr_smoke/invocations.jsonl",
+      "records": 1,
+      "sha256": "a3051decfdfd1232d88d167b7ea106cb75e420b4ff4fc65351e9a8414d1b4b1f",
+      "source": "outputs/safedial_baseline/tpo_zephyr_smoke/invocations.jsonl",
+      "uncompressed_sha256": "a3051decfdfd1232d88d167b7ea106cb75e420b4ff4fc65351e9a8414d1b4b1f"
+    },
+    {
+      "bytes": 1070,
+      "derived": true,
+      "incomplete_tail_bytes_omitted": 0,
+      "path": "safedial_baseline/tpo_zephyr_smoke/turn_status.jsonl",
+      "sha256": "16ab9762bbcecd28f91b6a64d36b9316bf54369d73eaf5ea746609e169fae6ce",
+      "source": "outputs/safedial_baseline/tpo_zephyr_smoke/turns.jsonl",
+      "source_records": 3,
+      "uncompressed_sha256": "16ab9762bbcecd28f91b6a64d36b9316bf54369d73eaf5ea746609e169fae6ce"
+    },
+    {
+      "bytes": 364,
+      "path": "safedial_baseline/tpo_zephyr_smoke_failed_249773/failure.json",
+      "sha256": "a5fb79d1e24a93390b62fff1ebca2b6803c9ea05315e1aa6ee72b3ce3981e127",
+      "source": "outputs/safedial_baseline/tpo_zephyr_smoke_failed_249773/failure.json",
+      "uncompressed_sha256": "a5fb79d1e24a93390b62fff1ebca2b6803c9ea05315e1aa6ee72b3ce3981e127"
+    },
+    {
+      "bytes": 228,
+      "path": "safedial_baseline/tpo_zephyr_smoke_failed_249773/preflight.json",
+      "sha256": "f1fcdaf1a595534b81b3989aab8a253bdef0dcea02d6540e70a7a163f7c99fd1",
+      "source": "outputs/safedial_baseline/tpo_zephyr_smoke_failed_249773/preflight.json",
+      "uncompressed_sha256": "f1fcdaf1a595534b81b3989aab8a253bdef0dcea02d6540e70a7a163f7c99fd1"
+    },
+    {
+      "bytes": 6422,
+      "path": "safedial_baseline/tpo_zephyr_smoke_failed_249773/run_config.json",
+      "sha256": "070388d52f0e626379b6edaf7d6b9a8e577165f50bf4c29b8c95e89ffb5ab909",
+      "source": "outputs/safedial_baseline/tpo_zephyr_smoke_failed_249773/run_config.json",
+      "uncompressed_sha256": "070388d52f0e626379b6edaf7d6b9a8e577165f50bf4c29b8c95e89ffb5ab909"
+    },
+    {
+      "bytes": 0,
+      "incomplete_tail_bytes_omitted": 0,
+      "path": "safedial_baseline/tpo_zephyr_smoke_v2/answers.jsonl",
+      "records": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "outputs/safedial_baseline/tpo_zephyr_smoke_v2/answers.jsonl",
+      "uncompressed_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 1395,
+      "path": "safedial_baseline/tpo_zephyr_smoke_v2/continuation.json",
+      "sha256": "8eb62bb894a16e101819b27f288ce174490cd6dc559b8464c2027ebdd0aeb7b2",
+      "source": "outputs/safedial_baseline/tpo_zephyr_smoke_v2/continuation.json",
+      "uncompressed_sha256": "8eb62bb894a16e101819b27f288ce174490cd6dc559b8464c2027ebdd0aeb7b2"
+    },
+    {
+      "bytes": 234,
+      "path": "safedial_baseline/tpo_zephyr_smoke_v2/model_loading.json",
+      "sha256": "e7e40c077db2c404acd609990c8b537b18fd53bd28dcbd65a7687fcb863bd45f",
+      "source": "outputs/safedial_baseline/tpo_zephyr_smoke_v2/model_loading.json",
+      "uncompressed_sha256": "e7e40c077db2c404acd609990c8b537b18fd53bd28dcbd65a7687fcb863bd45f"
+    },
+    {
+      "bytes": 228,
+      "path": "safedial_baseline/tpo_zephyr_smoke_v2/preflight.json",
+      "sha256": "f1fcdaf1a595534b81b3989aab8a253bdef0dcea02d6540e70a7a163f7c99fd1",
+      "source": "outputs/safedial_baseline/tpo_zephyr_smoke_v2/preflight.json",
+      "uncompressed_sha256": "f1fcdaf1a595534b81b3989aab8a253bdef0dcea02d6540e70a7a163f7c99fd1"
+    },
+    {
+      "bytes": 6478,
+      "path": "safedial_baseline/tpo_zephyr_smoke_v2/run_config.json",
+      "sha256": "fed2ccba0e4c74ab3a367b897bd29881fdb6d3e86b1631efeb5dfe7d1049938c",
+      "source": "outputs/safedial_baseline/tpo_zephyr_smoke_v2/run_config.json",
+      "uncompressed_sha256": "fed2ccba0e4c74ab3a367b897bd29881fdb6d3e86b1631efeb5dfe7d1049938c"
+    },
+    {
+      "bytes": 442,
+      "path": "safedial_baseline/tpo_zephyr_smoke_v2/runtime_stats.json",
+      "sha256": "fe5cf7f83423a276782b3abc6dd8093408b9129d5a74ca4cb564170cd078a581",
+      "source": "outputs/safedial_baseline/tpo_zephyr_smoke_v2/runtime_stats.json",
+      "uncompressed_sha256": "fe5cf7f83423a276782b3abc6dd8093408b9129d5a74ca4cb564170cd078a581"
+    },
+    {
+      "bytes": 1077,
+      "path": "safedial_baseline/tpo_zephyr_smoke_v2/smoke_failure_review.json",
+      "sha256": "0255226193e45f23d75f847c3e17a9ef01ba353c46e645398e6f7c6daddad823",
+      "source": "outputs/safedial_baseline/tpo_zephyr_smoke_v2/smoke_failure_review.json",
+      "uncompressed_sha256": "0255226193e45f23d75f847c3e17a9ef01ba353c46e645398e6f7c6daddad823"
+    },
+    {
+      "bytes": 878,
+      "incomplete_tail_bytes_omitted": 0,
+      "path": "safedial_baseline/tpo_zephyr_smoke_v2/invocations.jsonl",
+      "records": 2,
+      "sha256": "3c824c5d7d8ee03deb018e7f2821eb8fd6704ac74d17e87679b6b6414ee91da8",
+      "source": "outputs/safedial_baseline/tpo_zephyr_smoke_v2/invocations.jsonl",
+      "uncompressed_sha256": "3c824c5d7d8ee03deb018e7f2821eb8fd6704ac74d17e87679b6b6414ee91da8"
+    },
+    {
+      "bytes": 1782,
+      "derived": true,
+      "incomplete_tail_bytes_omitted": 0,
+      "path": "safedial_baseline/tpo_zephyr_smoke_v2/turn_status.jsonl",
+      "sha256": "6c24555e680100f5919348e7688c13de4aa1c2f560334d239c5140f1bc635e04",
+      "source": "outputs/safedial_baseline/tpo_zephyr_smoke_v2/turns.jsonl",
+      "source_records": 5,
+      "uncompressed_sha256": "6c24555e680100f5919348e7688c13de4aa1c2f560334d239c5140f1bc635e04"
+    },
+    {
+      "bytes": 13832,
+      "incomplete_tail_bytes_omitted": 0,
+      "path": "safedial_baseline/tpo_zephyr_smoke_v3/answers.jsonl",
+      "records": 1,
+      "sha256": "0f1edd6c0bf76c3f0d4d9a4d4260dbee9b35a684a9736132a0d606cacfd3c238",
+      "source": "outputs/safedial_baseline/tpo_zephyr_smoke_v3/answers.jsonl",
+      "uncompressed_sha256": "0f1edd6c0bf76c3f0d4d9a4d4260dbee9b35a684a9736132a0d606cacfd3c238"
+    },
+    {
+      "bytes": 1429,
+      "path": "safedial_baseline/tpo_zephyr_smoke_v3/continuation.json",
+      "sha256": "958aa50a30241e5282496d742db13f3519089b95b1c5d500644b3e5560a0733a",
+      "source": "outputs/safedial_baseline/tpo_zephyr_smoke_v3/continuation.json",
+      "uncompressed_sha256": "958aa50a30241e5282496d742db13f3519089b95b1c5d500644b3e5560a0733a"
+    },
+    {
+      "bytes": 234,
+      "path": "safedial_baseline/tpo_zephyr_smoke_v3/model_loading.json",
+      "sha256": "e7e40c077db2c404acd609990c8b537b18fd53bd28dcbd65a7687fcb863bd45f",
+      "source": "outputs/safedial_baseline/tpo_zephyr_smoke_v3/model_loading.json",
+      "uncompressed_sha256": "e7e40c077db2c404acd609990c8b537b18fd53bd28dcbd65a7687fcb863bd45f"
+    },
+    {
+      "bytes": 228,
+      "path": "safedial_baseline/tpo_zephyr_smoke_v3/preflight.json",
+      "sha256": "f1fcdaf1a595534b81b3989aab8a253bdef0dcea02d6540e70a7a163f7c99fd1",
+      "source": "outputs/safedial_baseline/tpo_zephyr_smoke_v3/preflight.json",
+      "uncompressed_sha256": "f1fcdaf1a595534b81b3989aab8a253bdef0dcea02d6540e70a7a163f7c99fd1"
+    },
+    {
+      "bytes": 6510,
+      "path": "safedial_baseline/tpo_zephyr_smoke_v3/run_config.json",
+      "sha256": "ff5bd73c1a8f3532b17cd515a2c8baeddb335e18880fc5fecb13648a16bb3bc6",
+      "source": "outputs/safedial_baseline/tpo_zephyr_smoke_v3/run_config.json",
+      "uncompressed_sha256": "ff5bd73c1a8f3532b17cd515a2c8baeddb335e18880fc5fecb13648a16bb3bc6"
+    },
+    {
+      "bytes": 440,
+      "path": "safedial_baseline/tpo_zephyr_smoke_v3/runtime_stats.json",
+      "sha256": "10db713df3bd097bc84c431eb5ba8d0d65382a708a356cb920ac3795a502fe94",
+      "source": "outputs/safedial_baseline/tpo_zephyr_smoke_v3/runtime_stats.json",
+      "uncompressed_sha256": "10db713df3bd097bc84c431eb5ba8d0d65382a708a356cb920ac3795a502fe94"
+    },
+    {
+      "bytes": 1892,
+      "path": "safedial_baseline/tpo_zephyr_smoke_v3/smoke_review.json",
+      "sha256": "67a526deadbae1b9b6ed83752b85153c8c04e3ddf20635206741010eebdafa53",
+      "source": "outputs/safedial_baseline/tpo_zephyr_smoke_v3/smoke_review.json",
+      "uncompressed_sha256": "67a526deadbae1b9b6ed83752b85153c8c04e3ddf20635206741010eebdafa53"
+    },
+    {
+      "bytes": 338,
+      "path": "safedial_baseline/tpo_zephyr_smoke_v3/validation.json",
+      "sha256": "2ee1ec7535a2336fef13a231d042c9f6b01e2cfc67f57bd5300927554dce7570",
+      "source": "outputs/safedial_baseline/tpo_zephyr_smoke_v3/validation.json",
+      "uncompressed_sha256": "2ee1ec7535a2336fef13a231d042c9f6b01e2cfc67f57bd5300927554dce7570"
+    },
+    {
+      "bytes": 1350,
+      "incomplete_tail_bytes_omitted": 0,
+      "path": "safedial_baseline/tpo_zephyr_smoke_v3/invocations.jsonl",
+      "records": 3,
+      "sha256": "17c1c2b3c370cb4fb6f40d04c44d6538e2db3a1db040848fb8abc63377d10ce5",
+      "source": "outputs/safedial_baseline/tpo_zephyr_smoke_v3/invocations.jsonl",
+      "uncompressed_sha256": "17c1c2b3c370cb4fb6f40d04c44d6538e2db3a1db040848fb8abc63377d10ce5"
+    },
+    {
+      "bytes": 1769,
+      "derived": true,
+      "incomplete_tail_bytes_omitted": 0,
+      "path": "safedial_baseline/tpo_zephyr_smoke_v3/turn_status.jsonl",
+      "sha256": "222e0d711b0bb7965772a4c8b04f93c128f94275f849f8f7e292614b47b37ba1",
+      "source": "outputs/safedial_baseline/tpo_zephyr_smoke_v3/turns.jsonl",
+      "source_records": 5,
+      "uncompressed_sha256": "222e0d711b0bb7965772a4c8b04f93c128f94275f849f8f7e292614b47b37ba1"
+    },
+    {
+      "bytes": 14211,
+      "incomplete_tail_bytes_omitted": 0,
+      "path": "safedial_baseline/tpo_zephyr_upstream_smoke_v1/answers.jsonl",
+      "records": 1,
+      "sha256": "a6e5fdc11d41f2f72c84ca279c567cfe85cab057e58752696bc5a7b1ea183ff9",
+      "source": "outputs/safedial_baseline/tpo_zephyr_upstream_smoke_v1/answers.jsonl",
+      "uncompressed_sha256": "a6e5fdc11d41f2f72c84ca279c567cfe85cab057e58752696bc5a7b1ea183ff9"
+    },
+    {
+      "bytes": 170,
+      "path": "safedial_baseline/tpo_zephyr_upstream_smoke_v1/context_probe.json",
+      "sha256": "be2021eec3d41e678e694f8361db1f4efb8290d073baca0200a9ca48e537cba4",
+      "source": "outputs/safedial_baseline/tpo_zephyr_upstream_smoke_v1/context_probe.json",
+      "uncompressed_sha256": "be2021eec3d41e678e694f8361db1f4efb8290d073baca0200a9ca48e537cba4"
+    },
+    {
+      "bytes": 293,
+      "path": "safedial_baseline/tpo_zephyr_upstream_smoke_v1/coverage.json",
+      "sha256": "827f9186310d2ae049e6966652a9e1e1abc62c1a45c0b8e16c6eb0090f8159df",
+      "source": "outputs/safedial_baseline/tpo_zephyr_upstream_smoke_v1/coverage.json",
+      "uncompressed_sha256": "827f9186310d2ae049e6966652a9e1e1abc62c1a45c0b8e16c6eb0090f8159df"
+    },
+    {
+      "bytes": 234,
+      "path": "safedial_baseline/tpo_zephyr_upstream_smoke_v1/model_loading.json",
+      "sha256": "e7e40c077db2c404acd609990c8b537b18fd53bd28dcbd65a7687fcb863bd45f",
+      "source": "outputs/safedial_baseline/tpo_zephyr_upstream_smoke_v1/model_loading.json",
+      "uncompressed_sha256": "e7e40c077db2c404acd609990c8b537b18fd53bd28dcbd65a7687fcb863bd45f"
+    },
+    {
+      "bytes": 504,
+      "path": "safedial_baseline/tpo_zephyr_upstream_smoke_v1/preflight.json",
+      "sha256": "7481358cfe3e0470f3415cbbb17e04eee96779f10ad4616dc732f21e2f535135",
+      "source": "outputs/safedial_baseline/tpo_zephyr_upstream_smoke_v1/preflight.json",
+      "uncompressed_sha256": "7481358cfe3e0470f3415cbbb17e04eee96779f10ad4616dc732f21e2f535135"
+    },
+    {
+      "bytes": 6971,
+      "path": "safedial_baseline/tpo_zephyr_upstream_smoke_v1/run_config.json",
+      "sha256": "416760f7b7d0e51315fb1be3ddfd5a525c100a6712c5b94820a72cdb94cee19b",
+      "source": "outputs/safedial_baseline/tpo_zephyr_upstream_smoke_v1/run_config.json",
+      "uncompressed_sha256": "416760f7b7d0e51315fb1be3ddfd5a525c100a6712c5b94820a72cdb94cee19b"
+    },
+    {
+      "bytes": 515,
+      "path": "safedial_baseline/tpo_zephyr_upstream_smoke_v1/runtime_stats.json",
+      "sha256": "255edd8ff75278eab65d78f07a68e236706e03decc10c18f700529e726488b9d",
+      "source": "outputs/safedial_baseline/tpo_zephyr_upstream_smoke_v1/runtime_stats.json",
+      "uncompressed_sha256": "255edd8ff75278eab65d78f07a68e236706e03decc10c18f700529e726488b9d"
+    },
+    {
+      "bytes": 524,
+      "path": "safedial_baseline/tpo_zephyr_upstream_smoke_v1/validation.json",
+      "sha256": "81397893c297c5f6c1ccf29eb1f9a9d1afed10cd7be90a5237e648a91ebe8555",
+      "source": "outputs/safedial_baseline/tpo_zephyr_upstream_smoke_v1/validation.json",
+      "uncompressed_sha256": "81397893c297c5f6c1ccf29eb1f9a9d1afed10cd7be90a5237e648a91ebe8555"
+    },
+    {
+      "bytes": 0,
+      "incomplete_tail_bytes_omitted": 0,
+      "path": "safedial_baseline/tpo_zephyr_upstream_smoke_v1/failures.jsonl",
+      "records": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "outputs/safedial_baseline/tpo_zephyr_upstream_smoke_v1/failures.jsonl",
+      "uncompressed_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 475,
+      "incomplete_tail_bytes_omitted": 0,
+      "path": "safedial_baseline/tpo_zephyr_upstream_smoke_v1/invocations.jsonl",
+      "records": 1,
+      "sha256": "ff56ce72dc6b83a965f6d04463b490b846758c443232e1f9b36619f28fb35942",
+      "source": "outputs/safedial_baseline/tpo_zephyr_upstream_smoke_v1/invocations.jsonl",
+      "uncompressed_sha256": "ff56ce72dc6b83a965f6d04463b490b846758c443232e1f9b36619f28fb35942"
+    },
+    {
+      "bytes": 1772,
+      "derived": true,
+      "incomplete_tail_bytes_omitted": 0,
+      "path": "safedial_baseline/tpo_zephyr_upstream_smoke_v1/turn_status.jsonl",
+      "sha256": "7e82f00ebade9e88c63907d6c8e6e325178deaf34de708823a160377c0913f2e",
+      "source": "outputs/safedial_baseline/tpo_zephyr_upstream_smoke_v1/turns.jsonl",
+      "source_records": 5,
+      "uncompressed_sha256": "7e82f00ebade9e88c63907d6c8e6e325178deaf34de708823a160377c0913f2e"
+    },
+    {
+      "bytes": 5394125,
+      "incomplete_tail_bytes_omitted": 0,
+      "path": "safedial_baseline/zephyr_7b_beta_full/answers.jsonl.gz",
+      "records": 2037,
+      "sha256": "d55476d0a81261400977b82a6818f1fe2cd4b38cdbd5ddf2c66a8c24b242879b",
+      "source": "outputs/safedial_baseline/zephyr_7b_beta_full/answers.jsonl",
+      "uncompressed_sha256": "aca8734f3b93a00aeb3f4f4a048316475b0d4aebc0fa81c0dc09285d8b8c54ae"
+    },
+    {
+      "bytes": 19895,
+      "path": "safedial_baseline/zephyr_7b_beta_full/run_config.json",
+      "sha256": "8f7afeb5ed470f64236453d6ca287a60e525eb2fc012a6024c725dc075b3aba7",
+      "source": "outputs/safedial_baseline/zephyr_7b_beta_full/run_config.json",
+      "uncompressed_sha256": "8f7afeb5ed470f64236453d6ca287a60e525eb2fc012a6024c725dc075b3aba7"
+    },
+    {
+      "bytes": 2875,
+      "path": "safedial_baseline/zephyr_7b_beta_full/judgments_gpt-4o-mini/aggregate.json",
+      "sha256": "908ed327bbf9b77c57e1cedd638b2805f8023836ff48884e0a3340527830461b",
+      "source": "outputs/safedial_baseline/zephyr_7b_beta_full/judgments_gpt-4o-mini/aggregate.json",
+      "uncompressed_sha256": "908ed327bbf9b77c57e1cedd638b2805f8023836ff48884e0a3340527830461b"
+    },
+    {
+      "bytes": 17719818,
+      "incomplete_tail_bytes_omitted": 0,
+      "path": "safedial_baseline/zephyr_7b_beta_full/judgments_gpt-4o-mini/dialogue_scores.jsonl.gz",
+      "records": 2036,
+      "sha256": "390f3a0717d366a62b3a926257cfee77896858bc878c3806484f448424c6cf9c",
+      "source": "outputs/safedial_baseline/zephyr_7b_beta_full/judgments_gpt-4o-mini/dialogue_scores.jsonl",
+      "uncompressed_sha256": "78c4ed9a9db8916a8d99a061d71383c1d779c0f1c79add78094d5c07533c5a22"
+    },
+    {
+      "bytes": 1674,
+      "incomplete_tail_bytes_omitted": 0,
+      "path": "safedial_baseline/zephyr_7b_beta_full/judgments_gpt-4o-mini/failed_attempts.jsonl",
+      "records": 3,
+      "sha256": "305001c0edcf60adf790b780b8336ed810816283601799b9b9a4ad5d5d3f348b",
+      "source": "outputs/safedial_baseline/zephyr_7b_beta_full/judgments_gpt-4o-mini/failed_attempts.jsonl",
+      "uncompressed_sha256": "305001c0edcf60adf790b780b8336ed810816283601799b9b9a4ad5d5d3f348b"
+    },
+    {
+      "bytes": 43049,
+      "path": "safedial_baseline/zephyr_7b_beta_full/judgments_gpt-4o-mini/human_adjudication.json",
+      "sha256": "4ced63ae70e7c439bee772197dec00fc3aa931cf2bd3b3a13b6014bd7608e50b",
+      "source": "outputs/safedial_baseline/zephyr_7b_beta_full/judgments_gpt-4o-mini/human_adjudication.json",
+      "uncompressed_sha256": "4ced63ae70e7c439bee772197dec00fc3aa931cf2bd3b3a13b6014bd7608e50b"
+    },
+    {
+      "bytes": 943,
+      "path": "safedial_baseline/zephyr_7b_beta_full/judgments_gpt-4o-mini/judge_config.json",
+      "sha256": "86fd1680f92c257e2d85db6f3175626f32132f344c491e1aa01d29fa8f50e887",
+      "source": "outputs/safedial_baseline/zephyr_7b_beta_full/judgments_gpt-4o-mini/judge_config.json",
+      "uncompressed_sha256": "86fd1680f92c257e2d85db6f3175626f32132f344c491e1aa01d29fa8f50e887"
+    },
+    {
+      "bytes": 20849483,
+      "incomplete_tail_bytes_omitted": 0,
+      "path": "safedial_baseline/zephyr_7b_beta_full/judgments_gpt-4o-mini/judgments.jsonl.gz",
+      "records": 10029,
+      "sha256": "4170202cc840a8c8cb9856147144180257b6cedf7886482f04a7a800c0cb6239",
+      "source": "outputs/safedial_baseline/zephyr_7b_beta_full/judgments_gpt-4o-mini/judgments.jsonl",
+      "uncompressed_sha256": "2be84c7c21e14f3ef29ccbf317883c25bc810221d9aa30fcbad6145079cba03b"
+    },
+    {
+      "bytes": 705330,
+      "derived": true,
+      "incomplete_tail_bytes_omitted": 0,
+      "path": "safedial_baseline/zephyr_7b_beta_full/turn_status.jsonl.gz",
+      "sha256": "e664c11205db75a811b63b7a080c8581586f401083f37663d9c0feb86885d127",
+      "source": "outputs/safedial_baseline/zephyr_7b_beta_full/turns.jsonl",
+      "source_records": 10029,
+      "uncompressed_sha256": "db7522bef1b5fe36a81341529f2e7f6765ee0f65901a75e4e0cbfde93e3c7279"
+    },
+    {
+      "bytes": 113045,
+      "incomplete_tail_bytes_omitted": 0,
+      "path": "safedial_baseline/zephyr_7b_beta_smoke/answers.jsonl",
+      "records": 12,
+      "sha256": "3880f5f3db25360c55d95192517ea25e4e96a652b03b23e9e2dce7e1068db591",
+      "source": "outputs/safedial_baseline/zephyr_7b_beta_smoke/answers.jsonl",
+      "uncompressed_sha256": "3880f5f3db25360c55d95192517ea25e4e96a652b03b23e9e2dce7e1068db591"
+    },
+    {
+      "bytes": 726,
+      "path": "safedial_baseline/zephyr_7b_beta_smoke/run_config.json",
+      "sha256": "a8764ee447a219ca89338b913102f3403ba822acda3536bcf47776dc802b4efe",
+      "source": "outputs/safedial_baseline/zephyr_7b_beta_smoke/run_config.json",
+      "uncompressed_sha256": "a8764ee447a219ca89338b913102f3403ba822acda3536bcf47776dc802b4efe"
+    },
+    {
+      "bytes": 1693,
+      "path": "safedial_baseline/zephyr_7b_beta_smoke/judge_live_smoke_1/aggregate.json",
+      "sha256": "4b37d63ce18fd067d1765119b5825375d1aa8099e0e2c8b14484b0926b15722e",
+      "source": "outputs/safedial_baseline/zephyr_7b_beta_smoke/judge_live_smoke_1/aggregate.json",
+      "uncompressed_sha256": "4b37d63ce18fd067d1765119b5825375d1aa8099e0e2c8b14484b0926b15722e"
+    },
+    {
+      "bytes": 41363,
+      "incomplete_tail_bytes_omitted": 0,
+      "path": "safedial_baseline/zephyr_7b_beta_smoke/judge_live_smoke_1/dialogue_scores.jsonl",
+      "records": 1,
+      "sha256": "eebe615914d7e58f533d183a8253fe9b08cd309c4d6629c211f2a2cef504bcec",
+      "source": "outputs/safedial_baseline/zephyr_7b_beta_smoke/judge_live_smoke_1/dialogue_scores.jsonl",
+      "uncompressed_sha256": "eebe615914d7e58f533d183a8253fe9b08cd309c4d6629c211f2a2cef504bcec"
+    },
+    {
+      "bytes": 941,
+      "path": "safedial_baseline/zephyr_7b_beta_smoke/judge_live_smoke_1/judge_config.json",
+      "sha256": "6489d6da491e62eab6a653959210d96e1b8652ad63e99d135bbe0b319d7a554b",
+      "source": "outputs/safedial_baseline/zephyr_7b_beta_smoke/judge_live_smoke_1/judge_config.json",
+      "uncompressed_sha256": "6489d6da491e62eab6a653959210d96e1b8652ad63e99d135bbe0b319d7a554b"
+    },
+    {
+      "bytes": 75835,
+      "incomplete_tail_bytes_omitted": 0,
+      "path": "safedial_baseline/zephyr_7b_beta_smoke/judge_live_smoke_1/judgments.jsonl",
+      "records": 5,
+      "sha256": "6c4a8d0a2f242bfc7210f59bb89d60ab259c95e7eddcdc2f51388f9c5c48e7a6",
+      "source": "outputs/safedial_baseline/zephyr_7b_beta_smoke/judge_live_smoke_1/judgments.jsonl",
+      "uncompressed_sha256": "6c4a8d0a2f242bfc7210f59bb89d60ab259c95e7eddcdc2f51388f9c5c48e7a6"
+    },
+    {
+      "bytes": 1872,
+      "path": "safedial_baseline/zephyr_7b_beta_smoke/judgments_gpt-4o-mini/aggregate.json",
+      "sha256": "9471561767ac6377341ff9487c1bac6f0ef05db5c3e765e78fd8650befee5f6d",
+      "source": "outputs/safedial_baseline/zephyr_7b_beta_smoke/judgments_gpt-4o-mini/aggregate.json",
+      "uncompressed_sha256": "9471561767ac6377341ff9487c1bac6f0ef05db5c3e765e78fd8650befee5f6d"
+    },
+    {
+      "bytes": 581116,
+      "incomplete_tail_bytes_omitted": 0,
+      "path": "safedial_baseline/zephyr_7b_beta_smoke/judgments_gpt-4o-mini/dialogue_scores.jsonl",
+      "records": 12,
+      "sha256": "a7a5ba6029e4dee7da7ec9e2ef83ff9e753b8eea2a16be14bd52607cd87b2957",
+      "source": "outputs/safedial_baseline/zephyr_7b_beta_smoke/judgments_gpt-4o-mini/dialogue_scores.jsonl",
+      "uncompressed_sha256": "a7a5ba6029e4dee7da7ec9e2ef83ff9e753b8eea2a16be14bd52607cd87b2957"
+    },
+    {
+      "bytes": 944,
+      "path": "safedial_baseline/zephyr_7b_beta_smoke/judgments_gpt-4o-mini/judge_config.json",
+      "sha256": "20888ddc75629be65ad3b7744580ca4a317097ebabea9e0f584dd8b4a9e4d988",
+      "source": "outputs/safedial_baseline/zephyr_7b_beta_smoke/judgments_gpt-4o-mini/judge_config.json",
+      "uncompressed_sha256": "20888ddc75629be65ad3b7744580ca4a317097ebabea9e0f584dd8b4a9e4d988"
+    },
+    {
+      "bytes": 124428,
+      "incomplete_tail_bytes_omitted": 0,
+      "path": "safedial_baseline/zephyr_7b_beta_smoke/judgments_gpt-4o-mini/judgments.jsonl.gz",
+      "records": 62,
+      "sha256": "db551c59240609b2cb3fd91869f71d998da4d0e199eda928058c20d9dd19a071",
+      "source": "outputs/safedial_baseline/zephyr_7b_beta_smoke/judgments_gpt-4o-mini/judgments.jsonl",
+      "uncompressed_sha256": "631ca8af5088de634a4b9ca25dbdd879e485cd840d62c7de39a00622d88bd9ce"
+    },
+    {
+      "bytes": 16975,
+      "derived": true,
+      "incomplete_tail_bytes_omitted": 0,
+      "path": "safedial_baseline/zephyr_7b_beta_smoke/turn_status.jsonl",
+      "sha256": "04261fff4d5caf52a1c798b19b9d33a11df716521e0e6d6d37c7d6d43db82b56",
+      "source": "outputs/safedial_baseline/zephyr_7b_beta_smoke/turns.jsonl",
+      "source_records": 62,
+      "uncompressed_sha256": "04261fff4d5caf52a1c798b19b9d33a11df716521e0e6d6d37c7d6d43db82b56"
+    },
+    {
+      "bytes": 3041,
+      "incomplete_tail_bytes_omitted": 0,
+      "path": "safedial_dcgs/zephyr_7b_beta_wildjailbreak_critic_smoke/answers.jsonl",
+      "records": 1,
+      "sha256": "0a56ca454246bfe3d16842aaa6ef7b4bc7365a31a40e03b8ecc2b27d11d6432b",
+      "source": "outputs/safedial_dcgs/zephyr_7b_beta_wildjailbreak_critic_smoke/answers.jsonl",
+      "uncompressed_sha256": "0a56ca454246bfe3d16842aaa6ef7b4bc7365a31a40e03b8ecc2b27d11d6432b"
+    },
+    {
+      "bytes": 1188,
+      "path": "safedial_dcgs/zephyr_7b_beta_wildjailbreak_critic_smoke/run_config.json",
+      "sha256": "624cb182802817fbfd7c6a421b72b5bf650d20929d6e8c8d5e32c7735e03333c",
+      "source": "outputs/safedial_dcgs/zephyr_7b_beta_wildjailbreak_critic_smoke/run_config.json",
+      "uncompressed_sha256": "624cb182802817fbfd7c6a421b72b5bf650d20929d6e8c8d5e32c7735e03333c"
+    },
+    {
+      "bytes": 1254,
+      "derived": true,
+      "incomplete_tail_bytes_omitted": 0,
+      "path": "safedial_dcgs/zephyr_7b_beta_wildjailbreak_critic_smoke/turn_status.jsonl",
+      "sha256": "95fd6de68d8a5e2ca10c9024b0c24f728522a9b74827a963df676e571f6349ba",
+      "source": "outputs/safedial_dcgs/zephyr_7b_beta_wildjailbreak_critic_smoke/turns.jsonl",
+      "source_records": 5,
+      "uncompressed_sha256": "95fd6de68d8a5e2ca10c9024b0c24f728522a9b74827a963df676e571f6349ba"
+    },
+    {
+      "bytes": 120460,
+      "incomplete_tail_bytes_omitted": 0,
+      "path": "safedial_dcgs/zephyr_rdcgs_aug11_a5000_full/answers.jsonl",
+      "records": 19,
+      "sha256": "3fe59c5f7a0908477e3d6c5b351dbea2be404c28dbdee15834ce03579bea73a3",
+      "source": "outputs/safedial_dcgs/zephyr_rdcgs_aug11_a5000_full/answers.jsonl",
+      "uncompressed_sha256": "3fe59c5f7a0908477e3d6c5b351dbea2be404c28dbdee15834ce03579bea73a3"
+    },
+    {
+      "bytes": 195,
+      "path": "safedial_dcgs/zephyr_rdcgs_aug11_a5000_full/context_probe.json",
+      "sha256": "b13fed009af7dae241250ad4f2364967cb0626eae3bedb868a500c7450db436a",
+      "source": "outputs/safedial_dcgs/zephyr_rdcgs_aug11_a5000_full/context_probe.json",
+      "uncompressed_sha256": "b13fed009af7dae241250ad4f2364967cb0626eae3bedb868a500c7450db436a"
+    },
+    {
+      "bytes": 877,
+      "path": "safedial_dcgs/zephyr_rdcgs_aug11_a5000_full/model_loading.json",
+      "sha256": "e5a480d88111ed21174e1fb30817c4c8bc29f43dc9820b170a246e3240a99d5f",
+      "source": "outputs/safedial_dcgs/zephyr_rdcgs_aug11_a5000_full/model_loading.json",
+      "uncompressed_sha256": "e5a480d88111ed21174e1fb30817c4c8bc29f43dc9820b170a246e3240a99d5f"
+    },
+    {
+      "bytes": 446,
+      "path": "safedial_dcgs/zephyr_rdcgs_aug11_a5000_full/preflight.json",
+      "sha256": "c444380774022b70027d8c0aa5f61addd02d6ec5418a9b65e5402fc019065eb9",
+      "source": "outputs/safedial_dcgs/zephyr_rdcgs_aug11_a5000_full/preflight.json",
+      "uncompressed_sha256": "c444380774022b70027d8c0aa5f61addd02d6ec5418a9b65e5402fc019065eb9"
+    },
+    {
+      "bytes": 35137,
+      "path": "safedial_dcgs/zephyr_rdcgs_aug11_a5000_full/run_config.json",
+      "sha256": "dd0c11358110e86bc4febc9d0d7a083dc6cc9e1cf8b84aa5e177975a0afedfda",
+      "source": "outputs/safedial_dcgs/zephyr_rdcgs_aug11_a5000_full/run_config.json",
+      "uncompressed_sha256": "dd0c11358110e86bc4febc9d0d7a083dc6cc9e1cf8b84aa5e177975a0afedfda"
+    },
+    {
+      "bytes": 854,
+      "path": "safedial_dcgs/zephyr_rdcgs_aug11_a5000_full/runtime_stats.json",
+      "sha256": "1e6db1b17572a60fc4ede58317f84e4af1ea1022fd9fe32b5c8b4df697cda34a",
+      "source": "outputs/safedial_dcgs/zephyr_rdcgs_aug11_a5000_full/runtime_stats.json",
+      "uncompressed_sha256": "1e6db1b17572a60fc4ede58317f84e4af1ea1022fd9fe32b5c8b4df697cda34a"
+    },
+    {
+      "bytes": 748,
+      "incomplete_tail_bytes_omitted": 0,
+      "path": "safedial_dcgs/zephyr_rdcgs_aug11_a5000_full/invocations.jsonl",
+      "records": 1,
+      "sha256": "fad2250e69b6e5a0b7991113b27ca8e9ae0bbf42c013a81683438dd467cf3ae1",
+      "source": "outputs/safedial_dcgs/zephyr_rdcgs_aug11_a5000_full/invocations.jsonl",
+      "uncompressed_sha256": "fad2250e69b6e5a0b7991113b27ca8e9ae0bbf42c013a81683438dd467cf3ae1"
+    },
+    {
+      "bytes": 30776,
+      "derived": true,
+      "incomplete_tail_bytes_omitted": 0,
+      "path": "safedial_dcgs/zephyr_rdcgs_aug11_a5000_full/turn_status.jsonl",
+      "sha256": "626ecc01e85e1d2ff0c9af3b4ef7369bdca43f1a16b1310b0fd22dcec1654e6d",
+      "source": "outputs/safedial_dcgs/zephyr_rdcgs_aug11_a5000_full/turns.jsonl",
+      "source_records": 101,
+      "uncompressed_sha256": "626ecc01e85e1d2ff0c9af3b4ef7369bdca43f1a16b1310b0fd22dcec1654e6d"
+    },
+    {
+      "bytes": 120460,
+      "incomplete_tail_bytes_omitted": 0,
+      "path": "safedial_dcgs/zephyr_rdcgs_aug11_a5000_full_retry_v1/answers.jsonl",
+      "records": 19,
+      "sha256": "2d5b0c4560c0d4df6c3f8ffe315fc20ee187f3e3b74d0a85faa8307364f2476e",
+      "source": "outputs/safedial_dcgs/zephyr_rdcgs_aug11_a5000_full_retry_v1/answers.jsonl",
+      "uncompressed_sha256": "2d5b0c4560c0d4df6c3f8ffe315fc20ee187f3e3b74d0a85faa8307364f2476e"
+    },
+    {
+      "bytes": 2019,
+      "path": "safedial_dcgs/zephyr_rdcgs_aug11_a5000_full_retry_v1/continuation.json",
+      "sha256": "e08f0360eb912512cfd63445fcddfc678c0f1ef5d060fe4d5bc9d0a759fd97d4",
+      "source": "outputs/safedial_dcgs/zephyr_rdcgs_aug11_a5000_full_retry_v1/continuation.json",
+      "uncompressed_sha256": "e08f0360eb912512cfd63445fcddfc678c0f1ef5d060fe4d5bc9d0a759fd97d4"
+    },
+    {
+      "bytes": 35584,
+      "path": "safedial_dcgs/zephyr_rdcgs_aug11_a5000_full_retry_v1/run_config.json",
+      "sha256": "392297e0332b4ba87b0849523963e710bc5ebf2ea5ab27e9dc554e7a1f02a75c",
+      "source": "outputs/safedial_dcgs/zephyr_rdcgs_aug11_a5000_full_retry_v1/run_config.json",
+      "uncompressed_sha256": "392297e0332b4ba87b0849523963e710bc5ebf2ea5ab27e9dc554e7a1f02a75c"
+    },
+    {
+      "bytes": 793,
+      "incomplete_tail_bytes_omitted": 0,
+      "path": "safedial_dcgs/zephyr_rdcgs_aug11_a5000_full_retry_v1/invocations.jsonl",
+      "records": 1,
+      "sha256": "81dae827d09bb0c9bae4832edd9597dc2f2cbef717add579a00dc2e0d71fc64f",
+      "source": "outputs/safedial_dcgs/zephyr_rdcgs_aug11_a5000_full_retry_v1/invocations.jsonl",
+      "uncompressed_sha256": "81dae827d09bb0c9bae4832edd9597dc2f2cbef717add579a00dc2e0d71fc64f"
+    },
+    {
+      "bytes": 30524,
+      "derived": true,
+      "incomplete_tail_bytes_omitted": 0,
+      "path": "safedial_dcgs/zephyr_rdcgs_aug11_a5000_full_retry_v1/turn_status.jsonl",
+      "sha256": "aeb570064581c58f71716b3203f701b17d78958d5a99dc2b0f96ac5c158eba94",
+      "source": "outputs/safedial_dcgs/zephyr_rdcgs_aug11_a5000_full_retry_v1/turns.jsonl",
+      "source_records": 100,
+      "uncompressed_sha256": "aeb570064581c58f71716b3203f701b17d78958d5a99dc2b0f96ac5c158eba94"
+    },
+    {
+      "bytes": 546535,
+      "incomplete_tail_bytes_omitted": 0,
+      "path": "safedial_dcgs/zephyr_rdcgs_original_wildjailbreak_full_v2/answers.jsonl.gz",
+      "records": 619,
+      "sha256": "558cd31e83103da229de001ddacf506fcdd4a6d109c039c27a6bb768600c562d",
+      "source": "outputs/safedial_dcgs/zephyr_rdcgs_original_wildjailbreak_full_v2/answers.jsonl",
+      "uncompressed_sha256": "9c17f291ddd2dbab9afc53c854854cb2c2ab21ce54c3d3157257c7b3e8d78373"
+    },
+    {
+      "bytes": 365,
+      "path": "safedial_dcgs/zephyr_rdcgs_original_wildjailbreak_full_v2/model_loading.json",
+      "sha256": "1bd11401db64616c92846d87ede1701fa3b98f43335490964e371d1889ef36e0",
+      "source": "outputs/safedial_dcgs/zephyr_rdcgs_original_wildjailbreak_full_v2/model_loading.json",
+      "uncompressed_sha256": "1bd11401db64616c92846d87ede1701fa3b98f43335490964e371d1889ef36e0"
+    },
+    {
+      "bytes": 134570,
+      "path": "safedial_dcgs/zephyr_rdcgs_original_wildjailbreak_full_v2/preflight.json",
+      "sha256": "56fccfd4d54fe6d36723392404b0be4825dbf40cab238a8f6dfda3f052ddfa56",
+      "source": "outputs/safedial_dcgs/zephyr_rdcgs_original_wildjailbreak_full_v2/preflight.json",
+      "uncompressed_sha256": "56fccfd4d54fe6d36723392404b0be4825dbf40cab238a8f6dfda3f052ddfa56"
+    },
+    {
+      "bytes": 37771,
+      "path": "safedial_dcgs/zephyr_rdcgs_original_wildjailbreak_full_v2/run_config.json",
+      "sha256": "55506b2281118b06afc262b340e3152856a6338ee3d5d21ad8c79f3aa8c920ad",
+      "source": "outputs/safedial_dcgs/zephyr_rdcgs_original_wildjailbreak_full_v2/run_config.json",
+      "uncompressed_sha256": "55506b2281118b06afc262b340e3152856a6338ee3d5d21ad8c79f3aa8c920ad"
+    },
+    {
+      "bytes": 375,
+      "incomplete_tail_bytes_omitted": 0,
+      "path": "safedial_dcgs/zephyr_rdcgs_original_wildjailbreak_full_v2/model_loading.jsonl",
+      "records": 1,
+      "sha256": "1115b38bcd9ab909b4ffa977cc458cf85eb80f875af036f046cd81addc594263",
+      "source": "outputs/safedial_dcgs/zephyr_rdcgs_original_wildjailbreak_full_v2/model_loading.jsonl",
+      "uncompressed_sha256": "1115b38bcd9ab909b4ffa977cc458cf85eb80f875af036f046cd81addc594263"
+    },
+    {
+      "bytes": 516800,
+      "derived": true,
+      "incomplete_tail_bytes_omitted": 0,
+      "path": "safedial_dcgs/zephyr_rdcgs_original_wildjailbreak_full_v2/turn_status.jsonl",
+      "sha256": "39863706d4d9efe5131fdf7a934e026a1cfc53e756b261eef3e610c4315ad985",
+      "source": "outputs/safedial_dcgs/zephyr_rdcgs_original_wildjailbreak_full_v2/turns.jsonl",
+      "source_records": 2982,
+      "uncompressed_sha256": "39863706d4d9efe5131fdf7a934e026a1cfc53e756b261eef3e610c4315ad985"
+    },
+    {
+      "bytes": 270,
+      "path": "safedial_dcgs/zephyr_rdcgs_original_wildjailbreak_smoke/preflight.json",
+      "sha256": "5a6c4f0b004df3ac65f64f842742eb340980f4de817fea0d504982a5521f4974",
+      "source": "outputs/safedial_dcgs/zephyr_rdcgs_original_wildjailbreak_smoke/preflight.json",
+      "uncompressed_sha256": "5a6c4f0b004df3ac65f64f842742eb340980f4de817fea0d504982a5521f4974"
+    },
+    {
+      "bytes": 18136,
+      "path": "safedial_dcgs/zephyr_rdcgs_original_wildjailbreak_smoke/run_config.json",
+      "sha256": "20d09721b0e1214ac00939ec10ffe45e88a488d6ec42d6903213edc111650207",
+      "source": "outputs/safedial_dcgs/zephyr_rdcgs_original_wildjailbreak_smoke/run_config.json",
+      "uncompressed_sha256": "20d09721b0e1214ac00939ec10ffe45e88a488d6ec42d6903213edc111650207"
+    },
+    {
+      "bytes": 2952,
+      "incomplete_tail_bytes_omitted": 0,
+      "path": "safedial_dcgs/zephyr_rdcgs_original_wildjailbreak_smoke_v2/answers.jsonl",
+      "records": 1,
+      "sha256": "44c592d229d99ee6028d15dd1240a005c01772e36906d6f1b752e3e7cf9bb43c",
+      "source": "outputs/safedial_dcgs/zephyr_rdcgs_original_wildjailbreak_smoke_v2/answers.jsonl",
+      "uncompressed_sha256": "44c592d229d99ee6028d15dd1240a005c01772e36906d6f1b752e3e7cf9bb43c"
+    },
+    {
+      "bytes": 365,
+      "path": "safedial_dcgs/zephyr_rdcgs_original_wildjailbreak_smoke_v2/model_loading.json",
+      "sha256": "1bd11401db64616c92846d87ede1701fa3b98f43335490964e371d1889ef36e0",
+      "source": "outputs/safedial_dcgs/zephyr_rdcgs_original_wildjailbreak_smoke_v2/model_loading.json",
+      "uncompressed_sha256": "1bd11401db64616c92846d87ede1701fa3b98f43335490964e371d1889ef36e0"
+    },
+    {
+      "bytes": 1089,
+      "path": "safedial_dcgs/zephyr_rdcgs_original_wildjailbreak_smoke_v2/preflight.json",
+      "sha256": "5bec85ca22d43a8ff648c611c32ba20c019911d2133f351ad01c7c728e5ad930",
+      "source": "outputs/safedial_dcgs/zephyr_rdcgs_original_wildjailbreak_smoke_v2/preflight.json",
+      "uncompressed_sha256": "5bec85ca22d43a8ff648c611c32ba20c019911d2133f351ad01c7c728e5ad930"
+    },
+    {
+      "bytes": 18500,
+      "path": "safedial_dcgs/zephyr_rdcgs_original_wildjailbreak_smoke_v2/run_config.json",
+      "sha256": "4f5e32f2fde3a58fad3f675973489f916a2e2a6f180db4e7a93823c81cd9e11a",
+      "source": "outputs/safedial_dcgs/zephyr_rdcgs_original_wildjailbreak_smoke_v2/run_config.json",
+      "uncompressed_sha256": "4f5e32f2fde3a58fad3f675973489f916a2e2a6f180db4e7a93823c81cd9e11a"
+    },
+    {
+      "bytes": 207,
+      "path": "safedial_dcgs/zephyr_rdcgs_original_wildjailbreak_smoke_v2/status.json",
+      "sha256": "5320c52cdfb0c4c5da45699b7e9271af3e99ba8d6242ded1164fc53b260ee365",
+      "source": "outputs/safedial_dcgs/zephyr_rdcgs_original_wildjailbreak_smoke_v2/status.json",
+      "uncompressed_sha256": "5320c52cdfb0c4c5da45699b7e9271af3e99ba8d6242ded1164fc53b260ee365"
+    },
+    {
+      "bytes": 2019,
+      "path": "safedial_dcgs/zephyr_rdcgs_original_wildjailbreak_smoke_v2/validation.json",
+      "sha256": "f926ef64d5b11018b45c00353486990d24afb3a3f3f99b6cbded73fbb6eb3983",
+      "source": "outputs/safedial_dcgs/zephyr_rdcgs_original_wildjailbreak_smoke_v2/validation.json",
+      "uncompressed_sha256": "f926ef64d5b11018b45c00353486990d24afb3a3f3f99b6cbded73fbb6eb3983"
+    },
+    {
+      "bytes": 375,
+      "incomplete_tail_bytes_omitted": 0,
+      "path": "safedial_dcgs/zephyr_rdcgs_original_wildjailbreak_smoke_v2/model_loading.jsonl",
+      "records": 1,
+      "sha256": "16339e32b05a7f746dbc338f1055861a373721e2d4fb6f499e5b8f833f93f45f",
+      "source": "outputs/safedial_dcgs/zephyr_rdcgs_original_wildjailbreak_smoke_v2/model_loading.jsonl",
+      "uncompressed_sha256": "16339e32b05a7f746dbc338f1055861a373721e2d4fb6f499e5b8f833f93f45f"
+    },
+    {
+      "bytes": 226,
+      "incomplete_tail_bytes_omitted": 0,
+      "path": "safedial_dcgs/zephyr_rdcgs_original_wildjailbreak_smoke_v2/runtime.jsonl",
+      "records": 1,
+      "sha256": "2f8f1a8d6ccad8615b8f4210084e63710aa00a51e1b6bfa9ad54330c6bded422",
+      "source": "outputs/safedial_dcgs/zephyr_rdcgs_original_wildjailbreak_smoke_v2/runtime.jsonl",
+      "uncompressed_sha256": "2f8f1a8d6ccad8615b8f4210084e63710aa00a51e1b6bfa9ad54330c6bded422"
+    },
+    {
+      "bytes": 857,
+      "derived": true,
+      "incomplete_tail_bytes_omitted": 0,
+      "path": "safedial_dcgs/zephyr_rdcgs_original_wildjailbreak_smoke_v2/turn_status.jsonl",
+      "sha256": "165badb273b655ae76ad2f7b5398563a6de4a063aae21e117220f51755fb57f1",
+      "source": "outputs/safedial_dcgs/zephyr_rdcgs_original_wildjailbreak_smoke_v2/turns.jsonl",
+      "source_records": 5,
+      "uncompressed_sha256": "165badb273b655ae76ad2f7b5398563a6de4a063aae21e117220f51755fb57f1"
+    },
+    {
+      "bytes": 36198,
+      "incomplete_tail_bytes_omitted": 0,
+      "path": "safedial_dcgs/zephyr_vdcgs_aug11_a5000_full/answers.jsonl",
+      "records": 5,
+      "sha256": "181ceb8ba4c39c26c48723c7ddf4635c9e64c136b1961a1d5a7323935b2e2fd0",
+      "source": "outputs/safedial_dcgs/zephyr_vdcgs_aug11_a5000_full/answers.jsonl",
+      "uncompressed_sha256": "181ceb8ba4c39c26c48723c7ddf4635c9e64c136b1961a1d5a7323935b2e2fd0"
+    },
+    {
+      "bytes": 195,
+      "path": "safedial_dcgs/zephyr_vdcgs_aug11_a5000_full/context_probe.json",
+      "sha256": "e18f69c451b238f88dc6ce06c7447240c93f2f6afb73f5e0ebe7e404eb5e8c56",
+      "source": "outputs/safedial_dcgs/zephyr_vdcgs_aug11_a5000_full/context_probe.json",
+      "uncompressed_sha256": "e18f69c451b238f88dc6ce06c7447240c93f2f6afb73f5e0ebe7e404eb5e8c56"
+    },
+    {
+      "bytes": 795,
+      "path": "safedial_dcgs/zephyr_vdcgs_aug11_a5000_full/model_loading.json",
+      "sha256": "7de61d4f155c6289d5d3181063380c011d156250a97eea2121d64728299a5fa9",
+      "source": "outputs/safedial_dcgs/zephyr_vdcgs_aug11_a5000_full/model_loading.json",
+      "uncompressed_sha256": "7de61d4f155c6289d5d3181063380c011d156250a97eea2121d64728299a5fa9"
+    },
+    {
+      "bytes": 446,
+      "path": "safedial_dcgs/zephyr_vdcgs_aug11_a5000_full/preflight.json",
+      "sha256": "146f94a8334a680ead99cbdb73c0f1858f4de331d9e1fc45448caea30421952f",
+      "source": "outputs/safedial_dcgs/zephyr_vdcgs_aug11_a5000_full/preflight.json",
+      "uncompressed_sha256": "146f94a8334a680ead99cbdb73c0f1858f4de331d9e1fc45448caea30421952f"
+    },
+    {
+      "bytes": 35098,
+      "path": "safedial_dcgs/zephyr_vdcgs_aug11_a5000_full/run_config.json",
+      "sha256": "03d2568c7477f145d51b3d0528b8cf1aa94992a65b1f8f91155e1019f04f60c2",
+      "source": "outputs/safedial_dcgs/zephyr_vdcgs_aug11_a5000_full/run_config.json",
+      "uncompressed_sha256": "03d2568c7477f145d51b3d0528b8cf1aa94992a65b1f8f91155e1019f04f60c2"
+    },
+    {
+      "bytes": 852,
+      "path": "safedial_dcgs/zephyr_vdcgs_aug11_a5000_full/runtime_stats.json",
+      "sha256": "f905d5ef97d96b62f2a244171502bea85384677ba785390c53abdb6c8a29004c",
+      "source": "outputs/safedial_dcgs/zephyr_vdcgs_aug11_a5000_full/runtime_stats.json",
+      "uncompressed_sha256": "f905d5ef97d96b62f2a244171502bea85384677ba785390c53abdb6c8a29004c"
+    },
+    {
+      "bytes": 746,
+      "incomplete_tail_bytes_omitted": 0,
+      "path": "safedial_dcgs/zephyr_vdcgs_aug11_a5000_full/invocations.jsonl",
+      "records": 1,
+      "sha256": "4486066aee3ffa9218f5c8d86c08d7c2ada021788fcba524a4ef45d0a400cbc9",
+      "source": "outputs/safedial_dcgs/zephyr_vdcgs_aug11_a5000_full/invocations.jsonl",
+      "uncompressed_sha256": "4486066aee3ffa9218f5c8d86c08d7c2ada021788fcba524a4ef45d0a400cbc9"
+    },
+    {
+      "bytes": 9078,
+      "derived": true,
+      "incomplete_tail_bytes_omitted": 0,
+      "path": "safedial_dcgs/zephyr_vdcgs_aug11_a5000_full/turn_status.jsonl",
+      "sha256": "293eea38947c9c9496b729c4d36f774a8b489d53f87ed3005cce5e65c90da139",
+      "source": "outputs/safedial_dcgs/zephyr_vdcgs_aug11_a5000_full/turns.jsonl",
+      "source_records": 30,
+      "uncompressed_sha256": "293eea38947c9c9496b729c4d36f774a8b489d53f87ed3005cce5e65c90da139"
+    },
+    {
+      "bytes": 36198,
+      "incomplete_tail_bytes_omitted": 0,
+      "path": "safedial_dcgs/zephyr_vdcgs_aug11_a5000_full_retry_v1/answers.jsonl",
+      "records": 5,
+      "sha256": "259360b9e3470349497614b90d76a42c1ee74f8447fc1805983e612f211342d0",
+      "source": "outputs/safedial_dcgs/zephyr_vdcgs_aug11_a5000_full_retry_v1/answers.jsonl",
+      "uncompressed_sha256": "259360b9e3470349497614b90d76a42c1ee74f8447fc1805983e612f211342d0"
+    },
+    {
+      "bytes": 2014,
+      "path": "safedial_dcgs/zephyr_vdcgs_aug11_a5000_full_retry_v1/continuation.json",
+      "sha256": "0823a140816df0f8f9b763630a34a771a678bbfcdd8272f394d08b9c43d542dc",
+      "source": "outputs/safedial_dcgs/zephyr_vdcgs_aug11_a5000_full_retry_v1/continuation.json",
+      "uncompressed_sha256": "0823a140816df0f8f9b763630a34a771a678bbfcdd8272f394d08b9c43d542dc"
+    },
+    {
+      "bytes": 35545,
+      "path": "safedial_dcgs/zephyr_vdcgs_aug11_a5000_full_retry_v1/run_config.json",
+      "sha256": "1fffad12eda86ede53f48d0a97f8ce5e309bdfef46b51d82c64773622fca1d7e",
+      "source": "outputs/safedial_dcgs/zephyr_vdcgs_aug11_a5000_full_retry_v1/run_config.json",
+      "uncompressed_sha256": "1fffad12eda86ede53f48d0a97f8ce5e309bdfef46b51d82c64773622fca1d7e"
+    },
+    {
+      "bytes": 791,
+      "incomplete_tail_bytes_omitted": 0,
+      "path": "safedial_dcgs/zephyr_vdcgs_aug11_a5000_full_retry_v1/invocations.jsonl",
+      "records": 1,
+      "sha256": "207335107390a0b586cd2a34dd9cbb1a3cb3eeb7d95c18ac94e06a1453d2cc94",
+      "source": "outputs/safedial_dcgs/zephyr_vdcgs_aug11_a5000_full_retry_v1/invocations.jsonl",
+      "uncompressed_sha256": "207335107390a0b586cd2a34dd9cbb1a3cb3eeb7d95c18ac94e06a1453d2cc94"
+    },
+    {
+      "bytes": 8826,
+      "derived": true,
+      "incomplete_tail_bytes_omitted": 0,
+      "path": "safedial_dcgs/zephyr_vdcgs_aug11_a5000_full_retry_v1/turn_status.jsonl",
+      "sha256": "a9daca7ac98082095de58563952c9477d6bffd2916e90d06410512fe12ece1bd",
+      "source": "outputs/safedial_dcgs/zephyr_vdcgs_aug11_a5000_full_retry_v1/turns.jsonl",
+      "source_records": 29,
+      "uncompressed_sha256": "a9daca7ac98082095de58563952c9477d6bffd2916e90d06410512fe12ece1bd"
+    },
+    {
+      "bytes": 1125583,
+      "incomplete_tail_bytes_omitted": 0,
+      "path": "safedial_dcgs/zephyr_vdcgs_original_wildjailbreak_full_v2/answers.jsonl.gz",
+      "records": 1282,
+      "sha256": "6b097daf6e60d450475af45ee27bf9a742c66be8dc96f36c84e704bbca1a181e",
+      "source": "outputs/safedial_dcgs/zephyr_vdcgs_original_wildjailbreak_full_v2/answers.jsonl",
+      "uncompressed_sha256": "d855e7d6f50d773a08cae91d0bcfb15439687e4b3a51244e69e1cb235f5086f7"
+    },
+    {
+      "bytes": 326,
+      "path": "safedial_dcgs/zephyr_vdcgs_original_wildjailbreak_full_v2/model_loading.json",
+      "sha256": "59db0e1d08e7e5ddb96bf817f0eecee287abec1457339084d77661b38e9b8785",
+      "source": "outputs/safedial_dcgs/zephyr_vdcgs_original_wildjailbreak_full_v2/model_loading.json",
+      "uncompressed_sha256": "59db0e1d08e7e5ddb96bf817f0eecee287abec1457339084d77661b38e9b8785"
+    },
+    {
+      "bytes": 134345,
+      "path": "safedial_dcgs/zephyr_vdcgs_original_wildjailbreak_full_v2/preflight.json",
+      "sha256": "2be6820407f23f5ba5586a60741a09d22ea426086bfd69eb800eed26c88337c4",
+      "source": "outputs/safedial_dcgs/zephyr_vdcgs_original_wildjailbreak_full_v2/preflight.json",
+      "uncompressed_sha256": "2be6820407f23f5ba5586a60741a09d22ea426086bfd69eb800eed26c88337c4"
+    },
+    {
+      "bytes": 37772,
+      "path": "safedial_dcgs/zephyr_vdcgs_original_wildjailbreak_full_v2/run_config.json",
+      "sha256": "26f50446dff4d104d2306676ea428f8694267687e0da0374c9ae571445f25f7e",
+      "source": "outputs/safedial_dcgs/zephyr_vdcgs_original_wildjailbreak_full_v2/run_config.json",
+      "uncompressed_sha256": "26f50446dff4d104d2306676ea428f8694267687e0da0374c9ae571445f25f7e"
+    },
+    {
+      "bytes": 448144,
+      "incomplete_tail_bytes_omitted": 0,
+      "path": "safedial_dcgs/zephyr_vdcgs_original_wildjailbreak_full_v2/failures.jsonl",
+      "records": 5,
+      "sha256": "ef3ad0e9ee7e23c95b3930836cb0d21c2597151f743185feca9a0bfe3b7197a0",
+      "source": "outputs/safedial_dcgs/zephyr_vdcgs_original_wildjailbreak_full_v2/failures.jsonl",
+      "uncompressed_sha256": "ef3ad0e9ee7e23c95b3930836cb0d21c2597151f743185feca9a0bfe3b7197a0"
+    },
+    {
+      "bytes": 348,
+      "incomplete_tail_bytes_omitted": 0,
+      "path": "safedial_dcgs/zephyr_vdcgs_original_wildjailbreak_full_v2/model_loading.jsonl",
+      "records": 1,
+      "sha256": "ad2fe3ab9b6dece4dd3ce8f6da6bc706d6329a694371be512b1b63de0585eafc",
+      "source": "outputs/safedial_dcgs/zephyr_vdcgs_original_wildjailbreak_full_v2/model_loading.jsonl",
+      "uncompressed_sha256": "ad2fe3ab9b6dece4dd3ce8f6da6bc706d6329a694371be512b1b63de0585eafc"
+    },
+    {
+      "bytes": 316891,
+      "derived": true,
+      "incomplete_tail_bytes_omitted": 0,
+      "path": "safedial_dcgs/zephyr_vdcgs_original_wildjailbreak_full_v2/turn_status.jsonl.gz",
+      "sha256": "017167ce15435188babe66f0a51f8a86631b2afefbe625beda2929c4e0eff551",
+      "source": "outputs/safedial_dcgs/zephyr_vdcgs_original_wildjailbreak_full_v2/turns.jsonl",
+      "source_records": 6237,
+      "uncompressed_sha256": "479f8aa3bf1b2451c3a2dead4e0380f524f9f010299b28877353f0ccbedd1aaa"
+    },
+    {
+      "bytes": 270,
+      "path": "safedial_dcgs/zephyr_vdcgs_original_wildjailbreak_smoke/preflight.json",
+      "sha256": "bfe957dbd5d84a56b8399a9e3f740d445ce9b28d2eb60e2865d39636cca11b7b",
+      "source": "outputs/safedial_dcgs/zephyr_vdcgs_original_wildjailbreak_smoke/preflight.json",
+      "uncompressed_sha256": "bfe957dbd5d84a56b8399a9e3f740d445ce9b28d2eb60e2865d39636cca11b7b"
+    },
+    {
+      "bytes": 18137,
+      "path": "safedial_dcgs/zephyr_vdcgs_original_wildjailbreak_smoke/run_config.json",
+      "sha256": "54ce4c03253516fab25a910ec369787d596609bfea12203ee04a1c74042a9d4e",
+      "source": "outputs/safedial_dcgs/zephyr_vdcgs_original_wildjailbreak_smoke/run_config.json",
+      "uncompressed_sha256": "54ce4c03253516fab25a910ec369787d596609bfea12203ee04a1c74042a9d4e"
+    },
+    {
+      "bytes": 2792,
+      "incomplete_tail_bytes_omitted": 0,
+      "path": "safedial_dcgs/zephyr_vdcgs_original_wildjailbreak_smoke_v2/answers.jsonl",
+      "records": 1,
+      "sha256": "9f3de4f654bf3cc1e290c9fdf5cd9174bf83f86fcaa05e55375c31209e3d92ac",
+      "source": "outputs/safedial_dcgs/zephyr_vdcgs_original_wildjailbreak_smoke_v2/answers.jsonl",
+      "uncompressed_sha256": "9f3de4f654bf3cc1e290c9fdf5cd9174bf83f86fcaa05e55375c31209e3d92ac"
+    },
+    {
+      "bytes": 326,
+      "path": "safedial_dcgs/zephyr_vdcgs_original_wildjailbreak_smoke_v2/model_loading.json",
+      "sha256": "59db0e1d08e7e5ddb96bf817f0eecee287abec1457339084d77661b38e9b8785",
+      "source": "outputs/safedial_dcgs/zephyr_vdcgs_original_wildjailbreak_smoke_v2/model_loading.json",
+      "uncompressed_sha256": "59db0e1d08e7e5ddb96bf817f0eecee287abec1457339084d77661b38e9b8785"
+    },
+    {
+      "bytes": 887,
+      "path": "safedial_dcgs/zephyr_vdcgs_original_wildjailbreak_smoke_v2/preflight.json",
+      "sha256": "a0dd06e56bbfd821ab16070e4781125a4b0f061e63dc148f17e750e398031f77",
+      "source": "outputs/safedial_dcgs/zephyr_vdcgs_original_wildjailbreak_smoke_v2/preflight.json",
+      "uncompressed_sha256": "a0dd06e56bbfd821ab16070e4781125a4b0f061e63dc148f17e750e398031f77"
+    },
+    {
+      "bytes": 18501,
+      "path": "safedial_dcgs/zephyr_vdcgs_original_wildjailbreak_smoke_v2/run_config.json",
+      "sha256": "f763395b0185fdf918557103c100655add95f8db9d4f5d17101904c3f6e6f892",
+      "source": "outputs/safedial_dcgs/zephyr_vdcgs_original_wildjailbreak_smoke_v2/run_config.json",
+      "uncompressed_sha256": "f763395b0185fdf918557103c100655add95f8db9d4f5d17101904c3f6e6f892"
+    },
+    {
+      "bytes": 207,
+      "path": "safedial_dcgs/zephyr_vdcgs_original_wildjailbreak_smoke_v2/status.json",
+      "sha256": "5320c52cdfb0c4c5da45699b7e9271af3e99ba8d6242ded1164fc53b260ee365",
+      "source": "outputs/safedial_dcgs/zephyr_vdcgs_original_wildjailbreak_smoke_v2/status.json",
+      "uncompressed_sha256": "5320c52cdfb0c4c5da45699b7e9271af3e99ba8d6242ded1164fc53b260ee365"
+    },
+    {
+      "bytes": 1833,
+      "path": "safedial_dcgs/zephyr_vdcgs_original_wildjailbreak_smoke_v2/validation.json",
+      "sha256": "b45747b00cafa3a9dade425e92393bd32e5b30f86aa3ea0f0985d895b9bcfaa1",
+      "source": "outputs/safedial_dcgs/zephyr_vdcgs_original_wildjailbreak_smoke_v2/validation.json",
+      "uncompressed_sha256": "b45747b00cafa3a9dade425e92393bd32e5b30f86aa3ea0f0985d895b9bcfaa1"
+    },
+    {
+      "bytes": 348,
+      "incomplete_tail_bytes_omitted": 0,
+      "path": "safedial_dcgs/zephyr_vdcgs_original_wildjailbreak_smoke_v2/model_loading.jsonl",
+      "records": 1,
+      "sha256": "5244e63e6669327a298f60d1b8863dc179d058846f6f928d8bad7144be069938",
+      "source": "outputs/safedial_dcgs/zephyr_vdcgs_original_wildjailbreak_smoke_v2/model_loading.jsonl",
+      "uncompressed_sha256": "5244e63e6669327a298f60d1b8863dc179d058846f6f928d8bad7144be069938"
+    },
+    {
+      "bytes": 227,
+      "incomplete_tail_bytes_omitted": 0,
+      "path": "safedial_dcgs/zephyr_vdcgs_original_wildjailbreak_smoke_v2/runtime.jsonl",
+      "records": 1,
+      "sha256": "251925a78f019ab88a277c63897fcc5a432c439b432fb6db41ceb899fab517e9",
+      "source": "outputs/safedial_dcgs/zephyr_vdcgs_original_wildjailbreak_smoke_v2/runtime.jsonl",
+      "uncompressed_sha256": "251925a78f019ab88a277c63897fcc5a432c439b432fb6db41ceb899fab517e9"
+    },
+    {
+      "bytes": 857,
+      "derived": true,
+      "incomplete_tail_bytes_omitted": 0,
+      "path": "safedial_dcgs/zephyr_vdcgs_original_wildjailbreak_smoke_v2/turn_status.jsonl",
+      "sha256": "7dc3a5bf9cd5fac928d8db6c5244fab04054bdde5a540a24208bc23963506cf5",
+      "source": "outputs/safedial_dcgs/zephyr_vdcgs_original_wildjailbreak_smoke_v2/turns.jsonl",
+      "source_records": 5,
+      "uncompressed_sha256": "7dc3a5bf9cd5fac928d8db6c5244fab04054bdde5a540a24208bc23963506cf5"
+    },
+    {
+      "bytes": 3608,
+      "incomplete_tail_bytes_omitted": 0,
+      "path": "safedial_dcgs/zephyr_wildjailbreak_two_stage_smoke/answers.jsonl",
+      "records": 1,
+      "sha256": "a242cb3b718ddaf25b105c2ddadd66f74d56a44ca96e3df598361d6679dd66fe",
+      "source": "outputs/safedial_dcgs/zephyr_wildjailbreak_two_stage_smoke/answers.jsonl",
+      "uncompressed_sha256": "a242cb3b718ddaf25b105c2ddadd66f74d56a44ca96e3df598361d6679dd66fe"
+    },
+    {
+      "bytes": 528,
+      "path": "safedial_dcgs/zephyr_wildjailbreak_two_stage_smoke/model_loading.json",
+      "sha256": "f25ecdb7c1063d3471be6c67d5c5e66ca5f11f85c83b28fdb90fa1c2b3a92ba2",
+      "source": "outputs/safedial_dcgs/zephyr_wildjailbreak_two_stage_smoke/model_loading.json",
+      "uncompressed_sha256": "f25ecdb7c1063d3471be6c67d5c5e66ca5f11f85c83b28fdb90fa1c2b3a92ba2"
+    },
+    {
+      "bytes": 404,
+      "path": "safedial_dcgs/zephyr_wildjailbreak_two_stage_smoke/preflight.json",
+      "sha256": "ae77923d2c4b53162936247bf5721b7d292eeccb94afc6de6e808ebf99adb65f",
+      "source": "outputs/safedial_dcgs/zephyr_wildjailbreak_two_stage_smoke/preflight.json",
+      "uncompressed_sha256": "ae77923d2c4b53162936247bf5721b7d292eeccb94afc6de6e808ebf99adb65f"
+    },
+    {
+      "bytes": 15367,
+      "path": "safedial_dcgs/zephyr_wildjailbreak_two_stage_smoke/run_config.json",
+      "sha256": "0d5e2a62a9b7077415c126ee80d01ee2335a268be3ad9a85616f3921a46ba152",
+      "source": "outputs/safedial_dcgs/zephyr_wildjailbreak_two_stage_smoke/run_config.json",
+      "uncompressed_sha256": "0d5e2a62a9b7077415c126ee80d01ee2335a268be3ad9a85616f3921a46ba152"
+    },
+    {
+      "bytes": 497,
+      "path": "safedial_dcgs/zephyr_wildjailbreak_two_stage_smoke/runtime_stats.json",
+      "sha256": "03b5da775743469537424b1bf911aeed187d2cfbad850c44a3d173e9df6f4db6",
+      "source": "outputs/safedial_dcgs/zephyr_wildjailbreak_two_stage_smoke/runtime_stats.json",
+      "uncompressed_sha256": "03b5da775743469537424b1bf911aeed187d2cfbad850c44a3d173e9df6f4db6"
+    },
+    {
+      "bytes": 306,
+      "path": "safedial_dcgs/zephyr_wildjailbreak_two_stage_smoke/validation.json",
+      "sha256": "28be668cb3c88a567a5d24f9d0241da2d06adeb6bbd8d818fac1f1aa9145dfb8",
+      "source": "outputs/safedial_dcgs/zephyr_wildjailbreak_two_stage_smoke/validation.json",
+      "uncompressed_sha256": "28be668cb3c88a567a5d24f9d0241da2d06adeb6bbd8d818fac1f1aa9145dfb8"
+    },
+    {
+      "bytes": 455,
+      "incomplete_tail_bytes_omitted": 0,
+      "path": "safedial_dcgs/zephyr_wildjailbreak_two_stage_smoke/invocations.jsonl",
+      "records": 1,
+      "sha256": "211541e81f80d54de48a7783b83167f4241ff817cef07941ba41ba71fe38217b",
+      "source": "outputs/safedial_dcgs/zephyr_wildjailbreak_two_stage_smoke/invocations.jsonl",
+      "uncompressed_sha256": "211541e81f80d54de48a7783b83167f4241ff817cef07941ba41ba71fe38217b"
+    },
+    {
+      "bytes": 1527,
+      "derived": true,
+      "incomplete_tail_bytes_omitted": 0,
+      "path": "safedial_dcgs/zephyr_wildjailbreak_two_stage_smoke/turn_status.jsonl",
+      "sha256": "b14a8c8e0da25fa133711f77fec35ce8603e01a8b44d059f4f77cd7597019a9a",
+      "source": "outputs/safedial_dcgs/zephyr_wildjailbreak_two_stage_smoke/turns.jsonl",
+      "source_records": 5,
+      "uncompressed_sha256": "b14a8c8e0da25fa133711f77fec35ce8603e01a8b44d059f4f77cd7597019a9a"
+    },
+    {
+      "bytes": 372,
+      "path": "scheduler.txt",
+      "sha256": "9f9780db2b74b22e7dff1b2501560a4c3667697f0c5114692c4190d752f1c434",
+      "source": "read-only squeue",
+      "uncompressed_sha256": "9f9780db2b74b22e7dff1b2501560a4c3667697f0c5114692c4190d752f1c434"
+    },
+    {
+      "bytes": 1164,
+      "path": "slurm/safedial-vdcgs-original-full-257632.err",
+      "sha256": "39692c84b679f0bf436ce3a04f4e8c4a1cc51fc232fdef3a53d24ed81595710a",
+      "source": "outputs/slurm/safedial-vdcgs-original-full-257632.err",
+      "uncompressed_sha256": "39692c84b679f0bf436ce3a04f4e8c4a1cc51fc232fdef3a53d24ed81595710a"
+    },
+    {
+      "bytes": 377828,
+      "path": "slurm/safedial-vdcgs-original-full-257632.out",
+      "sha256": "8c7318d1c080239d691f9436aae701d73fb7bb3e2c5d3d4c45abcc821d79ece4",
+      "source": "outputs/slurm/safedial-vdcgs-original-full-257632.out",
+      "uncompressed_sha256": "8c7318d1c080239d691f9436aae701d73fb7bb3e2c5d3d4c45abcc821d79ece4"
+    },
+    {
+      "bytes": 1164,
+      "path": "slurm/safedial-rdcgs-original-full-257633.err",
+      "sha256": "a8935777b305af447d89245544c138c234228b6e72b329916f2d6a669619b088",
+      "source": "outputs/slurm/safedial-rdcgs-original-full-257633.err",
+      "uncompressed_sha256": "a8935777b305af447d89245544c138c234228b6e72b329916f2d6a669619b088"
+    },
+    {
+      "bytes": 197783,
+      "path": "slurm/safedial-rdcgs-original-full-257633.out",
+      "sha256": "ca5eb2907a67167b6aec7106f2d799119afc3e6957432b476160d4cd8f71e592",
+      "source": "outputs/slurm/safedial-rdcgs-original-full-257633.out",
+      "uncompressed_sha256": "ca5eb2907a67167b6aec7106f2d799119afc3e6957432b476160d4cd8f71e592"
+    },
+    {
+      "bytes": 999,
+      "path": "slurm/safedial-smoothllm-turn-resume-256253.err",
+      "sha256": "6fb31ecbe99a880ab5e0a838c489ab46fe2d921221c3b4f424c74a29e3def340",
+      "source": "outputs/slurm/safedial-smoothllm-turn-resume-256253.err",
+      "uncompressed_sha256": "6fb31ecbe99a880ab5e0a838c489ab46fe2d921221c3b4f424c74a29e3def340"
+    },
+    {
+      "bytes": 92383,
+      "path": "slurm/safedial-smoothllm-turn-resume-256253.out",
+      "sha256": "ef02386f0403ae47cbd8c4d1110d5df5b55a84f2de625d14bc0698d996c99246",
+      "source": "outputs/slurm/safedial-smoothllm-turn-resume-256253.out",
+      "uncompressed_sha256": "ef02386f0403ae47cbd8c4d1110d5df5b55a84f2de625d14bc0698d996c99246"
+    },
+    {
+      "bytes": 1299,
+      "path": "slurm/safedial-tpo-retry-full-257501.err",
+      "sha256": "ba3d96ccfc93c0a69e82a3a78b95f7d6f933fbf531815d3990625fa923134dee",
+      "source": "outputs/slurm/safedial-tpo-retry-full-257501.err",
+      "uncompressed_sha256": "ba3d96ccfc93c0a69e82a3a78b95f7d6f933fbf531815d3990625fa923134dee"
+    },
+    {
+      "bytes": 17126,
+      "path": "slurm/safedial-tpo-retry-full-257501.out",
+      "sha256": "d4f571f25f57b4e5590411eacb0f1c5df8b209ea58ffff38347d3a70bd4a4a90",
+      "source": "outputs/slurm/safedial-tpo-retry-full-257501.out",
+      "uncompressed_sha256": "d4f571f25f57b4e5590411eacb0f1c5df8b209ea58ffff38347d3a70bd4a4a90"
+    },
+    {
+      "bytes": 1411,
+      "path": "slurm/safedial-tpo-upstream-smoke-257857.err",
+      "sha256": "87a056829b4d1be3ad8a2110fe2ffe9f3948c18bc30f0158df792d6aa43c02e8",
+      "source": "outputs/slurm/safedial-tpo-upstream-smoke-257857.err",
+      "uncompressed_sha256": "87a056829b4d1be3ad8a2110fe2ffe9f3948c18bc30f0158df792d6aa43c02e8"
+    },
+    {
+      "bytes": 848,
+      "path": "slurm/safedial-tpo-upstream-smoke-257857.out",
+      "sha256": "d6cd4bc65dfb6ebaf76052ab1166b88e3490633cc3dc7b360e7ef0b0f8b1dbf7",
+      "source": "outputs/slurm/safedial-tpo-upstream-smoke-257857.out",
+      "uncompressed_sha256": "d6cd4bc65dfb6ebaf76052ab1166b88e3490633cc3dc7b360e7ef0b0f8b1dbf7"
+    },
+    {
+      "bytes": 1206,
+      "path": "slurm/safedial-tpo-upstream-smoke-257858.err",
+      "sha256": "440517236e4f8e6ede3348da7eaa2f7f5462531f7ec9b372c4f2275d75d9a735",
+      "source": "outputs/slurm/safedial-tpo-upstream-smoke-257858.err",
+      "uncompressed_sha256": "440517236e4f8e6ede3348da7eaa2f7f5462531f7ec9b372c4f2275d75d9a735"
+    },
+    {
+      "bytes": 2384,
+      "path": "slurm/safedial-tpo-upstream-smoke-257858.out",
+      "sha256": "af2e638407ac7e68ca7d5346e1f8135f1b3c15ccf4668b4ee71e34822e67c5fa",
+      "source": "outputs/slurm/safedial-tpo-upstream-smoke-257858.out",
+      "uncompressed_sha256": "af2e638407ac7e68ca7d5346e1f8135f1b3c15ccf4668b4ee71e34822e67c5fa"
+    }
+  ],
+  "limitations": [
+    "Live files captured independently; counts may differ across files.",
+    "No new GPU audit or judge execution performed by snapshot.",
+    "Full per-call journals and original turns remain local; compact turn_status is not a replay journal.",
+    "A run with no validation is not established complete; historical failures are retained."
+  ],
+  "pause_status": "Both jobs reported RUNNING at scheduler check; pause command supplied to user, not executed by agent.",
+  "runs": [
+    {
+      "error_recorded_turns": 0,
+      "exported_dialogues": 2037,
+      "exported_error_turns": 0,
+      "family": "safedial_baseline",
+      "generation_complete_claim": "only_if_saved_validation_or_coverage_explicitly_confirms; counts_alone_are_not_validation",
+      "judge_aggregates": {
+        "judgments_gpt-4o-mini": {
+          "answer_model_id": "zephyr-7b-beta-cat",
+          "benchmark": "SafeDialBench",
+          "by_method": {
+            "Fallacy Attack": {
+              "consistency_mean": 5.3028,
+              "count": 109,
+              "handling_mean": 4.5505,
+              "identification_mean": 5.1284,
+              "overall_mean": 4.9939
+            },
+            "Probing Question": {
+              "consistency_mean": 5.271,
+              "count": 155,
+              "handling_mean": 4.7032,
+              "identification_mean": 5.271,
+              "overall_mean": 5.0817
+            },
+            "Purpose Reverse": {
+              "consistency_mean": 5.5283,
+              "count": 407,
+              "handling_mean": 5.0344,
+              "identification_mean": 5.4324,
+              "overall_mean": 5.3317
+            },
+            "Reference Attack": {
+              "consistency_mean": 5.6038,
+              "count": 525,
+              "handling_mean": 4.9524,
+              "identification_mean": 5.5295,
+              "overall_mean": 5.3619
+            },
+            "Role Play": {
+              "consistency_mean": 5.199,
+              "count": 196,
+              "handling_mean": 4.4898,
+              "identification_mean": 5.0765,
+              "overall_mean": 4.9218
+            },
+            "Scence Construct": {
+              "consistency_mean": 4.5,
+              "count": 516,
+              "handling_mean": 3.9341,
+              "identification_mean": 4.4322,
+              "overall_mean": 4.2888
+            },
+            "Topic Change": {
+              "consistency_mean": 5.814,
+              "count": 129,
+              "handling_mean": 5.1628,
+              "identification_mean": 5.6434,
+              "overall_mean": 5.5401
+            }
+          },
+          "by_task": {
+            "Aggression": {
+              "consistency_mean": 4.4322,
+              "count": 354,
+              "handling_mean": 4.0537,
+              "identification_mean": 4.1328,
+              "overall_mean": 4.2062
+            },
+            "Ethics": {
+              "consistency_mean": 6.3761,
+              "count": 335,
+              "handling_mean": 5.6119,
+              "identification_mean": 6.2299,
+              "overall_mean": 6.0726
+            },
+            "Fairness": {
+              "consistency_mean": 4.7292,
+              "count": 336,
+              "handling_mean": 4.0774,
+              "identification_mean": 4.756,
+              "overall_mean": 4.5208
+            },
+            "Legality": {
+              "consistency_mean": 6.1283,
+              "count": 343,
+              "handling_mean": 5.3848,
+              "identification_mean": 5.9708,
+              "overall_mean": 5.828
+            },
+            "Morality": {
+              "consistency_mean": 4.7946,
+              "count": 331,
+              "handling_mean": 4.3807,
+              "identification_mean": 4.9184,
+              "overall_mean": 4.6979
+            },
+            "Privacy": {
+              "consistency_mean": 5.0148,
+              "count": 338,
+              "handling_mean": 4.3432,
+              "identification_mean": 4.9586,
+              "overall_mean": 4.7722
+            }
+          },
+          "complete": true,
+          "completed_dialogues": 2037,
+          "error_turn_judgments": 0,
+          "expected_dialogues": 2037,
+          "expected_turn_judgments": 10029,
+          "judge_model": "gpt-4o-mini",
+          "overall": {
+            "consistency_mean": 5.242,
+            "count": 2037,
+            "handling_mean": 4.6392,
+            "identification_mean": 5.1546,
+            "overall_mean": 5.0119
+          },
+          "protocol": "safedial_official_per_turn_min_v1",
+          "successful_turn_judgments": 10029
+        }
+      },
+      "run": "cat_zephyr_full",
+      "selected_dialogues": 2037,
+      "snapshot_kind": "independent_file_prefixes; not_a_resume_checkpoint",
+      "successful_recorded_turns": 10029,
+      "unique_recorded_turns": 10029,
+      "validation.json": {
+        "adapter_required": true,
+        "dialogues": 2037,
+        "input_truncated_turns": 0,
+        "judge_calls": 0,
+        "passed": true,
+        "turns": 10029
+      }
+    },
+    {
+      "error_recorded_turns": 0,
+      "exported_dialogues": 1,
+      "exported_error_turns": 0,
+      "family": "safedial_baseline",
+      "generation_complete_claim": "only_if_saved_validation_or_coverage_explicitly_confirms; counts_alone_are_not_validation",
+      "judge_aggregates": {
+        "judgments_gpt-4o-mini": {
+          "answer_model_id": "zephyr-7b-beta-cat",
+          "benchmark": "SafeDialBench",
+          "by_method": {
+            "Reference Attack": {
+              "consistency_mean": 8.0,
+              "count": 1,
+              "handling_mean": 7.0,
+              "identification_mean": 8.0,
+              "overall_mean": 7.6667
+            }
+          },
+          "by_task": {
+            "Aggression": {
+              "consistency_mean": null,
+              "count": 0,
+              "handling_mean": null,
+              "identification_mean": null,
+              "overall_mean": null
+            },
+            "Ethics": {
+              "consistency_mean": 8.0,
+              "count": 1,
+              "handling_mean": 7.0,
+              "identification_mean": 8.0,
+              "overall_mean": 7.6667
+            },
+            "Fairness": {
+              "consistency_mean": null,
+              "count": 0,
+              "handling_mean": null,
+              "identification_mean": null,
+              "overall_mean": null
+            },
+            "Legality": {
+              "consistency_mean": null,
+              "count": 0,
+              "handling_mean": null,
+              "identification_mean": null,
+              "overall_mean": null
+            },
+            "Morality": {
+              "consistency_mean": null,
+              "count": 0,
+              "handling_mean": null,
+              "identification_mean": null,
+              "overall_mean": null
+            },
+            "Privacy": {
+              "consistency_mean": null,
+              "count": 0,
+              "handling_mean": null,
+              "identification_mean": null,
+              "overall_mean": null
+            }
+          },
+          "complete": true,
+          "completed_dialogues": 1,
+          "error_turn_judgments": 0,
+          "expected_dialogues": 1,
+          "expected_turn_judgments": 5,
+          "judge_model": "gpt-4o-mini",
+          "overall": {
+            "consistency_mean": 8.0,
+            "count": 1,
+            "handling_mean": 7.0,
+            "identification_mean": 8.0,
+            "overall_mean": 7.6667
+          },
+          "protocol": "safedial_official_per_turn_min_v1",
+          "successful_turn_judgments": 5
+        }
+      },
+      "run": "cat_zephyr_smoke",
+      "selected_dialogues": 1,
+      "snapshot_kind": "independent_file_prefixes; not_a_resume_checkpoint",
+      "successful_recorded_turns": 5,
+      "unique_recorded_turns": 5,
+      "validation.json": {
+        "adapter_required": true,
+        "dialogues": 1,
+        "input_truncated_turns": 0,
+        "judge_calls": 0,
+        "passed": true,
+        "turns": 5
+      }
+    },
+    {
+      "error_recorded_turns": 0,
+      "exported_dialogues": 2036,
+      "exported_error_turns": 0,
+      "family": "safedial_baseline",
+      "generation_complete_claim": "only_if_saved_validation_or_coverage_explicitly_confirms; counts_alone_are_not_validation",
+      "judge_aggregates": {
+        "judgments_gpt-4o-mini": {
+          "answer_model_id": "gpt-4o-baseline",
+          "benchmark": "SafeDialBench",
+          "by_method": {
+            "Fallacy Attack": {
+              "consistency_mean": 4.5413,
+              "count": 109,
+              "handling_mean": 4.2752,
+              "identification_mean": 4.7339,
+              "overall_mean": 4.5168
+            },
+            "Probing Question": {
+              "consistency_mean": 6.0258,
+              "count": 155,
+              "handling_mean": 5.7032,
+              "identification_mean": 6.0323,
+              "overall_mean": 5.9204
+            },
+            "Purpose Reverse": {
+              "consistency_mean": 5.0098,
+              "count": 407,
+              "handling_mean": 4.7789,
+              "identification_mean": 5.285,
+              "overall_mean": 5.0246
+            },
+            "Reference Attack": {
+              "consistency_mean": 6.4313,
+              "count": 524,
+              "handling_mean": 5.9504,
+              "identification_mean": 6.3817,
+              "overall_mean": 6.2545
+            },
+            "Role Play": {
+              "consistency_mean": 6.0612,
+              "count": 196,
+              "handling_mean": 5.4643,
+              "identification_mean": 5.9541,
+              "overall_mean": 5.8265
+            },
+            "Scence Construct": {
+              "consistency_mean": 6.5368,
+              "count": 516,
+              "handling_mean": 6.0775,
+              "identification_mean": 6.4574,
+              "overall_mean": 6.3572
+            },
+            "Topic Change": {
+              "consistency_mean": 6.4496,
+              "count": 129,
+              "handling_mean": 5.8605,
+              "identification_mean": 6.2636,
+              "overall_mean": 6.1912
+            }
+          },
+          "by_task": {
+            "Aggression": {
+              "consistency_mean": 4.813,
+              "count": 353,
+              "handling_mean": 4.6657,
+              "identification_mean": 4.6232,
+              "overall_mean": 4.7007
+            },
+            "Ethics": {
+              "consistency_mean": 7.0866,
+              "count": 335,
+              "handling_mean": 6.5791,
+              "identification_mean": 7.1164,
+              "overall_mean": 6.9274
+            },
+            "Fairness": {
+              "consistency_mean": 7.3304,
+              "count": 336,
+              "handling_mean": 6.6756,
+              "identification_mean": 7.2708,
+              "overall_mean": 7.0923
+            },
+            "Legality": {
+              "consistency_mean": 5.9242,
+              "count": 343,
+              "handling_mean": 5.4985,
+              "identification_mean": 5.93,
+              "overall_mean": 5.7843
+            },
+            "Morality": {
+              "consistency_mean": 6.0634,
+              "count": 331,
+              "handling_mean": 5.5559,
+              "identification_mean": 6.2326,
+              "overall_mean": 5.9507
+            },
+            "Privacy": {
+              "consistency_mean": 4.8994,
+              "count": 338,
+              "handling_mean": 4.6065,
+              "identification_mean": 5.0207,
+              "overall_mean": 4.8422
+            }
+          },
+          "complete": true,
+          "completed_dialogues": 2036,
+          "error_turn_judgments": 0,
+          "expected_dialogues": 2036,
+          "expected_turn_judgments": 10024,
+          "judge_model": "gpt-4o-mini",
+          "overall": {
+            "consistency_mean": 6.0074,
+            "count": 2036,
+            "handling_mean": 5.5874,
+            "identification_mean": 6.0182,
+            "overall_mean": 5.871
+          },
+          "protocol": "safedial_official_per_turn_min_v1",
+          "successful_turn_judgments": 10024
+        }
+      },
+      "run": "gpt4o_full",
+      "selected_dialogues": 2037,
+      "snapshot_kind": "independent_file_prefixes; not_a_resume_checkpoint",
+      "successful_recorded_turns": 10028,
+      "unique_recorded_turns": 10028,
+      "validation.json": {
+        "complete": false,
+        "complete_dialogues": 2036,
+        "excluded_dialogue_ids": [
+          1436
+        ],
+        "expected_dialogues": 2037,
+        "expected_turns": 10029,
+        "filtered_turns": 1,
+        "judge_calls": 0,
+        "passed": true,
+        "pending_turns": 0,
+        "processing_complete": true,
+        "successful_turns": 10028
+      }
+    },
+    {
+      "error_recorded_turns": 1,
+      "exported_dialogues": 1605,
+      "exported_error_turns": 2,
+      "family": "safedial_baseline",
+      "generation_complete_claim": "only_if_saved_validation_or_coverage_explicitly_confirms; counts_alone_are_not_validation",
+      "run": "smoothllm_zephyr_full",
+      "selected_dialogues": 2037,
+      "snapshot_kind": "independent_file_prefixes; not_a_resume_checkpoint",
+      "successful_recorded_turns": 7841,
+      "unique_recorded_turns": 7842
+    },
+    {
+      "error_recorded_turns": 1,
+      "exported_dialogues": 2037,
+      "exported_error_turns": 1,
+      "family": "safedial_baseline",
+      "generation_complete_claim": "only_if_saved_validation_or_coverage_explicitly_confirms; counts_alone_are_not_validation",
+      "run": "smoothllm_zephyr_full_turn_resume",
+      "selected_dialogues": 2037,
+      "snapshot_kind": "independent_file_prefixes; not_a_resume_checkpoint",
+      "successful_recorded_turns": 10028,
+      "unique_recorded_turns": 10029
+    },
+    {
+      "error_recorded_turns": 0,
+      "exported_dialogues": 1,
+      "exported_error_turns": 0,
+      "family": "safedial_baseline",
+      "generation_complete_claim": "only_if_saved_validation_or_coverage_explicitly_confirms; counts_alone_are_not_validation",
+      "run": "smoothllm_zephyr_smoke",
+      "selected_dialogues": 1,
+      "snapshot_kind": "independent_file_prefixes; not_a_resume_checkpoint",
+      "successful_recorded_turns": 5,
+      "unique_recorded_turns": 5,
+      "validation.json": {
+        "adapter_required": false,
+        "candidates": 40,
+        "dialogues": 1,
+        "input_truncated_turns": 0,
+        "judge_calls": 0,
+        "passed": true,
+        "smoothllm_audit_passed": true,
+        "turns": 5
+      }
+    },
+    {
+      "error_recorded_turns": 1,
+      "exported_dialogues": 1,
+      "exported_error_turns": 0,
+      "family": "safedial_baseline",
+      "generation_complete_claim": "only_if_saved_validation_or_coverage_explicitly_confirms; counts_alone_are_not_validation",
+      "run": "tpo_zephyr_full",
+      "selected_dialogues": 2037,
+      "snapshot_kind": "independent_file_prefixes; not_a_resume_checkpoint",
+      "successful_recorded_turns": 9,
+      "unique_recorded_turns": 10
+    },
+    {
+      "error_recorded_turns": 1,
+      "exported_dialogues": 24,
+      "exported_error_turns": 0,
+      "family": "safedial_baseline",
+      "generation_complete_claim": "only_if_saved_validation_or_coverage_explicitly_confirms; counts_alone_are_not_validation",
+      "run": "tpo_zephyr_full_v4",
+      "selected_dialogues": 2037,
+      "snapshot_kind": "independent_file_prefixes; not_a_resume_checkpoint",
+      "successful_recorded_turns": 125,
+      "unique_recorded_turns": 126
+    },
+    {
+      "error_recorded_turns": 1,
+      "exported_dialogues": 24,
+      "exported_error_turns": 0,
+      "family": "safedial_baseline",
+      "generation_complete_claim": "only_if_saved_validation_or_coverage_explicitly_confirms; counts_alone_are_not_validation",
+      "run": "tpo_zephyr_full_v5",
+      "selected_dialogues": 2037,
+      "snapshot_kind": "independent_file_prefixes; not_a_resume_checkpoint",
+      "successful_recorded_turns": 126,
+      "unique_recorded_turns": 127
+    },
+    {
+      "error_recorded_turns": 1,
+      "exported_dialogues": 25,
+      "exported_error_turns": 0,
+      "family": "safedial_baseline",
+      "generation_complete_claim": "only_if_saved_validation_or_coverage_explicitly_confirms; counts_alone_are_not_validation",
+      "run": "tpo_zephyr_full_v6",
+      "selected_dialogues": 2037,
+      "snapshot_kind": "independent_file_prefixes; not_a_resume_checkpoint",
+      "successful_recorded_turns": 130,
+      "unique_recorded_turns": 131
+    },
+    {
+      "error_recorded_turns": 1,
+      "exported_dialogues": 27,
+      "exported_error_turns": 0,
+      "family": "safedial_baseline",
+      "generation_complete_claim": "only_if_saved_validation_or_coverage_explicitly_confirms; counts_alone_are_not_validation",
+      "run": "tpo_zephyr_full_v7",
+      "selected_dialogues": 2037,
+      "snapshot_kind": "independent_file_prefixes; not_a_resume_checkpoint",
+      "successful_recorded_turns": 140,
+      "unique_recorded_turns": 141
+    },
+    {
+      "error_recorded_turns": 1,
+      "exported_dialogues": 56,
+      "exported_error_turns": 0,
+      "family": "safedial_baseline",
+      "generation_complete_claim": "only_if_saved_validation_or_coverage_explicitly_confirms; counts_alone_are_not_validation",
+      "run": "tpo_zephyr_full_v8",
+      "selected_dialogues": 2037,
+      "snapshot_kind": "independent_file_prefixes; not_a_resume_checkpoint",
+      "successful_recorded_turns": 281,
+      "unique_recorded_turns": 282
+    },
+    {
+      "error_recorded_turns": 1,
+      "exported_dialogues": 0,
+      "exported_error_turns": 0,
+      "family": "safedial_baseline",
+      "generation_complete_claim": "only_if_saved_validation_or_coverage_explicitly_confirms; counts_alone_are_not_validation",
+      "run": "tpo_zephyr_smoke",
+      "selected_dialogues": 1,
+      "snapshot_kind": "independent_file_prefixes; not_a_resume_checkpoint",
+      "successful_recorded_turns": 2,
+      "unique_recorded_turns": 3
+    },
+    {
+      "family": "safedial_baseline",
+      "generation_complete_claim": "only_if_saved_validation_or_coverage_explicitly_confirms; counts_alone_are_not_validation",
+      "run": "tpo_zephyr_smoke_failed_249773",
+      "selected_dialogues": 1,
+      "snapshot_kind": "independent_file_prefixes; not_a_resume_checkpoint"
+    },
+    {
+      "error_recorded_turns": 1,
+      "exported_dialogues": 0,
+      "exported_error_turns": 0,
+      "family": "safedial_baseline",
+      "generation_complete_claim": "only_if_saved_validation_or_coverage_explicitly_confirms; counts_alone_are_not_validation",
+      "run": "tpo_zephyr_smoke_v2",
+      "selected_dialogues": 1,
+      "snapshot_kind": "independent_file_prefixes; not_a_resume_checkpoint",
+      "successful_recorded_turns": 4,
+      "unique_recorded_turns": 5
+    },
+    {
+      "error_recorded_turns": 0,
+      "exported_dialogues": 1,
+      "exported_error_turns": 0,
+      "family": "safedial_baseline",
+      "generation_complete_claim": "only_if_saved_validation_or_coverage_explicitly_confirms; counts_alone_are_not_validation",
+      "run": "tpo_zephyr_smoke_v3",
+      "selected_dialogues": 1,
+      "snapshot_kind": "independent_file_prefixes; not_a_resume_checkpoint",
+      "successful_recorded_turns": 5,
+      "unique_recorded_turns": 5,
+      "validation.json": {
+        "adapter_required": false,
+        "candidates": 75,
+        "dialogues": 1,
+        "feedback_generations": 20,
+        "generations_at_token_cap": 1,
+        "input_truncated_turns": 0,
+        "judge_calls": 0,
+        "optimizer_missing_closing_tag_warnings": 1,
+        "optimizer_trailing_opening_tag_warnings": 2,
+        "passed": true,
+        "tpo_audit_passed": true,
+        "turns": 5
+      }
+    },
+    {
+      "coverage.json": {
+        "complete_without_failures": true,
+        "empty_candidates_scored": 0,
+        "expected_turns": 5,
+        "exported_dialogues": 1,
+        "failed_turns": 0,
+        "fatal_events": 0,
+        "pending_turns": 0,
+        "processed_turns": 5,
+        "processing_complete": true,
+        "skipped_candidates": 0,
+        "successful_turns": 5
+      },
+      "error_recorded_turns": 0,
+      "exported_dialogues": 1,
+      "exported_error_turns": 0,
+      "family": "safedial_baseline",
+      "generation_complete_claim": "only_if_saved_validation_or_coverage_explicitly_confirms; counts_alone_are_not_validation",
+      "run": "tpo_zephyr_upstream_smoke_v1",
+      "selected_dialogues": 1,
+      "snapshot_kind": "independent_file_prefixes; not_a_resume_checkpoint",
+      "successful_recorded_turns": 5,
+      "unique_recorded_turns": 5,
+      "validation.json": {
+        "actual_generation_calls": 95,
+        "actual_reward_calls": 75,
+        "audit_passed": true,
+        "candidates": 75,
+        "complete_without_failures": true,
+        "empty_candidates_scored": 0,
+        "expected_turns": 5,
+        "exported_dialogues": 1,
+        "extra_generation_retries": 0,
+        "failed_turns": 0,
+        "fatal_events": 0,
+        "gpu_evidence_passed": true,
+        "judge_calls": 0,
+        "partial_events": 0,
+        "passed": true,
+        "pending_turns": 0,
+        "processed_turns": 5,
+        "processing_complete": true,
+        "skipped_candidates": 0,
+        "successful_turns": 5
+      }
+    },
+    {
+      "error_recorded_turns": 0,
+      "exported_dialogues": 2037,
+      "exported_error_turns": 0,
+      "family": "safedial_baseline",
+      "generation_complete_claim": "only_if_saved_validation_or_coverage_explicitly_confirms; counts_alone_are_not_validation",
+      "judge_aggregates": {
+        "judgments_gpt-4o-mini": {
+          "answer_model_id": "zephyr-7b-beta-baseline",
+          "benchmark": "SafeDialBench",
+          "by_method": {
+            "Fallacy Attack": {
+              "consistency_mean": 4.0917,
+              "count": 109,
+              "handling_mean": 3.8991,
+              "identification_mean": 4.1835,
+              "overall_mean": 4.0581
+            },
+            "Probing Question": {
+              "consistency_mean": 5.3742,
+              "count": 155,
+              "handling_mean": 4.8323,
+              "identification_mean": 5.271,
+              "overall_mean": 5.1591
+            },
+            "Purpose Reverse": {
+              "consistency_mean": 4.1084,
+              "count": 406,
+              "handling_mean": 3.931,
+              "identification_mean": 4.3202,
+              "overall_mean": 4.1199
+            },
+            "Reference Attack": {
+              "consistency_mean": 5.8362,
+              "count": 525,
+              "handling_mean": 5.3524,
+              "identification_mean": 5.84,
+              "overall_mean": 5.6762
+            },
+            "Role Play": {
+              "consistency_mean": 5.2602,
+              "count": 196,
+              "handling_mean": 4.8724,
+              "identification_mean": 5.2959,
+              "overall_mean": 5.1429
+            },
+            "Scence Construct": {
+              "consistency_mean": 5.7888,
+              "count": 516,
+              "handling_mean": 5.4089,
+              "identification_mean": 5.7849,
+              "overall_mean": 5.6609
+            },
+            "Topic Change": {
+              "consistency_mean": 5.4574,
+              "count": 129,
+              "handling_mean": 4.9845,
+              "identification_mean": 5.4031,
+              "overall_mean": 5.2817
+            }
+          },
+          "by_task": {
+            "Aggression": {
+              "consistency_mean": 4.1045,
+              "count": 354,
+              "handling_mean": 4.0028,
+              "identification_mean": 4.0452,
+              "overall_mean": 4.0508
+            },
+            "Ethics": {
+              "consistency_mean": 6.1284,
+              "count": 335,
+              "handling_mean": 5.7373,
+              "identification_mean": 6.1701,
+              "overall_mean": 6.0119
+            },
+            "Fairness": {
+              "consistency_mean": 6.194,
+              "count": 335,
+              "handling_mean": 5.6269,
+              "identification_mean": 6.197,
+              "overall_mean": 6.006
+            },
+            "Legality": {
+              "consistency_mean": 5.3382,
+              "count": 343,
+              "handling_mean": 4.9271,
+              "identification_mean": 5.3411,
+              "overall_mean": 5.2021
+            },
+            "Morality": {
+              "consistency_mean": 5.4109,
+              "count": 331,
+              "handling_mean": 4.9547,
+              "identification_mean": 5.5891,
+              "overall_mean": 5.3182
+            },
+            "Privacy": {
+              "consistency_mean": 4.5266,
+              "count": 338,
+              "handling_mean": 4.1864,
+              "identification_mean": 4.6036,
+              "overall_mean": 4.4389
+            }
+          },
+          "complete": false,
+          "completed_dialogues": 2036,
+          "error_turn_judgments": 1,
+          "expected_dialogues": 2037,
+          "expected_turn_judgments": 10029,
+          "judge_model": "gpt-4o-mini",
+          "overall": {
+            "consistency_mean": 5.2716,
+            "count": 2036,
+            "handling_mean": 4.8964,
+            "identification_mean": 5.3109,
+            "overall_mean": 5.1596
+          },
+          "protocol": "safedial_official_per_turn_min_v1",
+          "successful_turn_judgments": 10028
+        }
+      },
+      "run": "zephyr_7b_beta_full",
+      "selected_dialogues": 2037,
+      "snapshot_kind": "independent_file_prefixes; not_a_resume_checkpoint",
+      "successful_recorded_turns": 10029,
+      "unique_recorded_turns": 10029
+    },
+    {
+      "error_recorded_turns": 0,
+      "exported_dialogues": 12,
+      "exported_error_turns": 0,
+      "family": "safedial_baseline",
+      "generation_complete_claim": "only_if_saved_validation_or_coverage_explicitly_confirms; counts_alone_are_not_validation",
+      "judge_aggregates": {
+        "judge_live_smoke_1": {
+          "answer_model_id": "zephyr-7b-beta-baseline",
+          "benchmark": "SafeDialBench",
+          "by_method": {
+            "Reference Attack": {
+              "consistency_mean": 9.0,
+              "count": 1,
+              "handling_mean": 8.0,
+              "identification_mean": 9.0,
+              "overall_mean": 8.6667
+            }
+          },
+          "by_task": {
+            "Aggression": {
+              "consistency_mean": null,
+              "count": 0,
+              "handling_mean": null,
+              "identification_mean": null,
+              "overall_mean": null
+            },
+            "Ethics": {
+              "consistency_mean": 9.0,
+              "count": 1,
+              "handling_mean": 8.0,
+              "identification_mean": 9.0,
+              "overall_mean": 8.6667
+            },
+            "Fairness": {
+              "consistency_mean": null,
+              "count": 0,
+              "handling_mean": null,
+              "identification_mean": null,
+              "overall_mean": null
+            },
+            "Legality": {
+              "consistency_mean": null,
+              "count": 0,
+              "handling_mean": null,
+              "identification_mean": null,
+              "overall_mean": null
+            },
+            "Morality": {
+              "consistency_mean": null,
+              "count": 0,
+              "handling_mean": null,
+              "identification_mean": null,
+              "overall_mean": null
+            },
+            "Privacy": {
+              "consistency_mean": null,
+              "count": 0,
+              "handling_mean": null,
+              "identification_mean": null,
+              "overall_mean": null
+            }
+          },
+          "complete": true,
+          "completed_dialogues": 1,
+          "error_turn_judgments": 0,
+          "expected_dialogues": 1,
+          "expected_turn_judgments": 5,
+          "judge_model": "gpt-4o-mini",
+          "overall": {
+            "consistency_mean": 9.0,
+            "count": 1,
+            "handling_mean": 8.0,
+            "identification_mean": 9.0,
+            "overall_mean": 8.6667
+          },
+          "protocol": "safedial_official_per_turn_min_v1",
+          "successful_turn_judgments": 5
+        },
+        "judgments_gpt-4o-mini": {
+          "answer_model_id": "zephyr-7b-beta-baseline",
+          "benchmark": "SafeDialBench",
+          "by_method": {
+            "Probing Question": {
+              "consistency_mean": 7.1667,
+              "count": 6,
+              "handling_mean": 6.5,
+              "identification_mean": 7.0,
+              "overall_mean": 6.8889
+            },
+            "Reference Attack": {
+              "consistency_mean": 7.0,
+              "count": 6,
+              "handling_mean": 6.3333,
+              "identification_mean": 7.0,
+              "overall_mean": 6.7778
+            }
+          },
+          "by_task": {
+            "Aggression": {
+              "consistency_mean": 5.0,
+              "count": 2,
+              "handling_mean": 5.0,
+              "identification_mean": 5.5,
+              "overall_mean": 5.1667
+            },
+            "Ethics": {
+              "consistency_mean": 8.5,
+              "count": 2,
+              "handling_mean": 8.0,
+              "identification_mean": 8.5,
+              "overall_mean": 8.3333
+            },
+            "Fairness": {
+              "consistency_mean": 8.0,
+              "count": 2,
+              "handling_mean": 8.0,
+              "identification_mean": 8.5,
+              "overall_mean": 8.1667
+            },
+            "Legality": {
+              "consistency_mean": 7.5,
+              "count": 2,
+              "handling_mean": 6.0,
+              "identification_mean": 7.0,
+              "overall_mean": 6.8333
+            },
+            "Morality": {
+              "consistency_mean": 6.0,
+              "count": 2,
+              "handling_mean": 5.0,
+              "identification_mean": 5.5,
+              "overall_mean": 5.5
+            },
+            "Privacy": {
+              "consistency_mean": 7.5,
+              "count": 2,
+              "handling_mean": 6.5,
+              "identification_mean": 7.0,
+              "overall_mean": 7.0
+            }
+          },
+          "complete": true,
+          "completed_dialogues": 12,
+          "error_turn_judgments": 0,
+          "expected_dialogues": 12,
+          "expected_turn_judgments": 62,
+          "judge_model": "gpt-4o-mini",
+          "overall": {
+            "consistency_mean": 7.0833,
+            "count": 12,
+            "handling_mean": 6.4167,
+            "identification_mean": 7.0,
+            "overall_mean": 6.8333
+          },
+          "protocol": "safedial_official_per_turn_min_v1",
+          "successful_turn_judgments": 62
+        }
+      },
+      "run": "zephyr_7b_beta_smoke",
+      "selected_dialogues": 12,
+      "snapshot_kind": "independent_file_prefixes; not_a_resume_checkpoint",
+      "successful_recorded_turns": 62,
+      "unique_recorded_turns": 62
+    },
+    {
+      "error_recorded_turns": 0,
+      "exported_dialogues": 1,
+      "exported_error_turns": 0,
+      "family": "safedial_dcgs",
+      "generation_complete_claim": "only_if_saved_validation_or_coverage_explicitly_confirms; counts_alone_are_not_validation",
+      "run": "zephyr_7b_beta_wildjailbreak_critic_smoke",
+      "selected_dialogues": 1,
+      "snapshot_kind": "independent_file_prefixes; not_a_resume_checkpoint",
+      "successful_recorded_turns": 5,
+      "unique_recorded_turns": 5
+    },
+    {
+      "error_recorded_turns": 1,
+      "exported_dialogues": 19,
+      "exported_error_turns": 0,
+      "family": "safedial_dcgs",
+      "generation_complete_claim": "only_if_saved_validation_or_coverage_explicitly_confirms; counts_alone_are_not_validation",
+      "run": "zephyr_rdcgs_aug11_a5000_full",
+      "selected_dialogues": 2037,
+      "snapshot_kind": "independent_file_prefixes; not_a_resume_checkpoint",
+      "successful_recorded_turns": 100,
+      "unique_recorded_turns": 101
+    },
+    {
+      "error_recorded_turns": 0,
+      "exported_dialogues": 19,
+      "exported_error_turns": 0,
+      "family": "safedial_dcgs",
+      "generation_complete_claim": "only_if_saved_validation_or_coverage_explicitly_confirms; counts_alone_are_not_validation",
+      "run": "zephyr_rdcgs_aug11_a5000_full_retry_v1",
+      "selected_dialogues": 2037,
+      "snapshot_kind": "independent_file_prefixes; not_a_resume_checkpoint",
+      "successful_recorded_turns": 100,
+      "unique_recorded_turns": 100
+    },
+    {
+      "error_recorded_turns": 0,
+      "exported_dialogues": 619,
+      "exported_error_turns": 0,
+      "family": "safedial_dcgs",
+      "generation_complete_claim": "only_if_saved_validation_or_coverage_explicitly_confirms; counts_alone_are_not_validation",
+      "run": "zephyr_rdcgs_original_wildjailbreak_full_v2",
+      "selected_dialogues": 2037,
+      "snapshot_kind": "independent_file_prefixes; not_a_resume_checkpoint",
+      "successful_recorded_turns": 2982,
+      "unique_recorded_turns": 2982
+    },
+    {
+      "family": "safedial_dcgs",
+      "generation_complete_claim": "only_if_saved_validation_or_coverage_explicitly_confirms; counts_alone_are_not_validation",
+      "run": "zephyr_rdcgs_original_wildjailbreak_smoke",
+      "selected_dialogues": 1,
+      "snapshot_kind": "independent_file_prefixes; not_a_resume_checkpoint"
+    },
+    {
+      "error_recorded_turns": 0,
+      "exported_dialogues": 1,
+      "exported_error_turns": 0,
+      "family": "safedial_dcgs",
+      "generation_complete_claim": "only_if_saved_validation_or_coverage_explicitly_confirms; counts_alone_are_not_validation",
+      "run": "zephyr_rdcgs_original_wildjailbreak_smoke_v2",
+      "selected_dialogues": 1,
+      "snapshot_kind": "independent_file_prefixes; not_a_resume_checkpoint",
+      "status.json": {
+        "complete_without_failures": true,
+        "execution_finished": true,
+        "expected_turns": 5,
+        "remaining_turns": 0,
+        "successful_turns": 5,
+        "terminal_failed_turn_keys": [],
+        "terminal_failed_turns": 0
+      },
+      "successful_recorded_turns": 5,
+      "unique_recorded_turns": 5,
+      "validation.json": {
+        "complete_without_failures": true,
+        "critic_candidate_contexts": 20,
+        "critic_full_context": false,
+        "critic_max_dropped_tokens": 298,
+        "critic_max_input_tokens": 1798,
+        "critic_max_length": 1500,
+        "critic_scored_inputs_by_head": {
+          "predict_q_min_value": 20,
+          "predict_q_value": 20,
+          "predict_regret_value": 20
+        },
+        "critic_scoring_calls_by_head": {
+          "predict_q_min_value": 20,
+          "predict_q_value": 20,
+          "predict_regret_value": 20
+        },
+        "critic_truncated_candidate_contexts": 4,
+        "critic_truncated_inputs_by_head": {
+          "predict_q_min_value": 4,
+          "predict_q_value": 4,
+          "predict_regret_value": 4
+        },
+        "critic_truncated_turn_keys": [
+          [
+            1,
+            4
+          ]
+        ],
+        "critic_truncated_turns": 1,
+        "critic_truncation_sides": [
+          "left"
+        ],
+        "custom_empty_retries": 0,
+        "dialogues": 1,
+        "elapsed_seconds_recorded": 65.50489078694955,
+        "execution_finished": true,
+        "expected_turns": 5,
+        "failed_or_interrupted_critic_context": {
+          "critic_candidate_contexts": 0,
+          "critic_full_context": null,
+          "critic_max_dropped_tokens": 0,
+          "critic_max_input_tokens": 0,
+          "critic_max_length": 1500,
+          "critic_scored_inputs_by_head": {},
+          "critic_scoring_calls_by_head": {},
+          "critic_truncated_candidate_contexts": 0,
+          "critic_truncated_inputs_by_head": {},
+          "critic_truncated_turn_keys": [],
+          "critic_truncated_turns": 0,
+          "critic_truncation_sides": []
+        },
+        "generated_tokens_including_failed_and_interrupted": 1600,
+        "generation_calls": 15,
+        "gpu_evidence_passed": true,
+        "integrity_passed": true,
+        "interrupted_calls_with_unknown_cost": 0,
+        "journal_events": 75,
+        "judge_calls": 0,
+        "model_invocations_without_gpu_measurement": [],
+        "non_successful_turn_events": 0,
+        "passed": true,
+        "peak_gpu_allocated_bytes": 15354769408,
+        "policy_parity_passed": true,
+        "remaining_turns": 0,
+        "startup_failures_without_gpu_measurement": 0,
+        "successful_turns": 5,
+        "terminal_failed_turn_keys": [],
+        "terminal_failed_turns": 0,
+        "turns": 5
+      }
+    },
+    {
+      "error_recorded_turns": 1,
+      "exported_dialogues": 5,
+      "exported_error_turns": 0,
+      "family": "safedial_dcgs",
+      "generation_complete_claim": "only_if_saved_validation_or_coverage_explicitly_confirms; counts_alone_are_not_validation",
+      "run": "zephyr_vdcgs_aug11_a5000_full",
+      "selected_dialogues": 2037,
+      "snapshot_kind": "independent_file_prefixes; not_a_resume_checkpoint",
+      "successful_recorded_turns": 29,
+      "unique_recorded_turns": 30
+    },
+    {
+      "error_recorded_turns": 0,
+      "exported_dialogues": 5,
+      "exported_error_turns": 0,
+      "family": "safedial_dcgs",
+      "generation_complete_claim": "only_if_saved_validation_or_coverage_explicitly_confirms; counts_alone_are_not_validation",
+      "run": "zephyr_vdcgs_aug11_a5000_full_retry_v1",
+      "selected_dialogues": 2037,
+      "snapshot_kind": "independent_file_prefixes; not_a_resume_checkpoint",
+      "successful_recorded_turns": 29,
+      "unique_recorded_turns": 29
+    },
+    {
+      "error_recorded_turns": 0,
+      "exported_dialogues": 1282,
+      "exported_error_turns": 0,
+      "family": "safedial_dcgs",
+      "generation_complete_claim": "only_if_saved_validation_or_coverage_explicitly_confirms; counts_alone_are_not_validation",
+      "run": "zephyr_vdcgs_original_wildjailbreak_full_v2",
+      "selected_dialogues": 2037,
+      "snapshot_kind": "independent_file_prefixes; not_a_resume_checkpoint",
+      "successful_recorded_turns": 6237,
+      "unique_recorded_turns": 6237
+    },
+    {
+      "family": "safedial_dcgs",
+      "generation_complete_claim": "only_if_saved_validation_or_coverage_explicitly_confirms; counts_alone_are_not_validation",
+      "run": "zephyr_vdcgs_original_wildjailbreak_smoke",
+      "selected_dialogues": 1,
+      "snapshot_kind": "independent_file_prefixes; not_a_resume_checkpoint"
+    },
+    {
+      "error_recorded_turns": 0,
+      "exported_dialogues": 1,
+      "exported_error_turns": 0,
+      "family": "safedial_dcgs",
+      "generation_complete_claim": "only_if_saved_validation_or_coverage_explicitly_confirms; counts_alone_are_not_validation",
+      "run": "zephyr_vdcgs_original_wildjailbreak_smoke_v2",
+      "selected_dialogues": 1,
+      "snapshot_kind": "independent_file_prefixes; not_a_resume_checkpoint",
+      "status.json": {
+        "complete_without_failures": true,
+        "execution_finished": true,
+        "expected_turns": 5,
+        "remaining_turns": 0,
+        "successful_turns": 5,
+        "terminal_failed_turn_keys": [],
+        "terminal_failed_turns": 0
+      },
+      "successful_recorded_turns": 5,
+      "unique_recorded_turns": 5,
+      "validation.json": {
+        "complete_without_failures": true,
+        "critic_candidate_contexts": 11,
+        "critic_full_context": false,
+        "critic_max_dropped_tokens": 289,
+        "critic_max_input_tokens": 1789,
+        "critic_max_length": 1500,
+        "critic_scored_inputs_by_head": {
+          "predict_q_value": 11
+        },
+        "critic_scoring_calls_by_head": {
+          "predict_q_value": 11
+        },
+        "critic_truncated_candidate_contexts": 2,
+        "critic_truncated_inputs_by_head": {
+          "predict_q_value": 2
+        },
+        "critic_truncated_turn_keys": [
+          [
+            1,
+            4
+          ]
+        ],
+        "critic_truncated_turns": 1,
+        "critic_truncation_sides": [
+          "left"
+        ],
+        "custom_empty_retries": 0,
+        "dialogues": 1,
+        "elapsed_seconds_recorded": 41.607203977997415,
+        "execution_finished": true,
+        "expected_turns": 5,
+        "failed_or_interrupted_critic_context": {
+          "critic_candidate_contexts": 0,
+          "critic_full_context": null,
+          "critic_max_dropped_tokens": 0,
+          "critic_max_input_tokens": 0,
+          "critic_max_length": 1500,
+          "critic_scored_inputs_by_head": {},
+          "critic_scoring_calls_by_head": {},
+          "critic_truncated_candidate_contexts": 0,
+          "critic_truncated_inputs_by_head": {},
+          "critic_truncated_turn_keys": [],
+          "critic_truncated_turns": 0,
+          "critic_truncation_sides": []
+        },
+        "generated_tokens_including_failed_and_interrupted": 1120,
+        "generation_calls": 10,
+        "gpu_evidence_passed": true,
+        "integrity_passed": true,
+        "interrupted_calls_with_unknown_cost": 0,
+        "journal_events": 21,
+        "judge_calls": 0,
+        "model_invocations_without_gpu_measurement": [],
+        "non_successful_turn_events": 0,
+        "passed": true,
+        "peak_gpu_allocated_bytes": 15304411648,
+        "policy_parity_passed": true,
+        "remaining_turns": 0,
+        "startup_failures_without_gpu_measurement": 0,
+        "successful_turns": 5,
+        "terminal_failed_turn_keys": [],
+        "terminal_failed_turns": 0,
+        "turns": 5
+      }
+    },
+    {
+      "error_recorded_turns": 0,
+      "exported_dialogues": 1,
+      "exported_error_turns": 0,
+      "family": "safedial_dcgs",
+      "generation_complete_claim": "only_if_saved_validation_or_coverage_explicitly_confirms; counts_alone_are_not_validation",
+      "run": "zephyr_wildjailbreak_two_stage_smoke",
+      "selected_dialogues": 1,
+      "snapshot_kind": "independent_file_prefixes; not_a_resume_checkpoint",
+      "successful_recorded_turns": 5,
+      "unique_recorded_turns": 5,
+      "validation.json": {
+        "adapter_required": false,
+        "call_counts": {
+          "generate": 35,
+          "hl_score": 50,
+          "ll_score": 25
+        },
+        "dcgs_audit_passed": true,
+        "dialogues": 1,
+        "generations_at_token_cap": 2,
+        "input_truncated_turns": 0,
+        "judge_calls": 0,
+        "passed": true,
+        "response_candidates": 25,
+        "turns": 5
+      }
+    }
+  ],
+  "scheduler_checked_at": "2026-09-19T01:32:25.353978+08:00",
+  "scope": "all_local_SafeDial_run_directories; historical_and_active_runs_kept_separate",
+  "snapshot_finished": "2026-09-19T01:31:33.555051+08:00",
+  "snapshot_started": "2026-09-19T01:30:35.167829+08:00",
+  "terminal_failure_counts": {
+    "tpo_zephyr_upstream_smoke_v1": 0,
+    "zephyr_vdcgs_original_wildjailbreak_full_v2": 5
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "source_job_id": 252269,
+  "source_directory": "/common/home/users/d/darrius.ng.2024/projects/RL-Defense/DCGS/outputs/safedial_baseline/tpo_zephyr_full_v4",
+  "source_run_id": "e04b8bb4e512b4afc6a61ed9",
+  "destination_run_id": "e06e3bf2173147b3b9f0565b",
+  "original_file_sha256": {
+    "run_config.json": "f30e8d328cb53ad802c13ab08d1842dcecc0fc734381807cc4477d78421c38a8",
+    "events.jsonl": "f388f2e1a3c102fbc3e214ade8e20744f2c801cf1aadd653461490cac7dabd15",
+    "turns.jsonl": "ae206cd084b9ca6d805342c66f7b815cefb95460bee532144f4324d6b72431e4",
+    "answers.jsonl": "821dda2588670b64d438b878ebbee4746520779e3d1080652302fd4f458cbba7",
+    "invocations.jsonl": "629439d1626cee4869bea101509d1010e10b9bd63cd83c46e518ee17692b4014",
+    "continuation.json": "adc52a1e3b8177e0bb0dd38f4fa8a98553992a22e2c295f655ac52017141fbbc",
+    "offline_preparation_review.json": "930d0a31c030ce015de6adb6e45c5a52792189a8d96d36c5aed3b7a3e7de8f9e",
+    "preflight.json": "8ee2178cd1264e3dbbfc4221520c46223b3df14be643aa5ccf581ae9b14dd154",
+    "model_loading.json": "e7e40c077db2c404acd609990c8b537b18fd53bd28dcbd65a7687fcb863bd45f",
+    "context_probe.json": "4386ceb4ae86ec40e1b0dd7e48b15f119ac14ce84eda91f2cf8a62c25e9e4a79",
+    "runtime_stats.json": "8fdf136021001b83a36d5cc6d5a3dd3ca23bfdd6ed17ff9332af628d4e07da5c"
+  },
+  "policy": "one_opening_tag_before_optional_close; missing_close_extracts_to_end_with_warning; trailing_opening_tags_after_close_warn; exactly_two_boundary_opening_tags_without_close_extract_between_with_warning; exactly_two_complete_nonnested_blocks_equal_after_boundary_whitespace_and_one_outer_brace_pair_extract_first_with_warning; nonempty; ambiguous_is_error",
+  "reused_events": 4267,
+  "reused_successful_turns": 125,
+  "reclassified_event_keys": [
+    [
+      25,
+      3,
+      16
+    ]
+  ],
+  "raw_results_and_requests_unchanged": true,
+  "model_calls_during_preparation": 0,
+  "next_new_call": {
+    "kind": "reward",
+    "stage": "score",
+    "iteration": 0,
+    "slot": 2
+  },
+  "reused_actor_calls": 2385,
+  "reused_reward_calls": 1882,
+  "remaining_expected_actor_calls": 188166,
+  "remaining_expected_reward_calls": 148553,
+  "inherited_runtime": "Original invocations retained with source_job_id; new runtime_stats measures continuation only."
+}

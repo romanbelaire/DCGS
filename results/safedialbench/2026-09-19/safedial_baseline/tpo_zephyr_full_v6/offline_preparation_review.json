@@ -1,0 +1,49 @@
+{
+  "original_source_and_archive_hashes_passed": true,
+  "nested_provenance_hashes_passed": true,
+  "all_4301_raw_requests_and_results_unchanged": true,
+  "reclassified_event_keys": [
+    [
+      25,
+      4,
+      16
+    ]
+  ],
+  "all_126_successful_turns_unchanged_except_run_identifiers": true,
+  "all_24_answers_unchanged_except_run_identifiers": true,
+  "fixture_directory": "/tmp/tpo-v6-offline-continuation-t8vrreo2",
+  "fixture_only_injected_calls": 17,
+  "fixture_validation": {
+    "passed": true,
+    "dialogues": 25,
+    "turns": 127,
+    "input_truncated_turns": 0,
+    "adapter_required": false,
+    "judge_calls": 0,
+    "tpo_audit_passed": true,
+    "candidates": 1905,
+    "feedback_generations": 508,
+    "generations_at_token_cap": 18,
+    "optimizer_missing_closing_tag_warnings": 14,
+    "optimizer_trailing_opening_tag_warnings": 7,
+    "optimizer_terminal_opening_tag_warnings": 2,
+    "optimizer_duplicate_block_warnings": 2,
+    "reward_context_tokens": 8192
+  },
+  "fixture_no_op_resume_unchanged": true,
+  "benchmark_model_calls": 0,
+  "next_real_call": "reward score recovered answer at dialogue 25/index 4 round 0 slot 2",
+  "repository_tests": {
+    "passed": 85
+  },
+  "full_artifact_tokenizer_preflight": {
+    "passed": true,
+    "dialogues": 2037,
+    "turns": 10029,
+    "planned_candidates": 150435,
+    "max_actor_prefix": 8022,
+    "max_reward_prefix": 7197
+  },
+  "batch_bash_syntax_passed": true,
+  "smoothllm_source_hashes_unchanged": true
+}

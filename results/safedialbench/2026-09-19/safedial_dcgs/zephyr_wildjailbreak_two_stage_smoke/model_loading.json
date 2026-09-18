@@ -1,0 +1,19 @@
+{
+  "actor_and_hl": {
+    "passed": true,
+    "dtype": "torch.bfloat16",
+    "trainable_parameters": 0
+  },
+  "ll_encoder": {
+    "passed": true,
+    "dtype": "torch.float16",
+    "trainable_parameters": 0
+  },
+  "heads": {
+    "passed": true,
+    "all_seven_heads_strictly_loaded": true,
+    "trainable_parameters": 0,
+    "token_checkpoint_sha256": "a0a4cc34e4a096122adeb21d5cff2acfe6cf760c22f70b9a76733555b9e1313f",
+    "high_level_checkpoint_sha256": "b1ecbe5461dfefe0edf9a2f6fb83277cf494d9744deea0cf56bb58d4bbf6d75d"
+  }
+}
