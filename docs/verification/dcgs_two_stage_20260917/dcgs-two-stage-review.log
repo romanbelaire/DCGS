@@ -1,0 +1,45 @@
+Saved dialogue=1 turn=0 candidates=5
+Saved dialogue=1 turn=1 candidates=5
+Saved dialogue=1 turn=2 candidates=5
+Saved dialogue=1 turn=3 candidates=5
+Saved dialogue=1 turn=4 candidates=5
+{
+  "checkpoint_heads_loaded_strictly": [
+    "q_mlp_head_state_dict",
+    "v_mlp_head_state_dict",
+    "q_min_mlp_head_state_dict",
+    "v_min_mlp_head_state_dict",
+    "regret_mlp_head_state_dict",
+    "harm_head",
+    "follow_head"
+  ],
+  "all_heads_frozen": true,
+  "real_tokenizer_action_span": [
+    50,
+    61
+  ],
+  "real_token_heads_synthetic_residual_score_passed": true,
+  "fixture_directory": "/tmp/dcgs-two-stage-offline-djiewh1b",
+  "fixture_only_injected_calls": 110,
+  "fixture_validation": {
+    "passed": true,
+    "dialogues": 1,
+    "turns": 5,
+    "input_truncated_turns": 0,
+    "adapter_required": false,
+    "judge_calls": 0,
+    "dcgs_audit_passed": true,
+    "call_counts": {
+      "generate": 35,
+      "hl_score": 50,
+      "ll_score": 25
+    },
+    "generations_at_token_cap": 0,
+    "response_candidates": 25
+  },
+  "byte_identical_noop_resume": true,
+  "active_experiment_sources_unchanged": true,
+  "real_backbone_calls": 0,
+  "api_calls": 0,
+  "gpu_smoke_completed": false
+}

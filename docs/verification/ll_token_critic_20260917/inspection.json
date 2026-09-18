@@ -1,0 +1,74 @@
+{
+  "cares": {
+    "size_bytes": 134287165,
+    "sha256": "a0a4cc34e4a096122adeb21d5cff2acfe6cf760c22f70b9a76733555b9e1313f",
+    "keys": [
+      "harm_head",
+      "follow_head",
+      "hidden_size",
+      "mlp_width_mult",
+      "objective",
+      "gamma",
+      "k",
+      "epochs",
+      "lr",
+      "seed",
+      "n_examples"
+    ],
+    "metadata": {
+      "hidden_size": 4096,
+      "mlp_width_mult": 2.0,
+      "objective": "shapley",
+      "gamma": 0.99,
+      "k": 5,
+      "epochs": 20,
+      "lr": 0.001,
+      "seed": 42,
+      "n_examples": 804
+    },
+    "head_parameter_counts": {
+      "harm_head": 16785409,
+      "follow_head": 16785409
+    },
+    "strict_head_load_passed": true,
+    "head_weights_finite": true,
+    "synthetic_zero_residual_score_finite": true,
+    "backbone_loaded": false
+  },
+  "wildjailbreak": {
+    "size_bytes": 134287165,
+    "sha256": "a0a4cc34e4a096122adeb21d5cff2acfe6cf760c22f70b9a76733555b9e1313f",
+    "keys": [
+      "harm_head",
+      "follow_head",
+      "hidden_size",
+      "mlp_width_mult",
+      "objective",
+      "gamma",
+      "k",
+      "epochs",
+      "lr",
+      "seed",
+      "n_examples"
+    ],
+    "metadata": {
+      "hidden_size": 4096,
+      "mlp_width_mult": 2.0,
+      "objective": "shapley",
+      "gamma": 0.99,
+      "k": 5,
+      "epochs": 20,
+      "lr": 0.001,
+      "seed": 42,
+      "n_examples": 804
+    },
+    "head_parameter_counts": {
+      "harm_head": 16785409,
+      "follow_head": 16785409
+    },
+    "strict_head_load_passed": true,
+    "head_weights_finite": true,
+    "synthetic_zero_residual_score_finite": true,
+    "backbone_loaded": false
+  }
+}

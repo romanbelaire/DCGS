@@ -1,0 +1,35 @@
+{
+  "checked_at": "2026-09-15T23:26:31.594084+08:00",
+  "smoothllm_zephyr_full": {
+    "successful_turns": 6686,
+    "percent": 66.67,
+    "saved_unique_turns": 6687,
+    "unsaved_turns": 3342,
+    "error_keys": [
+      [
+        344,
+        4
+      ]
+    ],
+    "complete_error_free_dialogues": 1375,
+    "answer_records": 1376,
+    "partial_tail_ignored": false,
+    "runtime_hashes_unchanged": true
+  },
+  "tpo_zephyr_full_v5": {
+    "successful_turns": 126,
+    "percent": 1.26,
+    "saved_unique_turns": 127,
+    "unsaved_turns": 9902,
+    "error_keys": [
+      [
+        25,
+        4
+      ]
+    ],
+    "complete_error_free_dialogues": 24,
+    "answer_records": 24,
+    "partial_tail_ignored": false,
+    "runtime_hashes_unchanged": true
+  }
+}

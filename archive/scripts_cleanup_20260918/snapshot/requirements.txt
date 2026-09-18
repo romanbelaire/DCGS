@@ -1,0 +1,26 @@
+# Core runtime dependencies for CARES and WildJailbreak experiments.
+#
+# PyTorch wheels are CUDA/platform-specific. The runbook recommends installing
+# the correct PyTorch build for the compute node before installing this file.
+torch>=2.2,<3
+transformers>=4.44,<5
+datasets>=2.19,<5
+peft>=0.12,<1
+accelerate>=0.33,<2
+huggingface-hub>=0.24,<2
+safetensors>=0.4,<1
+openai>=1.40,<3
+
+# Numerical analysis and experiment reports.
+numpy>=1.24,<3
+pandas>=2.0,<3
+scipy>=1.10,<2
+scikit-learn>=1.3,<2
+matplotlib>=3.7,<4
+
+# Tokenizer compatibility for locally loaded Hugging Face models.
+sentencepiece>=0.2,<1
+protobuf>=4.25,<7
+
+# VitaBench, TravelGym/UserBench, and other external benchmark harnesses are
+# optional and are not included because they require separate repositories.

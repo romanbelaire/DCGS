@@ -1,0 +1,54 @@
+{
+  "source_sha256": "f327fed433313fde3acc4e4f112acdfa5e703641ba8e6ce440b350df0bc5b634",
+  "method": "Exact existing parser method extracted with AST and run on saved response generations; no imports/model execution or monkeypatching.",
+  "results": [
+    {
+      "run": "zephyr_vdcgs_aug11_a5000_full",
+      "key": [
+        6,
+        4,
+        8
+      ],
+      "raw_chars": 1024,
+      "parsed_preserving_whitespace": "",
+      "parsed_after_stripping": "",
+      "would_pass_postparse_nonempty_check": false
+    },
+    {
+      "run": "zephyr_vdcgs_aug11_a5000_full",
+      "response_generations_compared": 147,
+      "all_parsed_outputs_identical": true,
+      "long_newline_tail_response_cases": 2
+    },
+    {
+      "run": "zephyr_rdcgs_aug11_a5000_full",
+      "key": [
+        20,
+        4,
+        18
+      ],
+      "raw_chars": 1024,
+      "parsed_preserving_whitespace": "",
+      "parsed_after_stripping": "",
+      "would_pass_postparse_nonempty_check": false
+    },
+    {
+      "run": "zephyr_rdcgs_aug11_a5000_full",
+      "response_generations_compared": 504,
+      "all_parsed_outputs_identical": true,
+      "long_newline_tail_response_cases": 10
+    },
+    {
+      "synthetic_input": "'[RESPONSE]\\n\\n'",
+      "parsed": "''"
+    },
+    {
+      "synthetic_input": "'[RESPONSE]\\n\\n[/RESPONSE]'",
+      "parsed": "'[RESPONSE]\\n\\n[/RESPONSE]'"
+    },
+    {
+      "synthetic_input": "'[RESPONSE]Useful response.\\n\\n[/RESPONSE]\\n\\n'",
+      "parsed": "'Useful response.'"
+    }
+  ]
+}

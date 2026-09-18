@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "archived_snapshot_files": 201,
+  "run_manifest_copies": 26,
+  "unchanged_pinned_sources": 108,
+  "archived_python_scripts": 14,
+  "archived_launchers": 11,
+  "archived_test_modules": 2,
+  "active_python_scripts": 26,
+  "active_launchers_syntax_and_references_passed": 12
+}

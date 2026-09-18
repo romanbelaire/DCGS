@@ -1,0 +1,29 @@
+...Saved dialogue=1 turn=0 candidates=5
+Saved dialogue=1 turn=1 candidates=5
+.FAIL dialogue=1 turn=0: response_score slot=0: injected score failure
+Unresolved DCGS error (1, 0); inspect audit before --retry-errors
+Saved dialogue=1 turn=0 candidates=5
+Saved dialogue=1 turn=1 candidates=5
+.Saved dialogue=1 turn=0 candidates=5
+Saved dialogue=1 turn=1 candidates=5
+.Saved dialogue=1 turn=0 candidates=5
+Saved dialogue=1 turn=1 candidates=5
+.Recovered interrupted final append in /tmp/tmpdqtv_z8h/journal.jsonl; original tail retained
+.....Checking pinned Zephyr and both WildJailbreak critic checkpoints
+{"passed": true}
+..........Saved dialogue=1 turn=0 candidates=5
+Saved dialogue=1 turn=1 candidates=5
+.FAIL dialogue=1 turn=0: response_score slot=0: injected score failure
+Unresolved DCGS error (1, 0); inspect audit before --retry-errors
+Saved dialogue=1 turn=0 candidates=5
+Saved dialogue=1 turn=1 candidates=5
+.Saved dialogue=1 turn=0 candidates=5
+Saved dialogue=1 turn=1 candidates=5
+.Saved dialogue=1 turn=0 candidates=5
+Saved dialogue=1 turn=1 candidates=5
+.Recovered interrupted final append in /tmp/tmp9uyv2558/journal.jsonl; original tail retained
+.
+----------------------------------------------------------------------
+Ran 27 tests in 1.333s
+
+OK

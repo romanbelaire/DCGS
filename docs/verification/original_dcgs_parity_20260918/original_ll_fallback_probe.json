@@ -1,0 +1,76 @@
+{
+  "source": "src/agents/low_level_agent.py",
+  "source_sha256": "f327fed433313fde3acc4e4f112acdfa5e703641ba8e6ce440b350df0bc5b634",
+  "mode": "exact AST-extracted original methods with injected model/fallback outputs; no model calls",
+  "checks": [
+    {
+      "valid_responses_in_first_generation": 0,
+      "pool_generation_calls": 1,
+      "fallback_calls": 1,
+      "outputs": [
+        "Single fallback response.",
+        "Single fallback response.",
+        "Single fallback response.",
+        "Single fallback response.",
+        "Single fallback response."
+      ],
+      "pool_generation_settings": {
+        "prompts": [
+          "fixture prompt"
+        ],
+        "max_new_tokens": 640,
+        "temperature": 0.7,
+        "do_sample": true,
+        "prefill_suffix": "1. [RESPONSE]\n",
+        "chunk_size": null,
+        "enable_thinking": null
+      }
+    },
+    {
+      "valid_responses_in_first_generation": 2,
+      "pool_generation_calls": 1,
+      "fallback_calls": 1,
+      "outputs": [
+        "Meaningful response number 1.",
+        "Meaningful response number 2.",
+        "Single fallback response.",
+        "Single fallback response.",
+        "Single fallback response."
+      ],
+      "pool_generation_settings": {
+        "prompts": [
+          "fixture prompt"
+        ],
+        "max_new_tokens": 640,
+        "temperature": 0.7,
+        "do_sample": true,
+        "prefill_suffix": "1. [RESPONSE]\n",
+        "chunk_size": null,
+        "enable_thinking": null
+      }
+    },
+    {
+      "valid_responses_in_first_generation": 5,
+      "pool_generation_calls": 1,
+      "fallback_calls": 0,
+      "outputs": [
+        "Meaningful response number 1.",
+        "Meaningful response number 2.",
+        "Meaningful response number 3.",
+        "Meaningful response number 4.",
+        "Meaningful response number 5."
+      ],
+      "pool_generation_settings": {
+        "prompts": [
+          "fixture prompt"
+        ],
+        "max_new_tokens": 640,
+        "temperature": 0.7,
+        "do_sample": true,
+        "prefill_suffix": "1. [RESPONSE]\n",
+        "chunk_size": null,
+        "enable_thinking": null
+      }
+    }
+  ]
+}

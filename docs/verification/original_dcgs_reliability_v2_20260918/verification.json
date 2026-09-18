@@ -1,0 +1,204 @@
+{
+  "passed": true,
+  "active_tests": 117,
+  "original_source_unchanged": {
+    "src/__init__.py": true,
+    "src/main.py": true,
+    "src/training/episode_state.py": true,
+    "src/training/hierarchical_rollout.py": true,
+    "src/prompts/templates.jsonl": true,
+    "src/prompts/prompt_manager.py": true,
+    "src/prompts/__init__.py": true,
+    "src/prompts/cares_patient_prompts.json": true,
+    "src/prompts/personas.jsonl": true,
+    "src/prompts/wildjailbreak_attacker_prompts.json": true,
+    "src/environments/userbench_env.py": true,
+    "src/environments/multiwoz_env.py": true,
+    "src/environments/userbench_helpers.py": true,
+    "src/environments/redbench_helpers.py": true,
+    "src/environments/adversarial_helpers.py": true,
+    "src/environments/salesagent_env.py": true,
+    "src/environments/__init__.py": true,
+    "src/environments/salesagent_helpers.py": true,
+    "src/environments/online_env.py": true,
+    "src/environments/cares_env.py": true,
+    "src/environments/dialogue_env.py": true,
+    "src/environments/vitabench_helpers.py": true,
+    "src/environments/wildjailbreak_helpers.py": true,
+    "src/environments/vitabench_env.py": true,
+    "src/environments/episode_factory.py": true,
+    "src/environments/harmbench_helpers.py": true,
+    "src/environments/cares_helpers.py": true,
+    "src/analysis/checkpoint_ablation.py": true,
+    "src/analysis/compare_defense_ablations.py": true,
+    "src/analysis/cosine_pattern_analysis.py": true,
+    "src/analysis/live_evaluate_ablations.py": true,
+    "src/analysis/wjb_rep_sample_beliefs.py": true,
+    "src/analysis/rep_belief_selection.py": true,
+    "src/analysis/defense_embedding_metrics.py": true,
+    "src/analysis/__init__.py": true,
+    "src/analysis/wjb_rep_layer_separation.py": true,
+    "src/analysis/evaluate_training_dynamics.py": true,
+    "src/analysis/analyze_q_values.py": true,
+    "src/analysis/wjb_rep_belief_intervention.py": true,
+    "src/analysis/metrics_report.py": true,
+    "src/analysis/analyze_candidate_pool_k_sweep.py": true,
+    "src/analysis/compare_ablations.py": true,
+    "src/analysis/plot_candidate_pool_k_sweep.py": true,
+    "src/analysis/scrambled_belief_evaluation.py": true,
+    "src/analysis/dcr_base_final_entk.py": true,
+    "src/analysis/wjb_rep_entk_subset.py": true,
+    "src/defense/__init__.py": true,
+    "src/defense/tpo_wrapper.py": true,
+    "src/defense/smoothllm_wrapper.py": true,
+    "src/belief/belief_updater.py": true,
+    "src/belief/__init__.py": true,
+    "src/belief/dialogue_state.py": true,
+    "src/belief/belief_state.py": true,
+    "src/belief/belief_surrogate.py": true,
+    "src/belief/entropy.py": true,
+    "src/simulation/__init__.py": true,
+    "src/simulation/slot_extraction.py": true,
+    "src/simulation/goal_state.py": true,
+    "src/simulation/desire_extraction.py": true,
+    "src/simulation/constraint_simulator.py": true,
+    "src/agents/freeform_high_level_agent.py": true,
+    "src/agents/gpt_agents.py": true,
+    "src/agents/low_level_agent.py": true,
+    "src/agents/user_agent.py": true,
+    "src/agents/__init__.py": true,
+    "src/agents/high_level_agent.py": true,
+    "src/agents/user_simulator.py": true,
+    "src/agents/base_agent.py": true,
+    "src/agents/patient_agent.py": true,
+    "src/value/marginal_rewards.py": true,
+    "src/value/value_function.py": true,
+    "src/value/__init__.py": true,
+    "src/value/marginal_rewards_integration.py": true,
+    "src/value/cares_reward.py": true,
+    "src/value/vitabench_turn_scores.py": true,
+    "src/value/multiwoz_single_turn_eval.py": true,
+    "src/value/reward.py": true,
+    "src/value/vitabench_single_turn_eval.py": true,
+    "src/value/ll_token_critic.py": true,
+    "src/data/multiwoz_loader.py": true,
+    "src/data/__init__.py": true,
+    "src/data/data_utils.py": true,
+    "src/data/dialogue_formatter.py": true,
+    "src/utils/llm_utils.py": true,
+    "src/utils/guard_safety.py": true,
+    "src/utils/__init__.py": true,
+    "src/utils/belief_evaluation.py": true,
+    "src/utils/belief_converter.py": true,
+    "src/utils/logging_utils.py": true,
+    "src/configs/__init__.py": true,
+    "src/configs/base_config.py": true
+  },
+  "active_tpo_smoothllm_source_sha256": {
+    "scripts/run_safedial_baseline.py": "5cd217d99793c99536c837423b816d0f0baa0bae1088a7b76e616d30b0997d82",
+    "scripts/run_safedial_tpo.py": "7836507834f47506c8273a04a87a668fd70148e01c3bc57239f29b7a2a6472f8",
+    "scripts/run_safedial_tpo_full.py": "6958dcca9b9b05762bf7d94a7f36230b6dbe18bbc4a68e94e6e201472b2770fb",
+    "scripts/safedial_generation_retry.py": "da944379849abddaa26dcdef94b9ade42e89b2b647c874eb30bc8fce90824a86",
+    "scripts/safedial_tpo.py": "27d5765a9c410c41f51ac33564ed5321d43f7c616808fe882395e784ad64ad03",
+    "scripts/safedial_tpo_artifacts.py": "ea71206533cd720b3cb775b850c5176a53d58deb321dda9cf9eb370cdb5926ab",
+    "scripts/safedial_tpo_runtime.py": "7ab1bc221b4f3c0ccbcb2c62258ac02064ae0b2e29117d565c85d738f3c8b2ce",
+    "scripts/tpo_vendor/llm_backward_prompts.py": "1e3f9c023cd7fe9d2e42b322fec33e93c9dd698f60c17f35d45abe076bf0c541",
+    "scripts/tpo_vendor/optimizer_prompts.py": "b35a8a56de0d11d9ada8081ef74ccbdc85ba3d3be2f6a20bba9a4b01ed945c79",
+    "scripts/run_safedial_smoothllm.py": "845193170516b378ee095467c2e8f7313e13e34c4a3c297225ceffd3fc548e16",
+    "scripts/run_safedial_smoothllm_turn_resume.py": "634cd31548f237ce01e78dde772dfaa248b5d37394ed17815825c935e3487c54",
+    "scripts/safedial_smoothllm.py": "7d7337a4fa557525d0d553eef19d8e31def2f5a1c1679a118d81cc6121de4a20"
+  },
+  "prepared": {
+    "vdcgs": {
+      "output_directory": "/common/home/users/d/darrius.ng.2024/projects/RL-Defense/DCGS/outputs/safedial_dcgs/zephyr_vdcgs_original_wildjailbreak_smoke_v2",
+      "manifest_sha256": "f763395b0185fdf918557103c100655add95f8db9d4f5d17101904c3f6e6f892",
+      "preflight": {
+        "passed": true,
+        "dialogues": 1,
+        "turns": 5,
+        "synthetic_prompt_calls": 10,
+        "max_prompt_plus_generation_tokens": 2044,
+        "model_calls": 0,
+        "estimated_critic_context": {
+          "critic_max_length": 1500,
+          "critic_truncation_sides": [
+            "left"
+          ],
+          "critic_candidate_contexts": 25,
+          "critic_truncated_candidate_contexts": 5,
+          "critic_truncated_turns": 1,
+          "critic_truncated_turn_keys": [
+            [
+              1,
+              4
+            ]
+          ],
+          "critic_scoring_calls_by_head": {
+            "predict_q_value": 25
+          },
+          "critic_scored_inputs_by_head": {
+            "predict_q_value": 25
+          },
+          "critic_truncated_inputs_by_head": {
+            "predict_q_value": 5
+          },
+          "critic_max_input_tokens": 1743,
+          "critic_max_dropped_tokens": 243,
+          "critic_full_context": false
+        },
+        "note": "Synthetic belief lengths; actual actor context is guarded at generation time."
+      },
+      "launcher_sha256": "4372104f7279b5690aac564574d8e1ac6d3b52494fb8c69529ca12160065021e"
+    },
+    "rdcgs": {
+      "output_directory": "/common/home/users/d/darrius.ng.2024/projects/RL-Defense/DCGS/outputs/safedial_dcgs/zephyr_rdcgs_original_wildjailbreak_smoke_v2",
+      "manifest_sha256": "4f5e32f2fde3a58fad3f675973489f916a2e2a6f180db4e7a93823c81cd9e11a",
+      "preflight": {
+        "passed": true,
+        "dialogues": 1,
+        "turns": 5,
+        "synthetic_prompt_calls": 15,
+        "max_prompt_plus_generation_tokens": 2141,
+        "model_calls": 0,
+        "estimated_critic_context": {
+          "critic_max_length": 1500,
+          "critic_truncation_sides": [
+            "left"
+          ],
+          "critic_candidate_contexts": 25,
+          "critic_truncated_candidate_contexts": 5,
+          "critic_truncated_turns": 1,
+          "critic_truncated_turn_keys": [
+            [
+              1,
+              4
+            ]
+          ],
+          "critic_scoring_calls_by_head": {
+            "predict_q_value": 50,
+            "predict_q_min_value": 50,
+            "predict_regret_value": 50
+          },
+          "critic_scored_inputs_by_head": {
+            "predict_q_value": 50,
+            "predict_q_min_value": 50,
+            "predict_regret_value": 50
+          },
+          "critic_truncated_inputs_by_head": {
+            "predict_q_value": 10,
+            "predict_q_min_value": 10,
+            "predict_regret_value": 10
+          },
+          "critic_max_input_tokens": 1743,
+          "critic_max_dropped_tokens": 243,
+          "critic_full_context": false
+        },
+        "note": "Synthetic belief lengths; actual actor context is guarded at generation time."
+      },
+      "launcher_sha256": "d6dbf25b7bb91bad2e05f01bc6a840fd289759b5d367b99c7650428219b839e4"
+    }
+  },
+  "benchmark_model_calls": 0,
+  "jobs_submitted": 0,
+  "gpu_smoke_pending": true
+}

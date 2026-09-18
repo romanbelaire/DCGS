@@ -1,0 +1,11 @@
+{
+  "original_path": "/common/home/users/d/darrius.ng.2024/projects/RL-Defense/DCGS/outputs/wildjailbreak_hierarchical_regret_critic/hierarchical_regret_critic/checkpoints/value_function_final.pt",
+  "aug11_path": "/common/home/users/d/darrius.ng.2024/projects/RL-Defense/DCGS/outputs/wildjailbreak_hierarchical_regret_critic/hierarchical_regret_critic/checkpoints/value_function_final_aug11.pt",
+  "sha256": "b1ecbe5461dfefe0edf9a2f6fb83277cf494d9744deea0cf56bb58d4bbf6d75d",
+  "bytes": 251806417,
+  "byte_identical": true,
+  "smoke_job_id": 256826,
+  "smoke_used_same_weights": true,
+  "explicit_aug11_lock": "configs/safedial/dcgs_two_stage_aug11.lock.json",
+  "original_smoke_lock_and_manifest_unchanged": true
+}

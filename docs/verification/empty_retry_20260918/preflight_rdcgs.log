@@ -1,0 +1,2 @@
+Checking pinned Zephyr and both WildJailbreak critic checkpoints
+{"passed": true, "dialogues": 2037, "turns": 10029, "max_input_tokens": {"intent_generation": 8302, "response_generation_placeholder": 8077, "hl_placeholder": 7992, "ll_placeholder": 8000}, "actor_context_tokens": 32768, "hl_context_tokens": 32768, "ll_context_tokens": 32768, "startup_probe_tokens": 10240, "dynamic_inputs": "every actual prompt, belief and action checked at runtime without truncation"}

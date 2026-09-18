@@ -1,0 +1,30 @@
+{
+  "tests": {
+    "passed": 135,
+    "failed": 0
+  },
+  "full_preflights": {
+    "vdcgs": {
+      "passed": true,
+      "dialogues": 2037,
+      "turns": 10029
+    },
+    "rdcgs": {
+      "passed": true,
+      "dialogues": 2037,
+      "turns": 10029
+    },
+    "tpo": {
+      "passed": true,
+      "dialogues": 2037,
+      "turns": 10029
+    }
+  },
+  "bash_syntax": "PASS for all three new launchers",
+  "real_checkpoint_offline_replays": "PASS; no-op byte-identical; original/nested provenance hashes verified",
+  "prepared_source_files": 112,
+  "benchmark_model_calls": 0,
+  "slurm_mutations": 0,
+  "gpu_retry_execution": "not yet run",
+  "smoothllm_pinned_sources": "all four unchanged"
+}

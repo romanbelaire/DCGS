@@ -1,0 +1,36 @@
+{
+  "source_directory": "/common/home/users/d/darrius.ng.2024/projects/RL-Defense/DCGS/outputs/safedial_dcgs/zephyr_rdcgs_aug11_a5000_full",
+  "source_run_id": "cd75fb6b01a9ee34c0c83781",
+  "destination_run_id": "179881b9c25e9f6c890095ea",
+  "successful_turns_preserved": 100,
+  "complete_dialogues_preserved": 19,
+  "original_journal_rows": 2214,
+  "canonical_events_preserved": 2214,
+  "failed_event_preserved": [
+    20,
+    4,
+    18
+  ],
+  "policy": {
+    "extra_attempts": 2,
+    "version": 1,
+    "scope": "empty_sampled_generation_only; first_valid_result",
+    "seed": "sha256(original_seed,empty-generation-retry,attempt); distinct_mod_2147483647",
+    "journal": "every_attempt_fsync; reuse_saved_empty_attempts; include_all_costs"
+  },
+  "next_new_call": {
+    "kind": "generate",
+    "max_new_tokens": 1024,
+    "prefill": "[RESPONSE]",
+    "seed": 20156382,
+    "slot": 3,
+    "stage": "response",
+    "temperature": 0.7,
+    "top_k": 0,
+    "top_p": 1.0,
+    "retry_attempt": 1,
+    "original_seed": 1522943340
+  },
+  "model_calls_during_preparation": 0,
+  "runtime_evidence": "Original evidence archived; continuation must write its own GPU evidence"
+}

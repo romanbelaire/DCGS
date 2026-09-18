@@ -1,0 +1,109 @@
+{
+  "checked_at": "2026-09-14 09:52 SGT",
+  "passed": true,
+  "dialogues": 2037,
+  "turns": 10029,
+  "scored_candidates": 150435,
+  "actor_generations": 190551,
+  "preflight": {
+    "gold_history_max_tokens": {
+      "actor": 8022,
+      "reward": 7197
+    },
+    "context_windows": {
+      "actor": 32768,
+      "reward": 8192
+    },
+    "longest_gold_history": {
+      "actor": {
+        "dialogue_id": 987,
+        "turn_index": 5
+      },
+      "reward": {
+        "dialogue_id": 987,
+        "turn_index": 5
+      }
+    },
+    "declared_tokenizer_max_tokens": {
+      "actor": 1000000000000000019884624838656,
+      "reward": 4096
+    },
+    "dynamic_feedback_and_reward_inputs": "checked_before_every_call; no_truncation"
+  },
+  "original_4096_metadata_audit": {
+    "turns": 10029,
+    "maximum": {
+      "id": 987,
+      "turn_index": 5,
+      "prefix_tokens": 7197
+    },
+    "over4095": 257,
+    "over8191": 0,
+    "top10": [
+      {
+        "id": 987,
+        "turn_index": 5,
+        "prefix_tokens": 7197
+      },
+      {
+        "id": 2003,
+        "turn_index": 4,
+        "prefix_tokens": 6445
+      },
+      {
+        "id": 1352,
+        "turn_index": 5,
+        "prefix_tokens": 6416
+      },
+      {
+        "id": 1602,
+        "turn_index": 5,
+        "prefix_tokens": 6073
+      },
+      {
+        "id": 1734,
+        "turn_index": 4,
+        "prefix_tokens": 6038
+      },
+      {
+        "id": 136,
+        "turn_index": 5,
+        "prefix_tokens": 5759
+      },
+      {
+        "id": 825,
+        "turn_index": 5,
+        "prefix_tokens": 5747
+      },
+      {
+        "id": 1349,
+        "turn_index": 4,
+        "prefix_tokens": 5709
+      },
+      {
+        "id": 1903,
+        "turn_index": 4,
+        "prefix_tokens": 5695
+      },
+      {
+        "id": 1251,
+        "turn_index": 4,
+        "prefix_tokens": 5694
+      }
+    ]
+  },
+  "dataset_sha256": "a5429b6477ab7d3f6e47da55e0a9c889bbbba7575dd2ba7e1672379a412bc988",
+  "artifact_lock_sha256": "e4b92c31fbad039607b5316f948672dce61c9885e00bd2021a8cb1b1a7a01abc",
+  "implementation_sha256": {
+    "run_safedial_tpo.py": "89afb4e00a638d7d72124addd565500c4737a8afc79204d9ab859ffe0a3c6dec",
+    "safedial_tpo.py": "89da3e3c1ea6c38b91e3a11bebb19954211e2b3512bdf204077c208f9efeb3e7",
+    "safedial_tpo_runtime.py": "4eec9f7433f64971fd5176a1982fda42a263d1446927413ee861dd494da1115e",
+    "safedial_tpo_artifacts.py": "ea71206533cd720b3cb775b850c5176a53d58deb321dda9cf9eb370cdb5926ab",
+    "run_safedial_baseline.py": "5cd217d99793c99536c837423b816d0f0baa0bae1088a7b76e616d30b0997d82",
+    "tpo_vendor/llm_backward_prompts.py": "1e3f9c023cd7fe9d2e42b322fec33e93c9dd698f60c17f35d45abe076bf0c541",
+    "tpo_vendor/optimizer_prompts.py": "b35a8a56de0d11d9ada8081ef74ccbdc85ba3d3be2f6a20bba9a4b01ed945c79",
+    "run_safedial_tpo_full.py": "6958dcca9b9b05762bf7d94a7f36230b6dbe18bbc4a68e94e6e201472b2770fb"
+  },
+  "gpu_8192_probe_status": "pending; included at startup in user-owned batch",
+  "offline_tests_passed": 65
+}

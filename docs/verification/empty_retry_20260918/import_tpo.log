@@ -1,0 +1,35 @@
+{
+  "source_directory": "/common/home/users/d/darrius.ng.2024/projects/RL-Defense/DCGS/outputs/safedial_baseline/tpo_zephyr_full_v7",
+  "source_run_id": "02b8e31e0cddb27af25f2e57",
+  "destination_run_id": "2fb30ec72635822d640e508c",
+  "successful_turns_preserved": 140,
+  "complete_dialogues_preserved": 27,
+  "original_journal_rows": 4783,
+  "canonical_events_preserved": 4783,
+  "failed_event_preserved": [
+    28,
+    2,
+    22
+  ],
+  "policy": {
+    "extra_attempts": 2,
+    "version": 1,
+    "scope": "empty_sampled_generation_only; first_valid_result",
+    "seed": "sha256(original_seed,empty-generation-retry,attempt); distinct_mod_2147483647",
+    "journal": "every_attempt_fsync; reuse_saved_empty_attempts; include_all_costs"
+  },
+  "next_new_call": {
+    "iteration": 1,
+    "kind": "generate",
+    "max_new_tokens": 2048,
+    "seed": 253860079,
+    "slot": 0,
+    "stage": "loss",
+    "temperature": 0.7,
+    "top_p": 0.99,
+    "retry_attempt": 1,
+    "original_seed": 1248655093
+  },
+  "model_calls_during_preparation": 0,
+  "runtime_evidence": "Original evidence archived; continuation must write its own GPU evidence"
+}

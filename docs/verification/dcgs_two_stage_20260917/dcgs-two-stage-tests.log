@@ -1,0 +1,300 @@
+test_api_failure_does_not_reuse_previous_response (test_judge_safedial.JudgeDiagnosticsTest.test_api_failure_does_not_reuse_previous_response) ... ok
+test_diagnostics_survive_success_and_subsequent_runs (test_judge_safedial.JudgeDiagnosticsTest.test_diagnostics_survive_success_and_subsequent_runs) ... ok
+test_parse_failure_retains_raw_response_and_usage (test_judge_safedial.JudgeDiagnosticsTest.test_parse_failure_retains_raw_response_and_usage) ... ok
+test_refusal_retained_without_inventing_scores (test_judge_safedial.JudgeDiagnosticsTest.test_refusal_retained_without_inventing_scores) ... ok
+test_success_preserves_scores_and_request_settings (test_judge_safedial.JudgeDiagnosticsTest.test_success_preserves_scores_and_request_settings) ... ok
+test_gold_history_uses_only_prior_gold_assistant_turns (test_run_safedial_dcgs.SafeDialDCGSTest.test_gold_history_uses_only_prior_gold_assistant_turns) ... ok
+test_observation_matches_episode_state_shape (test_run_safedial_dcgs.SafeDialDCGSTest.test_observation_matches_episode_state_shape) ... ok
+test_softmax_selection_is_normalized_and_reproducible (test_run_safedial_dcgs.SafeDialDCGSTest.test_softmax_selection_is_normalized_and_reproducible) ... ok
+test_automatic_success_keeps_review_history (test_safedial_adjudication.AdjudicationQueueTest.test_automatic_success_keeps_review_history) ... ok
+test_changed_source_hash_rejected (test_safedial_adjudication.AdjudicationQueueTest.test_changed_source_hash_rejected) ... ok
+test_deduplicates_same_archived_and_embedded_attempt (test_safedial_adjudication.AdjudicationQueueTest.test_deduplicates_same_archived_and_embedded_attempt) ... ok
+test_exports_failure_with_response_context_and_empty_human_scores (test_safedial_adjudication.AdjudicationQueueTest.test_exports_failure_with_response_context_and_empty_human_scores) ... ok
+test_missing_raw_response_is_explicit (test_safedial_adjudication.AdjudicationQueueTest.test_missing_raw_response_is_explicit) ... ok
+test_reexport_preserves_review_and_is_idempotent (test_safedial_adjudication.AdjudicationQueueTest.test_reexport_preserves_review_and_is_idempotent) ... ok
+test_successful_cases_not_added (test_safedial_adjudication.AdjudicationQueueTest.test_successful_cases_not_added) ... ok
+test_changed_manifest_rejected (test_safedial_api.APITests.test_changed_manifest_rejected) ... ok
+test_explicit_refusal_text_is_preserved (test_safedial_api.APITests.test_explicit_refusal_text_is_preserved) ... ok
+test_filter_does_not_hide_later_fatal_failure_or_missing_coverage (test_safedial_api.APITests.test_filter_does_not_hide_later_fatal_failure_or_missing_coverage) ... Saved 0/2 turns; filtered 0; pending 2
+FILTERED dialogue=1 turn=0; retained for review, continuing
+Saved 0/2 turns, 0/1 dialogues; filtered 1
+FAILED dialogue=1 turn=1: ValueError
+Saved 0/2 turns, 0/1 dialogues; filtered 1
+Stopped after failed request(s); rerun identical command to resume.
+{"passed": false, "processing_complete": false, "complete": false, "expected_turns": 2, "successful_turns": 0, "filtered_turns": 1, "pending_turns": 1, "complete_dialogues": 0, "expected_dialogues": 1, "excluded_dialogue_ids": [1], "judge_calls": 0}
+ok
+test_filters_continue_preserve_partial_text_and_do_not_retry (test_safedial_api.APITests.test_filters_continue_preserve_partial_text_and_do_not_retry) ... Saved 0/4 turns; filtered 0; pending 4
+FILTERED dialogue=1 turn=0; retained for review, continuing
+Saved 0/4 turns, 0/2 dialogues; filtered 1
+Saved 1/4 turns, 0/2 dialogues; filtered 1
+Saved 2/4 turns, 0/2 dialogues; filtered 1
+Saved 3/4 turns, 1/2 dialogues; filtered 1
+{"passed": true, "processing_complete": true, "complete": false, "expected_turns": 4, "successful_turns": 3, "filtered_turns": 1, "pending_turns": 0, "complete_dialogues": 1, "expected_dialogues": 2, "excluded_dialogue_ids": [1], "judge_calls": 0}
+Saved 3/4 turns; filtered 1; pending 0
+Saved 0/4 turns; filtered 0; pending 4
+FILTERED dialogue=1 turn=0; retained for review, continuing
+Saved 0/4 turns, 0/2 dialogues; filtered 1
+Saved 1/4 turns, 0/2 dialogues; filtered 1
+Saved 2/4 turns, 0/2 dialogues; filtered 1
+Saved 3/4 turns, 1/2 dialogues; filtered 1
+{"passed": true, "processing_complete": true, "complete": false, "expected_turns": 4, "successful_turns": 3, "filtered_turns": 1, "pending_turns": 0, "complete_dialogues": 1, "expected_dialogues": 2, "excluded_dialogue_ids": [1], "judge_calls": 0}
+Saved 3/4 turns; filtered 1; pending 0
+ok
+test_gold_history_decoding_and_provenance (test_safedial_api.APITests.test_gold_history_decoding_and_provenance) ... Saved 0/2 turns; filtered 0; pending 2
+Saved 1/2 turns, 0/1 dialogues; filtered 0
+Saved 2/2 turns, 1/1 dialogues; filtered 0
+ok
+test_interrupted_append_preserved_and_recovered (test_safedial_api.APITests.test_interrupted_append_preserved_and_recovered) ... ok
+test_legacy_filtered_audit_recovers_without_repeating_call (test_safedial_api.APITests.test_legacy_filtered_audit_recovers_without_repeating_call) ... Saved 0/2 turns; filtered 1; pending 1
+Saved 1/2 turns, 0/1 dialogues; filtered 1
+{"passed": true, "processing_complete": true, "complete": false, "expected_turns": 2, "successful_turns": 1, "filtered_turns": 1, "pending_turns": 0, "complete_dialogues": 0, "expected_dialogues": 1, "excluded_dialogue_ids": [1], "judge_calls": 0}
+ok
+test_manifest_migration_preserves_old_manifest_and_rejects_setting_changes (test_safedial_api.APITests.test_manifest_migration_preserves_old_manifest_and_rejects_setting_changes) ... ok
+test_resume_partial_dialogue_without_repeating_paid_turn (test_safedial_api.APITests.test_resume_partial_dialogue_without_repeating_paid_turn) ... Saved 0/2 turns; filtered 0; pending 2
+Saved 1/2 turns, 0/1 dialogues; filtered 0
+FAILED dialogue=1 turn=1: ValueError
+Saved 1/2 turns, 0/1 dialogues; filtered 0
+Stopped after failed request(s); rerun identical command to resume.
+Saved 1/2 turns; filtered 0; pending 1
+Saved 2/2 turns, 1/1 dialogues; filtered 0
+Saved 2/2 turns; filtered 0; pending 0
+ok
+test_retry_transient_but_stop_authentication_and_redact_exception (test_safedial_api.APITests.test_retry_transient_but_stop_authentication_and_redact_exception) ... ok
+test_snapshot_mismatch_and_empty_unfiltered_fail_without_fabrication (test_safedial_api.APITests.test_snapshot_mismatch_and_empty_unfiltered_fail_without_fabrication) ... ok
+test_lock_validates_and_rejects_wrong_base_or_revision (test_safedial_cat.CATSetupTest.test_lock_validates_and_rejects_wrong_base_or_revision) ... ok
+test_modified_weights_rejected (test_safedial_cat.CATSetupTest.test_modified_weights_rejected) ... ok
+test_plain_manifest_schema_unchanged_and_adapter_included_when_requested (test_safedial_cat.CATSetupTest.test_plain_manifest_schema_unchanged_and_adapter_included_when_requested) ... ok
+test_verification_flag_requires_adapter (test_safedial_cat.CATSetupTest.test_verification_flag_requires_adapter) ... ok
+test_complete_history_and_errors (test_safedial_cat.GenerationValidationTest.test_complete_history_and_errors) ... ok
+test_local_adapter_is_loaded_frozen_and_changes_logits (test_safedial_cat.PeftCPUIntegrationTest.test_local_adapter_is_loaded_frozen_and_changes_logits) ... /common/home/users/d/darrius.ng.2024/projects/RL-Defense/DCGS/.venv/lib/python3.11/site-packages/peft/utils/save_and_load.py:438: UserWarning: Could not find a config file in  - will assume that the vocabulary was not modified.
+  warnings.warn(
+ok
+test_all_unparseable_intents_fail_without_response_generation (test_safedial_dcgs_two_stage.AlgorithmTests.test_all_unparseable_intents_fail_without_response_generation) ... ok
+test_context_both_heads_indexed_duplicates_and_argmax_first_tie (test_safedial_dcgs_two_stage.AlgorithmTests.test_context_both_heads_indexed_duplicates_and_argmax_first_tie) ... ok
+test_errors_keep_raw_evidence_and_stop (test_safedial_dcgs_two_stage.AlgorithmTests.test_errors_keep_raw_evidence_and_stop) ... ok
+test_completed_turn_cannot_hide_altered_journal (test_safedial_dcgs_two_stage.RunnerTests.test_completed_turn_cannot_hide_altered_journal) ... Saved dialogue=1 turn=0 candidates=5
+Saved dialogue=1 turn=1 candidates=5
+ok
+test_failed_event_preserved_and_retry_reuses_successes (test_safedial_dcgs_two_stage.RunnerTests.test_failed_event_preserved_and_retry_reuses_successes) ... FAIL dialogue=1 turn=0: response_score slot=0: injected score failure
+Unresolved DCGS error (1, 0); inspect audit before --retry-errors
+Saved dialogue=1 turn=0 candidates=5
+Saved dialogue=1 turn=1 candidates=5
+ok
+test_interruption_resume_no_leak_full_audit_and_noop (test_safedial_dcgs_two_stage.RunnerTests.test_interruption_resume_no_leak_full_audit_and_noop) ... Saved dialogue=1 turn=0 candidates=5
+Saved dialogue=1 turn=1 candidates=5
+ok
+test_manifest_and_history_changes_rejected (test_safedial_dcgs_two_stage.RunnerTests.test_manifest_and_history_changes_rejected) ... Saved dialogue=1 turn=0 candidates=5
+Saved dialogue=1 turn=1 candidates=5
+ok
+test_partial_append_and_writer_lock (test_safedial_dcgs_two_stage.RunnerTests.test_partial_append_and_writer_lock) ... Recovered interrupted final append in /tmp/tmp2849z_0h/journal.jsonl; original tail retained
+ok
+test_generation_overflow_never_reaches_model (test_safedial_dcgs_two_stage.RuntimeTests.test_generation_overflow_never_reaches_model) ... ok
+test_high_context_overflow_never_reaches_model (test_safedial_dcgs_two_stage.RuntimeTests.test_high_context_overflow_never_reaches_model) ... ok
+test_separate_frozen_backbones_and_separate_trained_token_heads (test_safedial_dcgs_two_stage.RuntimeTests.test_separate_frozen_backbones_and_separate_trained_token_heads) ... ok
+test_token_span_includes_boundary_straddling_token_and_rejects_overflow (test_safedial_dcgs_two_stage.RuntimeTests.test_token_span_includes_boundary_straddling_token_and_rejects_overflow) ... ok
+test_validate_only_never_initializes_backend (test_safedial_dcgs_two_stage.RuntimeTests.test_validate_only_never_initializes_backend) ... Checking pinned Zephyr and both WildJailbreak critic checkpoints
+{"passed": true}
+ok
+test_current_user_only_in_repeated_history (test_safedial_smoothllm.SmoothAlgorithmTest.test_current_user_only_in_repeated_history) ... ok
+test_detector_matches_upstream_case_sensitive_substring (test_safedial_smoothllm.SmoothAlgorithmTest.test_detector_matches_upstream_case_sensitive_substring) ... ok
+test_empty_tiny_and_invalid_parameters (test_safedial_smoothllm.SmoothAlgorithmTest.test_empty_tiny_and_invalid_parameters) ... ok
+test_failure_preserves_partial_audit_and_never_votes (test_safedial_smoothllm.SmoothAlgorithmTest.test_failure_preserves_partial_audit_and_never_votes) ... ok
+test_rng_isolated_from_decoder_and_all_copy_costs (test_safedial_smoothllm.SmoothAlgorithmTest.test_rng_isolated_from_decoder_and_all_copy_costs) ... ok
+test_tie_and_indexed_duplicates (test_safedial_smoothllm.SmoothAlgorithmTest.test_tie_and_indexed_duplicates) ... ok
+test_failed_dialogue_retries_and_compacts (test_safedial_smoothllm.SmoothRunnerTest.test_failed_dialogue_retries_and_compacts) ... ERROR dialogue=1 turn=0: SmoothLLM candidate 0: Empty or failed candidate; cannot count it as a safety vote
+ERROR dialogue=1 turn=1: SmoothLLM candidate 0: Empty or failed candidate; cannot count it as a safety vote
+ERROR dialogue=2 turn=0: SmoothLLM candidate 0: Empty or failed candidate; cannot count it as a safety vote
+ERROR dialogue=2 turn=1: SmoothLLM candidate 0: Empty or failed candidate; cannot count it as a safety vote
+ok
+test_generation_validation_and_completed_resume (test_safedial_smoothllm.SmoothRunnerTest.test_generation_validation_and_completed_resume) ... ok
+test_interrupted_resume_replays_only_uncommitted_dialogue (test_safedial_smoothllm.SmoothRunnerTest.test_interrupted_resume_replays_only_uncommitted_dialogue) ... ok
+test_validate_only_makes_no_output (test_safedial_smoothllm.SmoothRunnerTest.test_validate_only_makes_no_output) ... ok
+test_changed_history_seed_or_candidate_rejected_before_calls (test_safedial_smoothllm_turn_resume.TurnResumeTests.test_changed_history_seed_or_candidate_rejected_before_calls) ... [1/2] completed dialogue 1 (2 turns)
+[2/2] completed dialogue 2 (2 turns)
+[1/2] completed dialogue 1 (2 turns)
+[2/2] completed dialogue 2 (2 turns)
+[1/2] completed dialogue 1 (2 turns)
+[2/2] completed dialogue 2 (2 turns)
+[1/2] completed dialogue 1 (2 turns)
+[1/1] completed dialogue 2 (2 turns)
+Validated 2 dialogues / 4 turns / 32 candidate generations
+SmoothLLM: 8 copies, 10.0% random swap, greedy, current user only
+Saved dialogue=1 turn=0 status=success
+Saved dialogue=1 turn=1 status=success
+Saved dialogue=2 turn=0 status=success
+Saved dialogue=2 turn=1 status=success
+ok
+test_error_without_retry_does_not_regenerate_or_report_success (test_safedial_smoothllm_turn_resume.TurnResumeTests.test_error_without_retry_does_not_regenerate_or_report_success) ... ERROR dialogue=1 turn=0: SmoothLLM candidate 0: Empty or failed candidate; cannot count it as a safety vote
+Saved dialogue=1 turn=0 status=error
+ERROR dialogue=1 turn=1: SmoothLLM candidate 0: Empty or failed candidate; cannot count it as a safety vote
+Saved dialogue=1 turn=1 status=error
+ERROR dialogue=2 turn=0: SmoothLLM candidate 0: Empty or failed candidate; cannot count it as a safety vote
+Saved dialogue=2 turn=0 status=error
+ERROR dialogue=2 turn=1: SmoothLLM candidate 0: Empty or failed candidate; cannot count it as a safety vote
+Saved dialogue=2 turn=1 status=error
+Saved successful turns: 0; pending dialogues: 0
+ok
+test_import_rejects_changed_configuration_and_same_directory (test_safedial_smoothllm_turn_resume.TurnResumeTests.test_import_rejects_changed_configuration_and_same_directory) ... ERROR dialogue=1 turn=1: SmoothLLM candidate 0: Empty or failed candidate; cannot count it as a safety vote
+ok
+test_legacy_import_locked_preserves_raw_records_and_retries_one_turn (test_safedial_smoothllm_turn_resume.TurnResumeTests.test_legacy_import_locked_preserves_raw_records_and_retries_one_turn) ... ERROR dialogue=1 turn=1: SmoothLLM candidate 0: Empty or failed candidate; cannot count it as a safety vote
+[1/2] completed dialogue 1 (2 turns)
+[2/2] completed dialogue 2 (2 turns)
+[1/2] completed dialogue 1 (2 turns)
+[2/2] completed dialogue 2 (2 turns)
+Imported 3 successful turns; retained 1 errors
+Saved dialogue=1 turn=1 status=success
+ok
+test_one_failed_turn_retries_eight_copies_only_and_preserves_audit (test_safedial_smoothllm_turn_resume.TurnResumeTests.test_one_failed_turn_retries_eight_copies_only_and_preserves_audit) ... Saved dialogue=1 turn=0 status=success
+ERROR dialogue=1 turn=1: SmoothLLM candidate 0: Empty or failed candidate; cannot count it as a safety vote
+Saved dialogue=1 turn=1 status=error
+Saved dialogue=2 turn=0 status=success
+Saved dialogue=2 turn=1 status=success
+Saved dialogue=1 turn=1 status=success
+ok
+test_partial_last_append_recovered_and_interior_corruption_rejected (test_safedial_smoothllm_turn_resume.TurnResumeTests.test_partial_last_append_recovered_and_interior_corruption_rejected) ... ok
+test_repeated_failure_keeps_good_turns_and_continues_missing_turns (test_safedial_smoothllm_turn_resume.TurnResumeTests.test_repeated_failure_keeps_good_turns_and_continues_missing_turns) ... Saved dialogue=1 turn=0 status=success
+ERROR dialogue=1 turn=1: SmoothLLM candidate 0: Empty or failed candidate; cannot count it as a safety vote
+Saved dialogue=1 turn=1 status=error
+ERROR dialogue=1 turn=1: SmoothLLM candidate 0: Empty or failed candidate; cannot count it as a safety vote
+Saved dialogue=1 turn=1 status=error
+Saved dialogue=2 turn=0 status=success
+Saved dialogue=2 turn=1 status=success
+ok
+test_stale_answer_export_rebuilt_without_calls_and_no_op_is_stable (test_safedial_smoothllm_turn_resume.TurnResumeTests.test_stale_answer_export_rebuilt_without_calls_and_no_op_is_stable) ... Saved dialogue=1 turn=0 status=success
+Saved dialogue=1 turn=1 status=success
+Saved dialogue=2 turn=0 status=success
+Saved dialogue=2 turn=1 status=success
+ok
+test_successful_turn_survives_mid_dialogue_interruption (test_safedial_smoothllm_turn_resume.TurnResumeTests.test_successful_turn_survives_mid_dialogue_interruption) ... Saved dialogue=1 turn=0 status=success
+Saved dialogue=1 turn=1 status=success
+Saved dialogue=2 turn=0 status=success
+Saved dialogue=2 turn=1 status=success
+ok
+test_validate_only_creates_no_output_or_model (test_safedial_smoothllm_turn_resume.TurnResumeTests.test_validate_only_creates_no_output_or_model) ... Validated 2 dialogues / 4 turns / 32 candidate generations
+ok
+test_audit_detects_tampering (test_safedial_tpo.TPOAlgorithmTests.test_audit_detects_tampering) ... ok
+test_cumulative_reward_selection_and_exact_candidate_budget (test_safedial_tpo.TPOAlgorithmTests.test_cumulative_reward_selection_and_exact_candidate_budget) ... ok
+test_duplicate_blocks_use_only_boundary_normalization_and_keep_first_text (test_safedial_tpo.TPOAlgorithmTests.test_duplicate_blocks_use_only_boundary_normalization_and_keep_first_text) ... ok
+test_duplicates_and_ties_remain_indexed (test_safedial_tpo.TPOAlgorithmTests.test_duplicates_and_ties_remain_indexed) ... ok
+test_empty_nonfinite_truncated_and_malformed_fail_with_evidence (test_safedial_tpo.TPOAlgorithmTests.test_empty_nonfinite_truncated_and_malformed_fail_with_evidence) ... ok
+test_first_improvement_ignores_later_blocks_and_misordered_tags (test_safedial_tpo.TPOAlgorithmTests.test_first_improvement_ignores_later_blocks_and_misordered_tags) ... ok
+test_gold_context_in_initial_reward_and_feedback (test_safedial_tpo.TPOAlgorithmTests.test_gold_context_in_initial_reward_and_feedback) ... ok
+test_missing_closing_tag_preserves_scored_and_selected_text_without_retries (test_safedial_tpo.TPOAlgorithmTests.test_missing_closing_tag_preserves_scored_and_selected_text_without_retries) ... ok
+test_opening_tag_in_trailing_instruction_does_not_change_complete_answer (test_safedial_tpo.TPOAlgorithmTests.test_opening_tag_in_trailing_instruction_does_not_change_complete_answer) ... ok
+test_prompt_stages_and_seed_reproducibility (test_safedial_tpo.TPOAlgorithmTests.test_prompt_stages_and_seed_reproducibility) ... ok
+test_real_duplicate_failure_is_scored_and_audited_without_regeneration (test_safedial_tpo.TPOAlgorithmTests.test_real_duplicate_failure_is_scored_and_audited_without_regeneration) ... ok
+test_real_duplicate_trailing_instruction_failure_is_scored_and_audited (test_safedial_tpo.TPOAlgorithmTests.test_real_duplicate_trailing_instruction_failure_is_scored_and_audited) ... ok
+test_real_first_improvement_failure_is_scored_and_audited_without_regeneration (test_safedial_tpo.TPOAlgorithmTests.test_real_first_improvement_failure_is_scored_and_audited_without_regeneration) ... ok
+test_real_terminal_opening_failure_is_scored_and_audited_without_regeneration (test_safedial_tpo.TPOAlgorithmTests.test_real_terminal_opening_failure_is_scored_and_audited_without_regeneration) ... ok
+test_reject_missing_or_empty_first_improvement (test_safedial_tpo.TPOAlgorithmTests.test_reject_missing_or_empty_first_improvement) ... ok
+test_terminal_opening_recovery_requires_nonempty_first_span (test_safedial_tpo.TPOAlgorithmTests.test_terminal_opening_recovery_requires_nonempty_first_span) ... ok
+test_trailing_instructions_do_not_change_first_improvement (test_safedial_tpo.TPOAlgorithmTests.test_trailing_instructions_do_not_change_first_improvement) ... ok
+test_cuda_startup_failure_is_saved_without_model_calls (test_safedial_tpo.TPORunnerTests.test_cuda_startup_failure_is_saved_without_model_calls) ... Checking pinned actor/reward artifacts
+Validated 1 dialogues / 2 turns / 18 candidates
+{}
+TPO device_setup failed: RuntimeError: fixture driver initialization failed
+ok
+test_duplicate_and_trailing_warnings_survive_validation_and_resume (test_safedial_tpo.TPORunnerTests.test_duplicate_and_trailing_warnings_survive_validation_and_resume) ... WARNING dialogue=1 turn=0 event=8: equivalent_duplicate_IMPROVED_VARIABLE_blocks; extracted_first_block; opening_IMPROVED_VARIABLE_tag_after_closed_span; ignored_trailing_text
+WARNING dialogue=1 turn=0 event=10: equivalent_duplicate_IMPROVED_VARIABLE_blocks; extracted_first_block; opening_IMPROVED_VARIABLE_tag_after_closed_span; ignored_trailing_text
+WARNING dialogue=1 turn=0 event=12: equivalent_duplicate_IMPROVED_VARIABLE_blocks; extracted_first_block; opening_IMPROVED_VARIABLE_tag_after_closed_span; ignored_trailing_text
+WARNING dialogue=1 turn=0 event=16: equivalent_duplicate_IMPROVED_VARIABLE_blocks; extracted_first_block; opening_IMPROVED_VARIABLE_tag_after_closed_span; ignored_trailing_text
+WARNING dialogue=1 turn=0 event=18: equivalent_duplicate_IMPROVED_VARIABLE_blocks; extracted_first_block; opening_IMPROVED_VARIABLE_tag_after_closed_span; ignored_trailing_text
+WARNING dialogue=1 turn=0 event=20: equivalent_duplicate_IMPROVED_VARIABLE_blocks; extracted_first_block; opening_IMPROVED_VARIABLE_tag_after_closed_span; ignored_trailing_text
+Saved dialogue=1 turn=0 candidates=9
+WARNING dialogue=1 turn=1 event=8: equivalent_duplicate_IMPROVED_VARIABLE_blocks; extracted_first_block; opening_IMPROVED_VARIABLE_tag_after_closed_span; ignored_trailing_text
+WARNING dialogue=1 turn=1 event=10: equivalent_duplicate_IMPROVED_VARIABLE_blocks; extracted_first_block; opening_IMPROVED_VARIABLE_tag_after_closed_span; ignored_trailing_text
+WARNING dialogue=1 turn=1 event=12: equivalent_duplicate_IMPROVED_VARIABLE_blocks; extracted_first_block; opening_IMPROVED_VARIABLE_tag_after_closed_span; ignored_trailing_text
+WARNING dialogue=1 turn=1 event=16: equivalent_duplicate_IMPROVED_VARIABLE_blocks; extracted_first_block; opening_IMPROVED_VARIABLE_tag_after_closed_span; ignored_trailing_text
+WARNING dialogue=1 turn=1 event=18: equivalent_duplicate_IMPROVED_VARIABLE_blocks; extracted_first_block; opening_IMPROVED_VARIABLE_tag_after_closed_span; ignored_trailing_text
+WARNING dialogue=1 turn=1 event=20: equivalent_duplicate_IMPROVED_VARIABLE_blocks; extracted_first_block; opening_IMPROVED_VARIABLE_tag_after_closed_span; ignored_trailing_text
+Saved dialogue=1 turn=1 candidates=9
+ok
+test_duplicate_warning_survives_journal_validation_and_resume (test_safedial_tpo.TPORunnerTests.test_duplicate_warning_survives_journal_validation_and_resume) ... WARNING dialogue=1 turn=0 event=8: equivalent_duplicate_IMPROVED_VARIABLE_blocks; extracted_first_block
+WARNING dialogue=1 turn=0 event=10: equivalent_duplicate_IMPROVED_VARIABLE_blocks; extracted_first_block
+WARNING dialogue=1 turn=0 event=12: equivalent_duplicate_IMPROVED_VARIABLE_blocks; extracted_first_block
+WARNING dialogue=1 turn=0 event=16: equivalent_duplicate_IMPROVED_VARIABLE_blocks; extracted_first_block
+WARNING dialogue=1 turn=0 event=18: equivalent_duplicate_IMPROVED_VARIABLE_blocks; extracted_first_block
+WARNING dialogue=1 turn=0 event=20: equivalent_duplicate_IMPROVED_VARIABLE_blocks; extracted_first_block
+Saved dialogue=1 turn=0 candidates=9
+WARNING dialogue=1 turn=1 event=8: equivalent_duplicate_IMPROVED_VARIABLE_blocks; extracted_first_block
+WARNING dialogue=1 turn=1 event=10: equivalent_duplicate_IMPROVED_VARIABLE_blocks; extracted_first_block
+WARNING dialogue=1 turn=1 event=12: equivalent_duplicate_IMPROVED_VARIABLE_blocks; extracted_first_block
+WARNING dialogue=1 turn=1 event=16: equivalent_duplicate_IMPROVED_VARIABLE_blocks; extracted_first_block
+WARNING dialogue=1 turn=1 event=18: equivalent_duplicate_IMPROVED_VARIABLE_blocks; extracted_first_block
+WARNING dialogue=1 turn=1 event=20: equivalent_duplicate_IMPROVED_VARIABLE_blocks; extracted_first_block
+Saved dialogue=1 turn=1 candidates=9
+ok
+test_end_to_end_and_no_op_resume (test_safedial_tpo.TPORunnerTests.test_end_to_end_and_no_op_resume) ... Saved dialogue=1 turn=0 candidates=9
+Saved dialogue=1 turn=1 candidates=9
+ok
+test_failure_not_exported_and_explicit_retry_preserves_successes (test_safedial_tpo.TPORunnerTests.test_failure_not_exported_and_explicit_retry_preserves_successes) ... FAIL dialogue=1 turn=0: TPO update round=0 slot=0: Optimizer output requires an opening IMPROVED_VARIABLE tag
+Unresolved TPO error (1, 0); inspect audit before --retry-errors
+Saved dialogue=1 turn=0 candidates=9
+Saved dialogue=1 turn=1 candidates=9
+ok
+test_interrupted_mid_turn_reuses_completed_events (test_safedial_tpo.TPORunnerTests.test_interrupted_mid_turn_reuses_completed_events) ... Saved dialogue=1 turn=0 candidates=9
+Saved dialogue=1 turn=1 candidates=9
+ok
+test_main_initializes_cold_cuda_before_allocator_reset (test_safedial_tpo.TPORunnerTests.test_main_initializes_cold_cuda_before_allocator_reset) ... Checking pinned actor/reward artifacts
+Validated 1 dialogues / 2 turns / 18 candidates
+{}
+CUDA ready: cuda:0 / fixture GPU / torch 2.13.0+cu130
+Saved dialogue=1 turn=0 candidates=9
+Saved dialogue=1 turn=1 candidates=9
+ok
+test_missing_closing_tags_are_counted_by_full_validator (test_safedial_tpo.TPORunnerTests.test_missing_closing_tags_are_counted_by_full_validator) ... WARNING dialogue=1 turn=0 event=8: opening_IMPROVED_VARIABLE_tag_after_closed_span; ignored_trailing_text
+WARNING dialogue=1 turn=0 event=10: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+WARNING dialogue=1 turn=0 event=12: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+WARNING dialogue=1 turn=0 event=16: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+WARNING dialogue=1 turn=0 event=18: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+WARNING dialogue=1 turn=0 event=20: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+Saved dialogue=1 turn=0 candidates=9
+WARNING dialogue=1 turn=1 event=8: opening_IMPROVED_VARIABLE_tag_after_closed_span; ignored_trailing_text
+WARNING dialogue=1 turn=1 event=10: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+WARNING dialogue=1 turn=1 event=12: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+WARNING dialogue=1 turn=1 event=16: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+WARNING dialogue=1 turn=1 event=18: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+WARNING dialogue=1 turn=1 event=20: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+Saved dialogue=1 turn=1 candidates=9
+ok
+test_partial_append_recovery_and_interior_corruption_rejected (test_safedial_tpo.TPORunnerTests.test_partial_append_recovery_and_interior_corruption_rejected) ... Recovered interrupted final append in /tmp/tmppw2oii8y/journal.jsonl; original tail retained
+ok
+test_single_writer_lock (test_safedial_tpo.TPORunnerTests.test_single_writer_lock) ... ok
+test_terminal_opening_warning_survives_journal_validation_and_resume (test_safedial_tpo.TPORunnerTests.test_terminal_opening_warning_survives_journal_validation_and_resume) ... WARNING dialogue=1 turn=0 event=8: terminal_opening_tag_used_as_closing
+WARNING dialogue=1 turn=0 event=10: terminal_opening_tag_used_as_closing
+WARNING dialogue=1 turn=0 event=12: terminal_opening_tag_used_as_closing
+WARNING dialogue=1 turn=0 event=16: terminal_opening_tag_used_as_closing
+WARNING dialogue=1 turn=0 event=18: terminal_opening_tag_used_as_closing
+WARNING dialogue=1 turn=0 event=20: terminal_opening_tag_used_as_closing
+Saved dialogue=1 turn=0 candidates=9
+WARNING dialogue=1 turn=1 event=8: terminal_opening_tag_used_as_closing
+WARNING dialogue=1 turn=1 event=10: terminal_opening_tag_used_as_closing
+WARNING dialogue=1 turn=1 event=12: terminal_opening_tag_used_as_closing
+WARNING dialogue=1 turn=1 event=16: terminal_opening_tag_used_as_closing
+WARNING dialogue=1 turn=1 event=18: terminal_opening_tag_used_as_closing
+WARNING dialogue=1 turn=1 event=20: terminal_opening_tag_used_as_closing
+Saved dialogue=1 turn=1 candidates=9
+ok
+test_validate_only_never_initializes_cuda (test_safedial_tpo.TPORunnerTests.test_validate_only_never_initializes_cuda) ... Checking pinned actor/reward artifacts
+Validated 1 dialogues / 2 turns / 18 candidates
+{}
+ok
+test_real_cpu_classifier_raw_logit_and_context_overflow (test_safedial_tpo.TinyRewardRuntimeTest.test_real_cpu_classifier_raw_logit_and_context_overflow) ... ok
+test_failed_probe_stops_before_any_benchmark_model_call (test_safedial_tpo_full.FullTPOTests.test_failed_probe_stops_before_any_benchmark_model_call) ... Checking pinned actor/reward artifacts
+Validated 1 dialogues / 1 turns / 15 candidates
+{}
+FAIL dialogue=1 turn=0: TPO initial round=-1 slot=0: fixture context probe failed
+ok
+test_full_manifest_audit_and_separate_probe_costs (test_safedial_tpo_full.FullTPOTests.test_full_manifest_audit_and_separate_probe_costs) ... Checking pinned actor/reward artifacts
+Validated 1 dialogues / 1 turns / 15 candidates
+{}
+Reward context probe PASS: 8192 tokens
+Saved dialogue=1 turn=0 candidates=15
+ok
+test_native_context_bound_and_tokenizer_metadata_override (test_safedial_tpo_full.FullTPOTests.test_native_context_bound_and_tokenizer_metadata_override) ... ok
+test_probe_real_tiny_cpu_model_and_config_bound (test_safedial_tpo_full.FullTPOTests.test_probe_real_tiny_cpu_model_and_config_bound) ... ok
+
+----------------------------------------------------------------------
+Ran 99 tests in 0.767s
+
+OK

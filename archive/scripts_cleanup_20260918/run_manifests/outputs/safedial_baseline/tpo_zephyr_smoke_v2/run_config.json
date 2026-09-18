@@ -1,0 +1,106 @@
+{
+  "artifacts": {
+    "actor": {
+      "path": "/common/home/users/d/darrius.ng.2024/projects/RL-Defense/DCGS/.cache/huggingface/hub/models--HuggingFaceH4--zephyr-7b-beta/snapshots/892b3d7a7b1cf10c7a701c60881cd93df615734c",
+      "repo": "HuggingFaceH4/zephyr-7b-beta",
+      "revision": "892b3d7a7b1cf10c7a701c60881cd93df615734c",
+      "sha256": {
+        "added_tokens.json": "d606246b713e31b1b43dfe913554dd47819089b9e44b9ebaa294eda2589a6b4c",
+        "config.json": "e8781201ac85df8fba859aeb7a53f16725f3ec32c05de51999259376f75338b8",
+        "generation_config.json": "88b65735808f9b532ac786a0eaa791ab59a31dd243de934fc154e3a2692b4c1a",
+        "model-00001-of-00008.safetensors": "a6ec4a0398df9d56786afa9cce026423ec48a07ddc5ed5eba087614cae2dd746",
+        "model-00002-of-00008.safetensors": "1289796f16f33ef4c6b8a76b3d9e5169198a69daa0b5b660b5a3d5cae0dc1cf7",
+        "model-00003-of-00008.safetensors": "6fc338de96c672840222ca19a12b44f09110048974bde8ab0f4c1da055d99c3f",
+        "model-00004-of-00008.safetensors": "92d948413fd7ac6c4fd5f6c36902bb7a72d2cddca19628c88e6f3b3e5482ab37",
+        "model-00005-of-00008.safetensors": "d0ce3cc66d224a0e6014a1df6b7e56da29f5db52da1866ad0cc07d7583fb7c31",
+        "model-00006-of-00008.safetensors": "0b63ef55219d125eaeefabd2a33c358dced22b9c75d1d816bb7a871bd3773951",
+        "model-00007-of-00008.safetensors": "b0e0a3c0b992925ff9a60f1234950af0bcc7ce3015c8a386a342489e76f5d09c",
+        "model-00008-of-00008.safetensors": "667dd6958d5137dcba514db514c7970d18c9cd5d95fbb0c82490d558bd2a246c",
+        "model.safetensors.index.json": "7b57b6b93e91a44ad1bd030819d6411fb036c71ce6f80a87ab4286bf48fc836d",
+        "special_tokens_map.json": "9921edfd5322dd354ec44f825329e1c6c6b89b357bf3ce49377be325b23eaa34",
+        "tokenizer.json": "fc4f0bd70b3709312d9d1d9e5ba674794b6bc5abc17429897a540f93882f25fc",
+        "tokenizer.model": "dadfd56d766715c61d2ef780a525ab43b8e6da4de6865bda3d95fdef5e134055",
+        "tokenizer_config.json": "ba035f5706de233a42e4b7260abdd4afa2b0d17c26bc9449af6ef59010f409b8"
+      }
+    },
+    "method": "TPO",
+    "reward": {
+      "head_shape": [
+        1,
+        4096
+      ],
+      "path": "/common/home/users/d/darrius.ng.2024/projects/RL-Defense/DCGS/.cache/huggingface/hub/models--sfairXC--FsfairX-LLaMA3-RM-v0.1/snapshots/94fad49f1b3227aa8b566f415a335adb68ec544c",
+      "repo": "sfairXC/FsfairX-LLaMA3-RM-v0.1",
+      "revision": "94fad49f1b3227aa8b566f415a335adb68ec544c",
+      "sha256": {
+        "README.md": "06cd502389301f74308c553a980e873c8ad67c20372146f39c6a143c5723ca75",
+        "config.json": "42508f344748b6bacdee4933e471ec33286ecec8973c229abe7c54f048e93519",
+        "model-00001-of-00004.safetensors": "9928e91f93b1e238ffe985b2415663d4401b7907ae96165f6987e0df84430f32",
+        "model-00002-of-00004.safetensors": "b2d91cba64f57e76d85d99b50de6f4ab2b8d66d51786a0fbaaa63008beeaf2d7",
+        "model-00003-of-00004.safetensors": "0300c45ae47f66f4513e452325d83bee5fbb51d1ef5a549e0e5963b7274227f4",
+        "model-00004-of-00004.safetensors": "5d4e6abf02ef85071475ee878d0dd8c3504b4421da5926a55c2615dda0de5295",
+        "model.safetensors.index.json": "03640e5064009301cb4f51060058e5ba454324ae1cc677da87a154702a840984",
+        "special_tokens_map.json": "5b20fccc4d8e29ac5d7aa855ae6db4a38710437ad662b031f7730f9c21290c73",
+        "tokenizer.json": "af99d45ff3e0b8f55136cbd2c285016b44e10f33e93db0d6501a02f5a2be2cda",
+        "tokenizer_config.json": "84e9b1526d7b6228bdc5ed37667509e7c5bf12c26b722c57ee882c4026b60fa6"
+      }
+    },
+    "schema_version": 1
+  },
+  "backend": "transformers_local_frozen_sdpa_top_k_0",
+  "benchmark": "SafeDialBench",
+  "dataset": "/common/home/users/d/darrius.ng.2024/projects/RL-Defense/DCGS/benchmark-artifacts/SafeDialBench-Dataset/data/complete/datasets_en.jsonl",
+  "dataset_sha256": "a5429b6477ab7d3f6e47da55e0a9c889bbbba7575dd2ba7e1672379a412bc988",
+  "defense": {
+    "adaptation": "Zephyr_HF_serial_inference; seeded_feedback; explicit_token_caps; native_multiturn_history",
+    "candidate_batch_size": 1,
+    "candidate_top_p": 0.95,
+    "context_overflow": "error_without_truncation",
+    "duplicates": "retain_indexed_candidates",
+    "feedback_pair": "max_and_min_reward_cumulative_cache_first_index_tie",
+    "feedback_short_value": "upstream_first_and_last_10_space_separated_words",
+    "feedback_tokens": 2048,
+    "feedback_top_p": 0.99,
+    "history": "native_gold_messages_for_initial_and_reward; role_tagged_gold_history_in_feedback_query",
+    "implementation_version": 2,
+    "judge_calls": 0,
+    "max_iterations": 2,
+    "model_updates": false,
+    "name": "TPO",
+    "optimizer_extraction": "one_opening_tag; optional_ordered_closing_tag; missing_close_extracts_to_end_with_warning; nonempty; ambiguous_is_error",
+    "response_tokens": 1024,
+    "sample_size": 5,
+    "selection": "max_reward_cumulative_cache_first_index_tie",
+    "temperature": 0.7,
+    "upstream_commit": "395c3d763a4c3df0ae72a4352b0db16fe5ee18e9",
+    "upstream_repository": "https://github.com/Simplified-Reasoning/TPO"
+  },
+  "device": "cuda:0",
+  "dtype": "bfloat16",
+  "generation_only": true,
+  "implementation_sha256": {
+    "run_safedial_baseline.py": "5cd217d99793c99536c837423b816d0f0baa0bae1088a7b76e616d30b0997d82",
+    "run_safedial_tpo.py": "89afb4e00a638d7d72124addd565500c4737a8afc79204d9ab859ffe0a3c6dec",
+    "safedial_tpo.py": "70ab233174e88b27c2c4ff0940a6fa6d056f05fa778dd3e46cadaaf99e4d26b8",
+    "safedial_tpo_artifacts.py": "ea71206533cd720b3cb775b850c5176a53d58deb321dda9cf9eb370cdb5926ab",
+    "safedial_tpo_runtime.py": "4eec9f7433f64971fd5176a1982fda42a263d1446927413ee861dd494da1115e",
+    "tpo_vendor/llm_backward_prompts.py": "1e3f9c023cd7fe9d2e42b322fec33e93c9dd698f60c17f35d45abe076bf0c541",
+    "tpo_vendor/optimizer_prompts.py": "b35a8a56de0d11d9ada8081ef74ccbdc85ba3d3be2f6a20bba9a4b01ed945c79"
+  },
+  "max_input_tokens": null,
+  "max_new_tokens": 1024,
+  "model": "HuggingFaceH4/zephyr-7b-beta",
+  "model_id": "zephyr-7b-beta-tpo",
+  "num_choices": 1,
+  "protocol": "safedial_gold_assistant_history_v1",
+  "resume": "per_event_and_turn; failed_calls_retained; complete_dialogues_only_in_answers",
+  "revision": "892b3d7a7b1cf10c7a701c60881cd93df615734c",
+  "reward_encoding": "native_chat_template_once_no_extra_special_tokens; raw_single_logit",
+  "seed": 0,
+  "selected_ids": [
+    1
+  ],
+  "temperature": 0.7,
+  "token_accounting": "actor_totals_include_candidates_loss_gradient; reward_prompt_tokens_separate",
+  "top_p": 0.95
+}

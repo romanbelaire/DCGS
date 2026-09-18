@@ -1,0 +1,23 @@
+{
+  "blank_final": {
+    "saved_successful_turns": 1,
+    "final_response_calls": 2,
+    "failure_fields": [
+      "audit",
+      "error",
+      "invocation"
+    ],
+    "failure_class": "PolicyFailure",
+    "resume_error": "A policy failure is saved; inspect it before preparing a new experiment"
+  },
+  "initialization_failure": {
+    "failure_saved": true,
+    "runtime": {
+      "elapsed_seconds": 0.00024645100347697735,
+      "invocation": "7b52228b9eac43af89ae8d49e248ef88",
+      "success": false
+    },
+    "resume_error": "A policy failure is saved; inspect it before preparing a new experiment"
+  },
+  "model_calls": 0
+}

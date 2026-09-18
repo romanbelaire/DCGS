@@ -1,0 +1,225 @@
+.................Saved 0/2 turns; filtered 0; pending 2
+FILTERED dialogue=1 turn=0; retained for review, continuing
+Saved 0/2 turns, 0/1 dialogues; filtered 1
+FAILED dialogue=1 turn=1: ValueError
+Saved 0/2 turns, 0/1 dialogues; filtered 1
+Stopped after failed request(s); rerun identical command to resume.
+{"passed": false, "processing_complete": false, "complete": false, "expected_turns": 2, "successful_turns": 0, "filtered_turns": 1, "pending_turns": 1, "complete_dialogues": 0, "expected_dialogues": 1, "excluded_dialogue_ids": [1], "judge_calls": 0}
+.Saved 0/4 turns; filtered 0; pending 4
+FILTERED dialogue=1 turn=0; retained for review, continuing
+Saved 0/4 turns, 0/2 dialogues; filtered 1
+Saved 1/4 turns, 0/2 dialogues; filtered 1
+Saved 2/4 turns, 0/2 dialogues; filtered 1
+Saved 3/4 turns, 1/2 dialogues; filtered 1
+{"passed": true, "processing_complete": true, "complete": false, "expected_turns": 4, "successful_turns": 3, "filtered_turns": 1, "pending_turns": 0, "complete_dialogues": 1, "expected_dialogues": 2, "excluded_dialogue_ids": [1], "judge_calls": 0}
+Saved 3/4 turns; filtered 1; pending 0
+Saved 0/4 turns; filtered 0; pending 4
+FILTERED dialogue=1 turn=0; retained for review, continuing
+Saved 0/4 turns, 0/2 dialogues; filtered 1
+Saved 1/4 turns, 0/2 dialogues; filtered 1
+Saved 2/4 turns, 0/2 dialogues; filtered 1
+Saved 3/4 turns, 1/2 dialogues; filtered 1
+{"passed": true, "processing_complete": true, "complete": false, "expected_turns": 4, "successful_turns": 3, "filtered_turns": 1, "pending_turns": 0, "complete_dialogues": 1, "expected_dialogues": 2, "excluded_dialogue_ids": [1], "judge_calls": 0}
+Saved 3/4 turns; filtered 1; pending 0
+.Saved 0/2 turns; filtered 0; pending 2
+Saved 1/2 turns, 0/1 dialogues; filtered 0
+Saved 2/2 turns, 1/1 dialogues; filtered 0
+..Saved 0/2 turns; filtered 1; pending 1
+Saved 1/2 turns, 0/1 dialogues; filtered 1
+{"passed": true, "processing_complete": true, "complete": false, "expected_turns": 2, "successful_turns": 1, "filtered_turns": 1, "pending_turns": 0, "complete_dialogues": 0, "expected_dialogues": 1, "excluded_dialogue_ids": [1], "judge_calls": 0}
+..Saved 0/2 turns; filtered 0; pending 2
+Saved 1/2 turns, 0/1 dialogues; filtered 0
+FAILED dialogue=1 turn=1: ValueError
+Saved 1/2 turns, 0/1 dialogues; filtered 0
+Stopped after failed request(s); rerun identical command to resume.
+Saved 1/2 turns; filtered 0; pending 1
+Saved 2/2 turns, 1/1 dialogues; filtered 0
+Saved 2/2 turns; filtered 0; pending 0
+......../common/home/users/d/darrius.ng.2024/projects/RL-Defense/DCGS/.venv/lib/python3.11/site-packages/peft/utils/save_and_load.py:438: UserWarning: Could not find a config file in  - will assume that the vocabulary was not modified.
+  warnings.warn(
+....Saved dialogue=1 turn=0 candidates=5
+Saved dialogue=1 turn=1 candidates=5
+.FAIL dialogue=1 turn=0: response_score slot=0: injected score failure
+Unresolved DCGS error (1, 0); inspect audit before --retry-errors
+Saved dialogue=1 turn=0 candidates=5
+Saved dialogue=1 turn=1 candidates=5
+.Saved dialogue=1 turn=0 candidates=5
+Saved dialogue=1 turn=1 candidates=5
+.Saved dialogue=1 turn=0 candidates=5
+Saved dialogue=1 turn=1 candidates=5
+.Recovered interrupted final append in /tmp/tmp9y7wps5k/journal.jsonl; original tail retained
+.....Checking pinned Zephyr and both WildJailbreak critic checkpoints
+{"passed": true}
+......Saved dialogue=1 turn=0 candidates=5
+Saved dialogue=1 turn=1 candidates=5
+.FAIL dialogue=1 turn=0: response_score slot=0: injected score failure
+Unresolved DCGS error (1, 0); inspect audit before --retry-errors
+Saved dialogue=1 turn=0 candidates=5
+Saved dialogue=1 turn=1 candidates=5
+.Saved dialogue=1 turn=0 candidates=5
+Saved dialogue=1 turn=1 candidates=5
+.Saved dialogue=1 turn=0 candidates=5
+Saved dialogue=1 turn=1 candidates=5
+.Recovered interrupted final append in /tmp/tmpna4jyio3/journal.jsonl; original tail retained
+....Saved dialogue=1 turn=0 candidates=5
+Saved dialogue=1 turn=1 candidates=5
+.FAIL dialogue=1 turn=0: response_score slot=0: injected score failure
+Unresolved DCGS error (1, 0); inspect audit before --retry-errors
+Saved dialogue=1 turn=0 candidates=5
+Saved dialogue=1 turn=1 candidates=5
+.Saved dialogue=1 turn=0 candidates=5
+Saved dialogue=1 turn=1 candidates=5
+.Saved dialogue=1 turn=0 candidates=5
+Saved dialogue=1 turn=1 candidates=5
+.Recovered interrupted final append in /tmp/tmpvjyh603m/journal.jsonl; original tail retained
+.....Checking pinned Zephyr and both WildJailbreak critic checkpoints
+{"passed": true}
+.......ERROR dialogue=1 turn=0: SmoothLLM candidate 0: Empty or failed candidate; cannot count it as a safety vote
+ERROR dialogue=1 turn=1: SmoothLLM candidate 0: Empty or failed candidate; cannot count it as a safety vote
+ERROR dialogue=2 turn=0: SmoothLLM candidate 0: Empty or failed candidate; cannot count it as a safety vote
+ERROR dialogue=2 turn=1: SmoothLLM candidate 0: Empty or failed candidate; cannot count it as a safety vote
+....[1/2] completed dialogue 1 (2 turns)
+[2/2] completed dialogue 2 (2 turns)
+[1/2] completed dialogue 1 (2 turns)
+[2/2] completed dialogue 2 (2 turns)
+[1/2] completed dialogue 1 (2 turns)
+[2/2] completed dialogue 2 (2 turns)
+[1/2] completed dialogue 1 (2 turns)
+[1/1] completed dialogue 2 (2 turns)
+Validated 2 dialogues / 4 turns / 32 candidate generations
+SmoothLLM: 8 copies, 10.0% random swap, greedy, current user only
+Saved dialogue=1 turn=0 status=success
+Saved dialogue=1 turn=1 status=success
+Saved dialogue=2 turn=0 status=success
+Saved dialogue=2 turn=1 status=success
+.ERROR dialogue=1 turn=0: SmoothLLM candidate 0: Empty or failed candidate; cannot count it as a safety vote
+Saved dialogue=1 turn=0 status=error
+ERROR dialogue=1 turn=1: SmoothLLM candidate 0: Empty or failed candidate; cannot count it as a safety vote
+Saved dialogue=1 turn=1 status=error
+ERROR dialogue=2 turn=0: SmoothLLM candidate 0: Empty or failed candidate; cannot count it as a safety vote
+Saved dialogue=2 turn=0 status=error
+ERROR dialogue=2 turn=1: SmoothLLM candidate 0: Empty or failed candidate; cannot count it as a safety vote
+Saved dialogue=2 turn=1 status=error
+Saved successful turns: 0; pending dialogues: 0
+.ERROR dialogue=1 turn=1: SmoothLLM candidate 0: Empty or failed candidate; cannot count it as a safety vote
+.ERROR dialogue=1 turn=1: SmoothLLM candidate 0: Empty or failed candidate; cannot count it as a safety vote
+[1/2] completed dialogue 1 (2 turns)
+[2/2] completed dialogue 2 (2 turns)
+[1/2] completed dialogue 1 (2 turns)
+[2/2] completed dialogue 2 (2 turns)
+Imported 3 successful turns; retained 1 errors
+Saved dialogue=1 turn=1 status=success
+.Saved dialogue=1 turn=0 status=success
+ERROR dialogue=1 turn=1: SmoothLLM candidate 0: Empty or failed candidate; cannot count it as a safety vote
+Saved dialogue=1 turn=1 status=error
+Saved dialogue=2 turn=0 status=success
+Saved dialogue=2 turn=1 status=success
+Saved dialogue=1 turn=1 status=success
+..Saved dialogue=1 turn=0 status=success
+ERROR dialogue=1 turn=1: SmoothLLM candidate 0: Empty or failed candidate; cannot count it as a safety vote
+Saved dialogue=1 turn=1 status=error
+ERROR dialogue=1 turn=1: SmoothLLM candidate 0: Empty or failed candidate; cannot count it as a safety vote
+Saved dialogue=1 turn=1 status=error
+Saved dialogue=2 turn=0 status=success
+Saved dialogue=2 turn=1 status=success
+.Saved dialogue=1 turn=0 status=success
+Saved dialogue=1 turn=1 status=success
+Saved dialogue=2 turn=0 status=success
+Saved dialogue=2 turn=1 status=success
+.Saved dialogue=1 turn=0 status=success
+Saved dialogue=1 turn=1 status=success
+Saved dialogue=2 turn=0 status=success
+Saved dialogue=2 turn=1 status=success
+.Validated 2 dialogues / 4 turns / 32 candidate generations
+..................Checking pinned actor/reward artifacts
+Validated 1 dialogues / 2 turns / 18 candidates
+{}
+TPO device_setup failed: RuntimeError: fixture driver initialization failed
+.WARNING dialogue=1 turn=0 event=8: equivalent_duplicate_IMPROVED_VARIABLE_blocks; extracted_first_block; opening_IMPROVED_VARIABLE_tag_after_closed_span; ignored_trailing_text
+WARNING dialogue=1 turn=0 event=10: equivalent_duplicate_IMPROVED_VARIABLE_blocks; extracted_first_block; opening_IMPROVED_VARIABLE_tag_after_closed_span; ignored_trailing_text
+WARNING dialogue=1 turn=0 event=12: equivalent_duplicate_IMPROVED_VARIABLE_blocks; extracted_first_block; opening_IMPROVED_VARIABLE_tag_after_closed_span; ignored_trailing_text
+WARNING dialogue=1 turn=0 event=16: equivalent_duplicate_IMPROVED_VARIABLE_blocks; extracted_first_block; opening_IMPROVED_VARIABLE_tag_after_closed_span; ignored_trailing_text
+WARNING dialogue=1 turn=0 event=18: equivalent_duplicate_IMPROVED_VARIABLE_blocks; extracted_first_block; opening_IMPROVED_VARIABLE_tag_after_closed_span; ignored_trailing_text
+WARNING dialogue=1 turn=0 event=20: equivalent_duplicate_IMPROVED_VARIABLE_blocks; extracted_first_block; opening_IMPROVED_VARIABLE_tag_after_closed_span; ignored_trailing_text
+Saved dialogue=1 turn=0 candidates=9
+WARNING dialogue=1 turn=1 event=8: equivalent_duplicate_IMPROVED_VARIABLE_blocks; extracted_first_block; opening_IMPROVED_VARIABLE_tag_after_closed_span; ignored_trailing_text
+WARNING dialogue=1 turn=1 event=10: equivalent_duplicate_IMPROVED_VARIABLE_blocks; extracted_first_block; opening_IMPROVED_VARIABLE_tag_after_closed_span; ignored_trailing_text
+WARNING dialogue=1 turn=1 event=12: equivalent_duplicate_IMPROVED_VARIABLE_blocks; extracted_first_block; opening_IMPROVED_VARIABLE_tag_after_closed_span; ignored_trailing_text
+WARNING dialogue=1 turn=1 event=16: equivalent_duplicate_IMPROVED_VARIABLE_blocks; extracted_first_block; opening_IMPROVED_VARIABLE_tag_after_closed_span; ignored_trailing_text
+WARNING dialogue=1 turn=1 event=18: equivalent_duplicate_IMPROVED_VARIABLE_blocks; extracted_first_block; opening_IMPROVED_VARIABLE_tag_after_closed_span; ignored_trailing_text
+WARNING dialogue=1 turn=1 event=20: equivalent_duplicate_IMPROVED_VARIABLE_blocks; extracted_first_block; opening_IMPROVED_VARIABLE_tag_after_closed_span; ignored_trailing_text
+Saved dialogue=1 turn=1 candidates=9
+.WARNING dialogue=1 turn=0 event=8: equivalent_duplicate_IMPROVED_VARIABLE_blocks; extracted_first_block
+WARNING dialogue=1 turn=0 event=10: equivalent_duplicate_IMPROVED_VARIABLE_blocks; extracted_first_block
+WARNING dialogue=1 turn=0 event=12: equivalent_duplicate_IMPROVED_VARIABLE_blocks; extracted_first_block
+WARNING dialogue=1 turn=0 event=16: equivalent_duplicate_IMPROVED_VARIABLE_blocks; extracted_first_block
+WARNING dialogue=1 turn=0 event=18: equivalent_duplicate_IMPROVED_VARIABLE_blocks; extracted_first_block
+WARNING dialogue=1 turn=0 event=20: equivalent_duplicate_IMPROVED_VARIABLE_blocks; extracted_first_block
+Saved dialogue=1 turn=0 candidates=9
+WARNING dialogue=1 turn=1 event=8: equivalent_duplicate_IMPROVED_VARIABLE_blocks; extracted_first_block
+WARNING dialogue=1 turn=1 event=10: equivalent_duplicate_IMPROVED_VARIABLE_blocks; extracted_first_block
+WARNING dialogue=1 turn=1 event=12: equivalent_duplicate_IMPROVED_VARIABLE_blocks; extracted_first_block
+WARNING dialogue=1 turn=1 event=16: equivalent_duplicate_IMPROVED_VARIABLE_blocks; extracted_first_block
+WARNING dialogue=1 turn=1 event=18: equivalent_duplicate_IMPROVED_VARIABLE_blocks; extracted_first_block
+WARNING dialogue=1 turn=1 event=20: equivalent_duplicate_IMPROVED_VARIABLE_blocks; extracted_first_block
+Saved dialogue=1 turn=1 candidates=9
+.Saved dialogue=1 turn=0 candidates=9
+Saved dialogue=1 turn=1 candidates=9
+.FAIL dialogue=1 turn=0: TPO update round=0 slot=0: Optimizer output requires an opening IMPROVED_VARIABLE tag
+Unresolved TPO error (1, 0); inspect audit before --retry-errors
+Saved dialogue=1 turn=0 candidates=9
+Saved dialogue=1 turn=1 candidates=9
+.Saved dialogue=1 turn=0 candidates=9
+Saved dialogue=1 turn=1 candidates=9
+.Checking pinned actor/reward artifacts
+Validated 1 dialogues / 2 turns / 18 candidates
+{}
+CUDA ready: cuda:0 / fixture GPU / torch 2.13.0+cu130
+Saved dialogue=1 turn=0 candidates=9
+Saved dialogue=1 turn=1 candidates=9
+.WARNING dialogue=1 turn=0 event=8: opening_IMPROVED_VARIABLE_tag_after_closed_span; ignored_trailing_text
+WARNING dialogue=1 turn=0 event=10: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+WARNING dialogue=1 turn=0 event=12: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+WARNING dialogue=1 turn=0 event=16: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+WARNING dialogue=1 turn=0 event=18: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+WARNING dialogue=1 turn=0 event=20: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+Saved dialogue=1 turn=0 candidates=9
+WARNING dialogue=1 turn=1 event=8: opening_IMPROVED_VARIABLE_tag_after_closed_span; ignored_trailing_text
+WARNING dialogue=1 turn=1 event=10: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+WARNING dialogue=1 turn=1 event=12: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+WARNING dialogue=1 turn=1 event=16: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+WARNING dialogue=1 turn=1 event=18: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+WARNING dialogue=1 turn=1 event=20: missing_IMPROVED_VARIABLE_closing_tag; extracted_to_end_of_output
+Saved dialogue=1 turn=1 candidates=9
+.Recovered interrupted final append in /tmp/tmpm09_8_4g/journal.jsonl; original tail retained
+..WARNING dialogue=1 turn=0 event=8: terminal_opening_tag_used_as_closing
+WARNING dialogue=1 turn=0 event=10: terminal_opening_tag_used_as_closing
+WARNING dialogue=1 turn=0 event=12: terminal_opening_tag_used_as_closing
+WARNING dialogue=1 turn=0 event=16: terminal_opening_tag_used_as_closing
+WARNING dialogue=1 turn=0 event=18: terminal_opening_tag_used_as_closing
+WARNING dialogue=1 turn=0 event=20: terminal_opening_tag_used_as_closing
+Saved dialogue=1 turn=0 candidates=9
+WARNING dialogue=1 turn=1 event=8: terminal_opening_tag_used_as_closing
+WARNING dialogue=1 turn=1 event=10: terminal_opening_tag_used_as_closing
+WARNING dialogue=1 turn=1 event=12: terminal_opening_tag_used_as_closing
+WARNING dialogue=1 turn=1 event=16: terminal_opening_tag_used_as_closing
+WARNING dialogue=1 turn=1 event=18: terminal_opening_tag_used_as_closing
+WARNING dialogue=1 turn=1 event=20: terminal_opening_tag_used_as_closing
+Saved dialogue=1 turn=1 candidates=9
+.Checking pinned actor/reward artifacts
+Validated 1 dialogues / 2 turns / 18 candidates
+{}
+..Checking pinned actor/reward artifacts
+Validated 1 dialogues / 1 turns / 15 candidates
+{}
+FAIL dialogue=1 turn=0: TPO initial round=-1 slot=0: fixture context probe failed
+.Checking pinned actor/reward artifacts
+Validated 1 dialogues / 1 turns / 15 candidates
+{}
+Reward context probe PASS: 8192 tokens
+Saved dialogue=1 turn=0 candidates=15
+...
+----------------------------------------------------------------------
+Ran 122 tests in 2.257s
+
+OK

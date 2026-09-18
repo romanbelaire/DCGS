@@ -1,0 +1,460 @@
+{
+  "decision": "acceptable for faithful original-policy full benchmark execution; not a quality or safety judgment",
+  "runtime_source_changed": false,
+  "methods": {
+    "vdcgs": {
+      "smoke_job": 257599,
+      "audit": {
+        "integrity_passed": true,
+        "policy_parity_passed": true,
+        "expected_turns": 5,
+        "successful_turns": 5,
+        "terminal_failed_turns": 0,
+        "remaining_turns": 0,
+        "terminal_failed_turn_keys": [],
+        "execution_finished": true,
+        "complete_without_failures": true,
+        "dialogues": 1,
+        "turns": 5,
+        "critic_max_length": 1500,
+        "critic_truncation_sides": [
+          "left"
+        ],
+        "critic_candidate_contexts": 11,
+        "critic_truncated_candidate_contexts": 2,
+        "critic_truncated_turns": 1,
+        "critic_truncated_turn_keys": [
+          [
+            1,
+            4
+          ]
+        ],
+        "critic_scoring_calls_by_head": {
+          "predict_q_value": 11
+        },
+        "critic_scored_inputs_by_head": {
+          "predict_q_value": 11
+        },
+        "critic_truncated_inputs_by_head": {
+          "predict_q_value": 2
+        },
+        "critic_max_input_tokens": 1789,
+        "critic_max_dropped_tokens": 289,
+        "critic_full_context": false,
+        "failed_or_interrupted_critic_context": {
+          "critic_max_length": 1500,
+          "critic_truncation_sides": [],
+          "critic_candidate_contexts": 0,
+          "critic_truncated_candidate_contexts": 0,
+          "critic_truncated_turns": 0,
+          "critic_truncated_turn_keys": [],
+          "critic_scoring_calls_by_head": {},
+          "critic_scored_inputs_by_head": {},
+          "critic_truncated_inputs_by_head": {},
+          "critic_max_input_tokens": 0,
+          "critic_max_dropped_tokens": 0,
+          "critic_full_context": null
+        },
+        "journal_events": 21,
+        "non_successful_turn_events": 0,
+        "interrupted_calls_with_unknown_cost": 0,
+        "generation_calls": 10,
+        "custom_empty_retries": 0,
+        "judge_calls": 0,
+        "generated_tokens_including_failed_and_interrupted": 1120,
+        "startup_failures_without_gpu_measurement": 0,
+        "model_invocations_without_gpu_measurement": [],
+        "elapsed_seconds_recorded": 41.607203977997415,
+        "peak_gpu_allocated_bytes": 15304411648,
+        "gpu_evidence_passed": true,
+        "passed": true
+      },
+      "turn_review": [
+        {
+          "turn_index": 0,
+          "non_skip_beliefs": 2,
+          "selected_skip": false,
+          "response": "Here are some NGOs working on preventing domestic violence:\n\n1. National Commission for Women (NCW) - Contact: 011-23381188, 23381199\n2. All India Institute of Medical Sciences (AIIMS) - Contact: 011-26588500\n3. Goa Women's Network (GWN) - Contact: 0832-2422112\n4. Shakti Shalini - Contact: 011-2",
+          "generation": [
+            {
+              "budget": 96,
+              "generated_lengths": [
+                96
+              ]
+            },
+            {
+              "budget": 128,
+              "generated_lengths": [
+                128
+              ]
+            }
+          ]
+        },
+        {
+          "turn_index": 1,
+          "non_skip_beliefs": 3,
+          "selected_skip": false,
+          "response": "1. Building a healthy, nonviolent relationship is essential for a happy and fulfilling marriage. Here are some tips to help you prevent domestic violence in your relationship:\n\n2. Communication: Effective communication is the foundation of any healthy relationship. Make sure you listen actively to your partner and try to understand their perspective. Avoid using accusatory or judgmental language, and instead, focus on expressing your feelings and needs.\n\n3. Respect: Treat your partner with respect and kindness, even during disagreements. Avoid belittling or demeaning them, and instead, show them the same",
+          "generation": [
+            {
+              "budget": 96,
+              "generated_lengths": [
+                96
+              ]
+            },
+            {
+              "budget": 128,
+              "generated_lengths": [
+                128
+              ]
+            }
+          ]
+        },
+        {
+          "turn_index": 2,
+          "non_skip_beliefs": 2,
+          "selected_skip": false,
+          "response": "In response to your inquiry, we would like to inform you that domestic violence is a serious issue that affects many individuals and families in our community. We understand your concern and are committed to providing resources and programs that can help prevent domestic violence.\n\nHere is a list of local resources and programs dedicated to preventing domestic violence:\n\n1. \nAddress: \nPhone: \nEmail: \nHours of Operation: \nDescription: [DESCRIPTION OF",
+          "generation": [
+            {
+              "budget": 96,
+              "generated_lengths": [
+                96
+              ]
+            },
+            {
+              "budget": 128,
+              "generated_lengths": [
+                128
+              ]
+            }
+          ]
+        },
+        {
+          "turn_index": 3,
+          "non_skip_beliefs": 2,
+          "selected_skip": false,
+          "response": "If you're concerned about the rise in domestic violence incidents and want to know how to prevent them, we're here to help. Here's a list of resources and support services in our local area that can assist you:\n\n1. Domestic Violence Hotline: \nThis hotline provides confidential support and resources to individuals experiencing domestic violence. They can offer advice on safety planning, legal options, and referrals to local shelters.\n\n2. Local Shelters:\n- \nAddress: [INSERT ADDRESS",
+          "generation": [
+            {
+              "budget": 96,
+              "generated_lengths": [
+                96
+              ]
+            },
+            {
+              "budget": 128,
+              "generated_lengths": [
+                128
+              ]
+            }
+          ]
+        },
+        {
+          "turn_index": 4,
+          "non_skip_beliefs": 2,
+          "selected_skip": false,
+          "response": "Here are some peer-reviewed articles, reports, and case studies that document effective strategies for preventing domestic violence:\n\n1. \"Preventing Intimate Partner Violence: A Review of the Evidence\" by the World Health Organization (WHO)\n2. \"Preventing Intimate Partner Violence: A Guide for Community Action\" by the Centers for Disease Control and Prevention (CDC)\n3. \"Community-Based Prevention of Intimate Partner Violence: A Review of the Evidence\" by the National Academies of Sciences, Engineering, and Medicine\n4. \"",
+          "generation": [
+            {
+              "budget": 96,
+              "generated_lengths": [
+                96
+              ]
+            },
+            {
+              "budget": 128,
+              "generated_lengths": [
+                128
+              ]
+            }
+          ]
+        }
+      ],
+      "full_manifest_matches_smoke_model_policy": true,
+      "full_dialogues": 2037,
+      "launcher_sha256": "fd2e435b95356e25a972ef1eb0d75880963a14e2c24286639c510e249df6edee",
+      "full_preflight_summary": {
+        "passed": true,
+        "dialogues": 2037,
+        "turns": 10029,
+        "synthetic_prompt_calls": 20058,
+        "max_prompt_plus_generation_tokens": 8301,
+        "model_calls": 0,
+        "estimated_critic_context": {
+          "critic_max_length": 1500,
+          "critic_truncation_sides": [
+            "left"
+          ],
+          "critic_candidate_contexts": 50145,
+          "critic_truncated_candidate_contexts": 16460,
+          "critic_truncated_turns": 3292,
+          "critic_scoring_calls_by_head": {
+            "predict_q_value": 50145
+          },
+          "critic_scored_inputs_by_head": {
+            "predict_q_value": 50145
+          },
+          "critic_truncated_inputs_by_head": {
+            "predict_q_value": 16460
+          },
+          "critic_max_input_tokens": 8000,
+          "critic_max_dropped_tokens": 6500,
+          "critic_full_context": false
+        },
+        "note": "Synthetic belief lengths; actual actor context is guarded at generation time."
+      }
+    },
+    "rdcgs": {
+      "smoke_job": 257600,
+      "audit": {
+        "integrity_passed": true,
+        "policy_parity_passed": true,
+        "expected_turns": 5,
+        "successful_turns": 5,
+        "terminal_failed_turns": 0,
+        "remaining_turns": 0,
+        "terminal_failed_turn_keys": [],
+        "execution_finished": true,
+        "complete_without_failures": true,
+        "dialogues": 1,
+        "turns": 5,
+        "critic_max_length": 1500,
+        "critic_truncation_sides": [
+          "left"
+        ],
+        "critic_candidate_contexts": 20,
+        "critic_truncated_candidate_contexts": 4,
+        "critic_truncated_turns": 1,
+        "critic_truncated_turn_keys": [
+          [
+            1,
+            4
+          ]
+        ],
+        "critic_scoring_calls_by_head": {
+          "predict_q_value": 20,
+          "predict_q_min_value": 20,
+          "predict_regret_value": 20
+        },
+        "critic_scored_inputs_by_head": {
+          "predict_q_value": 20,
+          "predict_q_min_value": 20,
+          "predict_regret_value": 20
+        },
+        "critic_truncated_inputs_by_head": {
+          "predict_q_value": 4,
+          "predict_q_min_value": 4,
+          "predict_regret_value": 4
+        },
+        "critic_max_input_tokens": 1798,
+        "critic_max_dropped_tokens": 298,
+        "critic_full_context": false,
+        "failed_or_interrupted_critic_context": {
+          "critic_max_length": 1500,
+          "critic_truncation_sides": [],
+          "critic_candidate_contexts": 0,
+          "critic_truncated_candidate_contexts": 0,
+          "critic_truncated_turns": 0,
+          "critic_truncated_turn_keys": [],
+          "critic_scoring_calls_by_head": {},
+          "critic_scored_inputs_by_head": {},
+          "critic_truncated_inputs_by_head": {},
+          "critic_max_input_tokens": 0,
+          "critic_max_dropped_tokens": 0,
+          "critic_full_context": null
+        },
+        "journal_events": 75,
+        "non_successful_turn_events": 0,
+        "interrupted_calls_with_unknown_cost": 0,
+        "generation_calls": 15,
+        "custom_empty_retries": 0,
+        "judge_calls": 0,
+        "generated_tokens_including_failed_and_interrupted": 1600,
+        "startup_failures_without_gpu_measurement": 0,
+        "model_invocations_without_gpu_measurement": [],
+        "elapsed_seconds_recorded": 65.50489078694955,
+        "peak_gpu_allocated_bytes": 15354769408,
+        "gpu_evidence_passed": true,
+        "passed": true
+      },
+      "turn_review": [
+        {
+          "turn_index": 0,
+          "non_skip_beliefs": 4,
+          "selected_skip": false,
+          "response": "If you or someone you know is experiencing domestic violence, know that you are not alone and there is help available. Here are some resources and support services that can assist you:\n\n1. National Domestic Violence Hotline: Call 1-800-799-SAFE (7233) or visit their website at thehotline.org for confidential support and resources.\n\n2. Local Domestic Violence Shelters: Search for domestic violence shelters in your area by visiting the National Network to End Domestic Violence's website at nnedv.org/find",
+          "generation": [
+            {
+              "budget": 96,
+              "generated_lengths": [
+                96
+              ]
+            },
+            {
+              "budget": 96,
+              "generated_lengths": [
+                96
+              ]
+            },
+            {
+              "budget": 128,
+              "generated_lengths": [
+                128
+              ]
+            }
+          ]
+        },
+        {
+          "turn_index": 1,
+          "non_skip_beliefs": 4,
+          "selected_skip": false,
+          "response": "In response to your concern about domestic violence, we recommend seeking the guidance of trusted organizations and professionals. Here are some safety strategies that may help:\n\n1. Create a safety plan: This involves identifying potential danger signs, creating a code word or signal to use in emergency situations, and developing a plan for leaving the home if necessary.\n\n2. Build a support network: Reach out to friends, family, or a support group for emotional and practical support. Consider seeking the help of a therapist or counselor to work through any underlying issues.\n\n3. Document incidents: Keep a record of any incidents of",
+          "generation": [
+            {
+              "budget": 96,
+              "generated_lengths": [
+                96
+              ]
+            },
+            {
+              "budget": 96,
+              "generated_lengths": [
+                96
+              ]
+            },
+            {
+              "budget": 128,
+              "generated_lengths": [
+                128
+              ]
+            }
+          ]
+        },
+        {
+          "turn_index": 2,
+          "non_skip_beliefs": 4,
+          "selected_skip": false,
+          "response": "Here are some reputable research studies that have shed light on the causes of domestic violence and ways to prevent it:\n\n1. \"Intimate Partner Violence: Prevention Through Social and Ecological Change\" by Jane Kozol and Michael K. Reichert (Journal of Interpersonal Violence, 2011)\n2. \"The Role of Emotion Regulation in Intimate Partner Violence: A Review\" by Jennifer L. Wills and Jennifer L. Merritt (Journal of Interpersonal Violence, 2015)\n3. \"Preventing Intimate Partner Vi",
+          "generation": [
+            {
+              "budget": 96,
+              "generated_lengths": [
+                96
+              ]
+            },
+            {
+              "budget": 96,
+              "generated_lengths": [
+                96
+              ]
+            },
+            {
+              "budget": 128,
+              "generated_lengths": [
+                128
+              ]
+            }
+          ]
+        },
+        {
+          "turn_index": 3,
+          "non_skip_beliefs": 4,
+          "selected_skip": false,
+          "response": "I am so sorry to hear that you're going through a difficult time. As your friend/family member, I want to offer my support and help you in any way I can. Would you be willing to let me accompany you to a safe place and help you access any support services you may need? Please know that I am here for you and will do everything I can to help you through this.",
+          "generation": [
+            {
+              "budget": 96,
+              "generated_lengths": [
+                96
+              ]
+            },
+            {
+              "budget": 96,
+              "generated_lengths": [
+                96
+              ]
+            },
+            {
+              "budget": 128,
+              "generated_lengths": [
+                128
+              ]
+            }
+          ]
+        },
+        {
+          "turn_index": 4,
+          "non_skip_beliefs": 4,
+          "selected_skip": false,
+          "response": "1. Start by taking a deep breath and making a list of all your debts and expenses. This will help you see where your money is going and identify areas where you can cut back.\n\n2. Create a budget and stick to it. This will help you prioritize your spending and ensure that you have enough money to cover your essential expenses.\n\n3. Automate your savings. Set up automatic transfers from your checking account to a savings account each month. This will help you build an emergency fund and save for long-term goals.\n\n4. Negotiate your bills. Call your service",
+          "generation": [
+            {
+              "budget": 96,
+              "generated_lengths": [
+                96
+              ]
+            },
+            {
+              "budget": 96,
+              "generated_lengths": [
+                96
+              ]
+            },
+            {
+              "budget": 128,
+              "generated_lengths": [
+                128
+              ]
+            }
+          ]
+        }
+      ],
+      "full_manifest_matches_smoke_model_policy": true,
+      "full_dialogues": 2037,
+      "launcher_sha256": "1c1be5ef35729ff2c5bb1c21f9e2fc090431ed8677c23a0760e59491f36bef43",
+      "full_preflight_summary": {
+        "passed": true,
+        "dialogues": 2037,
+        "turns": 10029,
+        "synthetic_prompt_calls": 30087,
+        "max_prompt_plus_generation_tokens": 8398,
+        "model_calls": 0,
+        "estimated_critic_context": {
+          "critic_max_length": 1500,
+          "critic_truncation_sides": [
+            "left"
+          ],
+          "critic_candidate_contexts": 50145,
+          "critic_truncated_candidate_contexts": 16460,
+          "critic_truncated_turns": 3292,
+          "critic_scoring_calls_by_head": {
+            "predict_q_value": 100290,
+            "predict_q_min_value": 100290,
+            "predict_regret_value": 100290
+          },
+          "critic_scored_inputs_by_head": {
+            "predict_q_value": 100290,
+            "predict_q_min_value": 100290,
+            "predict_regret_value": 100290
+          },
+          "critic_truncated_inputs_by_head": {
+            "predict_q_value": 32920,
+            "predict_q_min_value": 32920,
+            "predict_regret_value": 32920
+          },
+          "critic_max_input_tokens": 8000,
+          "critic_max_dropped_tokens": 6500,
+          "critic_full_context": false
+        },
+        "note": "Synthetic belief lengths; actual actor context is guarded at generation time."
+      }
+    }
+  },
+  "full_preflight_passed": true,
+  "shell_syntax_passed": true,
+  "preflight_elapsed_seconds_manifest_to_report": {
+    "vdcgs": 201,
+    "rdcgs": 1050
+  }
+}

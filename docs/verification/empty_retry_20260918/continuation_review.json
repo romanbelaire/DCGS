@@ -1,0 +1,129 @@
+[
+  {
+    "method": "vdcgs",
+    "fixture_directory": "/tmp/empty-retry-vdcgs-fixture-sw9a88uf",
+    "real_events_preserved": 473,
+    "real_successful_turns_preserved": 29,
+    "injected_calls": 8,
+    "first_injected_call": {
+      "kind": "generate",
+      "stage": "response",
+      "slot": 1,
+      "prefill": "[RESPONSE]",
+      "max_new_tokens": 1024,
+      "temperature": 0.7,
+      "top_p": 1.0,
+      "seed": 2088410636,
+      "top_k": 0,
+      "retry_attempt": 1,
+      "original_seed": 440650735
+    },
+    "validation": {
+      "passed": true,
+      "dialogues": 6,
+      "turns": 30,
+      "input_truncated_turns": 0,
+      "adapter_required": false,
+      "judge_calls": 0,
+      "retry_generations": 1,
+      "empty_generation_attempts": 1,
+      "actual_generation_calls": 181,
+      "dcgs_audit_passed": true,
+      "call_counts": {
+        "generate": 181,
+        "hl_score": 150,
+        "ll_score": 150
+      },
+      "generations_at_token_cap": 20,
+      "response_candidates": 150
+    },
+    "byte_identical_noop": true,
+    "original_and_nested_archive_hashes_match": true,
+    "model_calls": 0
+  },
+  {
+    "method": "rdcgs",
+    "fixture_directory": "/tmp/empty-retry-rdcgs-fixture-g4x6zy_f",
+    "real_events_preserved": 2214,
+    "real_successful_turns_preserved": 100,
+    "injected_calls": 4,
+    "first_injected_call": {
+      "kind": "generate",
+      "stage": "response",
+      "slot": 3,
+      "prefill": "[RESPONSE]",
+      "max_new_tokens": 1024,
+      "temperature": 0.7,
+      "top_p": 1.0,
+      "seed": 20156382,
+      "top_k": 0,
+      "retry_attempt": 1,
+      "original_seed": 1522943340
+    },
+    "validation": {
+      "passed": true,
+      "dialogues": 20,
+      "turns": 101,
+      "input_truncated_turns": 0,
+      "adapter_required": false,
+      "judge_calls": 0,
+      "retry_generations": 1,
+      "empty_generation_attempts": 1,
+      "actual_generation_calls": 708,
+      "dcgs_audit_passed": true,
+      "call_counts": {
+        "generate": 708,
+        "hl_score": 1005,
+        "ll_score": 505
+      },
+      "generations_at_token_cap": 106,
+      "response_candidates": 505
+    },
+    "byte_identical_noop": true,
+    "original_and_nested_archive_hashes_match": true,
+    "model_calls": 0
+  },
+  {
+    "method": "tpo",
+    "fixture_directory": "/tmp/empty-retry-tpo-fixture-eeq6p0bg",
+    "real_events_preserved": 4783,
+    "real_successful_turns_preserved": 140,
+    "injected_calls": 80,
+    "first_injected_call": {
+      "kind": "generate",
+      "stage": "loss",
+      "iteration": 1,
+      "slot": 0,
+      "seed": 253860079,
+      "temperature": 0.7,
+      "top_p": 0.99,
+      "max_new_tokens": 2048,
+      "retry_attempt": 1,
+      "original_seed": 1248655093
+    },
+    "validation": {
+      "passed": true,
+      "dialogues": 28,
+      "turns": 143,
+      "input_truncated_turns": 0,
+      "adapter_required": false,
+      "judge_calls": 0,
+      "retry_generations": 1,
+      "empty_generation_attempts": 1,
+      "actual_generation_calls": 2718,
+      "tpo_audit_passed": true,
+      "candidates": 2145,
+      "feedback_generations": 572,
+      "generations_at_token_cap": 23,
+      "optimizer_missing_closing_tag_warnings": 21,
+      "optimizer_trailing_opening_tag_warnings": 8,
+      "optimizer_terminal_opening_tag_warnings": 3,
+      "optimizer_duplicate_block_warnings": 2,
+      "optimizer_first_improvement_warnings": 1,
+      "reward_context_tokens": 8192
+    },
+    "byte_identical_noop": true,
+    "original_and_nested_archive_hashes_match": true,
+    "model_calls": 0
+  }
+]

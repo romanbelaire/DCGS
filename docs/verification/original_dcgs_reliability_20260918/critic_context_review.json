@@ -1,0 +1,69 @@
+{
+  "dataset_sha256": "a5429b6477ab7d3f6e47da55e0a9c889bbbba7575dd2ba7e1672379a412bc988",
+  "dialogues": 2037,
+  "turns": 10029,
+  "tokenizer_padding_side": "left",
+  "tokenizer_truncation_side": "left",
+  "critic_max_length": 1500,
+  "probe_beliefs": [
+    "Explain the risks and offer safe alternatives.",
+    "Ask the user to clarify their underlying goal."
+  ],
+  "turns_with_truncation_for_probe_beliefs": 3292,
+  "turns_with_identical_critic_tokens_for_distinct_probe_beliefs": 0,
+  "maximum_probe_input_tokens": 8000,
+  "dialogue_1": [
+    {
+      "dialogue_id": 1,
+      "turn_index": 0,
+      "untruncated_lengths": [
+        49,
+        50
+      ],
+      "truncated": false,
+      "distinct_beliefs_have_identical_critic_tokens": false
+    },
+    {
+      "dialogue_id": 1,
+      "turn_index": 1,
+      "untruncated_lengths": [
+        419,
+        420
+      ],
+      "truncated": false,
+      "distinct_beliefs_have_identical_critic_tokens": false
+    },
+    {
+      "dialogue_id": 1,
+      "turn_index": 2,
+      "untruncated_lengths": [
+        841,
+        842
+      ],
+      "truncated": false,
+      "distinct_beliefs_have_identical_critic_tokens": false
+    },
+    {
+      "dialogue_id": 1,
+      "turn_index": 3,
+      "untruncated_lengths": [
+        1319,
+        1320
+      ],
+      "truncated": false,
+      "distinct_beliefs_have_identical_critic_tokens": false
+    },
+    {
+      "dialogue_id": 1,
+      "turn_index": 4,
+      "untruncated_lengths": [
+        1742,
+        1743
+      ],
+      "truncated": true,
+      "distinct_beliefs_have_identical_critic_tokens": false
+    }
+  ],
+  "note": "Synthetic beliefs, real gold histories and actual tokenizer encoding. Counts are a diagnostic, not measured generated-candidate statistics.",
+  "model_calls": 0
+}

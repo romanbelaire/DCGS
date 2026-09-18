@@ -24,6 +24,13 @@ ant_api
 *.md
 *.sh
 
+# Keep the reproducible environment guide and dependency declaration.
+!requirements.txt
+!runbook.md
+!scripts/test_openai_connection.py
+!scripts/run_safedial_baseline.py
+!scripts/judge_safedial.py
+
 # Allow directory traversal so selective un-ignores can match nested files.
 !*/
 
@@ -42,3 +49,34 @@ __pycache__/
 !outputs/cares_hierarchical_regret_critic/hierarchical_regret_critic/checkpoints/value_function_latest_aug11.pt
 !outputs/wildjailbreak_hierarchical_regret_critic/hierarchical_regret_critic/checkpoints/value_function_final.pt
 !outputs/wildjailbreak_hierarchical_regret_critic/hierarchical_regret_critic/checkpoints/value_function_final_aug11.pt
+
+# SafeDialBench implementation, launchers, and reproducibility evidence.
+!AGENTS.md
+!.agents.md
+!handover.md
+!EXPERIMENT_LOGBOOK.md
+!safedial_dcgs.json
+!cares_smoke.json
+!scripts/**
+!tests/**
+!configs/safedial/**
+!docs/**
+!archive/scripts_cleanup_20260918/**
+
+# Local installations, external datasets, generated runs, and credentials.
+.venv/
+.cache/
+benchmark-artifacts/
+**/__pycache__/
+*.py[cod]
+.env
+.env.*
+*.env
+*api_key*
+*apikey*
+*secret*
+*credential*
+api.json
+openai_api.json
+hf_api
+ant_api

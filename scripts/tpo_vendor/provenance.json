@@ -1,0 +1,10 @@
+{
+  "repository": "https://github.com/Simplified-Reasoning/TPO",
+  "commit": "395c3d763a4c3df0ae72a4352b0db16fe5ee18e9",
+  "upstream_directory": "textgrad-main/textgrad",
+  "sha256": {
+    "llm_backward_prompts.py": "1e3f9c023cd7fe9d2e42b322fec33e93c9dd698f60c17f35d45abe076bf0c541",
+    "optimizer_prompts.py": "b35a8a56de0d11d9ada8081ef74ccbdc85ba3d3be2f6a20bba9a4b01ed945c79",
+    "LICENSE": "ed05ff64a2b47ecba690d8b6fe28d970de1f6e31b1c84daa229f21294ece9702"
+  }
+}
