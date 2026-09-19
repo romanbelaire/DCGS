@@ -202,11 +202,22 @@ Input validation for later API labelling is CPU-only:
 
 Paid judging is separate from DCGS generation; see the [labelling guide](docs/SAFEDIALBENCH_FULL_JUDGING.md). SmoothLLM and TPO remain separate supported baseline runners, listed in the [script index](scripts/README.md).
 
+SmoothLLM labelling can run locally on Windows/Git Bash or Linux without Slurm or a GPU. From this directory, prepare and check the saved September 19 answers:
+
+```bash
+python scripts/run_safedial_smoothllm_judging.py --snapshot results/safedialbench/2026-09-19 --fetch-benchmark --dry-run
+```
+
+Then remove `--dry-run` to start paid API judging using `OPENAI_API_KEY` from `.env` or the environment. This labels 2,036 dialogues / 10,024 turns, excluding failed dialogue 344. New outputs go under `outputs/safedial_judging/smoothllm_zephyr_full_turn_resume_snapshot_2026-09-19/`; the committed snapshot is unchanged. See the guide for dependencies, resume, Linux full-journal mode, and the snapshot audit's limits.
+
+
 ## Saved benchmark snapshot
 
 Status checked **19 September 2026, 01:32 SGT (UTC+8)**. Result files captured independently during `2026-09-19T01:30:35+08:00`–`2026-09-19T01:31:33+08:00`. At that capture, both old full DCGS jobs reported running. Their present scheduler state has not been checked.
 
 This branch contains SafeDialBench generation, validation, and judging code plus saved results. A full benchmark has **2,037 dialogues and 10,029 turns**. Active-run counts are snapshots, not final results.
+
+SmoothLLM judging was subsequently completed locally and verified on **19 September 2026, 22:07 SGT**: **10,024/10,024 successful judgments**, covering **2,036 dialogues**, with overall score **3.5378**. Dialogue 344 remains excluded. See the [completed judging archive](results/safedialbench/2026-09-19-smoothllm-judging/README.md); the earlier generation snapshot remains unchanged. Other rows below retain their original capture status.
 
 ### Saved benchmark runs
 
@@ -215,7 +226,7 @@ This branch contains SafeDialBench generation, validation, and judging code plus
 | Zephyr baseline | Generation complete; judging incomplete | 10,029/10,029 | 10,028/10,029 turn judgments; one unresolved judge response. |
 | GPT-4o baseline | Processing complete; filtered case excluded | 10,028/10,029 | One filtered turn in dialogue 1436. Judging complete for 2,036 exported dialogues / 10,024 turns, not the full benchmark. |
 | CAT + Zephyr | Generation and judging complete | 10,029/10,029 | Validation passed; all 10,029 turn judgments complete. |
-| SmoothLLM + Zephyr | Finished with one failed turn (256253) | 10,028/10,029 | All turns processed; dialogue 344, turn index 4 has an empty candidate. Exit 2; final validation/judging not reached. |
+| SmoothLLM + Zephyr | Successful-dialogue judging complete | 10,028/10,029 | 10,024/10,024 judgments over 2,036 dialogues; overall 3.5378. Dialogue 344 excluded for generation failure; full candidate audit unavailable in the snapshot. |
 | TPO v8 + Zephyr | Stopped on parser failure (257501) | 281/10,029 | Dialogue 57, turn index 1: missing IMPROVED_VARIABLE opening tag. Exit 2; no final judge score. |
 | VDCGS, original WildJailbreak | Running (257632) | 6,237/10,029 | Five terminal all-SKIP belief failures, retained in the failure ledger. Generation continues; judging pending. |
 | RDCGS, original WildJailbreak | Running (257633) | 2,982/10,029 | No terminal failures recorded at this check; judging pending. |
@@ -265,6 +276,6 @@ Earlier A40 TPO smoke submission **257857** failed because L40 job **257858** al
 - [Upstream TPO handling](docs/SAFEDIALBENCH_TPO_UPSTREAM_HANDLING.md): skip-and-record policy and resume behavior.
 - [Original DCGS policy](docs/SAFEDIALBENCH_DCGS_PARITY.md): original-code reuse, failure handling, and critic-context limitations.
 
-The DCGS integration passed the full **146-test** CPU suite. The subsequent SmoothLLM judging helper adds five tests; all **30 relevant tests** passed, while the expanded full suite has not been rerun. Documentation changes do not constitute GPU validation. Large saved JSONL files are gzip-compressed. Full model-call journals, checkpoints, caches, and the external dataset remain outside the committed result snapshot.
+The DCGS integration passed the full **146-test** CPU suite. The subsequent SmoothLLM judging helpers add twelve tests; all **37 relevant tests** passed on Linux and the seven portable tests also pass on native Windows. The expanded full suite has not been rerun. Documentation changes do not constitute GPU validation. Large saved JSONL files are gzip-compressed. Full model-call journals, checkpoints, caches, and the external dataset remain outside the committed result snapshot.
 
 Root `handover.md`, `runbook.md`, `AGENTS.md`, `agents.md`, and `.agents.md` are local operational files and ignored by Git. Immutable archived audit copies remain part of the historical snapshot.

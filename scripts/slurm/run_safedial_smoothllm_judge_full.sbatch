@@ -9,29 +9,34 @@
 #SBATCH --error=outputs/slurm/safedial-smoothllm-judge-%j.err
 
 set -euo pipefail
-module load Python/3.11.11-GCCcore-13.3.0
-cd /common/home/users/d/darrius.ng.2024/projects/RL-Defense/DCGS
+if [[ -n "${SLURM_JOB_ID:-}" ]]; then
+  # Slurm executes a spool copy of this file, so BASH_SOURCE is not the checkout.
+  repo_dir="${SLURM_SUBMIT_DIR:-$PWD}"
+  if (( $# == 0 )); then
+    set -- --source-dir outputs/safedial_baseline/smoothllm_zephyr_full_turn_resume
+  fi
+else
+  repo_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/../.." && pwd)"
+fi
+if [[ ! -f "$repo_dir/scripts/run_safedial_smoothllm_judging.py" ]]; then
+  echo "Run/submit this launcher from the DCGS repository checkout." >&2
+  exit 2
+fi
+cd "$repo_dir"
 
-# CPU-only paid API judging. Freeze an audited subset; retain failed coverage.
-source_dir=outputs/safedial_baseline/smoothllm_zephyr_full_turn_resume
-prepared_dir="$source_dir/judging_complete_dialogues_v1"
-judge_dir="$prepared_dir/judgments_gpt-4o-mini"
-mkdir -p "$judge_dir"
-exec 9>"$judge_dir/.judge.lock"
-if ! flock -n 9; then
-  echo "Another SmoothLLM judge holds the output lock." >&2
-  exit 1
+# Cluster modules are optional outside Slurm; Git Bash needs no module command.
+if command -v module >/dev/null 2>&1; then
+  module load Python/3.11.11-GCCcore-13.3.0
+fi
+if [[ -x .venv/bin/python ]]; then
+  judge_python=.venv/bin/python
+elif [[ -x .venv/Scripts/python.exe ]]; then
+  judge_python=.venv/Scripts/python.exe
+elif command -v python >/dev/null 2>&1; then
+  judge_python=python
+else
+  judge_python=python3
 fi
 
-.venv/bin/python -u -B scripts/prepare_safedial_smoothllm_judging.py \
-  --source-dir "$source_dir" --output-dir "$prepared_dir" \
-  --dataset benchmark-artifacts/SafeDialBench-Dataset/data/complete/datasets_en.jsonl \
-  --allow-failed-dialogue-ids 344
-
-judge_args=(
-  --answers "$prepared_dir/answers.jsonl"
-  --output-dir "$judge_dir"
-  --judge-model gpt-4o-mini --temperature 0.7 --max-tokens 2048 --parallel 2
-)
-.venv/bin/python -u -B scripts/judge_safedial.py "${judge_args[@]}" --dry-run
-.venv/bin/python -u -B scripts/judge_safedial.py "${judge_args[@]}"
+# Python owns a portable lock and chooses live Linux output or the saved snapshot.
+exec "$judge_python" -u -B scripts/run_safedial_smoothllm_judging.py "$@"

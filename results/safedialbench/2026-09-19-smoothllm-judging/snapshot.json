@@ -1,0 +1,234 @@
+{
+  "aggregate": {
+    "answer_model_id": "zephyr-7b-beta-smoothllm",
+    "benchmark": "SafeDialBench",
+    "by_method": {
+      "Fallacy Attack": {
+        "consistency_mean": 3.055,
+        "count": 109,
+        "handling_mean": 2.8991,
+        "identification_mean": 3.2752,
+        "overall_mean": 3.0765
+      },
+      "Probing Question": {
+        "consistency_mean": 3.2839,
+        "count": 155,
+        "handling_mean": 2.9355,
+        "identification_mean": 3.4,
+        "overall_mean": 3.2065
+      },
+      "Purpose Reverse": {
+        "consistency_mean": 3.3448,
+        "count": 406,
+        "handling_mean": 3.202,
+        "identification_mean": 3.5369,
+        "overall_mean": 3.3612
+      },
+      "Reference Attack": {
+        "consistency_mean": 3.6267,
+        "count": 525,
+        "handling_mean": 3.2552,
+        "identification_mean": 3.7848,
+        "overall_mean": 3.5556
+      },
+      "Role Play": {
+        "consistency_mean": 4.0255,
+        "count": 196,
+        "handling_mean": 3.5459,
+        "identification_mean": 4.1173,
+        "overall_mean": 3.8963
+      },
+      "Scence Construct": {
+        "consistency_mean": 3.8469,
+        "count": 516,
+        "handling_mean": 3.5,
+        "identification_mean": 3.9787,
+        "overall_mean": 3.7752
+      },
+      "Topic Change": {
+        "consistency_mean": 3.3876,
+        "count": 129,
+        "handling_mean": 3.0698,
+        "identification_mean": 3.4884,
+        "overall_mean": 3.3152
+      }
+    },
+    "by_task": {
+      "Aggression": {
+        "consistency_mean": 3.3588,
+        "count": 354,
+        "handling_mean": 3.0932,
+        "identification_mean": 3.452,
+        "overall_mean": 3.3013
+      },
+      "Ethics": {
+        "consistency_mean": 3.9075,
+        "count": 335,
+        "handling_mean": 3.5343,
+        "identification_mean": 3.9642,
+        "overall_mean": 3.802
+      },
+      "Fairness": {
+        "consistency_mean": 3.7791,
+        "count": 335,
+        "handling_mean": 3.3104,
+        "identification_mean": 3.8597,
+        "overall_mean": 3.6498
+      },
+      "Legality": {
+        "consistency_mean": 4.2799,
+        "count": 343,
+        "handling_mean": 3.8805,
+        "identification_mean": 4.3615,
+        "overall_mean": 4.174
+      },
+      "Morality": {
+        "consistency_mean": 2.7583,
+        "count": 331,
+        "handling_mean": 2.6435,
+        "identification_mean": 3.1511,
+        "overall_mean": 2.851
+      },
+      "Privacy": {
+        "consistency_mean": 3.4615,
+        "count": 338,
+        "handling_mean": 3.2041,
+        "identification_mean": 3.6538,
+        "overall_mean": 3.4398
+      }
+    },
+    "complete": true,
+    "completed_dialogues": 2036,
+    "error_turn_judgments": 0,
+    "expected_dialogues": 2036,
+    "expected_turn_judgments": 10024,
+    "judge_model": "gpt-4o-mini",
+    "overall": {
+      "consistency_mean": 3.5928,
+      "count": 2036,
+      "handling_mean": 3.2795,
+      "identification_mean": 3.7412,
+      "overall_mean": 3.5378
+    },
+    "protocol": "safedial_official_per_turn_min_v1",
+    "successful_turn_judgments": 10024
+  },
+  "code_sha256_lf": {
+    "scripts/export_safedial_adjudication.py": "409b9508fb5b080da5601614e02d39a2bfdd767de3f21f1e4dd5aae2e448928e",
+    "scripts/judge_safedial.py": "71308a7a042537a4b5577726f929549ca0f939c9a468a80f77a6e8a221f3ad22",
+    "scripts/run_safedial_smoothllm_judging.py": "879a1575649c5fd6ac223a7cac0f59ad98d193714a832be0d5f3f94034365a7f",
+    "scripts/slurm/run_safedial_smoothllm_judge_full.sbatch": "ded2d8d9781ceaba1636170f2645fabe831369a0ac7f2b43c7a9543c3b46cdaf"
+  },
+  "files": [
+    {
+      "bytes": 3896200,
+      "path": "answers.jsonl.gz",
+      "records": 2036,
+      "sha256": "50b06160369f6baa2e250190f627508ed2365cce46cf9150ee4df04147549612",
+      "source": "outputs/safedial_judging/smoothllm_zephyr_full_turn_resume_snapshot_2026-09-19/answers.jsonl",
+      "source_sha256": "7e6dd7263ab9126a0ffa3f555e8ff950ea686c566503eb9446cb6cf229cbc626",
+      "transform": "gzip preserving exact source bytes",
+      "uncompressed_sha256": "7e6dd7263ab9126a0ffa3f555e8ff950ea686c566503eb9446cb6cf229cbc626"
+    },
+    {
+      "bytes": 1498,
+      "path": "generation_validation.json",
+      "records": null,
+      "sha256": "aeb46fb3c3e907eb34514fe2045656ab77ddf6dd47f995948dfd183e28ac1188",
+      "source": "outputs/safedial_judging/smoothllm_zephyr_full_turn_resume_snapshot_2026-09-19/generation_validation.json",
+      "source_sha256": "aeb46fb3c3e907eb34514fe2045656ab77ddf6dd47f995948dfd183e28ac1188",
+      "transform": "CRLF to LF",
+      "uncompressed_sha256": "aeb46fb3c3e907eb34514fe2045656ab77ddf6dd47f995948dfd183e28ac1188"
+    },
+    {
+      "bytes": 21836,
+      "path": "source_run_config.json",
+      "records": null,
+      "sha256": "d73e130ac25be49353e368077a5fa513f9eefe919fdff76c6ed977bbcb592ae7",
+      "source": "outputs/safedial_judging/smoothllm_zephyr_full_turn_resume_snapshot_2026-09-19/source_run_config.json",
+      "source_sha256": "d73e130ac25be49353e368077a5fa513f9eefe919fdff76c6ed977bbcb592ae7",
+      "transform": "CRLF to LF",
+      "uncompressed_sha256": "d73e130ac25be49353e368077a5fa513f9eefe919fdff76c6ed977bbcb592ae7"
+    },
+    {
+      "bytes": 2870,
+      "path": "judgments_gpt-4o-mini/aggregate.json",
+      "records": null,
+      "sha256": "1d4172edc3a802ca978087fe61ebdcd256de77b82f683b6e4307c78381216351",
+      "source": "outputs/safedial_judging/smoothllm_zephyr_full_turn_resume_snapshot_2026-09-19/judgments_gpt-4o-mini/aggregate.json",
+      "source_sha256": "881b5a224756c83e4bdb0925b2c6b5920d8f50c39371dc48426dfcbd7d2c70ed",
+      "transform": "CRLF to LF",
+      "uncompressed_sha256": "1d4172edc3a802ca978087fe61ebdcd256de77b82f683b6e4307c78381216351"
+    },
+    {
+      "bytes": 16676783,
+      "path": "judgments_gpt-4o-mini/dialogue_scores.jsonl.gz",
+      "records": 2036,
+      "sha256": "e0d062b6d8eeff2fcd55b4f0fbe7cafb0ac860bf63e9c443aa9919b8024f44d5",
+      "source": "outputs/safedial_judging/smoothllm_zephyr_full_turn_resume_snapshot_2026-09-19/judgments_gpt-4o-mini/dialogue_scores.jsonl",
+      "source_sha256": "1b3e4f6876c729dccff84dd174b513dd863722eaba3c5c8f959ee48d08eccac7",
+      "transform": "gzip preserving exact source bytes",
+      "uncompressed_sha256": "1b3e4f6876c729dccff84dd174b513dd863722eaba3c5c8f959ee48d08eccac7"
+    },
+    {
+      "bytes": 579,
+      "path": "judgments_gpt-4o-mini/failed_attempts.jsonl.gz",
+      "records": 9,
+      "sha256": "3d719dd9af9233c2c8ef425a40f71524c1558edb36e9596db6916631794da63f",
+      "source": "outputs/safedial_judging/smoothllm_zephyr_full_turn_resume_snapshot_2026-09-19/judgments_gpt-4o-mini/failed_attempts.jsonl",
+      "source_sha256": "ba4f8ac064dc884837d0520bfac896346b809d89f2c2b38407d7b9336f28df6e",
+      "transform": "gzip preserving exact source bytes",
+      "uncompressed_sha256": "ba4f8ac064dc884837d0520bfac896346b809d89f2c2b38407d7b9336f28df6e"
+    },
+    {
+      "bytes": 1832,
+      "path": "judgments_gpt-4o-mini/human_adjudication.json",
+      "records": null,
+      "sha256": "80211e9405fbc6ff87432850267968155867d40b0ff20893b95c117c7a35ff1a",
+      "source": "outputs/safedial_judging/smoothllm_zephyr_full_turn_resume_snapshot_2026-09-19/judgments_gpt-4o-mini/human_adjudication.json",
+      "source_sha256": "c10693677499ba1d29fe50ff9c0b2bd8220c3578b9d99fb6999b8e717f51d839",
+      "transform": "CRLF to LF",
+      "uncompressed_sha256": "80211e9405fbc6ff87432850267968155867d40b0ff20893b95c117c7a35ff1a"
+    },
+    {
+      "bytes": 965,
+      "path": "judgments_gpt-4o-mini/judge_config.json",
+      "records": null,
+      "sha256": "c239b742ccbd3d90be5279acb92d5a29c70859660a6751141fbcf5d6f90210c0",
+      "source": "outputs/safedial_judging/smoothllm_zephyr_full_turn_resume_snapshot_2026-09-19/judgments_gpt-4o-mini/judge_config.json",
+      "source_sha256": "d9c8e3544bf0c72be4e2ea316b7a81a72a389e1a4f0167ad973ae902a01fcd1d",
+      "transform": "CRLF to LF",
+      "uncompressed_sha256": "c239b742ccbd3d90be5279acb92d5a29c70859660a6751141fbcf5d6f90210c0"
+    },
+    {
+      "bytes": 19507495,
+      "path": "judgments_gpt-4o-mini/judgments.jsonl.gz",
+      "records": 10024,
+      "sha256": "6bb48f2ed26909f0a251e9481d3c3c6f79204b03df3f2c6270f40e6a8e7240fd",
+      "source": "outputs/safedial_judging/smoothllm_zephyr_full_turn_resume_snapshot_2026-09-19/judgments_gpt-4o-mini/judgments.jsonl",
+      "source_sha256": "d9d5882671f2257a2745b80d8d3e89bd7b3abd18bfb2dbe2e96740df31f8f5c0",
+      "transform": "gzip preserving exact source bytes",
+      "uncompressed_sha256": "d9d5882671f2257a2745b80d8d3e89bd7b3abd18bfb2dbe2e96740df31f8f5c0"
+    },
+    {
+      "bytes": 2194,
+      "derived": true,
+      "path": "validation.json",
+      "sha256": "99582d9935e07e2d68a30813a7b00060fd0802bb74fe6b44d42fe747b5d46918",
+      "source": null,
+      "uncompressed_sha256": "99582d9935e07e2d68a30813a7b00060fd0802bb74fe6b44d42fe747b5d46918"
+    }
+  ],
+  "limitations": [
+    "Complete only for 2036 supplied dialogues / 10024 turns; excludes dialogue 344.",
+    "Original generation snapshot has no full candidate journal; full generation audit remains unavailable.",
+    "Local source paths retained as provenance; this archive is not a resume directory.",
+    "JSON file hashes use canonical LF; JSONL gzip archives preserve exact source bytes."
+  ],
+  "repository_head_before_archive_commit": "d9fc514320b5e9512716c1ff80dd4874e10926a7",
+  "scope": "Completed local SmoothLLM snapshot judging; no other runs recaptured",
+  "snapshot_finished": "2026-09-19T22:07:38.476886+08:00",
+  "snapshot_started": "2026-09-19T22:07:18.087293+08:00",
+  "source_generation_index_sha256_lf": "8fb1858285832e04385a9c0c553ac3104e1cf63b57e18db67dda6097616d15f5",
+  "source_generation_snapshot": "results/safedialbench/2026-09-19"
+}

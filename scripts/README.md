@@ -14,7 +14,7 @@ for exact old files, hashes, run references, and historical tests.
 | SmoothLLM, resumable full run | `run_safedial_smoothllm_turn_resume.py` | `validate_safedial_smoothllm_turn_resume.py`; `slurm/run_safedial_smoothllm_turn_resume_full.sbatch` |
 | Zephyr baseline / CAT | `run_safedial_baseline.py` | `validate_safedial_generation.py`; Zephyr/CAT launchers in `slurm/` |
 | GPT-4o baseline | `run_safedial_api.py` | Same entry point with `--validate-output`; GPT-4o launchers in `slurm/` |
-| SmoothLLM successful-dialogue judging | `prepare_safedial_smoothllm_judging.py` then `judge_safedial.py` | CPU-only `slurm/run_safedial_smoothllm_judge_full.sbatch`; [coverage and resume](../docs/SAFEDIALBENCH_FULL_JUDGING.md) |
+| SmoothLLM successful-dialogue judging | `run_safedial_smoothllm_judging.py` (Windows/Linux) | CPU-only `slurm/run_safedial_smoothllm_judge_full.sbatch`; [coverage and resume](../docs/SAFEDIALBENCH_FULL_JUDGING.md) |
 | Judging | `judge_safedial.py` | `--dry-run` checks inputs without paid calls; dedicated judge launchers in `slurm/` |
 | Human adjudication export | `export_safedial_adjudication.py` | See `docs/SAFEDIALBENCH_HUMAN_ADJUDICATION.md` |
 | Artifact preparation | `prepare_safedial_cat.py`, `prepare_safedial_tpo.py` | `--offline` validates existing assets |
@@ -65,4 +65,4 @@ HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 .venv/bin/python -B -m unittest discover
 The prior complete 146-test suite passed on Linux with CPU PyTorch and offline model access. Historical custom-DCGS tests remain in the
 archive's complete 143-test suite; active TPO retry coverage remains here.
 
-SmoothLLM judging preparation adds five tests; all 30 relevant export, SmoothLLM audit/resume, and judge tests pass. The full suite was not repeated for this isolated helper/launcher addition.
+SmoothLLM judging adds five full-journal preparation tests and seven portable snapshot/locking tests. The seven portable tests pass on native Windows; all 37 related preparation, SmoothLLM audit/resume, and judge tests pass on Linux. The full suite was not repeated for these isolated helper/launcher additions. See the [local labelling commands](../docs/SAFEDIALBENCH_FULL_JUDGING.md#local-windows--git-bash--linux-without-slurm).

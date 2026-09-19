@@ -1,6 +1,6 @@
 # Experiment logbook
 
-Last verified: **2026-09-15 23:26 SGT for SmoothLLM/TPO jobs and saved counts; judge aggregates retain the earlier 15:49 snapshot**.
+Last verified: **2026-09-19 22:07 SGT for completed local SmoothLLM judging**. Other register entries retain their earlier recorded checks and are not refreshed scheduler status.
 
 This is the running record of our experiments, observations, failures, and decisions. Initial coverage is the current SafeDialBench campaign, reconstructed from saved outputs, Slurm accounting, and project handovers. Earlier training and other benchmarks have not yet been backfilled. Counts below are observations at the stated time, not a live dashboard.
 
@@ -30,9 +30,19 @@ Counts are cumulative across resumed allocations. “Pending” scores mean no f
 | M4 | CAT-Zephyr | Complete and validated: 2,037 dialogues / 10,029 turns; zero input truncations | COMPLETED 246980; 10,029/10,029 judgments, zero errors; **5.0119 final** | Full-arm scoring complete |
 | M5 | DCR | Final checkpoint/backbone unresolved in prior audit | Pending | Establish official trained artifact and provenance |
 | M6 | Zephyr + TPO | v6 254463 RUNNING on albert; startup artifact check;126 saved successes /24 dialogues | Pending | Verify model loading, 8K probe and recovered turn; no new generation confirmed yet |
-| M7 | Zephyr + SmoothLLM | 252143 RUNNING; 6686/10029 successful turns (66.67%), one error; 3342 unsaved | Full judging not started | New turn-level launcher ready for next allocation after current job ends |
+| M7 | Zephyr + SmoothLLM | All 10,029 turns processed; 10,028 successful, one failed turn in dialogue 344 | 10,024/10,024 judgments; 2,036 scored dialogues; **3.5378**, complete for supplied subset | Retain dialogue 344 exclusion and snapshot candidate-audit limitation |
 
 CAT now has a complete full-arm result. GPT-4o and baseline coverage differ because each excludes a different unresolved dialogue; descriptive means are not a final matched-coverage ranking.
+
+## SmoothLLM judging completed and archived - 2026-09-19
+
+User completed the local CPU/API run at 21:57 SGT using the portable judging runner. Offline verification at 22:07 SGT confirms 2,036/2,036 supplied dialogues and 10,024/10,024 successful turn judgments, zero unresolved judge errors, and no human-review cases. Nine saved failed attempts across seven turns were recovered. Failed generation dialogue 344 (all five turns) remains excluded from the full benchmark of 2,037 dialogues / 10,029 turns.
+
+Judge settings remain `gpt-4o-mini`, temperature 0.7, max_tokens 2048, no seed, official `safedial_official_per_turn_min_v1`. Overall **3.5378**; Identification **3.7412**, Handling **3.2795**, Consistency **3.5928**. These are dialogue-weighted means after taking each dimension's minimum over turns, complete only for the supplied subset.
+
+[Archive](results/safedialbench/2026-09-19-smoothllm-judging/README.md) includes compressed raw answers, judgments, dialogue scores and retry records, plus manifests, generation exclusions, empty adjudication queue, [verification](results/safedialbench/2026-09-19-smoothllm-judging/validation.json), and file hashes. Every expected key, raw-score parse, conversation context, and judge prompt matches; dialogue scores and aggregate recompute exactly. Source files were locked and checked unchanged. Saved generation/source/dataset hashes pass, but full candidate journals are absent, so full generation-audit parity is not established. The earlier generation snapshot is unchanged.
+
+Includes the native Windows/Linux snapshot launcher fix and its seven portable regression tests. The prior seven Windows / 37 related Linux tests passed; no runtime code changes since that verification. No new paid calls, generation, Slurm actions, or push performed during archiving.
 
 ## TPO v6 startup — 2026-09-16 01:29 SGT
 

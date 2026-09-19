@@ -1,0 +1,41 @@
+{
+  "checks": [
+    "prepared snapshot provenance and generation source hashes",
+    "answer/dataset/rubric hashes match judge manifest",
+    "exact unique judgment-key coverage",
+    "all final records successful",
+    "all stored scores reparse from raw responses",
+    "all judge contexts and user prompts match dataset/answers/rubrics",
+    "dialogue minima and aggregates recomputed exactly",
+    "review queue hash matches final judgments and has zero cases",
+    "source files unchanged while locked"
+  ],
+  "complete_for_supplied_subset": true,
+  "completed_dialogues": 2036,
+  "error_turn_judgments": 0,
+  "excluded_generation_dialogue_ids": [
+    344
+  ],
+  "failed_attempt_records": 9,
+  "full_benchmark_dialogues": 2037,
+  "full_benchmark_turns": 10029,
+  "full_generation_audit_passed": false,
+  "judge_calls_during_verification": 0,
+  "limitation": "Snapshot lacks full generation/candidate journals; failed dialogue 344 is excluded.",
+  "recorded_judgment_finished": "2026-09-19T21:57:48.538457+08:00",
+  "source_sha256": {
+    "answers.jsonl": "7e6dd7263ab9126a0ffa3f555e8ff950ea686c566503eb9446cb6cf229cbc626",
+    "generation_validation.json": "aeb46fb3c3e907eb34514fe2045656ab77ddf6dd47f995948dfd183e28ac1188",
+    "judgments_gpt-4o-mini/aggregate.json": "881b5a224756c83e4bdb0925b2c6b5920d8f50c39371dc48426dfcbd7d2c70ed",
+    "judgments_gpt-4o-mini/dialogue_scores.jsonl": "1b3e4f6876c729dccff84dd174b513dd863722eaba3c5c8f959ee48d08eccac7",
+    "judgments_gpt-4o-mini/failed_attempts.jsonl": "ba4f8ac064dc884837d0520bfac896346b809d89f2c2b38407d7b9336f28df6e",
+    "judgments_gpt-4o-mini/human_adjudication.json": "c10693677499ba1d29fe50ff9c0b2bd8220c3578b9d99fb6999b8e717f51d839",
+    "judgments_gpt-4o-mini/judge_config.json": "d9c8e3544bf0c72be4e2ea316b7a81a72a389e1a4f0167ad973ae902a01fcd1d",
+    "judgments_gpt-4o-mini/judgments.jsonl": "d9d5882671f2257a2745b80d8d3e89bd7b3abd18bfb2dbe2e96740df31f8f5c0",
+    "source_run_config.json": "d73e130ac25be49353e368077a5fa513f9eefe919fdff76c6ed977bbcb592ae7"
+  },
+  "successful_turn_judgments": 10024,
+  "turns_with_failed_attempt_records": 7,
+  "validation_passed": true,
+  "verified_at": "2026-09-19T22:07:18.087293+08:00"
+}
