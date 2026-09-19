@@ -12,13 +12,17 @@
   "use_regret_critic": true,
   "regret_critic_beta": 0.2,
   "regret_zero_sum_targets": true,
-  "regret_min_target_mode": "sampled_q_min",
+  "regret_min_target_mode": "min_q_over_states",
   "mlp_width_mult": 1.0,
   "critic_lora_r": 0,
   "epsilon": 0.0,
   "ll_action_belief_only": true,
-  "ll_candidate_rerank": false,
+  "ll_candidate_rerank": true,
   "q_value_chunk_size": 4,
   "batch_generation_chunk_size": 1,
-  "debug": false
+  "debug": false,
+  "n_ll_candidates": 5,
+  "ll_token_critic_path": "models/models/wildjailbreak_ll_token_critic/ll_token_critic.pt",
+  "critic_mlp_dims": null,
+  "hl_greedy_q": false
 }

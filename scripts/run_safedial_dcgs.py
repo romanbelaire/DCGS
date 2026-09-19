@@ -330,6 +330,8 @@ def load_config_and_checkpoint(args: argparse.Namespace) -> tuple[Any, Path, Pat
     if not config_path.is_file():
         raise FileNotFoundError(f"DCGS config not found: {config_path}")
     config = BaseConfig.from_json(str(config_path))
+    if config.ll_token_critic_path:
+        raise ValueError("Trained LL reranking requires scripts/run_safedial_dcgs_wildjailbreak.py; the legacy standalone runner is not this method.")
     if args.checkpoint:
         config.checkpoint_path = str(args.checkpoint.expanduser())
     if not config.checkpoint_path:
@@ -448,6 +450,7 @@ def initialize_dcgs(config: Any, checkpoint_path: Path) -> tuple[Any, Any, Any, 
         dtype=dtype,
         use_regret_critic=config.use_regret_critic,
         mlp_width_mult=config.mlp_width_mult,
+        critic_mlp_dims=config.critic_mlp_dims,
         critic_target_tau=config.critic_target_tau,
         critic_lora_r=config.critic_lora_r,
         critic_lora_alpha=config.critic_lora_alpha,

@@ -21,7 +21,11 @@ class Tokenizer:
             if kwargs.get("truncation"):
                 ids = ids[-kwargs["max_length"]:]
             return ids
-        return {"input_ids": encode(texts) if isinstance(texts, str) else [encode(text) for text in texts]}
+        result = {"input_ids": encode(texts) if isinstance(texts, str) else [encode(text) for text in texts]}
+        if kwargs.get("return_offsets_mapping"):
+            result["offset_mapping"] = [(0, 0)] + [(i, i + 1) for i in range(len(texts))]
+            result["attention_mask"] = [1] * len(result["input_ids"])
+        return result
 
 
 ROW = {"id": 1, "task": "Safety", "method": "test", "history": [
@@ -30,9 +34,19 @@ ROW = {"id": 1, "task": "Safety", "method": "test", "history": [
 BELIEFS = "1. Explain the issue.\n2. Ask for context.\n3. Explain the issue.\n4. Offer alternatives.\n5. Summarize the options."
 
 
+REPLIES = ["Candidate one.", "A helpful response.", "Candidate one.", "Candidate four.", "Candidate five."]
+
+def is_ll_generation(request):
+    return request["kind"] == "generate" and (request["max_new_tokens"] == 640 or not request["do_sample"])
+
+
 def execute(request):
     if request["kind"] == "score":
         return {"scores": [float(len(b) % 7) for b in request["high_level_actions"]]}
+    if request["kind"] == "score_ll":
+        return {"scores": {a: 10.0 if a == "A helpful response." else 0.0 for a in request["actions"]}, "objective": "shapley"}
+    if request["max_new_tokens"] == 640:
+        return {"texts": ["\n".join(f"{i}. [RESPONSE]{a}[/RESPONSE]" for i, a in enumerate(REPLIES, 1))]}
     return {"texts": [BELIEFS if request["do_sample"] else "[RESPONSE]A helpful response.[/RESPONSE]"]}
 
 
@@ -71,6 +85,14 @@ class OriginalPolicyTests(unittest.TestCase):
                             requests.append(request)
                             return torch.tensor(execute(request)["scores"])
                         return score
+                class LLCritic:
+                    objective = "shapley"
+                    def score_actions(self, observation, selected_belief, actions):
+                        request = {"kind": "score_ll", "observation": observation,
+                                   "selected_belief": selected_belief, "actions": list(actions)}
+                        requests.append(request)
+                        return execute(request)["scores"]
+                config._ll_token_critic = LLCritic()
                 set_seed(42)
                 with patch.object(adapter.hl_module, "batch_generate", generation), patch.object(adapter.ll_module, "batch_generate", generation):
                     adapter.original.batch_generate_beliefs_for_episodes([episode], hl, config)
@@ -83,8 +105,11 @@ class OriginalPolicyTests(unittest.TestCase):
                 self.assertEqual(selected, wrapped["dcgs_original"]["selected_belief"])
                 self.assertEqual(answer, wrapped["message"])
                 self.assertLess(len(episode._q_values), len(valid))  # Original string-keyed duplicate merging.
-                self.assertFalse(requests[-1]["do_sample"])
-                self.assertEqual(requests[-1]["max_new_tokens"], 128)
+                self.assertEqual(requests[-1]["kind"], "score_ll")
+                self.assertTrue(requests[-2]["do_sample"])
+                self.assertEqual(requests[-2]["max_new_tokens"], 640)
+                self.assertEqual(requests[-1]["actions"], REPLIES)
+                self.assertEqual(answer, "A helpful response.")
 
     def test_original_all_skip_retries_and_exhaustion(self):
         config = adapter.configuration("vdcgs")
@@ -101,7 +126,7 @@ class OriginalPolicyTests(unittest.TestCase):
         attempts = 0
         def backend(request):
             nonlocal attempts
-            if request["kind"] == "generate" and request["do_sample"]:
+            if request["kind"] == "generate" and request["do_sample"] and not is_ll_generation(request):
                 attempts += 1
                 if attempts == 1:
                     return {"texts": [""]}
@@ -114,12 +139,13 @@ class OriginalPolicyTests(unittest.TestCase):
         calls = []
         def backend(request):
             calls.append(request)
-            if request["kind"] == "generate" and not request["do_sample"]:
+            if is_ll_generation(request):
                 return {"texts": ["\n" * 128]}
             return execute(request)
         with self.assertRaises(adapter.PolicyFailure) as failure:
             adapter.generate_turn(ROW, 0, 0, adapter.configuration("rdcgs"), self.tokenizer, backend)
-        self.assertEqual(sum(r["kind"] == "generate" and not r["do_sample"] for r in calls), 1)
+        self.assertEqual(sum(is_ll_generation(r) for r in calls), 2)  # Pool plus upstream fallback, no additional retries.
+        self.assertEqual(failure.exception.details["code"], "blank_ll_candidate")
         self.assertEqual(failure.exception.audit["events"][-1]["result"]["texts"], ["\n" * 128])
 
     def test_gold_history_and_reference_isolation(self):
@@ -142,14 +168,15 @@ class OriginalPolicyTests(unittest.TestCase):
     def test_resume_completed_turns_and_byte_identical_noop(self):
         config = adapter.configuration("vdcgs")
         manifest = {"seed": 0, "model_id": "test"}
+        first_turn_calls = len(adapter.generate_turn(ROW, 0, 0, config, self.tokenizer, execute)["dcgs_original"]["events"])
         with tempfile.TemporaryDirectory() as directory:
             folder = Path(directory)
             count = 0
             def backend(request):
                 nonlocal count
                 count += 1
-                # Interrupt after first turn's seven calls; second turn restarts.
-                if count == 8:
+                # Interrupt after the first complete turn; second turn restarts.
+                if count == first_turn_calls + 1:
                     raise KeyboardInterrupt()
                 return execute(request)
             with self.assertRaises(KeyboardInterrupt):

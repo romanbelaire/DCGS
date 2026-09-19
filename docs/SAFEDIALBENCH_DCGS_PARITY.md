@@ -1,5 +1,7 @@
 # DCGS parity with the original benchmark implementation
 
+**Historical v2 documentation.** The active runner has migrated to [main-method v3 with trained LL reranking](SAFEDIALBENCH_DCGS_MAIN.md). Reproduce this page's original policy using checkout `4e2f493`.
+
 2026-09-18: the user requires the original DCGS approach to remain consistent
 across benchmarks. This supersedes recommending the custom DCGS empty-retry
 continuations as the final method. Existing outputs and prepared continuations

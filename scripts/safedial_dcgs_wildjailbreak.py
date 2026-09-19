@@ -1,4 +1,4 @@
-"""SafeDial boundary adapter for the unchanged original WildJailbreak policy."""
+"""SafeDial boundary adapter for main DCGS with trained LL token-critic reranking."""
 import copy
 import hashlib
 import json
@@ -19,23 +19,50 @@ from src.configs import BaseConfig
 from src.prompts.prompt_manager import PromptManager
 from src.training.episode_state import EpisodeState
 import run_safedial_dcgs as legacy
+from src.value.value_function import HL_CRITIC_MAX_SEQ_LENGTH, hl_q_text
+from src.value.ll_token_critic import (LLContextLengthError, LLTokenCritic, MAX_UNTRUNCATED_LEN,
+                                       OBJECTIVES, PREFIX_TEMPLATE, tokenize_action_span)
+
+METHOD_SPEC = {
+    "upstream_commit": "576ae184b8f49586456a136f8e14a93039cfeb88",
+    "critic_pooling": "last_nonpad",
+    "regret_min_target_mode": "min_q_over_states",
+    "ll_selection": "trained_token_critic_argmax",
+    "ll_candidate_generation": "upstream_numbered_list_with_upstream_fallback",
+    "ll_candidates": 5,
+    "ll_critic_max_input_tokens": MAX_UNTRUNCATED_LEN,
+    "ll_context_overflow": "terminal turn failure; no truncation or extra retry",
+    "critic_training": "frozen indexed checkpoint; no training performed by this runner",
+}
 
 REFERENCE = ROOT / "safedial_dcgs.json"
 
 
-def configuration(method, device="cpu"):
+def configuration(method, device="cpu", artifacts=None):
     config = BaseConfig.from_json(str(REFERENCE))
     if method not in ("vdcgs", "rdcgs"):
         raise ValueError("Unknown method")
-    # VDCGS retains the chosen shared Q checkpoint, without regret/pool expansion.
     config.use_regret_critic = method == "rdcgs"
     config.device = device
-    if (config.environment_type != "wildjailbreak" or config.ll_candidate_rerank
+    if artifacts is not None:
+        config.checkpoint_path = artifacts["high_level"]["path"]
+        config.ll_token_critic_path = artifacts["token_critic"]["path"]
+    for field in ("checkpoint_path", "ll_token_critic_path"):
+        path = Path(getattr(config, field))
+        setattr(config, field, str(path if path.is_absolute() else ROOT / path))
+    if (config.environment_type != "wildjailbreak" or not config.ll_candidate_rerank
+            or config.n_ll_candidates != 5 or not config.ll_token_critic_path
             or not config.ll_action_belief_only or config.freeform_iterative_candidate_generation
-            or config.epsilon != 0 or config.contrastive_ablation_mode != "none"):
-        raise ValueError("The pinned WildJailbreak reference branch changed; review parity")
+            or config.epsilon != 0 or config.contrastive_ablation_mode != "none"
+            or config.regret_min_target_mode != "min_q_over_states"
+            or config.hl_greedy_q or config.static_belief_mode != "none"
+            or config.ground_truth_belief_selection or config.raw_judge_ll_selection
+            or config.raw_judge_belief_selection or config.random_belief_selection
+            or config.use_gpt_for_agents or config.paper_dsr_reward or config.baseline_mode
+            or not config.use_hierarchical_agent or config.high_level_policy_type != "freeform"
+            or config.defender_backend != "standard"):
+        raise ValueError("The main WildJailbreak method configuration changed; review parity")
     return config
-
 
 def episode_for(row, turn):
     history = legacy.dcgs_gold_history(row["history"], turn)
@@ -52,22 +79,40 @@ def episode_for(row, turn):
 
 def critic_diagnostics(request, tokenizer):
     """Measure exactly the original critic encoding without changing its inputs."""
-    texts = [f"Observation: {obs}\nHigh-Level Context: {belief}" for obs, belief in
+    texts = [hl_q_text(obs, belief) for obs, belief in
              zip(request["observations"], request["high_level_actions"])]
     raw = tokenizer(texts, add_special_tokens=True, padding=False, truncation=False)["input_ids"]
     kept = tokenizer(texts, add_special_tokens=True, padding=False, truncation=True,
-                     max_length=1500)["input_ids"]
+                     max_length=HL_CRITIC_MAX_SEQ_LENGTH)["input_ids"]
     before, after = [len(x) for x in raw], [len(x) for x in kept]
-    return {"max_length": 1500, "truncation_side": tokenizer.truncation_side,
+    return {"pooling": METHOD_SPEC["critic_pooling"], "max_length": HL_CRITIC_MAX_SEQ_LENGTH, "truncation_side": tokenizer.truncation_side,
             "input_tokens": before, "retained_tokens": after,
             "dropped_tokens": [a - b for a, b in zip(before, after)],
             "input_truncated": [a > b for a, b in zip(before, after)],
             "encoded_sha256": [hashlib.sha256(json.dumps(ids).encode()).hexdigest() for ids in kept]}
 
 
+def ll_critic_diagnostics(request, tokenizer):
+    prefix = PREFIX_TEMPLATE.format(observation=request["observation"],
+                                    selected_belief=request["selected_belief"])
+    lengths, action_tokens, hashes = [], [], []
+    for action in request["actions"]:
+        encoded, start, end = tokenize_action_span(tokenizer, prefix, prefix + action)
+        ids = encoded["input_ids"][0].tolist()
+        lengths.append(len(ids))
+        action_tokens.append(end - start)
+        hashes.append(hashlib.sha256(json.dumps(ids).encode()).hexdigest())
+    return {"input_tokens": lengths, "action_tokens": action_tokens,
+            "encoded_sha256": hashes, "truncated": False}
+
+
 def exception_details(exc):
     if isinstance(exc, RecordedBackendError):
         return exc.details
+    if isinstance(exc, LLContextLengthError):
+        return {"category": "terminal_output", "code": "ll_context_overflow",
+                "exception_type": type(exc).__name__, "message": str(exc),
+                "input_tokens": exc.input_tokens, "max_tokens": exc.max_tokens}
     infrastructure = isinstance(exc, (OSError, TimeoutError)) or (
         isinstance(exc, RuntimeError) and any(word in str(exc).lower()
         for word in ("cuda", "cublas", "cudnn", "out of memory")))
@@ -106,6 +151,7 @@ def generate_turn(row, turn, seed, config, tokenizer, execute, on_event=None):
     import torch
     from transformers import set_seed
     set_seed(seed)  # Once per independent counterfactual benchmark turn.
+    config = copy.copy(config)  # Runtime critic boundary must not enter the saved dataclass config.
     episode = episode_for(row, turn)
     manager = PromptManager(str(ROOT / "src/prompts/templates.jsonl"), str(ROOT / "src/prompts/personas.jsonl"))
     hl = FreeformHighLevelAgent(None, tokenizer, manager, template_name=config.belief_gen_template,
@@ -124,6 +170,16 @@ def generate_turn(row, turn, seed, config, tokenizer, execute, on_event=None):
                 if any(not isinstance(text, str) for text in result["texts"]):
                     raise ValueError("Non-text generation result")
                 # Do not insert a blank retry: original parsers/fallback decide.
+            elif request["kind"] == "score_ll":
+                scores = result.get("scores")
+                if (not isinstance(scores, dict) or set(scores) != set(request["actions"])
+                        or any(not math.isfinite(x) for x in scores.values())
+                        or result.get("objective") not in OBJECTIVES):
+                    raise ValueError("Invalid trained LL token-critic result")
+                diagnostics = ll_critic_diagnostics(request, tokenizer)
+                if "ll_critic_context" in result and result["ll_critic_context"] != diagnostics:
+                    raise ValueError("LL critic context diagnostics mismatch")
+                result = {**result, "ll_critic_context": diagnostics}
             else:
                 if len(result["scores"]) != len(request["observations"]) or any(not math.isfinite(x) for x in result["scores"]):
                     raise ValueError("Invalid original critic result")
@@ -163,6 +219,20 @@ def generate_turn(row, turn, seed, config, tokenizer, execute, on_event=None):
                 return torch.tensor(call(request)["scores"])
             return score
 
+    class LLCriticBoundary:
+        objective = "recorded"
+
+        def score_actions(self, observation, selected_belief, actions):
+            if any(not action.strip() for action in actions):
+                raise TerminalOutputError("blank_ll_candidate", "Upstream LL pool/fallback produced an empty candidate")
+            request = {"kind": "score_ll", "observation": observation,
+                       "selected_belief": selected_belief, "actions": list(actions)}
+            result = call(request)
+            self.objective = result["objective"]
+            # Preserve main's candidate order and string-keyed duplicate handling.
+            return {action: result["scores"][action] for action in actions}
+
+    config._ll_token_critic = LLCriticBoundary()
     try:
         with patch.object(hl_module, "batch_generate", generation_boundary), patch.object(ll_module, "batch_generate", generation_boundary):
             original.batch_generate_beliefs_for_episodes([episode], hl, config)
@@ -198,9 +268,18 @@ class LocalBackend:
         self.torch, self.tokenizer, self.hl, self.ll, self.value = legacy.initialize_dcgs(local, Path(lock["high_level"]["path"]))
         self.model = self.hl.model
         self.config = config
+        self.token_critic = LLTokenCritic.from_checkpoint(
+            lock["token_critic"]["path"], device=config.device, backbone=self.model,
+            tokenizer=copy.deepcopy(self.tokenizer))
+        self.token_critic.harm_head.requires_grad_(False)
+        self.token_critic.follow_head.requires_grad_(False)
         self.loading = {"actor_dtype": str(self.model.dtype), "device": str(self.model.device),
-                        "source": "original initialize_dcgs and ValueFunction.load_checkpoint",
-                        "ll_reranking": False, "regret_enabled": config.use_regret_critic,
+                        "source": "main ValueFunction and LLTokenCritic with shared pinned backbone",
+                        "method_spec": METHOD_SPEC,
+                        "token_critic_sha256": lock["token_critic"]["sha256"],
+                        "token_critic_objective": self.token_critic.objective,
+                        "critic_mlp_dims": self.value._resolved_hidden_dims(),
+                        "ll_reranking": True, "regret_enabled": config.use_regret_critic,
                         "checkpoint_sha256": lock["high_level"]["sha256"]}
         checkpoint = torch.load(lock["high_level"]["path"], map_location="cpu", weights_only=True)
         names = ["q", "v"] + (["q_min", "v_min", "regret"] if config.use_regret_critic else [])
@@ -237,6 +316,10 @@ class LocalBackend:
             with patch.object(self.model, "generate", recorded_generate):
                 texts = batch_generate(model=self.model, tokenizer=self.tokenizer, logits_processor=processor, **kwargs)
             result = {"texts": texts, "raw_generations": raw}
+        elif request["kind"] == "score_ll":
+            result = {"scores": self.token_critic.score_actions(request["observation"],
+                       request["selected_belief"], request["actions"]),
+                      "objective": self.token_critic.objective}
         else:
             kwargs = {k: v for k, v in request.items() if k not in ("kind", "function")}
             scores = getattr(self.value, request["function"])(tokenizer=self.tokenizer, **kwargs)
@@ -258,9 +341,21 @@ def replay_trace(row, turn, seed, config, tokenizer, events, allow_incomplete=Fa
             raise ValueError("Original-policy event mismatch")
         cursor += 1
         if event.get("error"):
+            if event["failure_details"].get("code") == "ll_context_overflow":
+                if request["kind"] != "score_ll":
+                    raise ValueError("LL context overflow recorded outside LL scoring")
+                try:
+                    ll_critic_diagnostics(request, tokenizer)
+                except LLContextLengthError as exc:
+                    if exception_details(exc) != event["failure_details"]:
+                        raise ValueError("LL context overflow metadata mismatch") from exc
+                else:
+                    raise ValueError("Recorded LL context overflow fits within the critic limit")
             raise RecordedBackendError(event["failure_details"])
         if request["kind"] == "score" and event["result"].get("critic_context") != critic_diagnostics(request, tokenizer):
             raise ValueError("Missing or altered critic context diagnostics")
+        if request["kind"] == "score_ll" and event["result"].get("ll_critic_context") != ll_critic_diagnostics(request, tokenizer):
+            raise ValueError("Missing or altered LL critic context diagnostics")
         return event["result"]
     try:
         rebuilt = generate_turn(row, turn, seed, config, tokenizer, replay)

@@ -12,7 +12,7 @@ import run_safedial_dcgs_wildjailbreak as runner
 import safedial_dcgs_wildjailbreak as adapter
 from safedial_dcgs_run_state import audit_state, context_summary, coverage
 from validate_safedial_dcgs_wildjailbreak import validate
-from test_safedial_dcgs_wildjailbreak import ROW, Tokenizer, execute
+from test_safedial_dcgs_wildjailbreak import ROW, Tokenizer, execute, is_ll_generation
 
 
 class RecoveryTests(unittest.TestCase):
@@ -22,6 +22,7 @@ class RecoveryTests(unittest.TestCase):
         self.root = Path(self.temp.name)
         self.tok = Tokenizer()
         self.config = adapter.configuration("vdcgs")
+        self.turn_calls = len(adapter.generate_turn(ROW, 0, 0, self.config, self.tok, execute)["dcgs_original"]["events"])
 
     def setup_run(self, mode="stop", turns=2, long=False):
         row = copy.deepcopy(ROW)
@@ -32,7 +33,8 @@ class RecoveryTests(unittest.TestCase):
         data = self.root / "data.jsonl"
         data.write_text(json.dumps(row) + "\n")
         args = SimpleNamespace(method="vdcgs", device="cpu", seed=0, dataset=data, on_turn_error=mode)
-        lock = {"actor": {}, "high_level": {"sha256": "fixture"}}
+        lock = {"actor": {}, "high_level": {"path": self.config.checkpoint_path, "sha256": "fixture"},
+                "token_critic": {"path": self.config.ll_token_critic_path, "sha256": "ll-fixture"}}
         manifest = json.loads(json.dumps(runner.manifest_for(args, [row], lock)))
         folder = self.root / "original"
         folder.mkdir()
@@ -91,8 +93,9 @@ class RecoveryTests(unittest.TestCase):
         folder, rows, manifest = self.setup_run("record-and-continue", turns=3)
         finals = []
         def backend(request):
-            if request["kind"] == "generate" and not request["do_sample"]:
-                finals.append(request)
+            if is_ll_generation(request):
+                if request["max_new_tokens"] == 640:
+                    finals.append(request)
                 if len(finals) == 2:
                     return {"texts": ["\n"]}
             return execute(request)
@@ -127,7 +130,7 @@ class RecoveryTests(unittest.TestCase):
         calls = []
         def backend(request):
             calls.append(request)
-            if len(calls) == 8:
+            if len(calls) == self.turn_calls + 1:
                 raise OSError("Injected transient I/O fault")
             return execute(request)
         with self.assertRaises(adapter.PolicyFailure):
@@ -144,7 +147,7 @@ class RecoveryTests(unittest.TestCase):
     def test_terminal_failure_recovery_only_processes_unattempted_turns(self):
         folder, rows, manifest = self.setup_run()
         def blank(request):
-            return {"texts": [""]} if request["kind"] == "generate" and not request["do_sample"] else execute(request)
+            return {"texts": [""]} if is_ll_generation(request) else execute(request)
         with self.assertRaises(adapter.PolicyFailure):
             self.run_policy(folder, rows, manifest, blank)
         target = self.root / "continue"
@@ -154,7 +157,7 @@ class RecoveryTests(unittest.TestCase):
             calls.append(request)
             return execute(request)
         self.assertEqual(self.run_policy(target, rows, manifest, backend), 2)
-        self.assertEqual(len(calls), 7)
+        self.assertEqual(len(calls), self.turn_calls)
         self.assertEqual(runner.read_records(target / "turns.jsonl")[0]["turn_index"], 1)
         self.assertTrue(validate(target, tokenizer=self.tok)["execution_finished"])
 
@@ -186,7 +189,7 @@ class RecoveryTests(unittest.TestCase):
                 raise KeyboardInterrupt()
             return original_append(path, records)
         def blank(request):
-            return {"texts": [""]} if request["kind"] == "generate" and not request["do_sample"] else execute(request)
+            return {"texts": [""]} if is_ll_generation(request) else execute(request)
         with patch.object(runner, "append_jsonl", interrupted), self.assertRaises(KeyboardInterrupt):
             self.run_policy(folder, rows, manifest, blank)
         calls = []
@@ -194,7 +197,7 @@ class RecoveryTests(unittest.TestCase):
             calls.append(request)
             return execute(request)
         self.assertEqual(self.run_policy(folder, rows, manifest, backend), 2)
-        self.assertEqual(len(calls), 7)
+        self.assertEqual(len(calls), self.turn_calls)
         self.assertEqual(validate(folder, tokenizer=self.tok)["terminal_failed_turns"], 1)
 
     def test_missing_success_commit_is_reconciled_without_model(self):
@@ -227,7 +230,8 @@ class RecoveryTests(unittest.TestCase):
         runtimes[-1]["peak_gpu_allocated_bytes"] = 1024
         (target / "runtime.jsonl").write_text("".join(json.dumps(x) + "\n" for x in runtimes))
         runner.append_jsonl(target / "model_loading.jsonl", [{"invocation": runtimes[-1]["invocation"],
-            "strict_loaded_heads": ["q", "v"], "ll_reranking": False, "checkpoint_sha256": "fixture",
+            "strict_loaded_heads": ["q", "v"], "ll_reranking": True, "checkpoint_sha256": "fixture",
+            "method_spec": adapter.METHOD_SPEC, "token_critic_sha256": "ll-fixture", "token_critic_objective": "shapley",
             "actor_dtype": "torch.bfloat16", "device": "cuda:0"}])
         report = validate(target, require_gpu=True, tokenizer=self.tok)
         self.assertTrue(report["passed"])

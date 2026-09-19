@@ -27,6 +27,18 @@ PREFIX_TEMPLATE = (
 )
 
 
+class LLContextLengthError(RuntimeError):
+    """An intact candidate cannot be scored within the critic's context limit."""
+
+    def __init__(self, input_tokens: int, max_tokens: int):
+        self.input_tokens = input_tokens
+        self.max_tokens = max_tokens
+        super().__init__(
+            f"Sequence length {input_tokens} exceeds {max_tokens} "
+            "(refusing to truncate action tokens)"
+        )
+
+
 def even_spans(n: int, k: int) -> list:
     spans = []
     for i in range(k):
@@ -65,10 +77,7 @@ def tokenize_action_span(tokenizer, prefix: str, full: str) -> tuple:
     offsets = encoded["offset_mapping"]
     full_len = len(input_ids)
     if full_len > MAX_UNTRUNCATED_LEN:
-        raise RuntimeError(
-            f"Sequence length {full_len} exceeds {MAX_UNTRUNCATED_LEN} "
-            "(refusing to truncate action tokens)"
-        )
+        raise LLContextLengthError(full_len, MAX_UNTRUNCATED_LEN)
     action_positions = []
     for i, (start, end) in enumerate(offsets):
         if start == end:
@@ -115,7 +124,7 @@ class LLTokenCritic:
         self.span_k = span_k
 
     @classmethod
-    def from_checkpoint(cls, path: str, device: str, backbone=None) -> "LLTokenCritic":
+    def from_checkpoint(cls, path: str, device: str, backbone=None, tokenizer=None) -> "LLTokenCritic":
         ckpt_path = Path(path)
         if not ckpt_path.is_file():
             raise FileNotFoundError(f"Missing LL token critic checkpoint: {ckpt_path}")
@@ -156,7 +165,8 @@ class LLTokenCritic:
         encoder = backbone.model
         encoder.eval()
         print("LL critic encoder is CausalLM.model (last_hidden_state, matches action-token dump)")
-        tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
+        if tokenizer is None:
+            tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
         if tokenizer.pad_token is None:
             tokenizer.pad_token = tokenizer.eos_token
         tokenizer.padding_side = "right"

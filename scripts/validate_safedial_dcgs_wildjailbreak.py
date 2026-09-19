@@ -6,7 +6,7 @@ from pathlib import Path
 
 from run_safedial_baseline import file_sha256, load_jsonl
 from run_safedial_dcgs_wildjailbreak import source_hashes, tokenizer_for, PROTOCOL, answers_for
-from safedial_dcgs_wildjailbreak import configuration
+from safedial_dcgs_wildjailbreak import MAX_UNTRUNCATED_LEN, METHOD_SPEC, OBJECTIVES, configuration
 from safedial_dcgs_run_state import audit_state, context_summary, coverage, event_key, read_records, validate_recovery
 from validate_safedial_generation import validate_run
 
@@ -15,12 +15,13 @@ from validate_safedial_generation import validate_run
 def validate(folder, require_gpu=False, tokenizer=None):
     folder = Path(folder)
     manifest = json.loads((folder / "run_config.json").read_text())
-    if manifest["protocol"] != PROTOCOL or manifest["source_sha256"] != source_hashes():
-        raise ValueError("Original-policy source identity mismatch")
+    if (manifest["protocol"] != PROTOCOL or manifest["source_sha256"] != source_hashes()
+            or manifest.get("method_spec") != METHOD_SPEC):
+        raise ValueError("Main-method/source identity mismatch; legacy v2 runs require their original checkout")
     if file_sha256(Path(manifest["dataset"])) != manifest["dataset_sha256"]:
         raise ValueError("Dataset hash mismatch")
     validate_recovery(folder, manifest)
-    config = configuration(manifest["method"], manifest["effective_config"]["device"])
+    config = configuration(manifest["method"], manifest["effective_config"]["device"], manifest["artifacts"])
     if json.loads(json.dumps(vars(config))) != manifest["effective_config"]:
         raise ValueError("Effective reference configuration mismatch")
     if manifest["execution_policy"]["on_turn_error"] not in ("stop", "record-and-continue"):
@@ -33,7 +34,7 @@ def validate(folder, require_gpu=False, tokenizer=None):
     state = audit_state(folder, selected, manifest, config, tokenizer)
     if read_records(folder / "answers.jsonl") != answers_for(selected, manifest, state["records"]):
         raise ValueError("Native answer export does not match completed dialogues")
-    report = {"integrity_passed": True, "policy_parity_passed": True, **coverage(state)}
+    report = {"method_spec": METHOD_SPEC, "integrity_passed": True, "policy_parity_passed": True, **coverage(state)}
     if report["complete_without_failures"]:
         native = validate_run(folder)
         report.update(dialogues=native["dialogues"], turns=native["turns"])
@@ -47,6 +48,15 @@ def validate(folder, require_gpu=False, tokenizer=None):
         generation_calls=len(generations), custom_empty_retries=0, judge_calls=0,
         generated_tokens_including_failed_and_interrupted=sum(len(ids) for e in generations
             for batch in e.get("result", {}).get("raw_generations", []) for ids in batch["generated_token_ids"]))
+    ll_scores = [e for e in state["journal"] if e["request"]["kind"] == "score_ll" and not e.get("error")]
+    report.update(ll_critic_calls=len(ll_scores),
+                  ll_scored_candidates=sum(len(e["request"]["actions"]) for e in ll_scores),
+                  ll_critic_objectives=sorted({e["result"]["objective"] for e in ll_scores}),
+                  ll_critic_max_input_tokens=max((n for e in ll_scores for n in e["result"]["ll_critic_context"]["input_tokens"]), default=0))
+    overflows = [f for f in state["failures"] if f["code"] == "ll_context_overflow"]
+    report.update(ll_critic_context_limit=MAX_UNTRUNCATED_LEN,
+                  ll_critic_overflow_turns=len(overflows),
+                  ll_critic_overflow_max_input_tokens=max((f["input_tokens"] for f in overflows), default=0))
     runtimes = read_records(folder / "runtime.jsonl")
     by_invocation = {r["invocation"]: r for r in runtimes}
     if len(by_invocation) != len(runtimes):
@@ -70,7 +80,11 @@ def validate(folder, require_gpu=False, tokenizer=None):
         for invocation in used_invocations:
             loading = loaded.get(invocation, {})
             runtime = by_invocation.get(invocation, {})
-            if (loading.get("strict_loaded_heads") != expected or loading.get("ll_reranking") is not False
+            if (loading.get("strict_loaded_heads") != expected or loading.get("ll_reranking") is not True
+                    or loading.get("method_spec") != METHOD_SPEC
+                    or loading.get("token_critic_sha256") != manifest["artifacts"]["token_critic"]["sha256"]
+                    or loading.get("token_critic_objective") not in OBJECTIVES
+                    or any(e["result"]["objective"] != loading["token_critic_objective"] for e in ll_scores if e["invocation"] == invocation)
                     or loading.get("checkpoint_sha256") != manifest["artifacts"]["high_level"]["sha256"]
                     or loading.get("actor_dtype") != "torch.bfloat16" or not loading.get("device", "").startswith("cuda")):
                 raise ValueError("Original checkpoint/GPU loading mismatch")

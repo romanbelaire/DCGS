@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""SafeDial dataset/output boundary around the original WildJailbreak DCGS policy."""
+"""SafeDial main DCGS with last-token HL pooling and trained LL critic selection."""
 import argparse
 import fcntl
 import json
@@ -13,12 +13,12 @@ import uuid
 from run_safedial_baseline import (DEFAULT_DATASET, append_jsonl, file_sha256,
     gold_messages, load_jsonl, select_dialogues, stable_id, turn_seed, validate_dataset)
 from safedial_dcgs_wildjailbreak import (ROOT, REFERENCE, LocalBackend, PolicyFailure,
-    configuration, generate_turn, validate_turn)
+    MAX_UNTRUNCATED_LEN, METHOD_SPEC, PREFIX_TEMPLATE, configuration, generate_turn, validate_turn)
 from safedial_dcgs_run_state import (audit_state, context_summary, coverage, event_key,
                                      failure_record, read_records)
 
-PROTOCOL = "safedial_original_wildjailbreak_v2"
-LOCK = ROOT / "configs/safedial/dcgs_two_stage_aug11.lock.json"
+PROTOCOL = "safedial_main_wildjailbreak_v3"
+LOCK = ROOT / "configs/safedial/dcgs_main.lock.json"
 
 
 def write_json(path, value):
@@ -33,35 +33,47 @@ def write_json(path, value):
 
 def source_hashes():
     files = list((ROOT / "src").rglob("*.py")) + list((ROOT / "src/prompts").glob("*.jsonl"))
-    files += [REFERENCE] + [ROOT / "scripts" / name for name in (
+    files += [REFERENCE, ROOT / "models/MANIFEST.json"] + [ROOT / "scripts" / name for name in (
         "run_safedial_dcgs.py", "run_safedial_baseline.py", "judge_safedial.py",
         "validate_safedial_generation.py", "safedial_dcgs_wildjailbreak.py",
         "run_safedial_dcgs_wildjailbreak.py", "validate_safedial_dcgs_wildjailbreak.py",
         "safedial_dcgs_run_state.py")]
-    return {str(path.relative_to(ROOT)): file_sha256(path) for path in sorted(files)}
+    return {path.relative_to(ROOT).as_posix(): file_sha256(path) for path in sorted(files)}
+
+
+def load_artifact_lock(path=LOCK):
+    lock = json.loads(Path(path).read_text())
+    for name in ("actor", "high_level", "token_critic"):
+        entry = lock[name]
+        artifact = Path(entry["path"])
+        entry["path"] = str(artifact if artifact.is_absolute() else ROOT / artifact)
+    return lock
 
 
 def verify_artifacts(lock):
     for name, digest in lock["actor"]["sha256"].items():
         if file_sha256(Path(lock["actor"]["path"]) / name) != digest:
             raise ValueError(f"Actor artifact mismatch: {name}")
-    if file_sha256(Path(lock["high_level"]["path"])) != lock["high_level"]["sha256"]:
-        raise ValueError("High-level checkpoint mismatch")
+    for name in ("high_level", "token_critic"):
+        path = Path(lock[name]["path"])
+        if file_sha256(path) != lock[name]["sha256"]:
+            raise ValueError(f"{name} checkpoint mismatch: {path}. Materialize the pinned LFS weights before running.")
 
 
 def manifest_for(args, selected, lock):
-    config = configuration(args.method, args.device)
+    config = configuration(args.method, args.device, lock)
     return {"benchmark": "SafeDialBench", "protocol": PROTOCOL, "method": args.method,
             "dataset": str(args.dataset.resolve()), "dataset_sha256": file_sha256(args.dataset),
             "selected_ids": [r["id"] for r in selected], "num_choices": 1, "seed": args.seed,
-            "model_id": "zephyr-7b-beta-" + args.method + "-original-wildjailbreak",
+            "model_id": "zephyr-7b-beta-" + args.method + "-main-v3",
+            "method_spec": METHOD_SPEC,
             "reference_config": str(REFERENCE), "effective_config": vars(config),
-            "artifacts": {k: lock[k] for k in ("actor", "high_level")},
+            "artifacts": {k: lock[k] for k in ("actor", "high_level", "token_critic")},
             "source_sha256": source_hashes(), "generation_only": True,
             "resume_unit": "complete turn; interrupted turn restarts from its original seed",
             "custom_empty_retries": 0, "critic_truncation": "original 1500-token cutoff",
             "execution_policy": {"on_turn_error": getattr(args, "on_turn_error", "stop"),
-                "terminal_outputs": ["blank_final_response", "beliefs_exhausted"],
+                "terminal_outputs": ["blank_final_response", "blank_ll_candidate", "beliefs_exhausted", "ll_context_overflow"],
                 "infrastructure_recovery": "inspected fresh directory; original seed",
                 "integrity_errors": "fatal"}}
 
@@ -72,32 +84,76 @@ def tokenizer_for(lock):
 
 
 def preflight(selected, config, tokenizer):
-    # Obtain prompts/parameters through the original policy, using clearly marked
-    # synthetic beliefs/scores. This does not load the backbone or generate answers.
+    # Synthetic responses expose the actual upstream prompts and generation budgets.
+    # LL estimates reserve the entire pool budget for one response, since the list
+    # parser does not enforce an equal token share across candidates.
     maximum = 0
     calls = 0
+    ll_estimates = []
+    current = {}
+
+    def token_count(text):
+        return len(tokenizer(text, add_special_tokens=True, truncation=False)["input_ids"])
+
     def probe(request):
         nonlocal maximum, calls
         if request["kind"] == "score":
+            current["scoring_started"] = True
             return {"scores": [0.0] * len(request["observations"])}
+        if request["kind"] == "score_ll":
+            prefix = PREFIX_TEMPLATE.format(observation=request["observation"], selected_belief="")
+            synthetic_prefix = PREFIX_TEMPLATE.format(observation=request["observation"],
+                                                       selected_belief=request["selected_belief"])
+            prefix_tokens = token_count(prefix)
+            ll_estimates.append({"dialogue_id": current["dialogue_id"], "turn_index": current["turn_index"],
+                "observation_prefix_tokens": prefix_tokens,
+                "belief_generation_budget": current["hl_budget"],
+                "response_generation_budget": current["ll_budget"],
+                "estimated_input_tokens": prefix_tokens + current["hl_budget"] + current["ll_budget"],
+                "synthetic_input_tokens": max(token_count(synthetic_prefix + a) for a in request["actions"])})
+            return {"scores": {a: 0.0 for a in request["actions"]}, "objective": "shapley"}
         calls += 1
+        budget_key = "ll_budget" if current["scoring_started"] else "hl_budget"
+        current[budget_key] = max(current[budget_key], request["max_new_tokens"])
         for prompt in request["prompts"]:
             suffix = len(tokenizer(request["prefill_suffix"], add_special_tokens=False)["input_ids"]) if request.get("prefill_suffix") else 0
-            maximum = max(maximum, len(tokenizer(prompt)["input_ids"]) + suffix + request["max_new_tokens"])
+            maximum = max(maximum, token_count(prompt) + suffix + request["max_new_tokens"])
         text = "\n".join(f"{i}. Synthetic preflight instruction {i}." for i in range(1, 6))
+        if request["max_new_tokens"] == 128 * config.n_ll_candidates:
+            text = "\n".join(f"{i}. [RESPONSE]Synthetic response {i}.[/RESPONSE]" for i in range(1, config.n_ll_candidates + 1))
         return {"texts": [text if request["do_sample"] else "Synthetic preflight response."] * len(request["prompts"])}
+
     score_entries = []
     for row in selected:
         for turn in range(len(row["history"])):
-            result = generate_turn(row, turn, 0, config, tokenizer, probe)
+            current = {"dialogue_id": row["id"], "turn_index": turn, "scoring_started": False,
+                       "hl_budget": 0, "ll_budget": 0}
+            try:
+                audit = generate_turn(row, turn, 0, config, tokenizer, probe)["dcgs_original"]
+            except PolicyFailure as exc:
+                if exc.details["code"] != "ll_context_overflow":
+                    raise
+                # This is a declared terminal outcome; continue the dataset scan
+                # so preflight lists all risks before any GPU work.
+                audit = exc.audit
             score_entries.extend({"dialogue_id": row["id"], "turn_index": turn, **e}
-                                 for e in result["dcgs_original"]["events"] if e["request"]["kind"] == "score")
+                                 for e in audit["events"] if e["request"]["kind"] == "score")
     if maximum > 32768:
         raise ValueError("Original prompts exceed pinned actor context")
+    risks = [entry for entry in ll_estimates
+             if max(entry["estimated_input_tokens"], entry["synthetic_input_tokens"]) > MAX_UNTRUNCATED_LEN]
     return {"passed": True, "dialogues": len(selected), "turns": sum(len(r["history"]) for r in selected),
             "synthetic_prompt_calls": calls, "max_prompt_plus_generation_tokens": maximum,
             "model_calls": 0, "estimated_critic_context": context_summary(score_entries),
-            "note": "Synthetic belief lengths; actual actor context is guarded at generation time."}
+            "ll_critic_context": {
+                "max_input_tokens": MAX_UNTRUNCATED_LEN,
+                "max_estimated_input_tokens": max((e["estimated_input_tokens"] for e in ll_estimates), default=0),
+                "max_synthetic_input_tokens": max((e["synthetic_input_tokens"] for e in ll_estimates), default=0),
+                "potential_overflow_turns": len(risks), "potential_overflow_turn_details": risks,
+                "synthetic_overflow_turns": sum(e["synthetic_input_tokens"] > MAX_UNTRUNCATED_LEN for e in ll_estimates),
+                "overflow_policy": METHOD_SPEC["ll_context_overflow"],
+                "note": "Estimates reserve upstream generation budgets; decoded-text retokenization can vary. Runtime checks are authoritative."},
+            "note": "Preflight completion does not guarantee every turn fits. Review LL context risks; full runs record overflow failures and continue, smoke runs stop."}
 
 
 def answers_for(selected, manifest, records):
@@ -288,6 +344,7 @@ def main():
     parser.add_argument("--dataset", type=Path, default=DEFAULT_DATASET)
     parser.add_argument("--output-dir", type=Path, required=True)
     parser.add_argument("--device", default="cuda:0")
+    parser.add_argument("--artifact-lock", type=Path, default=LOCK, help="Pinned actor, indexed HL critic, and trained LL critic")
     parser.add_argument("--seed", type=int, default=0)
     selection = parser.add_mutually_exclusive_group()
     selection.add_argument("--ids")
@@ -301,8 +358,8 @@ def main():
     rows = load_jsonl(args.dataset)
     validate_dataset(rows, args.dataset)
     selected = select_dialogues(rows, args)
-    lock = json.loads(LOCK.read_text())
-    config = configuration(args.method, args.device)
+    lock = load_artifact_lock(args.artifact_lock)
+    config = configuration(args.method, args.device, lock)
     verify_artifacts(lock)
     tokenizer = tokenizer_for(lock)
     manifest = json.loads(json.dumps(manifest_for(args, selected, lock)))

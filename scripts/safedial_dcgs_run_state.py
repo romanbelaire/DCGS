@@ -23,7 +23,9 @@ def failure_record(exc, invocation, row=None, turn=None, seed=None):
     from safedial_dcgs_wildjailbreak import exception_details
     details = exc.details if isinstance(exc, PolicyFailure) else exception_details(exc)
     audit = normalized(getattr(exc, "audit", None))
-    return {"failure_id": stable_id(invocation, None if row is None else row["id"], turn, details),
+    # Journals sort JSON keys; identity must survive that serialization order.
+    identity = json.dumps(details, sort_keys=True, separators=(",", ":"))
+    return {"failure_id": stable_id(invocation, None if row is None else row["id"], turn, identity),
             "invocation": invocation, "dialogue_id": None if row is None else row["id"],
             "turn_index": turn, "seed": seed, "stage": getattr(exc, "stage", "initialization" if row is None else "execution"),
             **details, "event_index": audit["events"][-1]["index"] if audit and audit["events"] else None,
