@@ -72,7 +72,8 @@ from .environments.episode_factory import (
 from .simulation import extract_slots_from_agent_response, extract_service_call_from_agent_response
 from .training.episode_state import EpisodeState
 from .training.hierarchical_rollout import HierarchicalRolloutCoordinator
-from .defense import SmoothLLMWrapper, TPOWrapper
+from .defense import SmoothLLMWrapper, TPOWrapper, NBFWrapper
+from .belief.static_hypotheses import belief_text_for_static_mode
 
 
 def _softmax_sample_from_q_values(q_values: Dict[str, float]) -> str:
@@ -93,8 +94,8 @@ def _regret_critic_selection(
 ) -> str:
     """Sample a high-level belief with P(b) ∝ exp((1-β)Q(b) − β Q^regret(b)).
 
-    With β = regret_critic_beta = 0.2 this is a softmax sample over 0.8·Q − 0.2·Q^regret
-    (numerically stabilized: subtract max score before exp). Config validation requires β=0.2 when regret critic is on.
+    β = regret_critic_beta (default 0.2 → 0.8·Q − 0.2·Q^regret). Numerically
+    stabilized by subtracting max score before exp.
     """
     keys = list(q_values.keys())
     scores = [(1.0 - beta) * q_values[k] - beta * regret_values[k] for k in keys]
@@ -124,17 +125,34 @@ def _select_high_level_belief(
     config,
     epsilon: float,
 ) -> str:
-    """Shared HL candidate selection: random / raw-judge argmax / regret / softmax Q."""
+    """Shared HL candidate selection: static / random / raw-judge / greedy Q / regret / softmax Q."""
     if not valid_candidates:
         raise RuntimeError("No valid high-level belief candidates available for selection.")
+    static_mode = config.static_belief_mode
+    if static_mode != "none":
+        expected = belief_text_for_static_mode(static_mode)
+        if valid_candidates != [expected]:
+            raise RuntimeError(
+                f"static_belief_mode={static_mode} expected a single candidate {expected!r}, "
+                f"got {valid_candidates}"
+            )
+        return expected
     if config.random_belief_selection:
         return random.choice(valid_candidates)
+    if config.ground_truth_belief_selection:
+        if len(valid_candidates) != 1:
+            raise RuntimeError(
+                f"ground_truth_belief_selection expected exactly one candidate, got {valid_candidates}"
+            )
+        return valid_candidates[0]
     if config.raw_judge_belief_selection:
         return _argmax_raw_judge_selection(valid_q_values, valid_candidates)
     if not valid_q_values:
         return random.choice(valid_candidates)
     if random.random() < epsilon:
         return random.choice(valid_candidates)
+    if config.hl_greedy_q:
+        return _argmax_raw_judge_selection(valid_q_values, valid_candidates)
     regret_values = getattr(episode, "_regret_values", None)
     if (
         config.use_regret_critic
@@ -211,9 +229,12 @@ def _generate_or_select_ll_action(
     """Generate / select the LL reply for a chosen HL belief.
 
     Multi-candidate rerank (K = n_ll_candidates) runs only when allow_ll_pool and
-    config.ll_candidate_rerank (automatically True when raw_judge_ll_selection):
+    config.ll_candidate_rerank (automatically True when raw_judge_ll_selection or
+    ll_token_critic_path is set):
     - raw_judge_ll_selection: argmax R(user, a)
-    - else: softmax over token-critic scores
+    - ll_token_critic_path: argmax of the trained two-head token critic
+      (mean 0.5(harm + follow) over action-token residuals)
+    - else: softmax over value_function.predict_ll_candidate_scores
     """
     n_ll = config.n_ll_candidates
     belief_only = config.ll_action_belief_only
@@ -281,6 +302,21 @@ def _generate_or_select_ll_action(
         print(
             f"[raw_judge_ll] episode={episode.dialogue_id} scored {len(candidates)} LL candidates "
             f"with R(user, a); selected r_nom={scores[selected]:.3f}"
+        )
+        return selected
+
+    ll_critic = config._ll_token_critic
+    if ll_critic is not None:
+        observation = episode.current_obs_for_action
+        if not observation:
+            observation = episode.observation
+        scores = ll_critic.score_actions(observation, selected_belief, candidates)
+        best = max(scores.values())
+        tops = [action for action, score in scores.items() if score == best]
+        selected = random.choice(tops)
+        print(
+            f"[ll_token_critic] episode={episode.dialogue_id} objective={ll_critic.objective} "
+            f"scored {len(candidates)} LL candidates; selected score={scores[selected]:.4f}"
         )
         return selected
 
@@ -374,6 +410,35 @@ def _ensure_response_tags(text: str) -> str:
     return f"[RESPONSE]\n{text}\n[/RESPONSE]"
 
 
+def _attach_nbf_wrapper(ll_agent, config) -> None:
+    if config.defender_backend != "nbf":
+        return
+    ll_agent._nbf_wrapper = NBFWrapper(
+        model_path=config.nbf_model_path,
+        threshold=config.nbf_threshold,
+        embedder_name=config.nbf_embedder_name,
+        device=config.nbf_device,
+    )
+
+
+def _skips_value_function(config) -> bool:
+    """True when this run does not load or query the critic heads."""
+    return (
+        config.random_belief_selection
+        or config.ground_truth_belief_selection
+        or config.raw_judge_belief_selection
+        or config.static_belief_mode != "none"
+        or config.defender_backend == "nbf"
+    )
+
+
+def _user_utterances_from_history(ll_history: List[Tuple[str, str]]) -> List[str]:
+    """User turns in order. Each history pair is (agent_action, user_utterance)."""
+    if not ll_history:
+        raise ValueError("NBF filter requires a non-empty dialogue history.")
+    return [user_text for _action, user_text in ll_history]
+
+
 def _generate_defender_action_with_backend(
     ll_agent: LowLevelAgent,
     prompt: str,
@@ -421,6 +486,34 @@ def _generate_defender_action_with_backend(
             max_new_tokens=getattr(config, "max_tokens", 256),
         )
         text, token_count = wrapper.generate(prompt=prompt)
+        return _ensure_response_tags(text), token_count
+
+    if backend == "nbf":
+        user_utterances = _user_utterances_from_history(ll_history)
+
+        def _standard_generate() -> Tuple[str, int]:
+            outputs = ll_agent.generate_actions_from_prompts(
+                prompts=[prompt],
+                temperature=0.7,
+                do_sample=False,
+                chunk_size=1,
+                template_name=template_name,
+            )
+            if len(outputs) != 1:
+                raise ValueError(f"NBF standard generate expected one output, got {len(outputs)}")
+            text = outputs[0]
+            token_count = len(ll_agent.tokenizer.encode(text, add_special_tokens=False))
+            return text, token_count
+
+        text, token_count, filtered = ll_agent._nbf_wrapper.generate_or_refuse(
+            user_utterances, _standard_generate
+        )
+        if filtered:
+            token_count = len(ll_agent.tokenizer.encode(text, add_special_tokens=False))
+            print(
+                f"[NBF] filtered user turn as unsafe (threshold={config.nbf_threshold}); "
+                "emitting refusal."
+            )
         return _ensure_response_tags(text), token_count
 
     raise ValueError(f"Unknown defender_backend: {backend}")
@@ -1837,6 +1930,91 @@ def build_turn_evaluation_entry(
     }
 
 
+def _batch_ll_token_critic_actions_for_episodes(
+    episodes: List[EpisodeState],
+    ll_agent: LowLevelAgent,
+    config,
+) -> None:
+    """Batch numbered-list LL candidates, score with the token critic, keep argmax."""
+    ll_critic = config._ll_token_critic
+    if ll_critic is None:
+        raise RuntimeError("ll_candidate_rerank requires config._ll_token_critic")
+    eligible = [
+        ep
+        for ep in episodes
+        if ep.is_active and not ep.done_from_env and ep.turn > 0 and not ep.is_frozen
+        and not ep.judge_step_pending
+    ]
+    if not eligible:
+        return
+
+    n_ll = config.n_ll_candidates
+    chunk_size = config.batch_generation_chunk_size
+    epsilon_to_use = config._current_epsilon
+    filter_noise = config.contrastive_ablation_mode == "noise_in_candidates"
+    belief_contexts = []
+    histories = []
+    target_episodes = []
+    for episode in eligible:
+        q_values = episode._q_values
+        high_level_candidates = [c.summary for c in episode.belief_state.candidates]
+        valid_candidates = _filter_candidates_for_value_min(high_level_candidates, filter_noise)
+        valid_q_values = {k: v for k, v in q_values.items() if k != "[SKIP]"}
+        if filter_noise:
+            valid_q_values = {k: v for k, v in valid_q_values.items() if not is_noise_candidate(k)}
+        if not valid_candidates:
+            continue
+        selected_belief = _select_high_level_belief(
+            valid_candidates=valid_candidates,
+            valid_q_values=valid_q_values,
+            episode=episode,
+            config=config,
+            epsilon=epsilon_to_use,
+        )
+        ll_history = episode.belief_state.history
+        if not ll_history:
+            continue
+        belief_contexts.append(selected_belief)
+        histories.append(ll_history)
+        target_episodes.append(episode)
+        episode._preselected_belief = selected_belief
+
+    if not target_episodes:
+        return
+
+    template_name = get_ll_action_template_name(
+        config, baseline_mode=False, episode=target_episodes[0]
+    )
+    candidate_lists = ll_agent.generate_ll_candidates_batch(
+        belief_contexts=belief_contexts,
+        histories=histories,
+        n_candidates=n_ll,
+        template_name=template_name,
+        temperature=0.7,
+        belief_only=config.ll_action_belief_only,
+        chunk_size=chunk_size,
+    )
+    if len(candidate_lists) != len(target_episodes):
+        raise RuntimeError(
+            f"LL candidate batch size {len(candidate_lists)} != {len(target_episodes)} episodes"
+        )
+    for episode, selected_belief, candidates in zip(
+        target_episodes, belief_contexts, candidate_lists
+    ):
+        observation = episode.current_obs_for_action
+        if not observation:
+            observation = episode.observation
+        scores = ll_critic.score_actions(observation, selected_belief, candidates)
+        best = max(scores.values())
+        tops = [action for action, score in scores.items() if score == best]
+        selected = random.choice(tops)
+        episode._precomputed_agent_response = selected
+        print(
+            f"[ll_token_critic] episode={episode.dialogue_id} objective={ll_critic.objective} "
+            f"scored {len(candidates)} LL candidates; selected score={scores[selected]:.4f}"
+        )
+
+
 def batch_generate_ll_actions_for_episodes(
     episodes: List[EpisodeState],
     ll_agent: LowLevelAgent,
@@ -1849,8 +2027,11 @@ def batch_generate_ll_actions_for_episodes(
     if not _is_online_mode(config):
         return
 
-    # Multi-candidate LL selection needs per-episode env rewards / token critic; done in process_turn.
+    # Multi-candidate LL selection: batch the numbered-list generates, then critic-score.
     if config.ll_candidate_rerank:
+        if config.raw_judge_ll_selection:
+            return
+        _batch_ll_token_critic_actions_for_episodes(episodes, ll_agent, config)
         return
     
     if config.use_hierarchical_agent:
@@ -2648,6 +2829,7 @@ def process_turn_for_episode(
         if (
             not evaluation_mode
             and not random_belief_selection
+            and not config.ground_truth_belief_selection
             and not config.raw_judge_belief_selection
             and not config.critic_only_training
         ):
@@ -3223,6 +3405,48 @@ def _filter_candidates_for_value_min(candidates: List[str], filter_noise: bool) 
     if filter_noise:
         valid_candidates = [candidate for candidate in valid_candidates if not is_noise_candidate(candidate)]
     return valid_candidates
+
+
+def _min_q_over_states_for_actions(
+    value_function,
+    tokenizer,
+    state_pool: List[str],
+    actions: List[str],
+    chunk_size: int,
+) -> List[float]:
+    """For each action a, return min_s Q(s, a) over state_pool (action held fixed).
+
+    This is the robustness counterfactual: worst state for this action, not worst
+    action in the current state.
+    """
+    if not state_pool:
+        raise ValueError("min_s Q(s,a) requires a non-empty counterfactual state pool.")
+    if not actions:
+        raise ValueError("min_s Q(s,a) requires at least one action.")
+    if chunk_size <= 0:
+        raise ValueError(f"chunk_size must be positive, got {chunk_size}")
+
+    mins: List[float] = []
+    n_states = len(state_pool)
+    for action in actions:
+        q_chunks = []
+        for start in range(0, n_states, chunk_size):
+            end = min(start + chunk_size, n_states)
+            c_obs = state_pool[start:end]
+            c_act = [action] * (end - start)
+            q_chunks.append(
+                value_function.predict_q_value(
+                    c_obs,
+                    c_act,
+                    tokenizer,
+                    requires_grad=False,
+                )
+            )
+            del c_obs, c_act
+        q_all = torch.cat(q_chunks, dim=0)
+        mins.append(torch.min(q_all).item())
+        del q_chunks, q_all
+    return mins
 
 
 def generate_random_noise_beliefs(n: int, length_range: tuple = (50, 200)) -> List[str]:
@@ -3875,48 +4099,56 @@ def update_q_function_online(
         regret_current = torch.cat(regret_chunks, dim=0)
         del q_min_chunks, v_min_chunks, regret_chunks
 
-        # Zero-sum target construction:
-        # Q_min target uses sampled min over nominal Q-values on the candidate set.
-        filter_noise = (config.contrastive_ablation_mode == "noise_in_candidates")
-        belief_candidates_by_transition = transitions['belief_candidates']
-        if len(belief_candidates_by_transition) != len(obs_list):
+        # Zero-sum / robustness target construction:
+        # Q_min(s,a) ≈ min_{s̃} Q(s̃, a) with the executed action held fixed
+        # (worst state for this action). Do NOT min over candidate actions at fixed s.
+        if config.regret_min_target_mode != "min_q_over_states":
+            raise RuntimeError(
+                f"regret critic requires regret_min_target_mode='min_q_over_states', "
+                f"got {config.regret_min_target_mode!r}"
+            )
+
+        # Counterfactual state pool: current batch states plus non-terminal next states.
+        state_pool: List[str] = []
+        seen_states = set()
+        for obs_text in valid_obs:
+            if obs_text not in seen_states:
+                seen_states.add(obs_text)
+                state_pool.append(obs_text)
+        for global_idx in valid_indices:
+            next_obs_text = transitions["next_observations"][global_idx]
+            if transitions["terminals"][global_idx] or not next_obs_text:
+                continue
+            if next_obs_text not in seen_states:
+                seen_states.add(next_obs_text)
+                state_pool.append(next_obs_text)
+        if not state_pool:
             raise ValueError(
-                f"regret zero-sum requires belief_candidates aligned with observations. "
-                f"len(belief_candidates)={len(belief_candidates_by_transition)} len(observations)={len(obs_list)}"
+                "regret min_q_over_states requires a non-empty counterfactual state pool "
+                "from batch observations / next observations."
             )
 
-        sampled_min_q_current = {}
-        for global_idx in valid_indices:
-            obs_text = obs_list[global_idx]
-            candidate_set = belief_candidates_by_transition[global_idx]
-            filtered_candidates = _filter_candidates_for_value_min(candidate_set, filter_noise)
-            if not filtered_candidates:
-                raise ValueError(
-                    f"regret zero-sum current-state min requires at least one valid candidate. "
-                    f"transition_index={global_idx} candidate_count={len(candidate_set)}"
-                )
-            q_candidates = value_function.predict_q_value(
-                observations=[obs_text] * len(filtered_candidates),
-                high_level_actions=filtered_candidates,
-                tokenizer=tokenizer,
-                requires_grad=False,
-            )
-            sampled_min_q_current[global_idx] = torch.min(q_candidates).item()
-            del q_candidates
+        mins_for_valid_actions = _min_q_over_states_for_actions(
+            value_function=value_function,
+            tokenizer=tokenizer,
+            state_pool=state_pool,
+            actions=valid_actions,
+            chunk_size=chunk_size,
+        )
+        q_min_targets_tensor = torch.zeros(
+            len(hl_actions_list), device=value_function.device, dtype=standard_dtype
+        )
+        for local_i, global_idx in enumerate(valid_indices):
+            q_min_targets_tensor[global_idx] = mins_for_valid_actions[local_i]
 
-        q_min_targets_tensor = torch.zeros(len(hl_actions_list), device=value_function.device, dtype=standard_dtype)
-        for global_idx in valid_indices:
-            q_min_targets_tensor[global_idx] = sampled_min_q_current[global_idx]
-
-        # Next state: (Q_value, Regret)(s', a) for same action a and sampled-min Q(s', .) for zero-sum min branch.
+        # Next state: Q(s', a) and Regret(s', a) keep the same executed action a.
+        # Q_min(·, a) := min_s̃ Q(s̃, a) is action-only, so the same sampled min is used
+        # for the residual at s and at s' (terminals bootstrap to 0).
         next_obs_for_valid = [transitions['next_observations'][i] for i in valid_indices]
         next_terminals = [transitions['terminals'][i] for i in valid_indices]
         q_value_next = {i: 0.0 for i in valid_indices}
         q_min_next = {i: 0.0 for i in valid_indices}
         regret_next = {i: 0.0 for i in valid_indices}
-        # Q_min(s', executed high-level action) for non-terminal steps; used if next-state belief
-        # sampling yields only [SKIP] candidates (no multiset to take a sampled min over).
-        q_min_next_executed_action = {}
         compute_mask = [not next_terminals[j] and next_obs_for_valid[j] for j in range(len(valid_indices))]
         obs_to_compute = [next_obs_for_valid[j] for j in range(len(valid_indices)) if compute_mask[j]]
         actions_to_compute = [valid_actions[j] for j in range(len(valid_indices)) if compute_mask[j]]
@@ -3927,114 +4159,22 @@ def update_q_function_online(
                 c_obs = obs_to_compute[start:end]
                 c_actions = actions_to_compute[start:end]
                 _tgt = bool(getattr(value_function, 'use_target_heads', False))
-                v_min_vals = value_function.predict_v_min_value(c_obs, tokenizer, requires_grad=False, use_target_head=_tgt)
                 q_val_vals = value_function.predict_q_value(c_obs, c_actions, tokenizer, requires_grad=False, use_target_head=_tgt)
-                q_min_vals = value_function.predict_q_min_value(c_obs, c_actions, tokenizer, requires_grad=False, use_target_head=_tgt)
                 reg_vals = value_function.predict_regret_value(c_obs, c_actions, tokenizer, requires_grad=False, use_target_head=_tgt)
                 for k in range(len(c_obs)):
                     global_idx = indices_to_compute[start + k]
                     q_value_next[global_idx] = q_val_vals[k].item()
                     regret_next[global_idx] = reg_vals[k].item()
-                    q_min_next_executed_action[global_idx] = q_min_vals[k].item()
-                del c_obs, c_actions, v_min_vals, q_val_vals, q_min_vals, reg_vals
+                del c_obs, c_actions, q_val_vals, reg_vals
 
-        # Next-state sampled minima are computed over freshly generated next-state candidates.
-        # Same retry pattern as batch_generate_beliefs_for_episodes (MAX_BELIEF_ATTEMPTS total rolls).
-        non_terminal_valid_indices = [idx for idx in valid_indices if (not transitions['terminals'][idx] and transitions['next_observations'][idx])]
-        if non_terminal_valid_indices:
-            NEXT_STATE_BELIEF_ATTEMPTS = 3  # aligns with MAX_BELIEF_ATTEMPTS in batch_generate_beliefs_for_episodes
-            n_next_ctx = len(non_terminal_valid_indices)
-            next_histories_full = [[("[NO_AGENT_ACTION]", transitions['next_observations'][idx])] for idx in non_terminal_valid_indices]
-            next_state_candidates = hl_agent.generate_candidate_beliefs_batch(
-                chunk_size=config.batch_generation_chunk_size,
-                histories=next_histories_full,
-                n_candidates=config.n_candidates,
-                temperature=config.belief_gen_temperature,
-                max_new_tokens=config.max_tokens,
-            )
-            if len(next_state_candidates) != n_next_ctx:
-                raise ValueError(
-                    f"next-state candidate generation mismatch: got {len(next_state_candidates)} candidate sets "
-                    f"for {n_next_ctx} next observations."
-                )
-            still_all_skip_local = [
-                loc
-                for loc in range(n_next_ctx)
-                if not _filter_candidates_for_value_min([c.summary for c in next_state_candidates[loc]], filter_noise)
-            ]
-            used_next_state_retry = False
-            if still_all_skip_local:
-                print(
-                    f"[DEBUG] Next-state regret min: all-[SKIP] for {len(still_all_skip_local)}/{n_next_ctx} "
-                    "transition(s). Applying batched retries like episode belief generation."
-                )
-                sys.stdout.flush()
-
-            for attempt in range(1, NEXT_STATE_BELIEF_ATTEMPTS):
-                if not still_all_skip_local:
-                    break
-                used_next_state_retry = True
-                retry_histories = [[("[NO_AGENT_ACTION]", transitions['next_observations'][non_terminal_valid_indices[loc]])] for loc in still_all_skip_local]
-                retry_batch = hl_agent.generate_candidate_beliefs_batch(
-                    chunk_size=config.batch_generation_chunk_size,
-                    histories=retry_histories,
-                    n_candidates=config.n_candidates,
-                    temperature=config.belief_gen_temperature,
-                    max_new_tokens=config.max_tokens,
-                )
-                if len(retry_batch) != len(still_all_skip_local):
-                    raise ValueError(
-                        f"next-state retry mismatch: batch {len(retry_batch)} rows for "
-                        f"{len(still_all_skip_local)} retry histories."
-                    )
-                print(
-                    f"[DEBUG] Next-state regret min: batched retry {attempt + 1}/{NEXT_STATE_BELIEF_ATTEMPTS}"
-                    f" for {len(still_all_skip_local)} transition(s) still all-[SKIP]."
-                )
-                sys.stdout.flush()
-                for rpos, loc in enumerate(still_all_skip_local):
-                    next_state_candidates[loc] = retry_batch[rpos]
-                del retry_batch
-
-                still_all_skip_local = [
-                    loc
-                    for loc in range(n_next_ctx)
-                    if not _filter_candidates_for_value_min([c.summary for c in next_state_candidates[loc]], filter_noise)
-                ]
-            if used_next_state_retry and not still_all_skip_local:
-                print(
-                    "[WARNING] Next-state regret min: retries succeeded; candidate sets "
-                    "now contain at least one non-[SKIP] belief."
-                )
-                sys.stdout.flush()
-            fallback_globals = []
-            for local_idx, global_idx in enumerate(non_terminal_valid_indices):
-                next_obs_text = transitions['next_observations'][global_idx]
-                candidate_objs = next_state_candidates[local_idx]
-                candidate_texts = [candidate.summary for candidate in candidate_objs]
-                filtered_candidates = _filter_candidates_for_value_min(candidate_texts, filter_noise)
-                if not filtered_candidates:
-                    q_min_next[global_idx] = q_min_next_executed_action[global_idx]
-                    fallback_globals.append(global_idx)
-                    continue
-                q_min_candidates_next = value_function.predict_q_min_value(
-                    observations=[next_obs_text] * len(filtered_candidates),
-                    high_level_actions=filtered_candidates,
-                    tokenizer=tokenizer,
-                    requires_grad=False,
-                )
-                q_min_next[global_idx] = torch.min(q_min_candidates_next).item()
-                del q_min_candidates_next
-            if fallback_globals:
-                print(
-                    f"[WARNING] Next-state regret min: after {NEXT_STATE_BELIEF_ATTEMPTS} belief attempts, "
-                    f"{len(fallback_globals)} transition(s) still all-[SKIP]; using Q_min(s', executed HL action): "
-                    f"indices={fallback_globals}"
-                )
-                sys.stdout.flush()
+        for local_i, global_idx in enumerate(valid_indices):
+            if transitions["terminals"][global_idx] or not transitions["next_observations"][global_idx]:
+                continue
+            q_min_next[global_idx] = mins_for_valid_actions[local_i]
 
         # Regret target: r_nominal - r_adversarial + gamma * Regret(s',a)
-        # r_nominal = Q_value(s,a) - gamma*Q_value(s',a), r_adversarial = Q_min(s,a) - gamma*Q_min(s',a)
+        # r_nominal = Q(s,a) - gamma*Q(s',a)
+        # r_adversarial = Q_min(s,a) - gamma*Q_min(s',a) with Q_min(·,a)=min_s̃ Q(s̃,a)
         q_value_current = q_current_batch.detach()
         r_nominal = q_value_current - gamma * torch.tensor([q_value_next[valid_indices[i]] for i in range(len(valid_indices))], device=value_function.device, dtype=standard_dtype)
         r_adversarial = q_min_current - gamma * torch.tensor([q_min_next[valid_indices[i]] for i in range(len(valid_indices))], device=value_function.device, dtype=standard_dtype)
@@ -4081,6 +4221,7 @@ def update_q_function_online(
             "q_min_prediction_variance": q_min_current.var(unbiased=False).item(),
             "q_min_target_mean": q_min_target_values.mean().item(),
             "q_min_prediction_mean": q_min_current.mean().item(),
+            "counterfactual_state_pool_size": len(state_pool),
         }
         if config.debug:
             with torch.no_grad():
@@ -4093,7 +4234,8 @@ def update_q_function_online(
                     f"q_mean={q_nom_mean:.4f} "
                     f"q_min_pred_mean={q_min_pred_mean:.4f} "
                     f"q_min_target_mean={q_min_target_mean:.4f} "
-                    f"gap_mean={regret_gap_mean:.4f}"
+                    f"gap_mean={regret_gap_mean:.4f} "
+                    f"state_pool={len(state_pool)}"
                 )
 
     # 8. Compute losses and update
@@ -4289,24 +4431,21 @@ def main(config_path: Optional[str] = None, output_dir: Optional[str] = None):
 
     evaluation_mode = os.environ.get("LLM_CONTEXT_EVAL_MODE", "0") == "1"
     config._evaluation_mode = evaluation_mode
+    config._ll_token_critic = None
     if evaluation_mode:
         print("[Evaluation Mode] Gradient-based value updates are disabled.")
-        # Reduce chunk sizes in evaluation mode to prevent OOM (no gradients needed)
-        if hasattr(config, 'q_value_chunk_size'):
-            original_q_chunk = config.q_value_chunk_size
-            config.q_value_chunk_size = min(config.q_value_chunk_size, 4)  # Cap at 4 for eval (more aggressive)
-            if config.q_value_chunk_size != original_q_chunk:
-                print(f"[Evaluation Mode] Reduced q_value_chunk_size from {original_q_chunk} to {config.q_value_chunk_size} to prevent OOM")
-        if hasattr(config, 'batch_generation_chunk_size'):
-            original_gen_chunk = config.batch_generation_chunk_size
-            config.batch_generation_chunk_size = min(config.batch_generation_chunk_size, 8)  # Cap at 8 for eval
-            if config.batch_generation_chunk_size != original_gen_chunk:
-                print(f"[Evaluation Mode] Reduced batch_generation_chunk_size from {original_gen_chunk} to {config.batch_generation_chunk_size} to prevent OOM")
-        if hasattr(config, 'episode_batch_size'):
-            original_ep_batch = config.episode_batch_size
-            config.episode_batch_size = min(config.episode_batch_size, 16)  # Cap at 16 for eval (more aggressive)
-            if config.episode_batch_size != original_ep_batch:
-                print(f"[Evaluation Mode] Reduced episode_batch_size from {original_ep_batch} to {config.episode_batch_size} to prevent OOM")
+        original_q_chunk = config.q_value_chunk_size
+        original_gen_chunk = config.batch_generation_chunk_size
+        original_ep_batch = config.episode_batch_size
+        config.q_value_chunk_size = min(config.q_value_chunk_size, 16)
+        config.batch_generation_chunk_size = min(config.batch_generation_chunk_size, 16)
+        config.episode_batch_size = min(config.episode_batch_size, 16)
+        if config.q_value_chunk_size != original_q_chunk:
+            print(f"[Evaluation Mode] q_value_chunk_size {original_q_chunk} -> {config.q_value_chunk_size}")
+        if config.batch_generation_chunk_size != original_gen_chunk:
+            print(f"[Evaluation Mode] batch_generation_chunk_size {original_gen_chunk} -> {config.batch_generation_chunk_size}")
+        if config.episode_batch_size != original_ep_batch:
+            print(f"[Evaluation Mode] episode_batch_size {original_ep_batch} -> {config.episode_batch_size}")
 
     # Dynamically scale batch sizes based on GPU memory capacity
     if config.device.startswith("cuda"):
@@ -4333,8 +4472,13 @@ def main(config_path: Optional[str] = None, output_dir: Optional[str] = None):
                 if len(gpu_memories_gb) > 1:
                     gpu_info += f", GPU 1: {gpu_memories_gb[1]:.1f}GB"
                 gpu_name = torch.cuda.get_device_properties(0).name
+                if "V100" in gpu_name:
+                    config.use_bf16 = False
+                    print(f"[GPU] {gpu_name}: use_bf16=False (load float16)")
                 eval_mode_scaling = getattr(config, "_evaluation_mode", False)
-                min_gpu_gb = 32.0 if eval_mode_scaling else 40.0
+                min_gpu_gb = 31.0 if eval_mode_scaling or config.critic_only_training else 40.0
+                if eval_mode_scaling and _skips_value_function(config):
+                    min_gpu_gb = 16.0
                 if gpu_memory_gb < min_gpu_gb:
                     mode_label = "eval" if eval_mode_scaling else "CARES heads-only training"
                     raise RuntimeError(
@@ -4446,15 +4590,22 @@ def main(config_path: Optional[str] = None, output_dir: Optional[str] = None):
         output_path.mkdir(parents=True, exist_ok=True)
     
     # Initialize models
-    # Main model on GPU 0 (or specified device) - ALWAYS loaded for:
-    # 1. Value function (critic) - needs local model for hidden states
-    # 2. Probability computation (log_probs for belief updates) - needs local model
-    # Even when use_gpt_for_agents=True, we still need the local model for these purposes
-    model = get_model_instance(
-        model_name=config.model_name,
-        device=config.device if config.device != "cuda" else "cuda:0",
-        use_bf16=config.use_bf16
-    )
+    # Shared local backbone is needed for the value function, DPO log-probs, and
+    # the LL token critic (reuses this CausalLM; hidden states come from .model).
+    # GPT-agent evals that skip the HL critic (random / ground-truth / static / NBF) do not
+    # load it here.
+    if config.use_gpt_for_agents and _skips_value_function(config):
+        model = None
+        print(
+            "[INFO] Skipping shared local backbone "
+            "(GPT agents and no high-level value function)"
+        )
+    else:
+        model = get_model_instance(
+            model_name=config.model_name,
+            device=config.device if config.device != "cuda" else "cuda:0",
+            use_bf16=config.use_bf16
+        )
     
     # User model on GPU 1 only when patient sim runs locally
     use_gpt_patient = getattr(config, "use_gpt_for_patient", False)
@@ -4544,6 +4695,8 @@ def main(config_path: Optional[str] = None, output_dir: Optional[str] = None):
                 enable_thinking=ll_enable_thinking,
             )
         
+        _attach_nbf_wrapper(ll_agent, config)
+
         # Initialize user agent (use GPT if configured, otherwise local model) - only for multiwoz_online
         if config.environment_type == "multiwoz_online":
             if getattr(config, 'use_gpt_for_user', False):
@@ -4570,13 +4723,16 @@ def main(config_path: Optional[str] = None, output_dir: Optional[str] = None):
                 else "src/prompts/cares_patient_prompts.json"
             )
             if use_gpt_patient:
+                patient_model_name = getattr(config, "gpt_patient_model", None) or getattr(
+                    config, "gpt_agent_model", "gpt-5.4-nano"
+                )
                 patient_agent = GPTPatientAgent(
                     tokenizer,
                     prompts_path=prompts_path,
-                    model_name=getattr(config, "gpt_agent_model", "gpt-5.4-nano"),
+                    model_name=patient_model_name,
                     api_key=getattr(config, "gpt_agent_api_key", None),
                 )
-                print(f"[INFO] Using GPT patient agent (model: {getattr(config, 'gpt_agent_model', 'gpt-5.4-nano')})")
+                print(f"[INFO] Using GPT patient agent (model: {patient_model_name})")
             else:
                 patient_agent = PatientAgent(user_model, tokenizer, prompts_path=prompts_path)
             reward_model_name = getattr(
@@ -4658,17 +4814,19 @@ def main(config_path: Optional[str] = None, output_dir: Optional[str] = None):
     # Determine standard dtype based on bf16 parameter
     standard_dtype = torch.bfloat16 if config.use_bf16 else torch.float32
     
-    # Initialize value function (skip if random or raw-judge belief selection)
+    # Initialize value function (skip if random, raw-judge, static hypothesis, or NBF)
     # Note: ValueFunction uses the same model singleton as HL/LL agents, so we cannot
     # parallelize across GPUs. All components share the same model instance.
-    random_belief_selection = config.random_belief_selection
-    raw_judge_belief_selection = config.raw_judge_belief_selection
-    if random_belief_selection:
+    if _skips_value_function(config):
         value_function = None
-        print("[INFO] Random belief selection enabled - skipping value function initialization")
-    elif raw_judge_belief_selection:
-        value_function = None
-        print("[INFO] Raw-judge belief selection enabled - skipping value function initialization")
+        print(
+            "[INFO] Skipping value function initialization "
+            f"(random={config.random_belief_selection}, "
+            f"ground_truth={config.ground_truth_belief_selection}, "
+            f"raw_judge={config.raw_judge_belief_selection}, "
+            f"static_belief_mode={config.static_belief_mode}, "
+            f"defender_backend={config.defender_backend})"
+        )
     else:
         value_function_hidden_size = model.config.hidden_size
         value_function = ValueFunction(
@@ -4679,6 +4837,7 @@ def main(config_path: Optional[str] = None, output_dir: Optional[str] = None):
             dtype=standard_dtype,
             use_regret_critic=getattr(config, 'use_regret_critic', False),
             mlp_width_mult=getattr(config, 'mlp_width_mult', 1.0),
+            critic_mlp_dims=config.critic_mlp_dims,
             critic_target_tau=getattr(config, 'critic_target_tau', 0.0),
             critic_lora_r=getattr(config, 'critic_lora_r', 0),
             critic_lora_alpha=getattr(config, 'critic_lora_alpha', 16),
@@ -4691,11 +4850,22 @@ def main(config_path: Optional[str] = None, output_dir: Optional[str] = None):
         )
         
         # Load pretrained checkpoint if provided
+        if config.hl_greedy_q:
+            print(
+                f"[INFO] High-level selection is epsilon-greedy argmax Q "
+                f"(epsilon={config.epsilon}, min={config.epsilon_min}); "
+                "regret-softmax is off."
+            )
+        if config.paper_dsr_reward:
+            print("[INFO] Online reward uses paper DSR/GCR harmless/assist/helpful prompts")
         if config.checkpoint_path:
             checkpoint_path = Path(config.checkpoint_path)
             if checkpoint_path.exists():
                 print(f"Loading pretrained Q-network from {checkpoint_path}")
-                value_function.load_checkpoint(str(checkpoint_path), strict=True)
+                load_optimizer = not getattr(config, "_evaluation_mode", False)
+                value_function.load_checkpoint(
+                    str(checkpoint_path), strict=True, load_optimizer=load_optimizer
+                )
             else:
                 # In evaluation mode with GPT agents, checkpoint might not be needed
                 # Warn but don't fail if in evaluation mode
@@ -4712,6 +4882,18 @@ def main(config_path: Optional[str] = None, output_dir: Optional[str] = None):
                 initial_checkpoint_path = checkpoint_dir / "value_function_initial.pt"
                 value_function.save_checkpoint(str(initial_checkpoint_path))
                 print(f"Saved initial checkpoint to {initial_checkpoint_path}")
+
+    if config.ll_token_critic_path is not None:
+        from .value.ll_token_critic import LLTokenCritic
+
+        if not config.device.startswith("cuda"):
+            raise RuntimeError("ll_token_critic_path requires a CUDA device")
+        critic_device = config.device if config.device != "cuda" else "cuda:0"
+        config._ll_token_critic = LLTokenCritic.from_checkpoint(
+            config.ll_token_critic_path,
+            critic_device,
+            backbone=model,
+        )
     
     # Print GPU memory after models are loaded
     device_id = int(config.device.split(":")[-1]) if config.device.startswith("cuda") and ":" in config.device else 0
@@ -5282,6 +5464,8 @@ def main(config_path: Optional[str] = None, output_dir: Optional[str] = None):
                 enable_thinking=ll_enable_thinking,
             )
         
+        _attach_nbf_wrapper(ll_agent, config)
+
         # Initialize user agent (use GPT if configured, otherwise local model)
         if getattr(config, 'use_gpt_for_user', False):
             gpt_model_name = getattr(config, 'gpt_agent_model', 'gpt-4o-mini')
@@ -5372,7 +5556,12 @@ def main(config_path: Optional[str] = None, output_dir: Optional[str] = None):
         episodes_for_belief_gen = [
             ep for ep in episodes_needing_beliefs if not ep.judge_step_pending
         ]
-        if episodes_for_belief_gen and not getattr(config, 'baseline_mode', False):
+        if (
+            episodes_for_belief_gen
+            and not config.baseline_mode
+            and config.static_belief_mode == "none"
+            and not config.ground_truth_belief_selection
+        ):
             print(f"Batch generating beliefs for {len(episodes_for_belief_gen)} episodes...")
             batch_generate_beliefs_for_episodes(
                 episodes_for_belief_gen,
@@ -5397,6 +5586,33 @@ def main(config_path: Optional[str] = None, output_dir: Optional[str] = None):
                             )
                         ]
                         episode._q_values = {"[BASELINE]": 0.0}
+            elif config.static_belief_mode != "none":
+                static_text = belief_text_for_static_mode(config.static_belief_mode)
+                for episode in active_episodes_to_process:
+                    episode.belief_state.candidates = [
+                        BeliefCandidate(
+                            summary=static_text,
+                            context=f"static_belief_mode={config.static_belief_mode}",
+                            probability=1.0,
+                        )
+                    ]
+                    episode._q_values = {static_text: 0.0}
+            elif config.ground_truth_belief_selection:
+                for episode in active_episodes_to_process:
+                    gt = episode.ground_truth_goal.strip()
+                    if not gt:
+                        raise RuntimeError(
+                            f"ground_truth_belief_selection: empty ground_truth_goal "
+                            f"for episode {episode.dialogue_id}"
+                        )
+                    episode.belief_state.candidates = [
+                        BeliefCandidate(
+                            summary=gt,
+                            context="ground_truth_belief_selection",
+                            probability=1.0,
+                        )
+                    ]
+                    episode._q_values = {gt: 0.0}
             else:
                 random_belief_selection = config.random_belief_selection
                 raw_judge_belief_selection = config.raw_judge_belief_selection
@@ -5718,7 +5934,11 @@ def main(config_path: Optional[str] = None, output_dir: Optional[str] = None):
                 except (ImportError, AttributeError):
                     pass
         else:
-            # Offline mode or no active episodes: process sequentially
+            # CARES / WildJailbreak / other online: batch LL generates, then step sequentially.
+            if active_episodes_to_process:
+                batch_generate_ll_actions_for_episodes(
+                    active_episodes_to_process, ll_agent, config
+                )
             processed_count = 0
             for idx, episode in enumerate(active_episodes_to_process):
                 if not episode.is_active or episode.done_from_env:

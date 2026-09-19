@@ -47,7 +47,8 @@ def _load_model_or_adapter(
     device: str,
     use_bf16: bool
 ):
-    dtype = torch.bfloat16 if use_bf16 else torch.float32
+    dtype = torch.bfloat16 if use_bf16 else torch.float16
+    print(f"Loading local model dtype={dtype} (use_bf16={use_bf16})")
     if _is_peft_adapter_repo(model_name):
         peft_config = PeftConfig.from_pretrained(model_name)
         base_model_name = peft_config.base_model_name_or_path

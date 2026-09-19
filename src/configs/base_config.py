@@ -1,9 +1,7 @@
 """Base configuration class for the LLM Context Belief Framework."""
 
 import json
-import math
 from dataclasses import dataclass, field
-from pathlib import Path
 from typing import Dict, List, Optional
 
 
@@ -24,6 +22,7 @@ class BaseConfig:
     use_gpt_for_judge: bool = False  # If True, fulfillment/assistance judges via CMU/OpenAI gateway
     gpt_agent_model: str = "gpt-4o-mini"  # GPT model to use for agents (e.g., "gpt-4o-mini", "gpt-4o")
     gpt_judge_model: Optional[str] = None  # Judge/guard API model; defaults to gpt_agent_model when unset
+    gpt_patient_model: Optional[str] = None  # Patient/attacker API model; defaults to gpt_agent_model when unset
     gpt_reasoning_effort: Optional[str] = None  # GPT reasoning effort for gpt-5 family (e.g., "none", "medium")
     gpt_agent_api_key: Optional[str] = None  # OpenAI API key (if None, uses OPENAI_API_KEY env var)
     hl_enable_thinking: Optional[bool] = None  # If None, defaults to True for Qwen3.5 and False otherwise
@@ -48,6 +47,9 @@ class BaseConfig:
     # Stabilization (target nets, capacity, schedules)
     critic_target_tau: float = 0.0  # >0 enables Polyak target V/Q heads
     mlp_width_mult: float = 1.0  # 2.0 = 2x mid-layer width
+    # Explicit MLP hidden widths (excluding the final scalar). None = use mlp_width_mult.
+    # Ablations: [2048] → H→2048→1; [4096, 512] → H→4096→512→1.
+    critic_mlp_dims: Optional[List[int]] = None
     critic_lora_r: int = 0  # 0 = frozen backbone only; >0 LoRA on last critic_lora_layers
     critic_lora_alpha: int = 16
     critic_lora_layers: int = 4
@@ -81,13 +83,19 @@ class BaseConfig:
 
     # Regret critic (adversarial robustness) - for cares/wildjailbreak
     use_regret_critic: bool = False  # Enable three-critic: value, min-value, regret
-    regret_critic_beta: float = 0.2  # High-level policy: softmax over (1-beta)*Q - beta*Q^regret (default 0.8Q - 0.2 Q^regret)
+    # If True, execute argmax_b Q(s,b) (epsilon-greedy). Skips regret-softmax / softmax.
+    hl_greedy_q: bool = False
+    # If True, online r_nom uses paper DSR/GCR prompts (harmless + assist / helpful).
+    paper_dsr_reward: bool = False
+    regret_critic_beta: float = 0.2  # High-level policy: softmax over (1-beta)*Q - beta*Q^regret
     regret_zero_sum_targets: bool = True  # Enforce zero-sum regret targets
-    regret_min_target_mode: str = "sampled_q_min"  # sampled_q_min: min over sampled high-level candidates
+    # min_q_over_states: Q_min(s,a) target = min_{s̃} Q(s̃, a) with action held fixed
+    # (worst state for this action — not min over candidate actions at fixed s).
+    regret_min_target_mode: str = "min_q_over_states"
     
     # Low-level action generation mode
     ll_action_belief_only: bool = True  # If True, LL actions depend only on belief P(a|b). If False, use P(a|o,b) (old mode for ablations)
-    defender_backend: str = "standard"  # "standard" | "smoothllm" | "tpo"
+    defender_backend: str = "standard"  # "standard" | "smoothllm" | "tpo" | "nbf"
 
     # SmoothLLM defender hyperparameters
     pert_type: str = "RandomSwapPerturbation"
@@ -101,12 +109,29 @@ class BaseConfig:
     tpo_temperature: float = 0.7
     tpo_reward_model: str = "heuristic"
     tpo_mode: str = "tpo"  # "tpo" | "revision" | "bon"
+
+    # Neural Barrier Function (Hu et al. TMLR 2026) filter. Used with defender_backend="nbf".
+    nbf_model_path: Optional[str] = None  # HuggingFace hanjianghu/NBF-LLM models_best_nbf_released.pth
+    nbf_threshold: float = 0.001  # η; safe iff safety index < -η
+    nbf_embedder_name: str = "sentence-transformers/all-mpnet-base-v2"
+    nbf_device: str = "cpu"  # keep mpnet off the Zephyr GPU
     
     # Baseline mode (skip high-level belief generation, use only conversation history)
     baseline_mode: bool = False  # If True, skip high-level agent and DST, use only conversation history for low-level actions
     
     # Random belief selection (skip Q-value computation, always randomly select from candidates)
     random_belief_selection: bool = False  # If True, always randomly selects from candidates (no Q-value computation, no value function)
+
+    # Oracle HL: skip π^ref sampling and use the dataset ground-truth goal as the sole inferred belief.
+    ground_truth_belief_selection: bool = False
+
+    # Offline two-head LL token critic (`harm_head` + `follow_head`). When set, LL rerank
+    # uses this checkpoint instead of ValueFunction.token_critic_head.
+    ll_token_critic_path: Optional[str] = None
+
+    # Always-on intent hypothesis: skip π^ref sampling and use one fixed belief.
+    # "none" = sample K candidates; "antagonistic" / "benign_misrepresented" = static baselines.
+    static_belief_mode: str = "none"
 
     # HL critic ablation: score each HL candidate with R(user, b) via env judge/guard on
     # (last user utterance, belief text) — same input space as Q(o,b), no LL expansion.
@@ -223,9 +248,74 @@ class BaseConfig:
             raise ValueError(
                 f"token_level_reward_schema must be one of {valid_token_reward_schemas}, got {self.token_level_reward_schema!r}"
             )
-        valid_backends = ["standard", "smoothllm", "tpo"]
+        valid_backends = ["standard", "smoothllm", "tpo", "nbf"]
         if self.defender_backend not in valid_backends:
             raise ValueError(f"defender_backend must be one of {valid_backends}, got {self.defender_backend}")
+        if self.defender_backend == "nbf":
+            if not self.nbf_model_path:
+                raise ValueError("defender_backend='nbf' requires nbf_model_path.")
+            if self.nbf_threshold < 0:
+                raise ValueError(f"nbf_threshold must be >= 0, got {self.nbf_threshold}")
+            if not self.baseline_mode:
+                raise ValueError("defender_backend='nbf' is a non-critic baseline; set baseline_mode=True.")
+        valid_static_modes = ["none", "antagonistic", "benign_misrepresented"]
+        if self.static_belief_mode not in valid_static_modes:
+            raise ValueError(
+                f"static_belief_mode must be one of {valid_static_modes}, got {self.static_belief_mode}"
+            )
+        static_on = self.static_belief_mode != "none"
+        if static_on and self.baseline_mode:
+            raise ValueError("static_belief_mode requires baseline_mode=False so the fixed belief reaches the LL agent.")
+        if static_on and self.random_belief_selection:
+            raise ValueError("static_belief_mode and random_belief_selection are mutually exclusive.")
+        if static_on and self.raw_judge_belief_selection:
+            raise ValueError("static_belief_mode and raw_judge_belief_selection are mutually exclusive.")
+        if static_on and self.raw_judge_ll_selection:
+            raise ValueError("static_belief_mode is a non-critic baseline; set raw_judge_ll_selection=False.")
+        if static_on and self.use_regret_critic:
+            raise ValueError("static_belief_mode is a non-critic baseline; set use_regret_critic=False.")
+        if static_on and self.defender_backend != "standard":
+            raise ValueError("static_belief_mode requires defender_backend='standard'.")
+        if self.ll_token_critic_path == "":
+            self.ll_token_critic_path = None
+        if self.ground_truth_belief_selection and self.random_belief_selection:
+            raise ValueError(
+                "ground_truth_belief_selection and random_belief_selection are mutually exclusive."
+            )
+        if self.ground_truth_belief_selection and self.baseline_mode:
+            raise ValueError(
+                "ground_truth_belief_selection requires the HL belief to reach the LL agent; set baseline_mode=False."
+            )
+        if self.ground_truth_belief_selection and self.static_belief_mode != "none":
+            raise ValueError(
+                "ground_truth_belief_selection and static_belief_mode are mutually exclusive."
+            )
+        if self.ground_truth_belief_selection and self.raw_judge_belief_selection:
+            raise ValueError(
+                "ground_truth_belief_selection and raw_judge_belief_selection are mutually exclusive."
+            )
+        if self.ground_truth_belief_selection and self.use_regret_critic:
+            raise ValueError(
+                "ground_truth_belief_selection is a non-critic baseline; set use_regret_critic=False."
+            )
+        if self.ground_truth_belief_selection and self.defender_backend != "standard":
+            raise ValueError("ground_truth_belief_selection requires defender_backend='standard'.")
+        if self.ground_truth_belief_selection and self.environment_type not in (
+            "cares",
+            "wildjailbreak",
+            "redbench",
+            "harmbench",
+        ):
+            raise ValueError(
+                "ground_truth_belief_selection only supports cares/wildjailbreak/redbench/harmbench."
+            )
+        if self.critic_mlp_dims is not None:
+            if not self.critic_mlp_dims:
+                raise ValueError("critic_mlp_dims must be a non-empty list of positive integers.")
+            for width in self.critic_mlp_dims:
+                if int(width) <= 0:
+                    raise ValueError(f"critic_mlp_dims entries must be positive, got {self.critic_mlp_dims}")
+            self.critic_mlp_dims = [int(w) for w in self.critic_mlp_dims]
         valid_high_level_policy_types = ["belief_candidates", "freeform"]
         if self.high_level_policy_type not in valid_high_level_policy_types:
             raise ValueError(
@@ -251,7 +341,17 @@ class BaseConfig:
             raise ValueError("hierarchical_rejection_candidates must be positive.")
         if self.n_ll_candidates < 1:
             raise ValueError("n_ll_candidates must be >= 1.")
+        if self.n_candidates < 1:
+            raise ValueError("n_candidates must be >= 1.")
         adversarial_envs = ("cares", "wildjailbreak", "redbench", "harmbench")
+        if self.defender_backend == "nbf" and self.environment_type not in adversarial_envs:
+            raise ValueError(
+                "defender_backend='nbf' only supports cares/wildjailbreak/redbench/harmbench."
+            )
+        if self.static_belief_mode != "none" and self.environment_type not in adversarial_envs:
+            raise ValueError(
+                "static_belief_mode only supports cares/wildjailbreak/redbench/harmbench."
+            )
         if self.raw_judge_belief_selection and self.raw_judge_ll_selection:
             raise ValueError(
                 "raw_judge_belief_selection and raw_judge_ll_selection are mutually exclusive "
@@ -291,6 +391,16 @@ class BaseConfig:
             raise ValueError(
                 "ll_candidate_rerank requires n_ll_candidates > 1."
             )
+        if self.ll_token_critic_path is not None:
+            if self.n_ll_candidates <= 1:
+                raise ValueError(
+                    "ll_token_critic_path requires n_ll_candidates > 1."
+                )
+            self.ll_candidate_rerank = True
+            if self.environment_type not in adversarial_envs:
+                raise ValueError(
+                    "ll_token_critic_path only supports cares/wildjailbreak/redbench/harmbench."
+                )
         if self.raw_judge_ll_selection and self.environment_type not in adversarial_envs:
             raise ValueError(
                 "raw_judge_ll_selection only supports cares/wildjailbreak/redbench/harmbench."
@@ -299,7 +409,7 @@ class BaseConfig:
             raise ValueError(
                 "ll_candidate_rerank / raw_judge_ll_selection require defender_backend='standard'."
             )
-        valid_regret_min_target_modes = ["sampled_q_min"]
+        valid_regret_min_target_modes = ["min_q_over_states"]
         if self.regret_min_target_mode not in valid_regret_min_target_modes:
             raise ValueError(
                 f"regret_min_target_mode must be one of {valid_regret_min_target_modes}, got {self.regret_min_target_mode}"
@@ -308,14 +418,24 @@ class BaseConfig:
             raise ValueError(
                 "use_regret_critic requires regret_zero_sum_targets=True for zero-sum alignment."
             )
-        if self.use_regret_critic and self.regret_min_target_mode != "sampled_q_min":
+        if self.use_regret_critic and self.regret_min_target_mode != "min_q_over_states":
             raise ValueError(
-                "use_regret_critic requires regret_min_target_mode='sampled_q_min'."
+                "use_regret_critic requires regret_min_target_mode='min_q_over_states'."
             )
-        if self.use_regret_critic and not math.isclose(self.regret_critic_beta, 0.2, rel_tol=0.0, abs_tol=1e-12):
+        if not (0.0 <= self.regret_critic_beta <= 1.0):
             raise ValueError(
-                "use_regret_critic requires regret_critic_beta=0.2 (softmax policy scores 0.8*Q - 0.2*Q^regret)."
+                f"regret_critic_beta must be in [0, 1], got {self.regret_critic_beta}."
             )
+        if self.hl_greedy_q and self.random_belief_selection:
+            raise ValueError("hl_greedy_q and random_belief_selection are mutually exclusive.")
+        if self.hl_greedy_q and self.raw_judge_belief_selection:
+            raise ValueError("hl_greedy_q and raw_judge_belief_selection are mutually exclusive.")
+        if self.hl_greedy_q and self.ground_truth_belief_selection:
+            raise ValueError("hl_greedy_q and ground_truth_belief_selection are mutually exclusive.")
+        if self.paper_dsr_reward and not self.use_gpt_for_judge:
+            raise ValueError("paper_dsr_reward requires use_gpt_for_judge=True.")
+        if self.paper_dsr_reward and self.reward_model_type != "api":
+            raise ValueError("paper_dsr_reward requires reward_model_type='api'.")
         valid_redbench_mapping_modes = [
             "category",
             "source",
@@ -334,129 +454,8 @@ class BaseConfig:
         return cls(**config_dict)
     
     def to_json(self, config_path: str) -> None:
-        """Save configuration to JSON file."""
-        config_dict = {
-            "model_name": self.model_name,
-            "user_model_name": self.user_model_name,
-            "device": self.device,
-            "use_bf16": self.use_bf16,
-            "use_gpt_for_agents": getattr(self, 'use_gpt_for_agents', False),
-            "use_gpt_for_user": getattr(self, 'use_gpt_for_user', False),
-            "gpt_agent_model": getattr(self, 'gpt_agent_model', 'gpt-4o-mini'),
-            "gpt_reasoning_effort": getattr(self, 'gpt_reasoning_effort', None),
-            "gpt_agent_api_key": getattr(self, 'gpt_agent_api_key', None),
-            "hl_enable_thinking": self.hl_enable_thinking,
-            "ll_enable_thinking": self.ll_enable_thinking,
-            "n_candidates": self.n_candidates,
-            "n_ll_candidates": self.n_ll_candidates,
-            "belief_gen_temperature": self.belief_gen_temperature,
-            "max_tokens": self.max_tokens,
-            "epsilon": self.epsilon,
-            "belief_gen_template": self.belief_gen_template,
-            "dpo_temperature": self.dpo_temperature,
-            "discount_factor": self.discount_factor,
-            "learning_rate": self.learning_rate,
-            "entropy_coef": self.entropy_coef,
-            "contrastive_coef": self.contrastive_coef,
-            "contrastive_ablation_mode": self.contrastive_ablation_mode,
-            "use_regret_critic": getattr(self, 'use_regret_critic', False),
-            "regret_critic_beta": getattr(self, 'regret_critic_beta', 0.2),
-            "regret_zero_sum_targets": getattr(self, 'regret_zero_sum_targets', True),
-            "regret_min_target_mode": getattr(self, 'regret_min_target_mode', 'sampled_q_min'),
-            "ll_action_belief_only": self.ll_action_belief_only,
-            "defender_backend": self.defender_backend,
-            "pert_type": self.pert_type,
-            "pert_pct": self.pert_pct,
-            "num_copies": self.num_copies,
-            "smooth_batch_size": self.smooth_batch_size,
-            "tpo_sample_size": self.tpo_sample_size,
-            "tpo_max_iters": self.tpo_max_iters,
-            "tpo_temperature": self.tpo_temperature,
-            "tpo_reward_model": self.tpo_reward_model,
-            "tpo_mode": self.tpo_mode,
-            "baseline_mode": getattr(self, 'baseline_mode', False),
-            "random_belief_selection": getattr(self, 'random_belief_selection', False),
-            "raw_judge_belief_selection": getattr(self, 'raw_judge_belief_selection', False),
-            "raw_judge_ll_selection": getattr(self, 'raw_judge_ll_selection', False),
-            "ll_candidate_rerank": getattr(self, 'll_candidate_rerank', False),
-            "use_hierarchical_agent": self.use_hierarchical_agent,
-            "high_level_policy_type": self.high_level_policy_type,
-            "critic_only_training": self.critic_only_training,
-            "freeform_n_instructions": self.freeform_n_instructions,
-            "freeform_temperature": self.freeform_temperature,
-            "freeform_top_p": self.freeform_top_p,
-            "freeform_max_new_tokens": self.freeform_max_new_tokens,
-            "freeform_iterative_candidate_generation": self.freeform_iterative_candidate_generation,
-            "freeform_per_instruction_max_new_tokens": self.freeform_per_instruction_max_new_tokens,
-            "freeform_iterative_max_attempts_per_candidate": self.freeform_iterative_max_attempts_per_candidate,
-            "hierarchical_rejection_sampling": self.hierarchical_rejection_sampling,
-            "hierarchical_rejection_candidates": self.hierarchical_rejection_candidates,
-            "max_turns": self.max_turns,
-            "batch_size": self.batch_size,
-            "episode_batch_size": self.episode_batch_size,
-            "vitabench_judge_batch_size": self.vitabench_judge_batch_size,
-            "vitabench_minibatch_size": self.vitabench_minibatch_size,
-            "online_batch_size": self.online_batch_size,
-            "replay_buffer_size": self.replay_buffer_size,
-            "epsilon_decay_rate": self.epsilon_decay_rate,
-            "epsilon_min": self.epsilon_min,
-            "output_dir": self.output_dir,
-            "evaluation_interval": self.evaluation_interval,
-            "transition_prob_chunk_size": self.transition_prob_chunk_size,
-            "q_value_chunk_size": self.q_value_chunk_size,
-            "batch_generation_chunk_size": self.batch_generation_chunk_size,
-            "data_path": self.data_path,
-            "persona_dir": self.persona_dir,
-            "train_ratio": self.train_ratio,
-            "val_ratio": self.val_ratio,
-            "evaluation_sample_size": self.evaluation_sample_size,
-            "max_dialogues": self.max_dialogues,
-            "environment_type": self.environment_type,
-            "language": self.language,
-            "task_config": self.task_config,
-            "cares_split": getattr(self, 'cares_split', 'train'),
-            "cares_use_lead_in": getattr(self, 'cares_use_lead_in', True),
-            "cares_online": getattr(self, 'cares_online', True),
-            "wildjailbreak_split": getattr(self, 'wildjailbreak_split', 'train'),
-            "wildjailbreak_data_types": getattr(self, 'wildjailbreak_data_types', None),
-            "wildjailbreak_use_lead_in": getattr(self, 'wildjailbreak_use_lead_in', True),
-            "wildjailbreak_online": getattr(self, 'wildjailbreak_online', True),
-            "redbench_split": getattr(self, 'redbench_split', 'train'),
-            "redbench_subsets": getattr(self, 'redbench_subsets', None),
-            "redbench_max_examples": getattr(self, 'redbench_max_examples', None),
-            "redbench_mapping_mode": getattr(self, 'redbench_mapping_mode', 'category'),
-            "redbench_refusal_sources": getattr(self, 'redbench_refusal_sources', None),
-            "redbench_use_lead_in": getattr(self, 'redbench_use_lead_in', True),
-            "redbench_online": getattr(self, 'redbench_online', True),
-            "harmbench_split": getattr(self, 'harmbench_split', 'train'),
-            "harmbench_max_examples": getattr(self, 'harmbench_max_examples', None),
-            "harmbench_use_lead_in": getattr(self, 'harmbench_use_lead_in', True),
-            "harmbench_online": getattr(self, 'harmbench_online', True),
-            "checkpoint_path": self.checkpoint_path,
-            "use_marginal_token_rewards": self.use_marginal_token_rewards,
-            "num_masked_marginal_tokens": self.num_masked_marginal_tokens,
-            "pairwise_marginal_masking": self.pairwise_marginal_masking,
-            "max_marginal_token_positions": self.max_marginal_token_positions,
-            "use_task_reward": self.use_task_reward,
-            "reward_model_type": self.reward_model_type,
-            "reward_model_name": self.reward_model_name,
-            "marginal_reward_chunk_size": self.marginal_reward_chunk_size,
-            "token_level_reward_schema": self.token_level_reward_schema,
-            "token_reward_decay_gamma": self.token_reward_decay_gamma,
-            "n_next_state_candidates": self.n_next_state_candidates,
-            "n_action_candidates": self.n_action_candidates,
-            "online_batch_size": self.online_batch_size,
-            "replay_buffer_size": self.replay_buffer_size,
-            "epsilon_decay_rate": self.epsilon_decay_rate,
-            "epsilon_min": self.epsilon_min,
-            "online_update_frequency": self.online_update_frequency,
-            "vitabench_llm_user": getattr(self, 'vitabench_llm_user', None),
-            "vitabench_llm_evaluator": getattr(self, 'vitabench_llm_evaluator', None),
-            "vitabench_llm_args_user": getattr(self, 'vitabench_llm_args_user', None),
-            "vitabench_llm_args_evaluator": getattr(self, 'vitabench_llm_args_evaluator', None),
-            "openai_api_key": getattr(self, 'openai_api_key', None),
-            "debug": self.debug,
-        }
+        """Save all public dataclass fields so eval round-trips match training configs."""
+        payload = {key: value for key, value in self.__dict__.items() if not key.startswith("_")}
         with open(config_path, "w") as f:
-            json.dump(config_dict, f, indent=2)
+            json.dump(payload, f, indent=2)
 

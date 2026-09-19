@@ -169,6 +169,42 @@ class GPTLowLevelAgent(LowLevelAgent):
             cleaned_responses.append(cleaned)
         return cleaned_responses
 
+    def generate_ll_candidates(
+        self,
+        belief_context: str,
+        history: List[Tuple[str, str]],
+        n_candidates: int,
+        template_name: str,
+        temperature: float = 0.7,
+        belief_only: bool = True,
+        chunk_size: int = None,
+    ) -> List[str]:
+        """Independent GPT samples of the single-candidate LL template. Raise on empty."""
+        if n_candidates < 1:
+            raise ValueError(f"n_candidates must be >= 1, got {n_candidates}")
+        prompt = self.build_prompt(
+            belief_context=belief_context,
+            history=history,
+            belief_only=belief_only,
+            template_name=template_name,
+        )
+        prompts = [prompt] * n_candidates
+        candidates = self.generate_actions_from_prompts(
+            prompts=prompts,
+            temperature=temperature,
+            do_sample=True,
+            chunk_size=chunk_size,
+            template_name=template_name,
+        )
+        if len(candidates) != n_candidates:
+            raise RuntimeError(
+                f"GPT LL candidate count {len(candidates)} != n_candidates={n_candidates}"
+            )
+        for i, action in enumerate(candidates):
+            if not action.strip():
+                raise RuntimeError(f"Empty GPT LL candidate {i} for template {template_name}")
+        return candidates
+
 
 class GPTUserAgent(UserAgent):
     """User agent using GPT API instead of local model."""
