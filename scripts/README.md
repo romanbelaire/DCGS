@@ -9,6 +9,7 @@ for exact old files, hashes, run references, and historical tests.
 | Task | Entry point | Validation / launcher |
 | --- | --- | --- |
 | Main WildJailbreak DCGS + trained LL critic | `run_safedial_dcgs_wildjailbreak.py --method vdcgs` or `rdcgs` | `validate_safedial_dcgs_wildjailbreak.py`; `slurm/run_safedial_{vdcgs,rdcgs}_wildjailbreak_main_{smoke,full}.sbatch` |
+| Separate DCGS history experiment | `run_safedial_dcgs_context.py --method vdcgs --include-history` (also `rdcgs`) | Same runner `--audit-only`; `slurm/run_safedial_dcgs_history_smoke.sbatch {vdcgs\|rdcgs}`; [history guide](../docs/SAFEDIALBENCH_DCGS_HISTORY.md) |
 | TPO, current full run | `run_safedial_tpo_full.py` | `validate_safedial_tpo_full.py`; `slurm/run_safedial_tpo_retry_full.sbatch` (v8) |
 | TPO, upstream candidate handling | `run_safedial_tpo_upstream_full.py` | `validate_safedial_tpo_upstream.py`; `slurm/run_safedial_tpo_upstream_smoke.sbatch`; [policy guide](../docs/SAFEDIALBENCH_TPO_UPSTREAM_HANDLING.md) |
 | SmoothLLM, resumable full run | `run_safedial_smoothllm_turn_resume.py` | `validate_safedial_smoothllm_turn_resume.py`; `slurm/run_safedial_smoothllm_turn_resume_full.sbatch` |

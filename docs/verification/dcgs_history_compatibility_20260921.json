@@ -1,0 +1,176 @@
+{
+  "date": "2026-09-21",
+  "feature": "Optional LL gold history in a separate SafeDial context experiment",
+  "tests": {
+    "passed": 45,
+    "command": "HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 OMP_NUM_THREADS=1 .venv/bin/python -B -m unittest discover -s tests -p 'test_safedial_dcgs*.py' -v",
+    "environment": "module load Python/3.11.11-GCCcore-13.3.0",
+    "shell_syntax": "passed",
+    "python_parse": "passed"
+  },
+  "preflight": {
+    "vdcgs": {
+      "passed": true,
+      "dialogues": 1,
+      "turns": 5,
+      "synthetic_prompt_calls": 10,
+      "max_prompt_plus_generation_tokens": 2502,
+      "model_calls": 0,
+      "estimated_critic_context": {
+        "critic_max_length": 1500,
+        "critic_truncation_sides": [
+          "left"
+        ],
+        "critic_candidate_contexts": 25,
+        "critic_truncated_candidate_contexts": 5,
+        "critic_truncated_turns": 1,
+        "critic_truncated_turn_keys": [
+          [
+            1,
+            4
+          ]
+        ],
+        "critic_scoring_calls_by_head": {
+          "predict_q_value": 25
+        },
+        "critic_scored_inputs_by_head": {
+          "predict_q_value": 25
+        },
+        "critic_truncated_inputs_by_head": {
+          "predict_q_value": 5
+        },
+        "critic_max_input_tokens": 1743,
+        "critic_max_dropped_tokens": 243,
+        "critic_full_context": false
+      },
+      "ll_critic_context": {
+        "max_input_tokens": 8192,
+        "max_estimated_input_tokens": 2477,
+        "max_synthetic_input_tokens": 1756,
+        "potential_overflow_turns": 0,
+        "potential_overflow_turn_details": [],
+        "synthetic_overflow_turns": 0,
+        "overflow_policy": "terminal turn failure; no truncation or extra retry",
+        "note": "Estimates reserve upstream generation budgets; decoded-text retokenization can vary. Runtime checks are authoritative."
+      },
+      "note": "Preflight completion does not guarantee every turn fits. Review LL context risks; full runs record overflow failures and continue, smoke runs stop.",
+      "method_spec": {
+        "upstream_commit": "576ae184b8f49586456a136f8e14a93039cfeb88",
+        "critic_pooling": "last_nonpad",
+        "regret_min_target_mode": "min_q_over_states",
+        "ll_selection": "trained_token_critic_argmax",
+        "ll_candidate_generation": "upstream_numbered_list_with_upstream_fallback",
+        "ll_candidates": 5,
+        "ll_critic_max_input_tokens": 8192,
+        "ll_context_overflow": "terminal turn failure; no truncation or extra retry",
+        "critic_training": "frozen indexed checkpoint; no training performed by this runner",
+        "ll_input_context": "gold_history_and_selected_belief",
+        "ll_history_policy": "all supplied prior gold turns and current user; no current reference answer",
+        "actor_context_policy": "original tokenizer behavior and input-plus-output capacity check; no added trimming",
+        "experiment": "safedial_main_wildjailbreak_ll_context_v1"
+      }
+    },
+    "rdcgs": {
+      "passed": true,
+      "dialogues": 1,
+      "turns": 5,
+      "synthetic_prompt_calls": 15,
+      "max_prompt_plus_generation_tokens": 2502,
+      "model_calls": 0,
+      "estimated_critic_context": {
+        "critic_max_length": 1500,
+        "critic_truncation_sides": [
+          "left"
+        ],
+        "critic_candidate_contexts": 25,
+        "critic_truncated_candidate_contexts": 5,
+        "critic_truncated_turns": 1,
+        "critic_truncated_turn_keys": [
+          [
+            1,
+            4
+          ]
+        ],
+        "critic_scoring_calls_by_head": {
+          "predict_q_value": 50,
+          "predict_q_min_value": 50,
+          "predict_regret_value": 50
+        },
+        "critic_scored_inputs_by_head": {
+          "predict_q_value": 50,
+          "predict_q_min_value": 50,
+          "predict_regret_value": 50
+        },
+        "critic_truncated_inputs_by_head": {
+          "predict_q_value": 10,
+          "predict_q_min_value": 10,
+          "predict_regret_value": 10
+        },
+        "critic_max_input_tokens": 1743,
+        "critic_max_dropped_tokens": 243,
+        "critic_full_context": false
+      },
+      "ll_critic_context": {
+        "max_input_tokens": 8192,
+        "max_estimated_input_tokens": 2477,
+        "max_synthetic_input_tokens": 1756,
+        "potential_overflow_turns": 0,
+        "potential_overflow_turn_details": [],
+        "synthetic_overflow_turns": 0,
+        "overflow_policy": "terminal turn failure; no truncation or extra retry",
+        "note": "Estimates reserve upstream generation budgets; decoded-text retokenization can vary. Runtime checks are authoritative."
+      },
+      "note": "Preflight completion does not guarantee every turn fits. Review LL context risks; full runs record overflow failures and continue, smoke runs stop.",
+      "method_spec": {
+        "upstream_commit": "576ae184b8f49586456a136f8e14a93039cfeb88",
+        "critic_pooling": "last_nonpad",
+        "regret_min_target_mode": "min_q_over_states",
+        "ll_selection": "trained_token_critic_argmax",
+        "ll_candidate_generation": "upstream_numbered_list_with_upstream_fallback",
+        "ll_candidates": 5,
+        "ll_critic_max_input_tokens": 8192,
+        "ll_context_overflow": "terminal turn failure; no truncation or extra retry",
+        "critic_training": "frozen indexed checkpoint; no training performed by this runner",
+        "ll_input_context": "gold_history_and_selected_belief",
+        "ll_history_policy": "all supplied prior gold turns and current user; no current reference answer",
+        "actor_context_policy": "original tokenizer behavior and input-plus-output capacity check; no added trimming",
+        "experiment": "safedial_main_wildjailbreak_ll_context_v1"
+      }
+    }
+  },
+  "real_tokenizer_injected_replay": {
+    "vdcgs": {
+      "passed": true,
+      "turns": 5,
+      "journal_events": 40,
+      "no_op_resume_unchanged": true,
+      "backend": "injected synthetic outputs; real pinned tokenizer; no model calls"
+    },
+    "rdcgs": {
+      "passed": true,
+      "turns": 5,
+      "journal_events": 170,
+      "no_op_resume_unchanged": true,
+      "backend": "injected synthetic outputs; real pinned tokenizer; no model calls"
+    }
+  },
+  "existing_v3_source_checks": {
+    "vdcgs": {
+      "files": 102,
+      "mismatches": []
+    },
+    "rdcgs": {
+      "files": 102,
+      "mismatches": []
+    }
+  },
+  "source_sha256": {
+    "scripts/run_safedial_dcgs_context.py": "556cdda72462dc60fb67098fc73f120887e2f26c932c48113058febe76754007",
+    "scripts/slurm/run_safedial_dcgs_history_smoke.sbatch": "7265ed8b37eaf6f46113ff1692278bbbee37d92300924efa993a390bb31a39e3",
+    "tests/test_safedial_dcgs_history.py": "23bee1dbad05e188371d6c3c26b2064f233692b3c4fbb580ccc151705337d6aa",
+    "docs/SAFEDIALBENCH_DCGS_HISTORY.md": "e43683ae9fbba733a0555666abf06ddbe4eaa25f56f29603fde8c2b1764c49b3"
+  },
+  "gpu_inference_performed": false,
+  "paid_api_calls": 0,
+  "slurm_jobs_submitted": 0
+}
