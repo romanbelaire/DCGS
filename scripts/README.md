@@ -10,13 +10,22 @@ for exact old files, hashes, run references, and historical tests.
 | --- | --- | --- |
 | Main WildJailbreak DCGS + trained LL critic | `run_safedial_dcgs_wildjailbreak.py --method vdcgs` or `rdcgs` | `validate_safedial_dcgs_wildjailbreak.py`; `slurm/run_safedial_{vdcgs,rdcgs}_wildjailbreak_main_{smoke,full}.sbatch` |
 | Separate DCGS history experiment | `run_safedial_dcgs_context.py --method vdcgs --include-history` (also `rdcgs`) | Same runner `--audit-only`; `slurm/run_safedial_dcgs_history_smoke.sbatch {vdcgs\|rdcgs}`; [history guide](../docs/SAFEDIALBENCH_DCGS_HISTORY.md) |
+| DCGS, 384-token belief lists | `run_safedial_dcgs_belief384.py` | `--audit-only`; `slurm/run_safedial_dcgs_belief384_full.sbatch {vdcgs\|rdcgs} {history\|belief-only}`; [384-token guide](../docs/SAFEDIALBENCH_BELIEF384.md) |
 | TPO, current full run | `run_safedial_tpo_full.py` | `validate_safedial_tpo_full.py`; `slurm/run_safedial_tpo_retry_full.sbatch` (v8) |
 | TPO, upstream candidate handling | `run_safedial_tpo_upstream_full.py` | `validate_safedial_tpo_upstream.py`; `slurm/run_safedial_tpo_upstream_smoke.sbatch`; [policy guide](../docs/SAFEDIALBENCH_TPO_UPSTREAM_HANDLING.md) |
 | SmoothLLM, resumable full run | `run_safedial_smoothllm_turn_resume.py` | `validate_safedial_smoothllm_turn_resume.py`; `slurm/run_safedial_smoothllm_turn_resume_full.sbatch` |
+| SmoothLLM, single fresh-seed recovery of 344/index4 | `run_safedial_smoothllm_recovery.py` | `--validate-only` / `--audit-only --require-gpu`; `slurm/run_safedial_smoothllm_recovery.sbatch`; [supplemental policy](../docs/SAFEDIALBENCH_SMOOTHLLM_RECOVERY.md) |
 | Zephyr baseline / CAT | `run_safedial_baseline.py` | `validate_safedial_generation.py`; Zephyr/CAT launchers in `slurm/` |
+| DCR, Qwen2.5-1.5B + uploaded LoRA | `run_safedial_dcr.py` | `--validate-only` / `--audit-only --require-gpu`; `slurm/run_safedial_dcr_smoke.sbatch`; [DCR guide](../docs/SAFEDIALBENCH_DCR.md) |
+| DCR full benchmark, supplied inference format | `run_safedial_dcr_prompt_ablation.py --prompt-format training` (legacy label) | `slurm/run_safedial_dcr_full.sbatch`; [format contract and resume](../docs/SAFEDIALBENCH_DCR.md#full-benchmark-using-the-supplied-inference-format) |
+| DCR prompt-format diagnostic | `run_safedial_dcr_prompt_ablation.py --prompt-format training` or `raw` | `slurm/run_safedial_dcr_prompt_smoke.sbatch {training\|raw}`; [paired smoke guide](../docs/SAFEDIALBENCH_DCR_PROMPT_SMOKE.md) |
+| DCR with literal Zephyr formatting | `run_safedial_dcr_zephyr_prompt.py` | `slurm/run_safedial_dcr_zephyr_smoke.sbatch`; [format semantics and smoke](../docs/SAFEDIALBENCH_DCR_PROMPT_SMOKE.md#additional-zephyr-style-diagnostic) |
+| DCR with standard Qwen template | `run_safedial_dcr_qwen_prompt.py` | `slurm/run_safedial_dcr_qwen_smoke.sbatch`; [paired template smoke](../docs/SAFEDIALBENCH_DCR_PROMPT_SMOKE.md#standard-qwen-template-smoke) |
 | GPT-4o baseline | `run_safedial_api.py` | Same entry point with `--validate-output`; GPT-4o launchers in `slurm/` |
 | SmoothLLM successful-dialogue judging | `run_safedial_smoothllm_judging.py` (Windows/Linux) | CPU-only `slurm/run_safedial_smoothllm_judge_full.sbatch`; [coverage and resume](../docs/SAFEDIALBENCH_FULL_JUDGING.md) |
 | Judging | `judge_safedial.py` | `--dry-run` checks inputs without paid calls; dedicated judge launchers in `slurm/` |
+| LlamaGuard secondary safety evaluation | `judge_safedial_llamaguard.py` | `--prepare-only` freezes saved outputs without model execution; `slurm/run_safedial_llamaguard.sbatch`; [metrics, pilot and resume](../docs/SAFEDIALBENCH_LLAMAGUARD.md) |
+| LlamaGuard full-dataset evaluation | `run_safedial_llamaguard_full.py` | Full ID/turn coverage, tokenizer-only `--preflight-only`, resumable GPU judging; `slurm/run_safedial_llamaguard_full.sbatch`; [full-run guide](../docs/SAFEDIALBENCH_LLAMAGUARD.md#full-dataset-runner) |
 | Human adjudication export | `export_safedial_adjudication.py` | See `docs/SAFEDIALBENCH_HUMAN_ADJUDICATION.md` |
 | Artifact preparation | `prepare_safedial_cat.py`, `prepare_safedial_tpo.py` | `--offline` validates existing assets |
 | API connection check | `test_openai_connection.py` | Makes an API request; not part of offline tests |

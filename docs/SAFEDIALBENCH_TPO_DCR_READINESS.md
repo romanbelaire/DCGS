@@ -1,8 +1,16 @@
 # TPO and DCR readiness audit
 
+**DCR update, 2026-09-21:** The user supplied the Qwen2.5-1.5B SFT LoRA and
+confirmed the standard base and uploaded training template. A separate native
+runner, pinned artifacts and GPU smoke launcher are now implemented; see the
+[DCR guide](SAFEDIALBENCH_DCR.md). The missing-artifact findings below describe
+the earlier checkout. L40 smoke 271289 passed loading/output/template/GPU
+checks; language mismatch, output-cap hits and generated extra turns are
+recorded quality observations. See the DCR guide for details.
+
 Verified 2026-09-14 SGT. Scope: current working tree, HEAD file listing, local model/output directories, project and default Hugging Face model caches, supplied DCGS PDF, original method papers, and upstream public sources. Read-only investigation plus documentation; no inference, training, package installation, or Slurm changes.
 
-Implementation update after this audit: the TPO gaps below have now been addressed by a separate native runner, and the pretrained reward model is staged. See [TPO run guide](SAFEDIALBENCH_TPO.md). Offline checks pass; real GPU smoke remains pending user submission. DCR status is unchanged.
+Historical implementation update after this audit: the TPO gaps below were addressed by a separate native runner, and the pretrained reward model was staged. See [TPO run guide](SAFEDIALBENCH_TPO.md). Offline checks passed; real GPU smoke was pending user submission. DCR was still awaiting weights at that point; its current status is recorded above.
 
 ## Verdict
 

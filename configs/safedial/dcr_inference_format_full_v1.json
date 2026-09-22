@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "format_authority": "models/dcr_sft_lora_171151/DCR-main/vllm_inference_lora.py",
+  "format_authority_sha256": "0c917a4beac08b7da893f9f2fc0d75fce45e2386b1deebb3060115df7888b05c",
+  "template": "models/dcr_sft_lora_171151/chat_template.jinja",
+  "template_sha256": "aae29b2c85a98e5e19232ecf499caae8d626a7517b91f418d669f0380c0a8d0d",
+  "training_format_parity": "unverified; user selected supplied inference format",
+  "complete_two_stage_dcr_provenance": "unverified; supplied stock-Qwen base plus SFT LoRA",
+  "legacy_runner_prompt_format": "training",
+  "legacy_label_meaning": "uploaded uppercase-role template; not evidence of training parity",
+  "backend": "transformers_peft",
+  "reference_backend": "vllm",
+  "system_message": null,
+  "history": "dataset_reference_assistant",
+  "temperature": 0.0,
+  "max_new_tokens": 1024,
+  "reference_default_max_tokens": 512,
+  "stop_policy": "uploaded tokenizer EOS; no additional stop strings",
+  "selected_dialogues": 2037,
+  "selected_turns": 10029,
+  "source_sha256": {
+    "scripts/run_safedial_dcr_prompt_ablation.py": "1021bb5655561762f996522818a14367c6e8eb47fee7a59dd5fd5b05a4bf32ad",
+    "scripts/prepare_safedial_dcr.py": "bed0e28f338b81b1752f68e2372dc48c0ba34250360eb9074ea917ef092c242e",
+    "scripts/run_safedial_baseline.py": "5cd217d99793c99536c837423b816d0f0baa0bae1088a7b76e616d30b0997d82",
+    "scripts/safedial_adapters.py": "dcc2e06fa77f342f5de172761138f4f4ceb670c11f3d075daa40c6512f7edd8e",
+    "scripts/validate_safedial_generation.py": "0d05c0b3917e5ed6e46cd017e2f769f82d302cd43852a69b275808b46f580f2f",
+    "scripts/judge_safedial.py": "71308a7a042537a4b5577726f929549ca0f939c9a468a80f77a6e8a221f3ad22"
+  }
+}
