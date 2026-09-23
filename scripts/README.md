@@ -11,8 +11,8 @@ for exact old files, hashes, run references, and historical tests.
 | Main WildJailbreak DCGS + trained LL critic | `run_safedial_dcgs_wildjailbreak.py --method vdcgs` or `rdcgs` | `validate_safedial_dcgs_wildjailbreak.py`; `slurm/run_safedial_{vdcgs,rdcgs}_wildjailbreak_main_{smoke,full}.sbatch` |
 | Separate DCGS history experiment | `run_safedial_dcgs_context.py --method vdcgs --include-history` (also `rdcgs`) | Same runner `--audit-only`; `slurm/run_safedial_dcgs_history_smoke.sbatch {vdcgs\|rdcgs}`; [history guide](../docs/SAFEDIALBENCH_DCGS_HISTORY.md) |
 | DCGS, 384-token belief lists | `run_safedial_dcgs_belief384.py` | `--audit-only`; `slurm/run_safedial_dcgs_belief384_full.sbatch {vdcgs\|rdcgs} {history\|belief-only}`; [384-token guide](../docs/SAFEDIALBENCH_BELIEF384.md) |
-| TPO, current full run | `run_safedial_tpo_full.py` | `validate_safedial_tpo_full.py`; `slurm/run_safedial_tpo_retry_full.sbatch` (v8) |
-| TPO, upstream candidate handling | `run_safedial_tpo_upstream_full.py` | `validate_safedial_tpo_upstream.py`; `slurm/run_safedial_tpo_upstream_smoke.sbatch`; [policy guide](../docs/SAFEDIALBENCH_TPO_UPSTREAM_HANDLING.md) |
+| TPO, legacy v8 full run | `run_safedial_tpo_full.py` | `validate_safedial_tpo_full.py`; `slurm/run_safedial_tpo_retry_full.sbatch` (v8) |
+| TPO, upstream candidate handling | `run_safedial_tpo_upstream_full.py` | `validate_safedial_tpo_upstream.py`; `slurm/run_safedial_tpo_upstream_{smoke,full}.sbatch`; [policy guide](../docs/SAFEDIALBENCH_TPO_UPSTREAM_HANDLING.md) |
 | SmoothLLM, resumable full run | `run_safedial_smoothllm_turn_resume.py` | `validate_safedial_smoothllm_turn_resume.py`; `slurm/run_safedial_smoothllm_turn_resume_full.sbatch` |
 | SmoothLLM, single fresh-seed recovery of 344/index4 | `run_safedial_smoothllm_recovery.py` | `--validate-only` / `--audit-only --require-gpu`; `slurm/run_safedial_smoothllm_recovery.sbatch`; [supplemental policy](../docs/SAFEDIALBENCH_SMOOTHLLM_RECOVERY.md) |
 | Zephyr baseline / CAT | `run_safedial_baseline.py` | `validate_safedial_generation.py`; Zephyr/CAT launchers in `slurm/` |

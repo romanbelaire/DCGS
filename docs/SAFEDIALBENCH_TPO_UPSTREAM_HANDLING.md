@@ -57,7 +57,7 @@ inspection. Never delete failure markers to force a restart.
 
 **Do not point this runner at a v8 directory.** Manifests reject policy mixing.
 No v8 migration or reuse is implemented; a fresh run is required for consistent
-results under this policy. The currently running v8 job does not adopt these
+results under this policy. The historical v8 job does not adopt these
 changes automatically.
 
 ## Offline checks and manual GPU smoke
@@ -72,12 +72,35 @@ bash -n scripts/slurm/run_safedial_tpo_upstream_smoke.sbatch
 sbatch scripts/slurm/run_safedial_tpo_upstream_smoke.sbatch
 ```
 
-The user owns the final submission command. The smoke requests one A40, 64 GB
+The user owns the final submission command. The smoke requests one L40, 64 GB
 host memory, eight CPUs, and four hours; gold dialogue 1 contains five turns.
 It uses fresh `outputs/safedial_baseline/tpo_zephyr_upstream_smoke_v1` outputs,
 the full runner's native 8192-token reward context, and startup capacity probe.
-Review real GPU smoke output, failure counts, validation, and cost evidence
-before preparing a replacement full-job launcher. No jobs were submitted or
-cancelled while implementing this change.
+The smoke review and replacement full launcher are documented below.
+No jobs were submitted or cancelled while implementing this change.
 
 Verification evidence is under `docs/verification/tpo_upstream_handling_20260918/`.
+
+## Full run after the passed GPU smoke
+
+Smoke job 257858 completed on an L40: five successful turns, 75 candidates,
+no skipped or empty candidates, passed replay/GPU audit and native judge dry-run.
+Its source hashes still match the current implementation. The full launcher
+uses the same generation settings, without the one-dialogue filter.
+
+```bash
+cd /common/home/users/d/darrius.ng.2024/projects/RL-Defense/DCGS
+sbatch scripts/slurm/run_safedial_tpo_upstream_full.sbatch
+```
+
+Requests one L40, 64 GB host RAM, eight CPUs and 48 hours on researchlong.
+Creates `outputs/safedial_baseline/tpo_zephyr_upstream_full_v1` for all
+2,037 dialogues / 10,029 turns. It starts fresh under the new policy and
+does not reuse v8 outputs. Resubmit the identical command to resume after a
+time limit; inspect fatal failures before attempting a resume.
+
+Logs: `outputs/slurm/safedial-tpo-upstream-full-<JOB_ID>.{out,err}`.
+The launcher audits outcomes even when generation returns nonzero. Terminal
+empty-answer failures can yield exit 2 after processing all turns; consult
+`coverage.json` and `validation.json`. The final judging step is a dry-run
+only; actual native judging and LlamaGuard evaluation are separate jobs.
