@@ -1,0 +1,10 @@
+{
+  "elapsed_seconds": 72940.09921019687,
+  "device": "cuda",
+  "gpu_name": "NVIDIA L40",
+  "torch_version": "2.13.0+cu130",
+  "peak_gpu_allocated_bytes": 17143121920,
+  "peak_gpu_reserved_bytes": 20331888640,
+  "includes_model_loading": true,
+  "scope": "current_invocation"
+}

@@ -1,0 +1,37 @@
+{
+  "checked_at": "2026-09-24T15:49:48+08:00",
+  "job": 302464,
+  "state": "RUNNING",
+  "started": "2026-09-24T15:49:14+08:00",
+  "predecessor": {
+    "job": 302453,
+    "state": "FAILED",
+    "exit_code": "2:0",
+    "ended": "2026-09-24T15:35:44+08:00"
+  },
+  "zephyr": {
+    "complete": true,
+    "turns": 10029,
+    "corrected_format_errors": 465,
+    "labels": {
+      "NO": 8248,
+      "YES": 1781
+    },
+    "api_calls_for_import": 0,
+    "all_raw_responses_preserved": true,
+    "prior_successful_labels_preserved": true,
+    "source_pins_verified": true,
+    "combined_complete_dialogues": 2037
+  },
+  "cat": {
+    "journal_successes": 84,
+    "journal_errors": 0,
+    "expected_turns": 10029
+  },
+  "remaining_sources": [
+    "gpt4o",
+    "smoothllm_primary",
+    "vdcgs96",
+    "rdcgs96"
+  ]
+}

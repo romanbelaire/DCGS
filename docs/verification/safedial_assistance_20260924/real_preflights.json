@@ -1,0 +1,112 @@
+{
+  "cat": {
+    "preflight": {
+      "passed": true,
+      "available_turns": 10029,
+      "max_prompt_tokens": 1256,
+      "input_limit": 8192,
+      "overflow_turns": [],
+      "truncation": false,
+      "versions": {
+        "transformers": "4.57.6",
+        "tokenizers": "0.22.2",
+        "torch": "2.13.0"
+      }
+    },
+    "turn_counts": {
+      "judge_pending": 10029
+    },
+    "expected_dialogues": 2037
+  },
+  "gpt4o": {
+    "preflight": {
+      "passed": true,
+      "available_turns": 10028,
+      "max_prompt_tokens": 1558,
+      "input_limit": 8192,
+      "overflow_turns": [],
+      "truncation": false,
+      "versions": {
+        "transformers": "4.57.6",
+        "tokenizers": "0.22.2",
+        "torch": "2.13.0"
+      }
+    },
+    "turn_counts": {
+      "judge_pending": 10028,
+      "generation_missing": 1
+    },
+    "expected_dialogues": 2037,
+    "real_guard_join": "PASS exact source matching; no assistance labels, correctly incomplete"
+  },
+  "smoothllm": {
+    "preflight": {
+      "passed": true,
+      "available_turns": 10028,
+      "max_prompt_tokens": 1295,
+      "input_limit": 8192,
+      "overflow_turns": [],
+      "truncation": false,
+      "versions": {
+        "transformers": "4.57.6",
+        "tokenizers": "0.22.2",
+        "torch": "2.13.0"
+      }
+    },
+    "turn_counts": {
+      "judge_pending": 10028,
+      "generation_error": 1
+    },
+    "expected_dialogues": 2037
+  },
+  "vdcgs96": {
+    "preflight": {
+      "passed": true,
+      "available_turns": 10003,
+      "max_prompt_tokens": 818,
+      "input_limit": 8192,
+      "overflow_turns": [],
+      "truncation": false,
+      "versions": {
+        "transformers": "4.57.6",
+        "tokenizers": "0.22.2",
+        "torch": "2.13.0"
+      }
+    },
+    "turn_counts": {
+      "judge_pending": 10003,
+      "generation_missing": 26
+    },
+    "expected_dialogues": 2037
+  },
+  "rdcgs96": {
+    "preflight": {
+      "passed": true,
+      "available_turns": 10029,
+      "max_prompt_tokens": 825,
+      "input_limit": 8192,
+      "overflow_turns": [],
+      "truncation": false,
+      "versions": {
+        "transformers": "4.57.6",
+        "tokenizers": "0.22.2",
+        "torch": "2.13.0"
+      }
+    },
+    "turn_counts": {
+      "judge_pending": 10029
+    },
+    "expected_dialogues": 2037,
+    "real_guard_join": "PASS exact source matching; no assistance labels, correctly incomplete"
+  },
+  "protected_hashes_unchanged": {
+    "scripts/distill_safedial_goals.py": "b66cffb321b68c43f7a21a1c2e4a4e38639ec9841a6e8708f9c0f9a243719e52",
+    "scripts/judge_safedial_llamaguard.py": "7aad800844f610b2b57017b22e59b676cc3da1ec88c75f1fc634a75e15cc34aa",
+    "src/value/cares_reward.py": "38249dddfa1e377c317ed7abea76aadd7d1484b630d085f0992c8ce51e2c00b9",
+    "outputs/safedial_goals/gpt-5.6-sol_conversation_v3/inputs.jsonl": "190a93e4cd1cdfaacf7172fb314c3493cccba0d243104ad657bac90df33f1970",
+    "outputs/safedial_goals/gpt-5.6-sol_conversation_v3/goals.jsonl": "2e3519686e455b8d9d5949b0d3fb0515b8c3de557bb8d2d0a993fc58043b898c",
+    "outputs/safedial_goals/gpt-5.6-sol_conversation_v3/summary.json": "c0e86faa17c82df16c7b16d391f3d39fb1a260ea8fb558ce937dab57f362d878",
+    "outputs/safedial_goals/gpt-5.6-sol_conversation_v3/extractions.jsonl": "ff5d4ca7517f7c79e052199d2299eeb1af043d92e903f14b4cb84771fcba3f1a",
+    "outputs/safedial_goals/gpt-5.6-sol_conversation_v3/run_config.json": "04f3e0e4e70e8353347cd5bd186b96eee406030c82499045be055c48dcdfe672"
+  }
+}

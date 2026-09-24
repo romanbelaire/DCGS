@@ -1,0 +1,32 @@
+{
+  "actor_dtype": "torch.bfloat16",
+  "device": "cuda:0",
+  "source": "main ValueFunction and LLTokenCritic with shared pinned backbone",
+  "method_spec": {
+    "upstream_commit": "576ae184b8f49586456a136f8e14a93039cfeb88",
+    "critic_pooling": "last_nonpad",
+    "regret_min_target_mode": "min_q_over_states",
+    "ll_selection": "trained_token_critic_argmax",
+    "ll_candidate_generation": "upstream_numbered_list_with_upstream_fallback",
+    "ll_candidates": 5,
+    "ll_critic_max_input_tokens": 8192,
+    "ll_context_overflow": "terminal turn failure; no truncation or extra retry",
+    "critic_training": "frozen indexed checkpoint; no training performed by this runner",
+    "ll_input_context": "gold_history_and_selected_belief",
+    "ll_history_policy": "all supplied prior gold turns and current user; no current reference answer",
+    "actor_context_policy": "original tokenizer behavior and input-plus-output capacity check; no added trimming",
+    "experiment": "safedial_main_wildjailbreak_ll_context_v1"
+  },
+  "token_critic_sha256": "a0a4cc34e4a096122adeb21d5cff2acfe6cf760c22f70b9a76733555b9e1313f",
+  "token_critic_objective": "shapley",
+  "critic_mlp_dims": [
+    2048
+  ],
+  "ll_reranking": true,
+  "regret_enabled": false,
+  "checkpoint_sha256": "b1ecbe5461dfefe0edf9a2f6fb83277cf494d9744deea0cf56bb58d4bbf6d75d",
+  "strict_loaded_heads": [
+    "q",
+    "v"
+  ]
+}

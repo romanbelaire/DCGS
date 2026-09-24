@@ -1,0 +1,98 @@
+{
+  "source_match": true,
+  "full_prospective_manifest_match": true,
+  "saved_files_unchanged": true,
+  "sha256": {
+    "turns.jsonl": "13a6882e05545c8e42437661a670bc2c5e7f1812824b5cf71c58c484d5bef59a",
+    "events.jsonl": "09bd3f19a48645debb5efe8a8efab97fd433134cd532aefdf674c8c0ff6ef778",
+    "attempts.jsonl": "00c7bed042277110a86d7d23109eddd4ba10b3feefc4042f34167c14e451880e",
+    "failures.jsonl": "0202b63a60082b08f26e82778dc62e039e9b2a390e58781cb1db6815dc36df0d",
+    "run_config.json": "ecd80b2436c5ff7607f116065ebed4da57e9f1f801de2e4c99a8a0584a50ebbe",
+    "answers.jsonl": "e6bdd9c1a64ddab096c5ea21fc33ef4e2dd8d5def57b5338fc8b67c27fb33d1b"
+  },
+  "coverage": {
+    "expected_turns": 10029,
+    "successful_turns": 8974,
+    "terminal_failed_turns": 17,
+    "remaining_turns": 1038,
+    "terminal_failed_turn_keys": [
+      [
+        155,
+        0
+      ],
+      [
+        408,
+        2
+      ],
+      [
+        791,
+        4
+      ],
+      [
+        987,
+        5
+      ],
+      [
+        1001,
+        3
+      ],
+      [
+        1019,
+        1
+      ],
+      [
+        1122,
+        4
+      ],
+      [
+        1318,
+        4
+      ],
+      [
+        1345,
+        3
+      ],
+      [
+        1370,
+        4
+      ],
+      [
+        1381,
+        3
+      ],
+      [
+        1483,
+        4
+      ],
+      [
+        1608,
+        2
+      ],
+      [
+        1662,
+        4
+      ],
+      [
+        1770,
+        1
+      ],
+      [
+        1775,
+        1
+      ],
+      [
+        1792,
+        1
+      ]
+    ],
+    "execution_finished": false,
+    "complete_without_failures": false
+  },
+  "blocker": null,
+  "uncommitted_groups": 0,
+  "unknown_cost_calls": 1,
+  "elapsed_seconds": 388.1407608985901,
+  "model_calls": 0,
+  "replay_fix_sha256": "10dc30346bc8bb1e7b952822d101c5c72ddf691d8d631e4b7a1b215c30beb5cb",
+  "native_export_matches": true
+}

@@ -1,6 +1,6 @@
 # SafeDialBench: runs, configuration, and saved results
 
-This branch contains generation, validation, and judging tools for SafeDialBench: **2,037 dialogues / 10,029 turns**. The active DCGS runner implements main-method v3 with last-nonpadding-token high-level critic pooling and trained low-level token-critic reranking. Existing saved DCGS results are from older methods; no v3 GPU benchmark has been run.
+This branch contains generation, validation, and judging tools for SafeDialBench: **2,037 dialogues / 10,029 turns**. The active DCGS runner implements main-method v3 with last-nonpadding-token high-level critic pooling and trained low-level token-critic reranking. Saved results now include finished 96-token VDCGS/RDCGS runs, finished VDCGS-384 generation, and partial ongoing experiments. See the [current progress](docs/SAFEDIALBENCH_PROGRESS.md), [score comparison and coverage](docs/SAFEDIALBENCH_SCORE_COMPARISON.md), and [25 September result snapshot](results/safedialbench/2026-09-25/README.md).
 
 - [Current DCGS configuration](#current-dcgs-configuration)
 - [Run VDCGS and RDCGS](#run-vdcgs-and-rdcgs)
@@ -33,7 +33,7 @@ The entry point is [`scripts/run_safedial_dcgs_wildjailbreak.py`](scripts/run_sa
 | Regret settings | `regret_critic_beta=0.2`, `regret_min_target_mode=min_q_over_states`, `regret_zero_sum_targets=true` |
 | Response generation | `ll_action_belief_only=true`; temperature `0.7`; numbered list of 5 responses with a shared `640`-token budget |
 | Response reranking | `ll_candidate_rerank=true`, `n_ll_candidates=5`; trained `LLTokenCritic` shares the frozen actor backbone |
-| Token-critic context | Maximum `8,192` tokens for observation + belief + response; **no truncation**. Actual dataset overflow is not yet established; truncation is deferred |
+| Token-critic context | Maximum `8,192` tokens for observation + belief + response; **no truncation**. Observed overflows are recorded as terminal failures; see the progress report for coverage |
 | Tokenizers | Actor/high-level tokenizer uses left padding; token critic uses a separate copy with right padding. Padding and truncation are separate settings |
 | Batching | `q_value_chunk_size=4`, `batch_generation_chunk_size=1` |
 | Critic heads | `critic_mlp_dims=null` permits inference from checkpoint shapes; `mlp_width_mult=1.0`; `critic_lora_r=0` |
@@ -213,6 +213,10 @@ Then remove `--dry-run` to start paid API judging using `OPENAI_API_KEY` from `.
 
 ## Saved benchmark snapshot
 
+The latest [25 September snapshot](results/safedialbench/2026-09-25/README.md) contains generation outputs, native judging, LlamaGuard, assistance evaluation and goal extraction. It includes partial active runs; consult its timestamps and file inventory. The [score comparison](docs/SAFEDIALBENCH_SCORE_COMPARISON.md) distinguishes native scores, LlamaGuard DSR and combined DSR, including missing responses and unresolved judge errors.
+
+The following table is historical, from the September 19 snapshot.
+
 Status checked **19 September 2026, 01:32 SGT (UTC+8)**. Result files captured independently during `2026-09-19T01:30:35+08:00`–`2026-09-19T01:31:33+08:00`. At that capture, both old full DCGS jobs reported running. Their present scheduler state has not been checked.
 
 This branch contains SafeDialBench generation, validation, and judging code plus saved results. A full benchmark has **2,037 dialogues and 10,029 turns**. Active-run counts are snapshots, not final results.
@@ -268,14 +272,14 @@ Earlier A40 TPO smoke submission **257857** failed because L40 job **257858** al
 
 ## Results and reproducibility
 
-- [Current snapshot evidence](results/safedialbench/2026-09-19/snapshot.json): per-run counts, file hashes, saved validations, judge aggregates, and terminal failure counts. [Scheduler state](results/safedialbench/2026-09-19/scheduler.txt) and Slurm logs were captured separately.
-- [Latest saved results](results/safedialbench/2026-09-19/README.md): saved results from all 31 run directories. Independent file snapshots are not resumable checkpoints.
+- [Latest snapshot evidence](results/safedialbench/2026-09-25/snapshot.json): generation, native judging, LlamaGuard, assistance and goal artifacts with checksums. [Scheduler state](results/safedialbench/2026-09-25/scheduler.txt) was captured separately.
+- [September 19 saved results](results/safedialbench/2026-09-19/README.md): historical saved results from 31 run directories. Independent file snapshots are not resumable checkpoints.
 - [Previous status evidence](docs/verification/benchmark_status_20260918.json): status recorded on 18 September.
 - [Saved result snapshot](results/safedialbench/2026-09-18/README.md): answers, judgments, manifests, and compact turn records from 31 run directories. **This snapshot predates the status update above**; its live-run outputs may be less complete. See its [timestamp and checksums](results/safedialbench/2026-09-18/snapshot.json).
 - [Script index](scripts/README.md): generation, validation, and Slurm entrypoints.
 - [Upstream TPO handling](docs/SAFEDIALBENCH_TPO_UPSTREAM_HANDLING.md): skip-and-record policy and resume behavior.
 - [Original DCGS policy](docs/SAFEDIALBENCH_DCGS_PARITY.md): original-code reuse, failure handling, and critic-context limitations.
 
-The DCGS integration passed the full **146-test** CPU suite. The subsequent SmoothLLM judging helpers add twelve tests; all **37 relevant tests** passed on Linux and the seven portable tests also pass on native Windows. The expanded full suite has not been rerun. Documentation changes do not constitute GPU validation. Large saved JSONL files are gzip-compressed. Full model-call journals, checkpoints, caches, and the external dataset remain outside the committed result snapshot.
+The current offline suite passed **321 tests** on September 25, including snapshot integrity, goal extraction, normalized assistance judging and isolated replay checks. This does not constitute new GPU validation. Large saved JSONL files are gzip-compressed. Full model-call journals, checkpoints, caches, and the external dataset remain outside the committed result snapshot.
 
 Root `handover.md`, `runbook.md`, `AGENTS.md`, `agents.md`, and `.agents.md` are local operational files and ignored by Git. Immutable archived audit copies remain part of the historical snapshot.

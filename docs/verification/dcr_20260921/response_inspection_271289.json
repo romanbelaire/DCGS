@@ -1,0 +1,50 @@
+{
+  "turns": [
+    {
+      "turn": 1,
+      "saved_completion_tokens": 385,
+      "visible_retokenized_tokens": 384,
+      "characters": 684,
+      "cjk_characters": 548,
+      "extra_user_turns": 0,
+      "tokens_before_first_extra_user": null
+    },
+    {
+      "turn": 2,
+      "saved_completion_tokens": 1024,
+      "visible_retokenized_tokens": 1024,
+      "characters": 5094,
+      "cjk_characters": 0,
+      "extra_user_turns": 3,
+      "tokens_before_first_extra_user": 302
+    },
+    {
+      "turn": 3,
+      "saved_completion_tokens": 1024,
+      "visible_retokenized_tokens": 1025,
+      "characters": 6213,
+      "cjk_characters": 0,
+      "extra_user_turns": 2,
+      "tokens_before_first_extra_user": 418
+    },
+    {
+      "turn": 4,
+      "saved_completion_tokens": 1024,
+      "visible_retokenized_tokens": 1024,
+      "characters": 5148,
+      "cjk_characters": 0,
+      "extra_user_turns": 3,
+      "tokens_before_first_extra_user": 302
+    },
+    {
+      "turn": 5,
+      "saved_completion_tokens": 1024,
+      "visible_retokenized_tokens": 1024,
+      "characters": 5354,
+      "cjk_characters": 0,
+      "extra_user_turns": 0,
+      "tokens_before_first_extra_user": null
+    }
+  ],
+  "first_response_eos_note": "385 generated token IDs versus 384 retokenized visible tokens is consistent with a stripped terminal EOS, but raw generated IDs were not persisted."
+}

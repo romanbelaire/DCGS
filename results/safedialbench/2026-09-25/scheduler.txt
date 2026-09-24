@@ -1,0 +1,12 @@
+Read-only scheduler observation: 25 September 2026, approximately 00:49 SGT.
+             JOBID                                       NAME        STATE         TIME             NODELIST(REASON)
+            302962                 safedial-rdcgs-b384-resume      PENDING         0:00 (ReqNodeNotAvail, May be res
+            302813                        safedial-dcr-resume      RUNNING      1:12:08                       analog
+            302964                    safedial-vdcgs384-judge      RUNNING      1:24:15                          bat
+JobID                                         JobName      State ExitCode    Elapsed               Start                 End 
+------------ ---------------------------------------- ---------- -------- ---------- ------------------- ------------------- 
+300540                     safedial-vdcgs-b384-resume     FAILED      2:0 1-00:47:45 2026-09-23T22:11:01 2026-09-24T22:58:46 
+302813                            safedial-dcr-resume    RUNNING      0:0   01:12:08 2026-09-24T23:37:16             Unknown 
+302962                     safedial-rdcgs-b384-resume    PENDING      0:0   00:00:00             Unknown             Unknown 
+302964                        safedial-vdcgs384-judge    RUNNING      0:0   01:24:15 2026-09-24T23:25:09             Unknown 
+303002             safedial-assistance-api-normalized     FAILED      2:0   00:15:40 2026-09-24T23:51:01 2026-09-25T00:06:41

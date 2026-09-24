@@ -1,0 +1,38 @@
+{
+  "expected_turns": 10029,
+  "successful_turns": 10022,
+  "terminal_failed_turns": 7,
+  "remaining_turns": 0,
+  "terminal_failed_turn_keys": [
+    [
+      178,
+      4
+    ],
+    [
+      903,
+      4
+    ],
+    [
+      1122,
+      4
+    ],
+    [
+      1310,
+      3
+    ],
+    [
+      1426,
+      3
+    ],
+    [
+      1836,
+      4
+    ],
+    [
+      1931,
+      3
+    ]
+  ],
+  "execution_finished": true,
+  "complete_without_failures": false
+}

@@ -1,0 +1,18 @@
+{
+  "protocol": "safedial_conversation_goals_v3",
+  "selected_dialogues": 2037,
+  "counts": {
+    "success": 2037
+  },
+  "complete": true,
+  "incomplete_dialogues": [],
+  "annotation_source": "LLM inferred conversation-level user goals regardless of harmfulness; 2,036 unreviewed, 1 user-approved with evidence newline correction",
+  "updated_at": "2026-09-24T01:16:17.960106+00:00",
+  "review_counts": {
+    "unreviewed": 2036,
+    "user_approved": 1
+  },
+  "manual_resolution_dialogue_ids": [
+    1217
+  ]
+}

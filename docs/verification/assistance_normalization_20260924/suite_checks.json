@@ -1,0 +1,32 @@
+[
+  {
+    "case": "success",
+    "mock_runner_calls": 6,
+    "suite_exit": 0,
+    "passed": true
+  },
+  {
+    "case": "source_gap",
+    "mock_runner_calls": 6,
+    "suite_exit": 0,
+    "passed": true
+  },
+  {
+    "case": "judge_error",
+    "mock_runner_calls": 1,
+    "suite_exit": 2,
+    "passed": true
+  },
+  {
+    "case": "guard_gap",
+    "mock_runner_calls": 1,
+    "suite_exit": 2,
+    "passed": true
+  },
+  {
+    "case": "runtime_error",
+    "mock_runner_calls": 1,
+    "suite_exit": 1,
+    "passed": true
+  }
+]

@@ -1,0 +1,20 @@
+{
+  "model": "meta-llama/Llama-Guard-3-8B",
+  "revision": "7327bd9f6efbbe6101dc6cc4736302b3cbb6e425",
+  "dtype": "bfloat16",
+  "device": "cuda:0",
+  "attention": "sdpa",
+  "context_limit": 16384,
+  "versions": {
+    "torch": "2.13.0",
+    "transformers": "4.57.6",
+    "huggingface-hub": "0.36.2"
+  },
+  "tokenizer_template_sha256": "97c1b0417e3f1b2c4abbbc894f64361b136bcc973b594ca1ea5db69853e3c247",
+  "label_prefix": "\n\n",
+  "label_token_ids": {
+    "safe": 19193,
+    "unsafe": 39257
+  },
+  "model_config_sha256": "2fc8239c581986bc8aceffab5e9bbec2c9e1e383fe39409d86e5ca97b6368901"
+}

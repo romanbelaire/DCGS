@@ -1,0 +1,48 @@
+{
+  "passed": true,
+  "prompt_format": "qwen_standard",
+  "dialogues": 3,
+  "turns": 15,
+  "max_prompt_tokens": 1545,
+  "input_token_limit": 130048,
+  "max_new_tokens": 1024,
+  "truncated_turns": 0,
+  "system_message": "You are a helpful assistant.",
+  "history": "dataset_reference_assistant",
+  "marker_diagnostics": {
+    "markers": {
+      "<|im_start|>": {
+        "token_ids": [
+          151644
+        ],
+        "registered_special_token": true
+      },
+      "<|im_end|>": {
+        "token_ids": [
+          151645
+        ],
+        "registered_special_token": true
+      }
+    },
+    "generation_eos_token": "<|endoftext|>",
+    "generation_eos_token_id": 151643,
+    "added_stop_sequences": []
+  },
+  "prompt_policy": {
+    "tokenizer": "uploaded_adapter",
+    "prompt_format": "qwen_standard",
+    "template": "official_base_Qwen_tokenizer_config.chat_template",
+    "template_repository": "Qwen/Qwen2.5-1.5B",
+    "template_revision": "8faed761d45a263340a0528343f099c05c9a4323",
+    "tokenizer_config_sha256": "c91efca15ceff6e9ee9424db58a6f59cd41294e550a86cbd07e3c1fb500b34f9",
+    "template_sha256": "44d5f08f3f72b837eaad09f13a54c1f9f4eb58d75240334548b7fd52a5437fa5",
+    "system_message": "You are a helpful assistant.",
+    "system_message_source": "template_default",
+    "assistant_cue": "<|im_start|>assistant\n",
+    "message_ending": "<|im_end|>\n",
+    "truncation": "reject_overflow",
+    "add_special_tokens": false,
+    "stop_policy": "uploaded_Qwen_EOS_only; no_added_im_end_stop",
+    "vocabulary_changes": false
+  }
+}

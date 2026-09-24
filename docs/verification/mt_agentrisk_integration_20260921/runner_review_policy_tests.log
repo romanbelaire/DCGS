@@ -1,0 +1,44 @@
+/common/home/users/d/darrius.ng.2024/projects/RL-Defense/DCGS/src/main.py:5507: DeprecationWarning: invalid escape sequence '\/'
+  print(f"Iteration: {iteration} \/")
+...............
+----------------------------------------------------------------------
+Ran 15 tests in 5.303s
+
+OK
+[DEBUG] All candidates are [SKIP] for 1 episode(s). Attempting batched retry 2/3...
+[WARNING] Retry succeeded: All episode(s) that had all-[SKIP] candidates now have valid candidates after regeneration.
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=1.0000
+[DEBUG] All candidates are [SKIP] for 1 episode(s). Attempting batched retry 2/3...
+[WARNING] Retry succeeded: All episode(s) that had all-[SKIP] candidates now have valid candidates after regeneration.
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=1.0000
+[DEBUG] All candidates are [SKIP] for 1 episode(s). Attempting batched retry 2/3...
+[WARNING] Retry succeeded: All episode(s) that had all-[SKIP] candidates now have valid candidates after regeneration.
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=1.0000
+[DEBUG] All candidates are [SKIP] for 1 episode(s). Attempting batched retry 2/3...
+[WARNING] Retry succeeded: All episode(s) that had all-[SKIP] candidates now have valid candidates after regeneration.
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=1.0000
+[DEBUG] All candidates are [SKIP] for 1 episode(s). Attempting batched retry 2/3...
+[WARNING] Retry succeeded: All episode(s) that had all-[SKIP] candidates now have valid candidates after regeneration.
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=1.0000
+[DEBUG] All candidates are [SKIP] for 1 episode(s). Attempting batched retry 2/3...
+[WARNING] Retry succeeded: All episode(s) that had all-[SKIP] candidates now have valid candidates after regeneration.
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=1.0000
+[DEBUG] All candidates are [SKIP] for 1 episode(s). Attempting batched retry 2/3...
+[WARNING] Retry succeeded: All episode(s) that had all-[SKIP] candidates now have valid candidates after regeneration.
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=1.0000
+[DEBUG] All candidates are [SKIP] for 1 episode(s). Attempting batched retry 2/3...
+[WARNING] Retry succeeded: All episode(s) that had all-[SKIP] candidates now have valid candidates after regeneration.
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=1.0000
+[DEBUG] All candidates are [SKIP] for 1 episode(s). Attempting batched retry 2/3...
+[WARNING] Retry succeeded: All episode(s) that had all-[SKIP] candidates now have valid candidates after regeneration.
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=1.0000
+[DEBUG] All candidates are [SKIP] for 1 episode(s). Attempting batched retry 2/3...
+[WARNING] Retry succeeded: All episode(s) that had all-[SKIP] candidates now have valid candidates after regeneration.
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=1.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=1.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=1.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=1.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=1.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=1.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=1.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000

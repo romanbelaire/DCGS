@@ -1,0 +1,84 @@
+{
+  "adapter": {
+    "adapter_path": "/common/home/users/d/darrius.ng.2024/projects/RL-Defense/DCGS/models/dcr_sft_lora_171151",
+    "adapter_repo": "local/dcr_sft_lora_171151",
+    "base_model": "Qwen/Qwen2.5-1.5B",
+    "base_path": "/common/home/users/d/darrius.ng.2024/projects/RL-Defense/DCGS/.cache/huggingface/hub/models--Qwen--Qwen2.5-1.5B/snapshots/8faed761d45a263340a0528343f099c05c9a4323",
+    "base_revision": "8faed761d45a263340a0528343f099c05c9a4323",
+    "base_sha256": {
+      "config.json": "0e8c8aa86468aba09c9d32157ff4bc2301c7e6c50e4398960425b2ea71e66f77",
+      "generation_config.json": "8c970692323e3ea0e9b8b0a4dca79388d31226e41f83c9fd6014804280ebf6e8",
+      "model.safetensors": "a961db72e75d52b18e6b0c9d379e51a26973b233385e0e127fdda7d648aec796"
+    },
+    "method": "DCR",
+    "provenance": {
+      "base": "User confirmed standard Qwen/Qwen2.5-1.5B; no separate refined base.",
+      "revision": "Training base revision unspecified; inference pinned to public snapshot.",
+      "template": "User confirmed uploaded chat_template.jinja was used for training."
+    },
+    "schema_version": 1,
+    "sha256": {
+      "adapter_config.json": "e2483c00f4012f4dbe0b613b2fef9c27acbd655643ab51a8557902f9133f1d15",
+      "adapter_model.safetensors": "c5354ed34e44440c7fffa951fb6154ccd1a7f9d83ea9943b473d8eb730a9a5c2",
+      "added_tokens.json": "58b54bbe36fc752f79a24a271ef66a0a0830054b4dfad94bde757d851968060b",
+      "chat_template.jinja": "aae29b2c85a98e5e19232ecf499caae8d626a7517b91f418d669f0380c0a8d0d",
+      "merges.txt": "8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5",
+      "params.json": "f0c3f3b05ff201855960beadd62223a870f89c3c48dacde9baaf7a5e235d6fd4",
+      "special_tokens_map.json": "6676f091c8bc4d1b50146427cfde92073402866b87b6e39223227931b70083e9",
+      "tokenizer.json": "145191e3b102f64e84dab1926006ee71528c1ea536df048ef9ff6c48d01f95de",
+      "tokenizer_config.json": "60f6e7bc948cedd377a20f01d022ef664d026fbc93d72e0a9bdac233f8632181",
+      "vocab.json": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
+    }
+  },
+  "benchmark": "SafeDialBench",
+  "dataset": "/common/home/users/d/darrius.ng.2024/projects/RL-Defense/DCGS/benchmark-artifacts/SafeDialBench-Dataset/data/complete/datasets_en.jsonl",
+  "dataset_sha256": "a5429b6477ab7d3f6e47da55e0a9c889bbbba7575dd2ba7e1672379a412bc988",
+  "dtype": "bfloat16",
+  "generation_only": true,
+  "max_input_tokens": null,
+  "max_new_tokens": 1024,
+  "model": "Qwen/Qwen2.5-1.5B",
+  "model_id": "qwen2.5-1.5b-dcr-sft-171151-prompt-zephyr-literal-v1",
+  "num_choices": 1,
+  "package_versions": {
+    "peft": "0.20.0",
+    "tokenizers": "0.22.2",
+    "torch": "2.13.0",
+    "transformers": "4.57.6"
+  },
+  "prompt_format": "zephyr",
+  "prompt_policy": {
+    "add_special_tokens": false,
+    "assistant_cue": "<|assistant|>\n",
+    "message_ending": "</s>\n",
+    "prompt_format": "zephyr",
+    "serialization": "role_marker_newline_content_literal_end_s_newline",
+    "stop_policy": "uploaded_Qwen_EOS_only; literal_</s>_is_not_a_stop_sequence",
+    "system_message": null,
+    "template": "literal_zephyr_role_markers_v1",
+    "tokenizer": "uploaded_adapter",
+    "truncation": "reject_overflow",
+    "vocabulary_changes": false
+  },
+  "protocol": "safedial_dcr_prompt_ablation_zephyr_literal_v1",
+  "revision": "8faed761d45a263340a0528343f099c05c9a4323",
+  "seed": 0,
+  "seed_model_id": "qwen2.5-1.5b-dcr-sft-171151",
+  "selected_ids": [
+    1,
+    2,
+    3
+  ],
+  "source_sha256": {
+    "judge_safedial.py": "71308a7a042537a4b5577726f929549ca0f939c9a468a80f77a6e8a221f3ad22",
+    "prepare_safedial_dcr.py": "bed0e28f338b81b1752f68e2372dc48c0ba34250360eb9074ea917ef092c242e",
+    "run_safedial_baseline.py": "5cd217d99793c99536c837423b816d0f0baa0bae1088a7b76e616d30b0997d82",
+    "run_safedial_dcr.py": "beaf1db51b077b2f772019c55e2c7bfde11b90ae9fbafae2b022ac014003b949",
+    "run_safedial_dcr_prompt_ablation.py": "1021bb5655561762f996522818a14367c6e8eb47fee7a59dd5fd5b05a4bf32ad",
+    "run_safedial_dcr_zephyr_prompt.py": "427fb79f72e2a85da42233fc7c5b27760687147717bdb6be288e08651ddb25d8",
+    "safedial_adapters.py": "dcc2e06fa77f342f5de172761138f4f4ceb670c11f3d075daa40c6512f7edd8e",
+    "validate_safedial_generation.py": "0d05c0b3917e5ed6e46cd017e2f769f82d302cd43852a69b275808b46f580f2f"
+  },
+  "temperature": 0.0,
+  "top_p": 1.0
+}

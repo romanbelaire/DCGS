@@ -1,0 +1,18 @@
+{
+  "tests_passed": 31,
+  "actual_cached_tokenizer_test": true,
+  "pilot_max_tokens": 2710,
+  "baseline_max_tokens": 8049,
+  "baseline_audited_turns": 10029,
+  "overflows": 0,
+  "gpu_sanity_after_fix": "pending user submission",
+  "old_pilot_preserved": true,
+  "new_pilot_inputs_identical": true,
+  "syntax_and_doc_links": "PASS",
+  "sha256": {
+    "scripts/judge_safedial_llamaguard.py": "7aad800844f610b2b57017b22e59b676cc3da1ec88c75f1fc634a75e15cc34aa",
+    "scripts/run_safedial_llamaguard_full.py": "896e332edd3db8c7993c9df8b04e22f9517bf5c8718d30b6148f9944cfb81634",
+    "tests/test_judge_safedial_llamaguard.py": "df2667215a02c72c382d25dcdcaadcc05388fcb61e8edc830153155750296f96",
+    "tests/test_safedial_llamaguard_full.py": "9263b93198a9b63a7fc0e4d324b3e2e5c0107ea0204d78c023b9f5f193e73c32"
+  }
+}

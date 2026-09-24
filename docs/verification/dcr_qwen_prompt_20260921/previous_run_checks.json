@@ -1,0 +1,22 @@
+{
+  "dcr_qwen_1.5b_smoke_v1": {
+    "source_hashes_match": true,
+    "paired_seeds_match": true,
+    "answers_sha256": "7a5e94a1bcbc3695acc74c78c301029feeb4d39e8f1edc14cc40be25b37e5ba3"
+  },
+  "dcr_qwen_1.5b_prompt_training_ids2-3_smoke_v1": {
+    "source_hashes_match": true,
+    "paired_seeds_match": true,
+    "answers_sha256": "317b4ef569b040c8e200a5e30f9f9558cc09154099cc3c41e5f62ca5f0054772"
+  },
+  "dcr_qwen_1.5b_prompt_raw_ids1-2-3_smoke_v1": {
+    "source_hashes_match": true,
+    "paired_seeds_match": true,
+    "answers_sha256": "57a7712c0254e7d6df619fbd0c18ef7b578f470cdb997ec3c79284be5965ec78"
+  },
+  "dcr_qwen_1.5b_prompt_zephyr_ids1-2-3_smoke_v1": {
+    "source_hashes_match": true,
+    "paired_seeds_match": true,
+    "answers_sha256": "9579856962268c0c57c3463a777580e07b4a3f5b376ca05cd12757246771db66"
+  }
+}

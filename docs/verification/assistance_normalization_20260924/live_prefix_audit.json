@@ -1,0 +1,23 @@
+{
+  "checked_at": "2026-09-24T15:31:29.824852+08:00",
+  "journal_prefix_bytes": 4578480,
+  "journal_prefix_sha256": "7d0dfb66a13e5f9f11a7c92549ccf61755559d739a425758f964d1aac7833ade",
+  "records_checked": 7158,
+  "original_statuses": {
+    "success": 6796,
+    "error": 362
+  },
+  "normalized_counts": {
+    "NO": 5957,
+    "YES": 1201
+  },
+  "repairable_errors": 362,
+  "remaining_errors": [],
+  "all_previous_successes_preserved": true,
+  "active_source_pins_unchanged": true,
+  "original_output_edits": false,
+  "api_calls": 0,
+  "tests_passed": 42,
+  "note": "Read-only audit of a live bounded prefix, not final results; new suite imports after job302453 ends.",
+  "additional_numbered_continuations_corrected": 3
+}

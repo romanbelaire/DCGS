@@ -1,0 +1,141 @@
+{
+  "checked_at": "2026-09-24T23:17:19.211505+08:00",
+  "runs": {
+    "VDCGS-384": {
+      "exported_dialogues": 2030,
+      "successful_dialogues": 2030,
+      "exported_turns": 9994,
+      "error_dialogue_ids": [],
+      "failure_records": [
+        {
+          "dialogue_id": 178,
+          "turn_index": 4,
+          "category": "terminal_output",
+          "code": "beliefs_exhausted"
+        },
+        {
+          "dialogue_id": 903,
+          "turn_index": 4,
+          "category": "terminal_output",
+          "code": "beliefs_exhausted"
+        },
+        {
+          "dialogue_id": 1122,
+          "turn_index": 4,
+          "category": "terminal_output",
+          "code": "beliefs_exhausted"
+        },
+        {
+          "dialogue_id": 1310,
+          "turn_index": 3,
+          "category": "terminal_output",
+          "code": "beliefs_exhausted"
+        },
+        {
+          "dialogue_id": 1426,
+          "turn_index": 3,
+          "category": "terminal_output",
+          "code": "beliefs_exhausted"
+        },
+        {
+          "dialogue_id": 1836,
+          "turn_index": 4,
+          "category": "terminal_output",
+          "code": "beliefs_exhausted"
+        },
+        {
+          "dialogue_id": 1931,
+          "turn_index": 3,
+          "category": "terminal_output",
+          "code": "beliefs_exhausted"
+        }
+      ],
+      "last_export_id": 2037,
+      "answers_modified_at": "2026-09-24T22:35:20.376176+08:00",
+      "audit": {
+        "integrity_passed": true,
+        "policy_parity_passed": true,
+        "successful_turns": 10022,
+        "terminal_failed_turns": 7,
+        "remaining_turns": 0,
+        "passed": false,
+        "model_invocations_without_gpu_measurement": [
+          "2559a52556c84c7a8f0c355c420e93cf"
+        ]
+      }
+    },
+    "RDCGS-384": {
+      "exported_dialogues": 1464,
+      "successful_dialogues": 1464,
+      "exported_turns": 7134,
+      "error_dialogue_ids": [],
+      "failure_records": [
+        {
+          "dialogue_id": 987,
+          "turn_index": 5,
+          "category": "terminal_output",
+          "code": "ll_context_overflow"
+        }
+      ],
+      "last_export_id": 1465,
+      "answers_modified_at": "2026-09-24T18:37:25.716922+08:00"
+    },
+    "DCR": {
+      "exported_dialogues": 1977,
+      "successful_dialogues": 1973,
+      "exported_turns": 9727,
+      "error_dialogue_ids": [
+        416,
+        1850,
+        1912,
+        1915
+      ],
+      "failure_records": [],
+      "last_export_id": 1977,
+      "answers_modified_at": "2026-09-24T18:36:30.329336+08:00"
+    },
+    "TPO": {
+      "exported_dialogues": 10,
+      "successful_dialogues": 10,
+      "exported_turns": 50,
+      "error_dialogue_ids": [],
+      "failure_records": [],
+      "last_export_id": 10,
+      "answers_modified_at": "2026-09-24T23:10:16.522288+08:00",
+      "coverage.json": {
+        "expected_turns": 10029,
+        "processed_turns": 50,
+        "successful_turns": 50,
+        "failed_turns": 0,
+        "pending_turns": 9979,
+        "processing_complete": false,
+        "complete_without_failures": false,
+        "exported_dialogues": 10,
+        "skipped_candidates": 0,
+        "empty_candidates_scored": 0,
+        "fatal_events": 0
+      },
+      "saved_turns_at_followup": 54
+    }
+  },
+  "scheduler": {
+    "300540": {
+      "state": "FAILED",
+      "exit_code": "2:0",
+      "end": "2026-09-24T22:58:46+08:00"
+    },
+    "302425": {
+      "state": "RUNNING",
+      "node": "lagoon",
+      "start": "2026-09-24T22:39:38+08:00"
+    },
+    "302812": {
+      "state": "PENDING",
+      "tentative_start": "2026-09-27T14:27:05+08:00"
+    },
+    "302813": {
+      "state": "PENDING",
+      "tentative_start": "2026-09-27T14:27:05+08:00"
+    }
+  }
+}

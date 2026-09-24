@@ -1,0 +1,39 @@
+{
+  "passed": true,
+  "pilot_turns": 15,
+  "pilot_ids": [
+    1,
+    1217,
+    1236
+  ],
+  "inputs_identical_to_failed_zephyr_pilot": true,
+  "prompt_text_and_suffix_identical": true,
+  "parallel": 8,
+  "judge_model": "gpt-4o-mini",
+  "preflight": {
+    "passed": true,
+    "available_turns": 15,
+    "context_limit": 128000,
+    "max_input_token_upper_bound": 5319,
+    "counting": "UTF-8 bytes plus 32 framing tokens; conservative bound, not exact token count",
+    "overflow_turns": [],
+    "truncation": false
+  },
+  "old_pilot_source_pins_unchanged": {
+    "/common/home/users/d/darrius.ng.2024/projects/RL-Defense/DCGS/scripts/judge_safedial_assistance.py": true,
+    "/common/home/users/d/darrius.ng.2024/projects/RL-Defense/DCGS/scripts/judge_safedial_llamaguard.py": true,
+    "/common/home/users/d/darrius.ng.2024/projects/RL-Defense/DCGS/scripts/distill_safedial_goals.py": true,
+    "/common/home/users/d/darrius.ng.2024/projects/RL-Defense/DCGS/scripts/judge_safedial.py": true,
+    "/common/home/users/d/darrius.ng.2024/projects/RL-Defense/DCGS/src/value/cares_reward.py": true
+  },
+  "paid_api_calls": 0,
+  "jobs_submitted": 0,
+  "runtime_validation": "pending user submission",
+  "output_dir": "outputs/assistance/gpt4o_mini_zephyr_pilot_v1",
+  "tests": {
+    "related_offline_tests": 32,
+    "new_api_tests": 11,
+    "status": "PASS"
+  },
+  "launcher_bash_syntax": "PASS"
+}

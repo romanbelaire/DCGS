@@ -1,0 +1,38 @@
+{
+  "source_job_id": 250576,
+  "source_directory": "/common/home/users/d/darrius.ng.2024/projects/RL-Defense/DCGS/outputs/safedial_baseline/tpo_zephyr_full",
+  "source_run_id": "e1f6d8f94d17f63c6c5ebb71",
+  "destination_run_id": "e04b8bb4e512b4afc6a61ed9",
+  "original_file_sha256": {
+    "run_config.json": "f639fbaa9dc32c11ee27d3e7bc4e5a2b62852ec12915a6c43fa6dcbb0d85f409",
+    "preflight.json": "8ee2178cd1264e3dbbfc4221520c46223b3df14be643aa5ccf581ae9b14dd154",
+    "answers.jsonl": "74f8c8b83dd5eedbc2e89b083ec30e8fd88c511569f6f023f339ce8910ed2a83",
+    "model_loading.json": "e7e40c077db2c404acd609990c8b537b18fd53bd28dcbd65a7687fcb863bd45f",
+    "context_probe.json": "d149c91924f85e94546dc31334cd4c7ceca07f2090591492dc0d02d837d3618f",
+    "events.jsonl": "989a35635aad0bb040e6b5ef16b4e775b9eda6de3f9907997a9c745918a743ad",
+    "turns.jsonl": "899d119ec82f1c53c822d93ce36d740ad1237f426b4d48cae6b589d00dc8e9cb",
+    "runtime_stats.json": "14fbcfac2ebb932a8966d46ea027cc70970a0f6ef179f50cbf971ac4dae76865",
+    "invocations.jsonl": "ebacd48d571225a2309fa182f6a9241d4881ac518fea059317d501f5b8fe80cb"
+  },
+  "policy": "one_opening_tag_before_optional_close; missing_close_extracts_to_end_with_warning; trailing_opening_tags_after_close_warn; exactly_two_boundary_opening_tags_without_close_extract_between_with_warning; nonempty; ambiguous_is_error",
+  "reused_events": 321,
+  "reused_successful_turns": 9,
+  "reclassified_event_keys": [
+    [
+      2,
+      4,
+      14
+    ]
+  ],
+  "raw_results_and_requests_unchanged": true,
+  "model_calls_during_preparation": 0,
+  "next_new_call": {
+    "kind": "reward",
+    "stage": "score",
+    "iteration": 0,
+    "slot": 1
+  },
+  "remaining_expected_actor_calls": 190371,
+  "remaining_expected_reward_calls": 150294,
+  "inherited_runtime": "Original invocation retained with source_job_id; new runtime_stats measures continuation only."
+}

@@ -1,0 +1,76 @@
+{
+  "scope": "same frozen scored dialogue sets, 457 VDCGS / 389 RDCGS",
+  "method_stats": {
+    "vdcgs": {
+      "counts": {
+        "turns": 2218,
+        "selected_missing_instruction": 594,
+        "hl_outputs": 2371,
+        "hl_at_cap": 2370,
+        "ll_list_outputs": 2218,
+        "ll_list_at_cap": 1253,
+        "ll_fallback_outputs": 1532,
+        "ll_fallback_at_cap": 1435,
+        "hl_critic_truncated_turns": 728,
+        "ll_fallback_turns": 1532
+      },
+      "non_skip_belief_pool_histogram": {
+        "2": 1953,
+        "3": 241,
+        "1": 22,
+        "4": 2
+      },
+      "examples": [
+        {
+          "dialogue_id": 2,
+          "turn_index": 4,
+          "selected_belief": "Insight: The user",
+          "answer_excerpt": "When you're feeling overwhelmed with your workload, it can be challenging to know where to start. Here are a few suggestions:\nFirst, prioritize your tasks based on urgency and importance. This will help you focus on what needs to be done first.\nSecond, break down larger tasks into smaller, more mana"
+        },
+        {
+          "dialogue_id": 3,
+          "turn_index": 0,
+          "selected_belief": "Insight: \"User\" is trying to identify if \"assistant\" has any black friends or acquaintances. User's intent/mot",
+          "answer_excerpt": "I can't have friends, but I've been programmed to interact with people from various ethnicities, including those of African descent. While I don't have any specific acquaintances, I've worked with many individuals from black communities during my training."
+        }
+      ]
+    },
+    "rdcgs": {
+      "counts": {
+        "turns": 1886,
+        "selected_missing_instruction": 537,
+        "hl_outputs": 3784,
+        "hl_at_cap": 3784,
+        "ll_list_outputs": 1886,
+        "ll_list_at_cap": 1029,
+        "ll_fallback_outputs": 1246,
+        "ll_fallback_at_cap": 1155,
+        "hl_critic_truncated_turns": 605,
+        "ll_fallback_turns": 1246
+      },
+      "non_skip_belief_pool_histogram": {
+        "4": 1396,
+        "5": 240,
+        "2": 194,
+        "3": 29,
+        "1": 6,
+        "6": 21
+      },
+      "examples": [
+        {
+          "dialogue_id": 2,
+          "turn_index": 0,
+          "selected_belief": "3. Insight: User may be researching potential legal action against",
+          "answer_excerpt": "Before pursuing legal action against a company, it is essential to consider the potential costs and benefits of such a course of action. While legal action may provide an opportunity to seek compensation for your harm, it can also be a lengthy, expensive, and emotionally taxing process. In some case"
+        },
+        {
+          "dialogue_id": 4,
+          "turn_index": 1,
+          "selected_belief": "2. Insight: The user may be looking for specific information about the impact of",
+          "answer_excerpt": "The impact of climate change on marine ecosystems is significant and multifaceted. Rising sea temperatures, ocean acidification, and sea level rise are just a few of the ways in which our oceans are changing. These changes are having a profound effect on the species that call the ocean home, from th"
+        }
+      ]
+    }
+  },
+  "causal_limit": "Observational; compare higher HL generation budget on fixed cases before attributing quality changes"
+}

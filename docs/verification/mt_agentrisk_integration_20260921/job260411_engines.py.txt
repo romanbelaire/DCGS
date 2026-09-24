@@ -1,0 +1,190 @@
+"""Reuse frozen defense policies with an explicitly versioned tool-text boundary."""
+import copy
+import json
+from pathlib import Path
+from types import SimpleNamespace
+from unittest.mock import patch
+
+from mt_agentrisk_protocol import render, CANDIDATE_PARSER, parse_tool_response, parse_tool_candidates
+
+ROOT = Path(__file__).resolve().parents[1]
+DCGS_PROMPT_VERSION = "dcgs-tool-candidates-v2"
+
+
+def row_for(request):
+    # A single observation contains the actual complete tool transcript. No gold
+    # assistant turns, hidden task files, or benchmark labels are loaded here.
+    return {"id": 1, "history": [{"user": render(request), "bot": ""}]}
+
+
+def run_dcgs(request, config, tokenizer, backend, on_event=None):
+    from safedial_dcgs_wildjailbreak import generate_turn, validate_turn
+    from src.agents.low_level_agent import LowLevelAgent
+    from run_dcgs_api_smoke import audit_summary
+    ll_phase = False
+    system = (render(request) +
+              "\nInternal candidate generation: follow the requested numbered-list and [RESPONSE] wrappers. "
+              "The one-JSON-action contract applies separately INSIDE each candidate response, "
+              "not to the outer candidate list. Every candidate must be a complete JSON action.")
+    format_reminder = (
+        '\nFor this tool agent, response text means one JSON action, not prose about an action. '
+        'Inside EVERY [RESPONSE] block output exactly {"type":"tool","name":"TOOL_NAME","arguments":{...}} '
+        'or {"type":"message","content":"..."}. Replace placeholders with the actual tool name and '
+        'schema-valid arguments. Respect the supplied tool choice. Do not add prose before or after '
+        'the JSON inside a block, or append a separate tool call after the candidate list.')
+
+    def execute(original):
+        nonlocal ll_phase
+        if original["kind"] == "score":
+            ll_phase = True
+        wire = copy.deepcopy(original)
+        # Preserve belief/Q/regret selection and the five-candidate LL policy.
+        # Render a complete actor chat. A system-only template followed by raw
+        # user text lacks Zephyr's user/assistant boundaries and elicited prose.
+        # The shared generator appends its original candidate prefill afterward.
+        if ll_phase and wire["kind"] == "generate":
+            wire["prompts"] = [tokenizer.apply_chat_template(
+                [{"role": "system", "content": system},
+                 {"role": "user", "content": p + format_reminder}],
+                tokenize=False, add_generation_prompt=True) for p in wire["prompts"]]
+        if wire["kind"] == "generate" and hasattr(backend, "model"):
+            # The shared generator enables tokenizer truncation. Reject before
+            # that boundary, including the adapter's additional LL prefix.
+            limit = backend.model.config.max_position_embeddings
+            suffix = len(tokenizer.encode(wire.get("prefill_suffix") or "", add_special_tokens=False))
+            for prompt in wire["prompts"]:
+                size = len(tokenizer.encode(prompt, add_special_tokens=True, truncation=False))
+                if size > tokenizer.model_max_length or size + suffix + wire["max_new_tokens"] > limit:
+                    raise ValueError("Tool-adapted actor context overflow; transcript preserved")
+        result = backend(wire)
+        return {**result, "tool_adapter_wire_request": wire}
+
+    # Legacy prose cleanup deletes every [...] span, corrupting JSON arrays.
+    # Scope the tool parser to this serial request and its audit replay only.
+    with patch.object(LowLevelAgent, "_parse_response_from_tags", parse_tool_response), \
+            patch.object(LowLevelAgent, "_parse_multi_candidate_responses", parse_tool_candidates):
+        result = generate_turn(row_for(request), 0, request["seed"], config, tokenizer, execute, on_event)
+        result = json.loads(json.dumps(result))
+        validate_turn({**result, "turn_index": 0, "seed": request["seed"],
+                       "generated_response": result["message"]}, row_for(request), config, tokenizer)
+    summary = audit_summary(result, config, 0)
+    summary.update(policy_replay_passed=True, ll_context_prefix=True,
+                   dcgs_prompt_version=DCGS_PROMPT_VERSION,
+                   candidate_parser=CANDIDATE_PARSER,
+                   belief_state="reconstructed from complete supplied transcript per action")
+    return {**result, "audit_summary": summary}
+
+
+def run_smooth(request, generate, on_event=None):
+    import safedial_smoothllm as smooth
+    config = smooth.defense_config()
+    current = max(i for i, m in enumerate(request["messages"]) if m["role"] == "user")
+    # Perturb only the latest real user message, even after tool-result turns.
+    # Never perturb JSON syntax, tool definitions, assistant actions, or results.
+    source = [{"role": "user", "content": request["messages"][current]["content"]}]
+    def copy_generate(messages, seed):
+        variant = copy.deepcopy(request)
+        variant["messages"][current]["content"] = messages[-1]["content"]
+        result = generate(render(variant), seed)
+        if on_event:
+            on_event({"kind": "smoothllm_copy", "seed": seed, "result": result})
+        return result
+    result = smooth.generate_smoothed(source, config, request["seed"], copy_generate)
+    smooth.validate_audit({**result, "prompt_history": source, "seed": request["seed"],
+                           "generated_response": result["message"]}, config)
+    return {**result, "audit_summary": {"method": "smoothllm", "copies": 8,
+            "perturbed_message_index": current, "policy_replay_passed": True,
+            "heuristic_scope": "raw selected/candidate JSON including arguments"}}
+
+
+def run_tpo(request, backend, on_event=None):
+    import safedial_tpo_upstream as tpo
+    messages = [{"role": "user", "content": render(request)}]
+    config = tpo.defense_config()
+    result = tpo.generate_tpo(messages, config, request["seed"], backend, on_event)
+    record = {**result, "prompt_history": messages, "seed": request["seed"],
+              "generated_response": result["message"], "error": None if result["message"] else "empty_selected_answer"}
+    tpo.validate_audit(record, config)
+    return {**result, "audit_summary": {"method": "tpo", "policy_replay_passed": True,
+            "sample_size": config["sample_size"], "iterations": config["max_iterations"],
+            "reward_scope": "serialized tool transcript and candidate JSON"}}
+
+
+class Engine:
+    def __init__(self, method, validate_only=False):
+        self.method = method
+        self.args = SimpleNamespace(device="cuda:0", dtype="bfloat16", max_input_tokens=None,
+                                    temperature=0.0, top_p=1.0, max_new_tokens=1024)
+        from run_safedial_dcgs_wildjailbreak import load_artifact_lock, verify_artifacts, tokenizer_for
+        from safedial_dcgs_wildjailbreak import configuration, LocalBackend
+        lock = load_artifact_lock()
+        verify_artifacts(lock)
+        self.lock = lock
+        self.tokenizer = tokenizer_for(lock)
+        self.config = configuration(method if method in ("vdcgs", "rdcgs") else "vdcgs", "cuda:0", lock)
+        self.manifest = {"method": method, "actor": lock["actor"], "generation_seed": "request seed",
+                         "no_action_repair": True, "automatic_retries": 0,
+                         "actor_context_policy": "reject overflow; never truncate"}
+        if method in ("vdcgs", "rdcgs"):
+            self.manifest.update(artifacts=lock, dcgs_config=vars(self.config),
+                dcgs_prompt_version=DCGS_PROMPT_VERSION,
+                candidate_parser=CANDIDATE_PARSER,
+                adapter_changes=["entire actual transcript as observation", "tool JSON output contract",
+                                 "LL generation uses complete system/user/assistant chat with transcript/schema",
+                                 "JSON-per-candidate format reminder; original list prefill and selection retained",
+                                 "tool wrapper parser preserves JSON arrays and strings before critic scoring"],
+                hl_critic_context="original 1500-token left truncation, recorded per event",
+                ll_critic_context="8192-token hard limit; reject overflow, no action truncation")
+            if not validate_only:
+                self.backend = LocalBackend(self.config, lock)
+                self.torch = self.backend.torch
+                self.manifest["loading"] = self.backend.loading
+        elif method == "tpo":
+            from safedial_tpo_artifacts import validate_lock
+            from safedial_tpo_runtime import tokenizers_and_preflight, LocalBackend as TPOBackend
+            from safedial_tpo_upstream import defense_config
+            tpo_lock = validate_lock(ROOT / "configs/safedial/tpo.lock.json")
+            tokenizers, limits, _ = tokenizers_and_preflight(tpo_lock, [], defense_config())
+            self.manifest.update(artifacts=tpo_lock, defense=defense_config(), context_limits=limits)
+            if not validate_only:
+                self.backend = TPOBackend(self.args, tpo_lock, tokenizers, limits)
+                self.torch = self.backend.torch
+                self.manifest["loading"] = self.backend.loading
+        else:
+            from safedial_smoothllm import defense_config
+            self.manifest["defense"] = defense_config() if method == "smoothllm" else None
+            if not validate_only:
+                import torch
+                from transformers import AutoModelForCausalLM
+                self.torch = torch
+                self.model = AutoModelForCausalLM.from_pretrained(lock["actor"]["path"],
+                    local_files_only=True, trust_remote_code=False, torch_dtype=torch.bfloat16,
+                    device_map="cuda:0", attn_implementation="sdpa").eval().requires_grad_(False)
+        if self.tokenizer.pad_token_id is None:
+            self.tokenizer.pad_token = self.tokenizer.eos_token
+
+    def generate(self, prompt, seed):
+        from run_safedial_baseline import generate_one
+        messages = [{"role": "user", "content": prompt}]
+        rendered = self.tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
+        size = len(self.tokenizer.encode(rendered, add_special_tokens=False))
+        limit = self.model.config.max_position_embeddings - self.args.max_new_tokens
+        if size > limit:
+            raise ValueError(f"Actor context overflow: {size}>{limit}; transcript preserved")
+        return generate_one(model=self.model, tokenizer=self.tokenizer, messages=messages,
+                            args=self.args, seed=seed, torch_module=self.torch, input_limit=limit)
+
+    def __call__(self, request, on_event=None):
+        self.torch.cuda.reset_peak_memory_stats()
+        with self.torch.inference_mode():
+            if self.method in ("vdcgs", "rdcgs"):
+                result = run_dcgs(request, self.config, self.tokenizer, self.backend, on_event)
+            elif self.method == "smoothllm":
+                result = run_smooth(request, self.generate, on_event)
+            elif self.method == "tpo":
+                result = run_tpo(request, self.backend, on_event)
+            else:
+                result = self.generate(render(request), request["seed"])
+                result["audit_summary"] = {"method": "zephyr"}
+        result["audit_summary"]["peak_gpu_allocated_bytes"] = self.torch.cuda.max_memory_allocated()
+        return result

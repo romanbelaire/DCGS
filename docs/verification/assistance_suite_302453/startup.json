@@ -1,0 +1,30 @@
+{
+  "checked_at": "2026-09-24T15:22:58.990714+08:00",
+  "job": 302453,
+  "state": "RUNNING",
+  "node": "bat",
+  "partition": "researchlong",
+  "cpus": 8,
+  "gpu": false,
+  "started_at": "2026-09-24T15:20:53+08:00",
+  "current_source": "Zephyr",
+  "journal_prefix_bytes": 843582,
+  "journal_prefix_sha256": "36725b31618d85d80d9d32c3e6f1a376c5704967366b7a900c86235e068f8eac",
+  "saved_records": 1318,
+  "statuses": {
+    "success": 1238,
+    "error": 80
+  },
+  "error_types": {
+    "Expected one unambiguous ASSIST YES/NO label": 80
+  },
+  "period_only_parse_errors": 80,
+  "raw_error_forms": {
+    "NO.  \n[/ASSIST]": 40,
+    "NO. [/ASSIST]": 37,
+    "1. [ASSIST]  \n2. NO.  \n3. [/ASSIST]": 3
+  },
+  "other_sources_started": false,
+  "diagnosis": "Parser rejects trailing period on otherwise unambiguous NO; all responses remain saved. Current suite stops after Zephyr if errors remain. Do not alter active source pins or rerun paid calls to fix parsing.",
+  "outputs_or_source_changed": false
+}

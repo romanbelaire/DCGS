@@ -1,0 +1,41 @@
+{
+  "passed": true,
+  "tests": 13,
+  "original_training_render_and_token_ids_match_turns": 15,
+  "original_runtime_and_smoke_artifacts_unchanged": true,
+  "new_gpu_jobs_submitted": false,
+  "new_real_dcr_inference": false,
+  "judge_calls": 0,
+  "preflights": {
+    "training": {
+      "passed": true,
+      "prompt_format": "training",
+      "dialogues": 2,
+      "turns": 10,
+      "max_prompt_tokens": 1458,
+      "input_token_limit": 130048,
+      "max_new_tokens": 1024,
+      "truncated_turns": 0,
+      "system_message": null,
+      "history": "dataset_reference_assistant"
+    },
+    "raw": {
+      "passed": true,
+      "prompt_format": "raw",
+      "dialogues": 3,
+      "turns": 15,
+      "max_prompt_tokens": 1486,
+      "input_token_limit": 130048,
+      "max_new_tokens": 1024,
+      "truncated_turns": 0,
+      "system_message": null,
+      "history": "dataset_reference_assistant"
+    }
+  },
+  "files_sha256": {
+    "scripts/run_safedial_dcr_prompt_ablation.py": "1021bb5655561762f996522818a14367c6e8eb47fee7a59dd5fd5b05a4bf32ad",
+    "scripts/slurm/run_safedial_dcr_prompt_smoke.sbatch": "f47391880cdba2d820e1d4e22b164d6b214213b6c11335745cd265bf0e3f827f",
+    "tests/test_safedial_dcr_prompt_ablation.py": "88b244f3a36358b87f68acf93a69ea0986c69fcca6c08c884911e9137caa72b9"
+  },
+  "test_fixture_repair": "Initial tiny-Qwen parity test emitted generic token_type_ids; fixture model_input_names corrected to match real Qwen tokenizer; runtime unchanged."
+}

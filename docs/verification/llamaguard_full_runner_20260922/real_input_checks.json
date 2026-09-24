@@ -1,0 +1,45 @@
+[
+  {
+    "run": "zephyr_7b_beta_full",
+    "exit_code": 0,
+    "wrapper_sha256": "de2bfaa0429d6aaf1f6c0bd106b3aaae331b3856a645f536b493764de77be17d",
+    "judge_config_sha256": "f518d51116834564924c8b6729e25c546235ddbc569d05e0d54242e2cb9980b0",
+    "allow_incomplete_generation": false,
+    "scope": "entire pinned dataset, frozen source snapshot",
+    "expected_dialogues": 2037,
+    "expected_turns": 10029,
+    "generation_status_counts": {
+      "available": 10029
+    },
+    "generation_complete": true
+  },
+  {
+    "run": "cat_zephyr_full",
+    "exit_code": 0,
+    "wrapper_sha256": "de2bfaa0429d6aaf1f6c0bd106b3aaae331b3856a645f536b493764de77be17d",
+    "judge_config_sha256": "acba3caa5d51cc427c39390904a2d3cb65ed3792db856c2730f2993e9bee62cd",
+    "allow_incomplete_generation": false,
+    "scope": "entire pinned dataset, frozen source snapshot",
+    "expected_dialogues": 2037,
+    "expected_turns": 10029,
+    "generation_status_counts": {
+      "available": 10029
+    },
+    "generation_complete": true
+  },
+  {
+    "run": "dcr_qwen_1.5b_inference_format_full_v1",
+    "exit_code": 0,
+    "wrapper_sha256": "de2bfaa0429d6aaf1f6c0bd106b3aaae331b3856a645f536b493764de77be17d",
+    "judge_config_sha256": "962521b493ea91ce84da8b1ab11289d553d329d9e8639b8b809165439b45ef5c",
+    "allow_incomplete_generation": true,
+    "scope": "entire pinned dataset, frozen source snapshot",
+    "expected_dialogues": 2037,
+    "expected_turns": 10029,
+    "generation_status_counts": {
+      "available": 1943,
+      "missing": 8086
+    },
+    "generation_complete": false
+  }
+]

@@ -1,0 +1,19 @@
+{
+  "origin": {
+    "source_dir": "/common/home/users/d/darrius.ng.2024/projects/RL-Defense/DCGS/outputs/assistance/gpt4o_mini_cat_full_v1",
+    "source_files_sha256": {
+      "judge_config.json": "8d7e6b054b57f87c3dd05d18b603745d79c57c8d4ccea69611f60388064a46e4",
+      "frozen/snapshot.json": "324ba8068f68655b22994680138af41e1148e61e16eb8a2ed05148eab6f0c275",
+      "frozen/inputs.jsonl": "10bd9a328e6ef77e6ffc612f6b72310ff8a5ef9a27ae95e49a65a867167b7b4f",
+      "judgments.jsonl": null
+    }
+  },
+  "destination_config_sha256": "a73d1369d541f03ae8276531ee48dccd4e33d61d23a8fbc63bc105d902adf2e6",
+  "imported_records": 0,
+  "corrected_records": [],
+  "turn_counts_after_import": {
+    "judge_pending": 10029
+  },
+  "raw_outputs_unchanged": true,
+  "api_calls_for_import": 0
+}

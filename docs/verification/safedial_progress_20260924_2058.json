@@ -1,0 +1,234 @@
+{
+  "checked_at": "2026-09-24T20:58:12.072344+08:00",
+  "generation": {
+    "DCR": {
+      "successful_turns": 9723,
+      "error_turns": 4,
+      "exported_dialogues": 1977,
+      "successful_dialogues": 1973,
+      "failure_records": 0,
+      "unexported_dialogues": 60,
+      "error_keys": [
+        [
+          416,
+          0
+        ],
+        [
+          1850,
+          0
+        ],
+        [
+          1912,
+          0
+        ],
+        [
+          1915,
+          0
+        ]
+      ],
+      "last_saved_turn": [
+        1977,
+        4
+      ]
+    },
+    "TPO": {
+      "successful_turns": 38,
+      "error_turns": 0,
+      "exported_dialogues": 7,
+      "successful_dialogues": 7,
+      "failure_records": 0,
+      "unexported_dialogues": 2030,
+      "error_keys": [],
+      "last_saved_turn": [
+        8,
+        2
+      ]
+    },
+    "V384": {
+      "successful_turns": 9808,
+      "error_turns": 0,
+      "exported_dialogues": 1987,
+      "successful_dialogues": 1987,
+      "failure_records": 7,
+      "unexported_dialogues": 50,
+      "error_keys": [],
+      "last_saved_turn": [
+        1995,
+        2
+      ]
+    },
+    "R384": {
+      "successful_turns": 7140,
+      "error_turns": 0,
+      "exported_dialogues": 1464,
+      "successful_dialogues": 1464,
+      "failure_records": 1,
+      "unexported_dialogues": 573,
+      "error_keys": [],
+      "last_saved_turn": [
+        1466,
+        0
+      ]
+    }
+  },
+  "assistance": {
+    "gpt4o_mini_cat_full_v2": {
+      "complete": true,
+      "turn_counts": {
+        "NO": 8947,
+        "YES": 1082
+      },
+      "overall": {
+        "expected_dialogues": 2037,
+        "complete_dialogues": 2037,
+        "incomplete_dialogues": 0,
+        "assisted_dialogues": 710,
+        "non_assisted_dialogues": 1327,
+        "assistance_rate_percent": 34.85517918507609,
+        "non_assistance_rate_percent": 65.1448208149239
+      },
+      "journal_status": {
+        "success": 10029
+      },
+      "combined": {
+        "complete": true
+      }
+    },
+    "gpt4o_mini_gpt4o_full_v2": {
+      "complete": false,
+      "turn_counts": {
+        "NO": 8678,
+        "YES": 1350,
+        "generation_missing": 1
+      },
+      "overall": {
+        "expected_dialogues": 2037,
+        "complete_dialogues": 2036,
+        "incomplete_dialogues": 1,
+        "assisted_dialogues": 920,
+        "non_assisted_dialogues": 1116,
+        "assistance_rate_percent": 45.18664047151277,
+        "non_assistance_rate_percent": 54.81335952848723
+      },
+      "journal_status": {
+        "success": 10028
+      },
+      "combined": {
+        "complete": false
+      }
+    },
+    "gpt4o_mini_rdcgs96_full_v2": {
+      "complete": true,
+      "turn_counts": {
+        "YES": 1421,
+        "NO": 8608
+      },
+      "overall": {
+        "expected_dialogues": 2037,
+        "complete_dialogues": 2037,
+        "incomplete_dialogues": 0,
+        "assisted_dialogues": 924,
+        "non_assisted_dialogues": 1113,
+        "assistance_rate_percent": 45.36082474226804,
+        "non_assistance_rate_percent": 54.63917525773196
+      },
+      "journal_status": {
+        "success": 10029
+      },
+      "combined": {
+        "complete": true
+      }
+    },
+    "gpt4o_mini_smoothllm_primary_full_v2": {
+      "complete": false,
+      "turn_counts": {
+        "NO": 9102,
+        "YES": 926,
+        "generation_error": 1
+      },
+      "overall": {
+        "expected_dialogues": 2037,
+        "complete_dialogues": 2036,
+        "incomplete_dialogues": 1,
+        "assisted_dialogues": 682,
+        "non_assisted_dialogues": 1354,
+        "assistance_rate_percent": 33.49705304518664,
+        "non_assistance_rate_percent": 66.50294695481335
+      },
+      "journal_status": {
+        "success": 10028
+      },
+      "combined": {
+        "complete": false
+      }
+    },
+    "gpt4o_mini_vdcgs96_full_v2": {
+      "complete": false,
+      "turn_counts": {
+        "YES": 1305,
+        "NO": 8698,
+        "generation_missing": 26
+      },
+      "overall": {
+        "expected_dialogues": 2037,
+        "complete_dialogues": 2011,
+        "incomplete_dialogues": 26,
+        "assisted_dialogues": 834,
+        "non_assisted_dialogues": 1177,
+        "assistance_rate_percent": 41.47190452511188,
+        "non_assistance_rate_percent": 58.52809547488812
+      },
+      "journal_status": {
+        "success": 10003
+      },
+      "combined": {
+        "complete": false
+      }
+    },
+    "gpt4o_mini_zephyr_full_v2": {
+      "complete": true,
+      "turn_counts": {
+        "NO": 8248,
+        "YES": 1781
+      },
+      "overall": {
+        "expected_dialogues": 2037,
+        "complete_dialogues": 2037,
+        "incomplete_dialogues": 0,
+        "assisted_dialogues": 1150,
+        "non_assisted_dialogues": 887,
+        "assistance_rate_percent": 56.455571919489444,
+        "non_assistance_rate_percent": 43.544428080510556
+      },
+      "journal_status": {
+        "success": 10029
+      },
+      "combined": {
+        "complete": true
+      }
+    }
+  },
+  "scheduler": {
+    "302464": {
+      "state": "COMPLETED",
+      "end": "2026-09-24T17:03:38+08:00"
+    },
+    "302423": {
+      "state": "PREEMPTED",
+      "end": "2026-09-24T18:37:16+08:00"
+    },
+    "296812": {
+      "state": "TIMEOUT",
+      "end": "2026-09-24T18:38:16+08:00"
+    },
+    "300540": {
+      "state": "RUNNING",
+      "node": "lotus"
+    },
+    "302425": {
+      "state": "PENDING",
+      "reason": "ReqNodeNotAvail",
+      "tentative_start": "2026-09-25T11:11:00+08:00"
+    }
+  }
+}

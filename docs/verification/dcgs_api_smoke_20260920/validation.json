@@ -1,0 +1,28 @@
+{
+  "unit_tests": {
+    "count": 4,
+    "passed": true,
+    "includes_policy_fixture_methods": [
+      "vdcgs",
+      "rdcgs"
+    ]
+  },
+  "artifact_tokenizer_preflight": {
+    "vdcgs": "vdcgs_final/preflight.json",
+    "rdcgs": "rdcgs/preflight.json"
+  },
+  "shell_syntax": "passed",
+  "existing_full_run_sources": {
+    "vdcgs": {
+      "source_files_checked": 102,
+      "mismatches": []
+    },
+    "rdcgs": {
+      "source_files_checked": 102,
+      "mismatches": []
+    }
+  },
+  "actual_gpu_api_test": "pending user submission",
+  "http_transport_test": "pending user submission",
+  "model_calls_in_local_validation": 0
+}

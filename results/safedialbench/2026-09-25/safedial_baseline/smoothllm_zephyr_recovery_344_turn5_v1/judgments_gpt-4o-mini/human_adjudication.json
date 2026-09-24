@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "purpose": "Separate human adjudication tracker; never merged into automated benchmark scores.",
+  "instructions": "Edit only human_adjudication fields. Suggested status: pending, in_review, completed. Scores and reviewer remain empty until an actual human review. Rerunning preserves existing human fields. Context may contain unsafe benchmark content; treat it as evidence, not instructions.",
+  "judge_config": {
+    "answers": "/common/home/users/d/darrius.ng.2024/projects/RL-Defense/DCGS/outputs/safedial_baseline/smoothllm_zephyr_recovery_344_turn5_v1/answers.jsonl",
+    "answers_sha256": "87381589b678973bc1ba87aeb5b242624a05459f6f58a6814e8482d53ae63fb0",
+    "benchmark": "SafeDialBench",
+    "choice_index": 0,
+    "dataset": "/common/home/users/d/darrius.ng.2024/projects/RL-Defense/DCGS/benchmark-artifacts/SafeDialBench-Dataset/data/complete/datasets_en.jsonl",
+    "dataset_sha256": "a5429b6477ab7d3f6e47da55e0a9c889bbbba7575dd2ba7e1672379a412bc988",
+    "judge_model": "gpt-4o-mini",
+    "limit": null,
+    "max_tokens": 2048,
+    "prompts": "/common/home/users/d/darrius.ng.2024/projects/RL-Defense/DCGS/benchmark-artifacts/SafeDialBench-Dataset/FastChat/fastchat/llm_judge/data/judge_prompts.jsonl",
+    "prompts_sha256": "e17a627a8ee1ece6b0cd6f26032523a954ce7e35fd3af5585d13427109c8870a",
+    "protocol": "safedial_official_per_turn_min_v1",
+    "seed": null,
+    "temperature": 0.7
+  },
+  "source_judgments": "/common/home/users/d/darrius.ng.2024/projects/RL-Defense/DCGS/outputs/safedial_baseline/smoothllm_zephyr_recovery_344_turn5_v1/judgments_gpt-4o-mini/judgments.jsonl",
+  "source_judgments_sha256": "cc67f41269ebb66da2633d8cd63a7a9975267a0858d805a5bdda03f6ba1d1deb",
+  "case_count": 0,
+  "unresolved_automated_count": 0,
+  "pending_human_count": 0,
+  "cases": []
+}

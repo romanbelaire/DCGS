@@ -1,0 +1,122 @@
+[
+  {
+    "dialogue_id": 1,
+    "turn_index": 0,
+    "input_sha256": "2f0d8a832b70056ecec882a3dd8a5812d43a5b604f2e59fb74042d662f63d9ee",
+    "generation_status": "available",
+    "input_tokens": 1238,
+    "overflow": false
+  },
+  {
+    "dialogue_id": 1,
+    "turn_index": 1,
+    "input_sha256": "36e8f04923145036119ddea66429900d8914548c8533914afd76b54897cd1e6e",
+    "generation_status": "available",
+    "input_tokens": 1564,
+    "overflow": false
+  },
+  {
+    "dialogue_id": 1,
+    "turn_index": 2,
+    "input_sha256": "ecd1ad03506e5b2d4f892f535282c1292ba5ea0ea8e6d6cc58e26ef58f9ae349",
+    "generation_status": "available",
+    "input_tokens": 1933,
+    "overflow": false
+  },
+  {
+    "dialogue_id": 1,
+    "turn_index": 3,
+    "input_sha256": "3d6c8e3568a3df70d5eb3abd039ddef9cd5a30d1cb42bb429dbf5bff98c761eb",
+    "generation_status": "available",
+    "input_tokens": 2342,
+    "overflow": false
+  },
+  {
+    "dialogue_id": 1,
+    "turn_index": 4,
+    "input_sha256": "916e5e9655f09f669061f5c82b00609b8f3cff7f15f68845f0de3976972d6686",
+    "generation_status": "available",
+    "input_tokens": 2710,
+    "overflow": false
+  },
+  {
+    "dialogue_id": 2,
+    "turn_index": 0,
+    "input_sha256": "c8e890683cdfc166c7f06d2fb79e6ae10d4d4acd5d615a5236fc50896fe6a9fe",
+    "generation_status": "available",
+    "input_tokens": 1235,
+    "overflow": false
+  },
+  {
+    "dialogue_id": 2,
+    "turn_index": 1,
+    "input_sha256": "496f069be5b3d642e6e9401bac9b864c3c0e413e80831c25fd72673a1ed6ce78",
+    "generation_status": "available",
+    "input_tokens": 1024,
+    "overflow": false
+  },
+  {
+    "dialogue_id": 2,
+    "turn_index": 2,
+    "input_sha256": "92600760dc255b914b2c546c4645772f21cb359609243c3df05c4b3c816c5513",
+    "generation_status": "available",
+    "input_tokens": 1803,
+    "overflow": false
+  },
+  {
+    "dialogue_id": 2,
+    "turn_index": 3,
+    "input_sha256": "4cf4f5dd33e019cdaaf4dda610c97fd313dd38f74cde3723400a77e551335e66",
+    "generation_status": "available",
+    "input_tokens": 1597,
+    "overflow": false
+  },
+  {
+    "dialogue_id": 2,
+    "turn_index": 4,
+    "input_sha256": "f8ba825a1ee8504417ae121d8d7e759d90489aa0daa3022bc09ee79a6b066f47",
+    "generation_status": "available",
+    "input_tokens": 2648,
+    "overflow": false
+  },
+  {
+    "dialogue_id": 3,
+    "turn_index": 0,
+    "input_sha256": "f132d34569798155bc57f3295523a9513742ac264929ab2527a677c4dfd966c5",
+    "generation_status": "available",
+    "input_tokens": 1233,
+    "overflow": false
+  },
+  {
+    "dialogue_id": 3,
+    "turn_index": 1,
+    "input_sha256": "b7a3605ab436655032b63bd4084b47d3f49c5ad237587e81ffc59fff49c3dc1e",
+    "generation_status": "available",
+    "input_tokens": 1344,
+    "overflow": false
+  },
+  {
+    "dialogue_id": 3,
+    "turn_index": 2,
+    "input_sha256": "c42384dc53d83ff0dc63e5d4080b7179502680ad775339934e822fc602b5022c",
+    "generation_status": "available",
+    "input_tokens": 1617,
+    "overflow": false
+  },
+  {
+    "dialogue_id": 3,
+    "turn_index": 3,
+    "input_sha256": "c9dca4c6a135dd497e112c0b2a4f3b94edebdd52f5b6d285bd8df44fd9dfcfed",
+    "generation_status": "available",
+    "input_tokens": 1054,
+    "overflow": false
+  },
+  {
+    "dialogue_id": 3,
+    "turn_index": 4,
+    "input_sha256": "f61a37cdb1192634d05dd165ba50f894437c0c14b7e7892695217665ff2a0fe6",
+    "generation_status": "available",
+    "input_tokens": 2351,
+    "overflow": false
+  }
+]

@@ -1,0 +1,8 @@
+{
+  "passed": true,
+  "max_abs_logit_difference": 7.6796875,
+  "active_adapters": [
+    "default"
+  ],
+  "merged": false
+}

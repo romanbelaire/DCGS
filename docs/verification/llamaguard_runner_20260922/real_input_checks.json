@@ -1,0 +1,137 @@
+[
+  {
+    "run": "safedial_baseline/zephyr_7b_beta_full",
+    "status": "pass",
+    "expected_dialogues": 2037,
+    "expected_turns": 10029,
+    "generation": {
+      "available": 10029
+    },
+    "source_prefix": {
+      "path": "/common/home/users/d/darrius.ng.2024/projects/RL-Defense/DCGS/outputs/safedial_baseline/zephyr_7b_beta_full/turns.jsonl",
+      "captured_bytes": 121217802,
+      "complete_prefix_bytes": 121217802,
+      "ignored_trailing_bytes": 0,
+      "prefix_sha256": "596cf10fe0d363f0ec956b0e0557c56f6305eb026c2316e1b580244a9ebd41de"
+    }
+  },
+  {
+    "run": "safedial_baseline/cat_zephyr_full",
+    "status": "pass",
+    "expected_dialogues": 2037,
+    "expected_turns": 10029,
+    "generation": {
+      "available": 10029
+    },
+    "source_prefix": {
+      "path": "/common/home/users/d/darrius.ng.2024/projects/RL-Defense/DCGS/outputs/safedial_baseline/cat_zephyr_full/turns.jsonl",
+      "captured_bytes": 112230698,
+      "complete_prefix_bytes": 112230698,
+      "ignored_trailing_bytes": 0,
+      "prefix_sha256": "b2d535e52fe77b6c2b01c7a5a556fe0ea2e03edeea147db571d3abfae760797c"
+    }
+  },
+  {
+    "run": "safedial_baseline/smoothllm_zephyr_full_turn_resume",
+    "status": "pass",
+    "expected_dialogues": 2037,
+    "expected_turns": 10029,
+    "generation": {
+      "available": 10028,
+      "error": 1
+    },
+    "source_prefix": {
+      "path": "/common/home/users/d/darrius.ng.2024/projects/RL-Defense/DCGS/outputs/safedial_baseline/smoothllm_zephyr_full_turn_resume/turns.jsonl",
+      "captured_bytes": 245481101,
+      "complete_prefix_bytes": 245481101,
+      "ignored_trailing_bytes": 0,
+      "prefix_sha256": "e8617d681797741e9135268826d3b4019db7d8a9484a73e0cd84703e18a5ea14"
+    }
+  },
+  {
+    "run": "safedial_baseline/tpo_zephyr_full_v8",
+    "status": "pass",
+    "expected_dialogues": 2037,
+    "expected_turns": 10029,
+    "generation": {
+      "available": 281,
+      "error": 1,
+      "missing": 9747
+    },
+    "source_prefix": {
+      "path": "/common/home/users/d/darrius.ng.2024/projects/RL-Defense/DCGS/outputs/safedial_baseline/tpo_zephyr_full_v8/turns.jsonl",
+      "captured_bytes": 108337094,
+      "complete_prefix_bytes": 108337094,
+      "ignored_trailing_bytes": 0,
+      "prefix_sha256": "ca05dcfbf6e3f268d5db4f92597c1ec93275fd8a01660aff642fd9f39e218141"
+    }
+  },
+  {
+    "run": "safedial_baseline/gpt4o_full",
+    "status": "pass",
+    "expected_dialogues": 2037,
+    "expected_turns": 10029,
+    "generation": {
+      "available": 10028,
+      "missing": 1
+    },
+    "source_prefix": {
+      "path": "/common/home/users/d/darrius.ng.2024/projects/RL-Defense/DCGS/outputs/safedial_baseline/gpt4o_full/turns.jsonl",
+      "captured_bytes": 129943853,
+      "complete_prefix_bytes": 129943853,
+      "ignored_trailing_bytes": 0,
+      "prefix_sha256": "a45390fef6ce454b42750764129dbd619687242fd3d2e18ce79934395211253c"
+    }
+  },
+  {
+    "run": "safedial_baseline/dcr_qwen_1.5b_inference_format_full_v1",
+    "status": "pass",
+    "expected_dialogues": 2037,
+    "expected_turns": 10029,
+    "generation": {
+      "available": 1663,
+      "missing": 8366
+    },
+    "source_prefix": {
+      "path": "/common/home/users/d/darrius.ng.2024/projects/RL-Defense/DCGS/outputs/safedial_baseline/dcr_qwen_1.5b_inference_format_full_v1/turns.jsonl",
+      "captured_bytes": 40072416,
+      "complete_prefix_bytes": 40072416,
+      "ignored_trailing_bytes": 0,
+      "prefix_sha256": "5739d100d9748b498635667b031ac0f7c418a43f143c0948681796623e76f241"
+    }
+  },
+  {
+    "run": "safedial_dcgs/zephyr_vdcgs_main_wildjailbreak_full_v3",
+    "status": "pass",
+    "expected_dialogues": 2037,
+    "expected_turns": 10029,
+    "generation": {
+      "available": 8853,
+      "missing": 1176
+    },
+    "source_prefix": {
+      "path": "/common/home/users/d/darrius.ng.2024/projects/RL-Defense/DCGS/outputs/safedial_dcgs/zephyr_vdcgs_main_wildjailbreak_full_v3/turns.jsonl",
+      "captured_bytes": 587878961,
+      "complete_prefix_bytes": 587878961,
+      "ignored_trailing_bytes": 0,
+      "prefix_sha256": "8b3403675471b4ec13a4be9a14214043d3d17711e318af38c324539ebb526ae5"
+    }
+  },
+  {
+    "run": "safedial_dcgs/zephyr_rdcgs_main_wildjailbreak_full_v3",
+    "status": "pass",
+    "expected_dialogues": 2037,
+    "expected_turns": 10029,
+    "generation": {
+      "available": 7659,
+      "missing": 2370
+    },
+    "source_prefix": {
+      "path": "/common/home/users/d/darrius.ng.2024/projects/RL-Defense/DCGS/outputs/safedial_dcgs/zephyr_rdcgs_main_wildjailbreak_full_v3/turns.jsonl",
+      "captured_bytes": 1053377400,
+      "complete_prefix_bytes": 1053377400,
+      "ignored_trailing_bytes": 0,
+      "prefix_sha256": "0586155283ee079af7366932a12f1f28c745d6ff157fc79a09803ab070136597"
+    }
+  }
+]

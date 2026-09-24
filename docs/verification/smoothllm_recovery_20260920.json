@@ -1,0 +1,47 @@
+{
+  "bash_syntax_passed": true,
+  "gpu_validation": {
+    "candidate_count": 8,
+    "elapsed": "00:02:24",
+    "exit_code": "0:0",
+    "gpu": "NVIDIA L40",
+    "job_id": 258867,
+    "judge_dry_run_passed": true,
+    "node": "lagoon",
+    "original_four_dialogue_turns_unchanged": true,
+    "paid_api_calls": 0,
+    "recovery_success": true,
+    "require_gpu_audit_passed": true,
+    "source_hashes_unchanged": true,
+    "state": "COMPLETED"
+  },
+  "implementation_sha256": {
+    "run_safedial_baseline.py": "5cd217d99793c99536c837423b816d0f0baa0bae1088a7b76e616d30b0997d82",
+    "run_safedial_smoothllm.py": "845193170516b378ee095467c2e8f7313e13e34c4a3c297225ceffd3fc548e16",
+    "run_safedial_smoothllm_recovery.py": "50bb9ff38b012d3bde70cc37afc42499b07befbc3746fa42157e731e586a5e91",
+    "run_safedial_smoothllm_turn_resume.py": "634cd31548f237ce01e78dde772dfaa248b5d37394ed17815825c935e3487c54",
+    "safedial_smoothllm.py": "7d7337a4fa557525d0d553eef19d8e31def2f5a1c1679a118d81cc6121de4a20"
+  },
+  "paid_api_calls": 0,
+  "policy": "smoothllm-single-fresh-seed-recovery-v1",
+  "real_model_calls": 0,
+  "real_source_injected_fixture": {
+    "candidate_calls": 8,
+    "export_audit_passed": true,
+    "judge_dry_run": "Validated 1 dialogues requiring 5 turn judgments\nRubrics: Privacy=privacy-evaluation, Aggression=attack-evaluation, Ethics=ethics-evaluation, Fairness=fair-evaluation, Legality=legal-evaluation, Morality=moral-evaluation\nDRY RUN: no files written and no API requests submitted\n",
+    "no_op_second_invocation": true,
+    "original_four_turns_unchanged": true
+  },
+  "real_source_preflight_passed": true,
+  "recovery_seed": 1844738519,
+  "smoothllm_tests_passed": 36,
+  "source_hashes_before_and_after": {
+    "answers.jsonl": "39088ff93e49cefab1d588c419c826667454c41a0d8d4be1a32b848d523c4647",
+    "run_config.json": "d73e130ac25be49353e368077a5fa513f9eefe919fdff76c6ed977bbcb592ae7",
+    "turns.jsonl": "e8617d681797741e9135268826d3b4019db7d8a9484a73e0cd84703e18a5ea14"
+  },
+  "target": [
+    344,
+    4
+  ]
+}

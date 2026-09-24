@@ -1,0 +1,9 @@
+{
+  "expected_turns": 5,
+  "successful_turns": 5,
+  "terminal_failed_turns": 0,
+  "remaining_turns": 0,
+  "terminal_failed_turn_keys": [],
+  "execution_finished": true,
+  "complete_without_failures": true
+}

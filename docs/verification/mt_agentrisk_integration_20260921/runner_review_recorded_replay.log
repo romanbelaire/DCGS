@@ -1,0 +1,62 @@
+Loading tokenizer: /common/home/users/d/darrius.ng.2024/projects/RL-Defense/DCGS/.cache/huggingface/hub/models--HuggingFaceH4--zephyr-7b-beta/snapshots/892b3d7a7b1cf10c7a701c60881cd93df615734c
+[DEBUG] All candidates are [SKIP] for 1 episode(s). Attempting batched retry 2/3...
+[WARNING] Retry succeeded: All episode(s) that had all-[SKIP] candidates now have valid candidates after regeneration.
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=-0.3099
+[DEBUG] All candidates are [SKIP] for 1 episode(s). Attempting batched retry 2/3...
+[WARNING] Retry succeeded: All episode(s) that had all-[SKIP] candidates now have valid candidates after regeneration.
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=-0.3099
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=0.1085
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=0.1085
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=-0.0301
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=-0.0301
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=-0.0301
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=-0.0301
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=0.2287
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=0.2287
+[
+  {
+    "request_id": "6e5704adb1cebe1e75e3b073e5ba857cb43950690e745bfb7ab5ea155f562952",
+    "backend_events": 7,
+    "replay_passed": true,
+    "events_unchanged": true,
+    "original_status": 422,
+    "decoded_status_after_replay_fix": 200,
+    "existing_selected_action_unchanged": false
+  },
+  {
+    "request_id": "71ffc06738ff3ee36956d86af29a32d46d75e27a65a22ca16f970424c41187e6",
+    "backend_events": 5,
+    "replay_passed": true,
+    "events_unchanged": true,
+    "original_status": 422,
+    "decoded_status_after_replay_fix": 422,
+    "existing_selected_action_unchanged": true
+  },
+  {
+    "request_id": "92a1ae74e732fc439bea04d839a09a43fc9261cd2779a9580f14f47ed24c9635",
+    "backend_events": 5,
+    "replay_passed": true,
+    "events_unchanged": true,
+    "original_status": 200,
+    "decoded_status_after_replay_fix": 200,
+    "existing_selected_action_unchanged": true
+  },
+  {
+    "request_id": "9ca73e5673534034f2d7b2697d84926ae026cbac703f3bf917bc2983d79a0897",
+    "backend_events": 5,
+    "replay_passed": true,
+    "events_unchanged": true,
+    "original_status": 200,
+    "decoded_status_after_replay_fix": 200,
+    "existing_selected_action_unchanged": true
+  },
+  {
+    "request_id": "fc6c6bb37707da13b7dfbe0b943641f7437ff081877e925d1044a70c88919a1c",
+    "backend_events": 5,
+    "replay_passed": true,
+    "events_unchanged": true,
+    "original_status": 422,
+    "decoded_status_after_replay_fix": 422,
+    "existing_selected_action_unchanged": true
+  }
+]

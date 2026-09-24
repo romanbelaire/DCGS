@@ -1,0 +1,78 @@
+{
+  "passed": false,
+  "method": "vdcgs",
+  "api_base": "http://albert:44241/v1",
+  "server_job_id": "260035",
+  "responses": [
+    {
+      "id": "chatcmpl-f755482c8ca03aa744b349ac",
+      "object": "chat.completion",
+      "created": 1789912650,
+      "model": "mt-vdcgs--probe_76b7cf1c12ad4d37a278320b2626cb2a",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": null,
+            "tool_calls": [
+              {
+                "id": "call_f755482c8ca03aa744b349ac",
+                "type": "function",
+                "function": {
+                  "name": "execute_bash",
+                  "arguments": "{\"command\":\"printf MT_AGENTRISK_OK\"}"
+                }
+              }
+            ]
+          },
+          "finish_reason": "tool_calls"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 1192,
+        "completion_tokens": 573,
+        "total_tokens": 1765
+      },
+      "mt_agentrisk": {
+        "protocol": "mt-agentrisk-tools-v1",
+        "request_id": "f755482c8ca03aa744b349ac0ffa59ee05f9ef265d0d7ed09a40156df975c10c",
+        "method": "vdcgs",
+        "elapsed_seconds": 12.552002342999913,
+        "audit_summary": {
+          "generation_calls": 2,
+          "ll_critic_calls": 1,
+          "ll_candidates_scored": 5,
+          "regret_enabled": false,
+          "peak_gpu_allocated_bytes": 14956467200,
+          "critic_context": {
+            "critic_max_length": 1500,
+            "critic_truncation_sides": [
+              "left"
+            ],
+            "critic_candidate_contexts": 2,
+            "critic_truncated_candidate_contexts": 0,
+            "critic_truncated_turns": 0,
+            "critic_truncated_turn_keys": [],
+            "critic_scoring_calls_by_head": {
+              "predict_q_value": 2
+            },
+            "critic_scored_inputs_by_head": {
+              "predict_q_value": 2
+            },
+            "critic_truncated_inputs_by_head": {},
+            "critic_max_input_tokens": 387,
+            "critic_max_dropped_tokens": 0,
+            "critic_full_context": true
+          },
+          "policy_replay_passed": true,
+          "ll_context_prefix": true,
+          "dcgs_prompt_version": "dcgs-tool-candidates-v2",
+          "belief_state": "reconstructed from complete supplied transcript per action"
+        }
+      }
+    }
+  ],
+  "tools_executed": false,
+  "error": "RuntimeError: Server HTTP 422: {\"error\": {\"message\": \"Selected tool does not match tool_choice\", \"type\": \"ProtocolError\", \"request_id\": \"d5122770a84629f04107ccb5f6edd3d34b4209734c78fa8042886c73a032d53b\", \"automatic_retry\": false}, \"elapsed_seconds\": 7.511698903006618}"
+}

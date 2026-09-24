@@ -1,0 +1,20 @@
+{
+  "repository": "https://github.com/rachtibat/LRP-eXplains-Transformers",
+  "branch": "main",
+  "commit": "f04344177551bfcc3665e88afe96501f43fe560b",
+  "scope": "Current main source only; not historical commits or forks",
+  "text_hits": {
+    "AttnLRP_Analysis": [],
+    "Qwen2_chat_template": []
+  },
+  "matching_paths": [],
+  "package": "lxt",
+  "utils_functions": [
+    "pdf_heatmap",
+    "clean_tokens",
+    "_apply_colormap",
+    "_generate_latex",
+    "_compile_latex_to_pdf"
+  ],
+  "conclusion": "Official AttnLRP library is present, but the DCR-imported module and serializer are absent from inspected main. Origin of the DCR helper remains unknown."
+}

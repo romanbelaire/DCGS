@@ -1,0 +1,484 @@
+test_qwen_cpu_lora_loading_is_frozen_and_changes_logits (test_safedial_dcr.DCRArtifactTests.test_qwen_cpu_lora_loading_is_frozen_and_changes_logits) ... /common/home/users/d/darrius.ng.2024/projects/RL-Defense/DCGS/.venv/lib/python3.11/site-packages/peft/utils/save_and_load.py:438: UserWarning: Could not find a config file in  - will assume that the vocabulary was not modified.
+  warnings.warn(
+ok
+test_tokenizer_and_base_tampering_are_rejected (test_safedial_dcr.DCRArtifactTests.test_tokenizer_and_base_tampering_are_rejected) ... ok
+test_end_to_end_saved_prompts_audit_resume_and_failed_retry (test_safedial_dcr.DCRProtocolTests.test_end_to_end_saved_prompts_audit_resume_and_failed_retry) ... Loading standard Qwen/Qwen2.5-1.5B at 8faed761d45a263340a0528343f099c05c9a4323
+DCR adapter active; max logit difference 0.5
+[1/1] saved dialogue 1
+{
+  "passed": true,
+  "dialogues": 1,
+  "turns": 2,
+  "input_truncated_turns": 0,
+  "adapter_required": false,
+  "judge_calls": 0,
+  "protocol": "safedial_dcr_gold_history_training_template_v1",
+  "training_template_verified": true
+}
+{
+  "passed": true,
+  "dialogues": 1,
+  "turns": 2,
+  "input_truncated_turns": 0,
+  "adapter_required": false,
+  "judge_calls": 0,
+  "protocol": "safedial_dcr_gold_history_training_template_v1",
+  "training_template_verified": true
+}
+Loading standard Qwen/Qwen2.5-1.5B at 8faed761d45a263340a0528343f099c05c9a4323
+DCR adapter active; max logit difference 0.5
+ERROR dialogue=1 turn=0: ValueError: injected failure
+[1/1] saved dialogue 1
+Loading standard Qwen/Qwen2.5-1.5B at 8faed761d45a263340a0528343f099c05c9a4323
+DCR adapter active; max logit difference 0.5
+[1/1] saved dialogue 1
+ok
+test_output_directory_cannot_have_two_writers (test_safedial_dcr.DCRProtocolTests.test_output_directory_cannot_have_two_writers) ... ok
+test_preflight_rejects_overflow_instead_of_truncating (test_safedial_dcr.DCRProtocolTests.test_preflight_rejects_overflow_instead_of_truncating) ... ok
+test_training_template_preserves_roles_and_withholds_current_reference (test_safedial_dcr.DCRProtocolTests.test_training_template_preserves_roles_and_withholds_current_reference) ... ok
+test_validate_only_does_not_load_model_or_create_outputs (test_safedial_dcr.DCRProtocolTests.test_validate_only_does_not_load_model_or_create_outputs) ... {
+  "passed": true,
+  "dialogues": 1,
+  "turns": 2,
+  "input_truncated_turns": 0,
+  "adapter_required": false,
+  "judge_calls": 0,
+  "protocol": "safedial_dcr_gold_history_training_template_v1",
+  "training_template_verified": true
+}
+{
+  "passed": true,
+  "dialogues": 1,
+  "turns": 1,
+  "max_prompt_tokens": 5,
+  "input_token_limit": 504,
+  "max_new_tokens": 8,
+  "truncated_turns": 0,
+  "system_message": null,
+  "history": "dataset_reference_assistant"
+}
+ok
+test_actual_cpu_training_generation_matches_original (test_safedial_dcr_prompt_ablation.DCRPromptAblationTests.test_actual_cpu_training_generation_matches_original) ... ok
+test_both_preflights_create_no_outputs_and_load_no_model (test_safedial_dcr_prompt_ablation.DCRPromptAblationTests.test_both_preflights_create_no_outputs_and_load_no_model) ... {
+  "passed": true,
+  "prompt_format": "training",
+  "dialogues": 1,
+  "turns": 1,
+  "max_prompt_tokens": 5,
+  "input_token_limit": 504,
+  "max_new_tokens": 8,
+  "truncated_turns": 0,
+  "system_message": null,
+  "history": "dataset_reference_assistant"
+}
+{
+  "passed": true,
+  "prompt_format": "raw",
+  "dialogues": 1,
+  "turns": 1,
+  "max_prompt_tokens": 1,
+  "input_token_limit": 504,
+  "max_new_tokens": 8,
+  "truncated_turns": 0,
+  "system_message": null,
+  "history": "dataset_reference_assistant"
+}
+ok
+test_paired_runs_audit_resume_and_reject_format_or_token_tampering (test_safedial_dcr_prompt_ablation.DCRPromptAblationTests.test_paired_runs_audit_resume_and_reject_format_or_token_tampering) ... Loading standard Qwen/Qwen2.5-1.5B at 8faed761d45a263340a0528343f099c05c9a4323
+DCR adapter active; max logit difference 0.5
+[1/1] saved dialogue 2
+{
+  "passed": true,
+  "dialogues": 1,
+  "turns": 2,
+  "input_truncated_turns": 0,
+  "adapter_required": false,
+  "judge_calls": 0,
+  "protocol": "safedial_dcr_prompt_ablation_training_v1",
+  "prompt_format": "training",
+  "prompt_format_verified": true,
+  "turn_metrics": [
+    {
+      "dialogue_id": 2,
+      "turn_index": 0,
+      "completion_tokens": 2,
+      "hit_token_cap": false,
+      "last_token_is_eos": true,
+      "cjk_characters": 0,
+      "generated_role_lines": 0
+    },
+    {
+      "dialogue_id": 2,
+      "turn_index": 1,
+      "completion_tokens": 2,
+      "hit_token_cap": false,
+      "last_token_is_eos": true,
+      "cjk_characters": 0,
+      "generated_role_lines": 0
+    }
+  ]
+}
+{
+  "passed": true,
+  "dialogues": 1,
+  "turns": 2,
+  "input_truncated_turns": 0,
+  "adapter_required": false,
+  "judge_calls": 0,
+  "protocol": "safedial_dcr_prompt_ablation_training_v1",
+  "prompt_format": "training",
+  "prompt_format_verified": true,
+  "turn_metrics": [
+    {
+      "dialogue_id": 2,
+      "turn_index": 0,
+      "completion_tokens": 2,
+      "hit_token_cap": false,
+      "last_token_is_eos": true,
+      "cjk_characters": 0,
+      "generated_role_lines": 0
+    },
+    {
+      "dialogue_id": 2,
+      "turn_index": 1,
+      "completion_tokens": 2,
+      "hit_token_cap": false,
+      "last_token_is_eos": true,
+      "cjk_characters": 0,
+      "generated_role_lines": 0
+    }
+  ]
+}
+Loading standard Qwen/Qwen2.5-1.5B at 8faed761d45a263340a0528343f099c05c9a4323
+DCR adapter active; max logit difference 0.5
+[1/1] saved dialogue 2
+ok
+test_raw_generation_never_calls_chat_template_and_retains_eos_id (test_safedial_dcr_prompt_ablation.DCRPromptAblationTests.test_raw_generation_never_calls_chat_template_and_retains_eos_id) ... ok
+test_raw_keeps_reference_history_without_template_or_future_leakage (test_safedial_dcr_prompt_ablation.DCRPromptAblationTests.test_raw_keeps_reference_history_without_template_or_future_leakage) ... ok
+test_training_render_is_identical_to_original (test_safedial_dcr_prompt_ablation.DCRPromptAblationTests.test_training_render_is_identical_to_original) ... ok
+test_empty_generation_retains_actual_ids_and_unchanged_eos (test_safedial_dcr_qwen_prompt.DCRQwenPromptTests.test_empty_generation_retains_actual_ids_and_unchanged_eos) ... ok
+test_exact_standard_template_preserves_training_template_and_gold_history (test_safedial_dcr_qwen_prompt.DCRQwenPromptTests.test_exact_standard_template_preserves_training_template_and_gold_history) ... ok
+test_generation_audit_noop_resume_and_wrong_format_rejection (test_safedial_dcr_qwen_prompt.DCRQwenPromptTests.test_generation_audit_noop_resume_and_wrong_format_rejection) ... {
+  "passed": true,
+  "dialogues": 1,
+  "turns": 2,
+  "input_truncated_turns": 0,
+  "adapter_required": false,
+  "judge_calls": 0,
+  "protocol": "safedial_dcr_prompt_ablation_raw_v1",
+  "prompt_format": "raw",
+  "prompt_format_verified": true,
+  "turn_metrics": [
+    {
+      "dialogue_id": 2,
+      "turn_index": 0,
+      "completion_tokens": 2,
+      "hit_token_cap": false,
+      "last_token_is_eos": true,
+      "cjk_characters": 0,
+      "generated_role_lines": 0
+    },
+    {
+      "dialogue_id": 2,
+      "turn_index": 1,
+      "completion_tokens": 2,
+      "hit_token_cap": false,
+      "last_token_is_eos": true,
+      "cjk_characters": 0,
+      "generated_role_lines": 0
+    }
+  ]
+}
+{
+  "passed": true,
+  "dialogues": 1,
+  "turns": 2,
+  "input_truncated_turns": 0,
+  "adapter_required": false,
+  "judge_calls": 0,
+  "protocol": "safedial_dcr_prompt_ablation_raw_v1",
+  "prompt_format": "raw",
+  "prompt_format_verified": true,
+  "turn_metrics": [
+    {
+      "dialogue_id": 2,
+      "turn_index": 0,
+      "completion_tokens": 2,
+      "hit_token_cap": false,
+      "last_token_is_eos": true,
+      "cjk_characters": 0,
+      "generated_role_lines": 0
+    },
+    {
+      "dialogue_id": 2,
+      "turn_index": 1,
+      "completion_tokens": 2,
+      "hit_token_cap": false,
+      "last_token_is_eos": true,
+      "cjk_characters": 0,
+      "generated_role_lines": 0
+    }
+  ]
+}
+Loading standard Qwen/Qwen2.5-1.5B at 8faed761d45a263340a0528343f099c05c9a4323
+DCR adapter active; max logit difference 0.5
+[1/1] saved dialogue 1
+ok
+test_pinned_template_rejects_tampering (test_safedial_dcr_qwen_prompt.DCRQwenPromptTests.test_pinned_template_rejects_tampering) ... ok
+test_private_runtime_does_not_mutate_existing_modes (test_safedial_dcr_qwen_prompt.DCRQwenPromptTests.test_private_runtime_does_not_mutate_existing_modes) ... ok
+test_validate_only_no_model_no_output_and_marker_diagnostics (test_safedial_dcr_qwen_prompt.DCRQwenPromptTests.test_validate_only_no_model_no_output_and_marker_diagnostics) ... {
+  "passed": true,
+  "dialogues": 1,
+  "turns": 2,
+  "input_truncated_turns": 0,
+  "adapter_required": false,
+  "judge_calls": 0,
+  "protocol": "safedial_dcr_prompt_ablation_qwen_standard_v1",
+  "prompt_format": "qwen_standard",
+  "prompt_format_verified": true,
+  "turn_metrics": [
+    {
+      "dialogue_id": 1,
+      "turn_index": 0,
+      "completion_tokens": 2,
+      "hit_token_cap": false,
+      "last_token_is_eos": true,
+      "cjk_characters": 0,
+      "generated_role_lines": 0,
+      "generated_qwen_marker_counts": {
+        "<|im_start|>": 0,
+        "<|im_end|>": 0
+      }
+    },
+    {
+      "dialogue_id": 1,
+      "turn_index": 1,
+      "completion_tokens": 2,
+      "hit_token_cap": false,
+      "last_token_is_eos": true,
+      "cjk_characters": 0,
+      "generated_role_lines": 0,
+      "generated_qwen_marker_counts": {
+        "<|im_start|>": 0,
+        "<|im_end|>": 0
+      }
+    }
+  ]
+}
+{
+  "passed": true,
+  "dialogues": 1,
+  "turns": 2,
+  "input_truncated_turns": 0,
+  "adapter_required": false,
+  "judge_calls": 0,
+  "protocol": "safedial_dcr_prompt_ablation_qwen_standard_v1",
+  "prompt_format": "qwen_standard",
+  "prompt_format_verified": true,
+  "turn_metrics": [
+    {
+      "dialogue_id": 1,
+      "turn_index": 0,
+      "completion_tokens": 2,
+      "hit_token_cap": false,
+      "last_token_is_eos": true,
+      "cjk_characters": 0,
+      "generated_role_lines": 0,
+      "generated_qwen_marker_counts": {
+        "<|im_start|>": 0,
+        "<|im_end|>": 0
+      }
+    },
+    {
+      "dialogue_id": 1,
+      "turn_index": 1,
+      "completion_tokens": 2,
+      "hit_token_cap": false,
+      "last_token_is_eos": true,
+      "cjk_characters": 0,
+      "generated_role_lines": 0,
+      "generated_qwen_marker_counts": {
+        "<|im_start|>": 0,
+        "<|im_end|>": 0
+      }
+    }
+  ]
+}
+{
+  "passed": true,
+  "prompt_format": "qwen_standard",
+  "dialogues": 1,
+  "turns": 1,
+  "max_prompt_tokens": 24,
+  "input_token_limit": 504,
+  "max_new_tokens": 8,
+  "truncated_turns": 0,
+  "system_message": "You are a helpful assistant.",
+  "history": "dataset_reference_assistant",
+  "marker_diagnostics": {
+    "markers": {
+      "<|im_start|>": {
+        "token_ids": [
+          0,
+          0,
+          0
+        ],
+        "registered_special_token": false
+      },
+      "<|im_end|>": {
+        "token_ids": [
+          0,
+          0,
+          0
+        ],
+        "registered_special_token": false
+      }
+    },
+    "generation_eos_token": "[EOS]",
+    "generation_eos_token_id": 1,
+    "added_stop_sequences": []
+  },
+  "prompt_policy": {
+    "tokenizer": "uploaded_adapter",
+    "prompt_format": "qwen_standard",
+    "template": "official_base_Qwen_tokenizer_config.chat_template",
+    "template_repository": "Qwen/Qwen2.5-1.5B",
+    "template_revision": "8faed761d45a263340a0528343f099c05c9a4323",
+    "tokenizer_config_sha256": "c91efca15ceff6e9ee9424db58a6f59cd41294e550a86cbd07e3c1fb500b34f9",
+    "template_sha256": "44d5f08f3f72b837eaad09f13a54c1f9f4eb58d75240334548b7fd52a5437fa5",
+    "system_message": "You are a helpful assistant.",
+    "system_message_source": "template_default",
+    "assistant_cue": "<|im_start|>assistant\n",
+    "message_ending": "<|im_end|>\n",
+    "truncation": "reject_overflow",
+    "add_special_tokens": false,
+    "stop_policy": "uploaded_Qwen_EOS_only; no_added_im_end_stop",
+    "vocabulary_changes": false
+  }
+}
+ok
+test_exact_zephyr_text_keeps_gold_history_without_reference_leakage (test_safedial_dcr_zephyr_prompt.DCRZephyrPromptTests.test_exact_zephyr_text_keeps_gold_history_without_reference_leakage) ... ok
+test_generation_audit_noop_resume_and_wrong_format_rejection (test_safedial_dcr_zephyr_prompt.DCRZephyrPromptTests.test_generation_audit_noop_resume_and_wrong_format_rejection) ... Loading standard Qwen/Qwen2.5-1.5B at 8faed761d45a263340a0528343f099c05c9a4323
+DCR adapter active; max logit difference 0.5
+[1/1] saved dialogue 1
+ok
+test_private_runtime_does_not_mutate_existing_modes (test_safedial_dcr_zephyr_prompt.DCRZephyrPromptTests.test_private_runtime_does_not_mutate_existing_modes) ... ok
+test_validate_only_no_model_no_output_and_marker_diagnostics (test_safedial_dcr_zephyr_prompt.DCRZephyrPromptTests.test_validate_only_no_model_no_output_and_marker_diagnostics) ... {
+  "passed": true,
+  "dialogues": 1,
+  "turns": 2,
+  "input_truncated_turns": 0,
+  "adapter_required": false,
+  "judge_calls": 0,
+  "protocol": "safedial_dcr_prompt_ablation_zephyr_literal_v1",
+  "prompt_format": "zephyr",
+  "prompt_format_verified": true,
+  "turn_metrics": [
+    {
+      "dialogue_id": 1,
+      "turn_index": 0,
+      "completion_tokens": 2,
+      "hit_token_cap": false,
+      "last_token_is_eos": true,
+      "cjk_characters": 0,
+      "generated_role_lines": 0,
+      "generated_zephyr_role_markers": 0,
+      "generated_literal_end_s": 0
+    },
+    {
+      "dialogue_id": 1,
+      "turn_index": 1,
+      "completion_tokens": 2,
+      "hit_token_cap": false,
+      "last_token_is_eos": true,
+      "cjk_characters": 0,
+      "generated_role_lines": 0,
+      "generated_zephyr_role_markers": 0,
+      "generated_literal_end_s": 0
+    }
+  ]
+}
+{
+  "passed": true,
+  "dialogues": 1,
+  "turns": 2,
+  "input_truncated_turns": 0,
+  "adapter_required": false,
+  "judge_calls": 0,
+  "protocol": "safedial_dcr_prompt_ablation_zephyr_literal_v1",
+  "prompt_format": "zephyr",
+  "prompt_format_verified": true,
+  "turn_metrics": [
+    {
+      "dialogue_id": 1,
+      "turn_index": 0,
+      "completion_tokens": 2,
+      "hit_token_cap": false,
+      "last_token_is_eos": true,
+      "cjk_characters": 0,
+      "generated_role_lines": 0,
+      "generated_zephyr_role_markers": 0,
+      "generated_literal_end_s": 0
+    },
+    {
+      "dialogue_id": 1,
+      "turn_index": 1,
+      "completion_tokens": 2,
+      "hit_token_cap": false,
+      "last_token_is_eos": true,
+      "cjk_characters": 0,
+      "generated_role_lines": 0,
+      "generated_zephyr_role_markers": 0,
+      "generated_literal_end_s": 0
+    }
+  ]
+}
+{
+  "passed": true,
+  "prompt_format": "zephyr",
+  "dialogues": 1,
+  "turns": 1,
+  "max_prompt_tokens": 10,
+  "input_token_limit": 504,
+  "max_new_tokens": 8,
+  "truncated_turns": 0,
+  "system_message": null,
+  "history": "dataset_reference_assistant",
+  "marker_diagnostics": {
+    "markers": {
+      "<|user|>": {
+        "token_ids": [
+          0,
+          0,
+          0
+        ],
+        "registered_special_token": false
+      },
+      "<|assistant|>": {
+        "token_ids": [
+          0,
+          0,
+          0
+        ],
+        "registered_special_token": false
+      },
+      "</s>": {
+        "token_ids": [
+          0,
+          0,
+          0
+        ],
+        "registered_special_token": false
+      }
+    },
+    "generation_eos_token": "[EOS]",
+    "generation_eos_token_id": 1,
+    "added_stop_sequences": []
+  }
+}
+ok
+
+----------------------------------------------------------------------
+Ran 23 tests in 4.194s
+
+OK

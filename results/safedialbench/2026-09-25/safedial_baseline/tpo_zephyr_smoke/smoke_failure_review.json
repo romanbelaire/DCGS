@@ -1,0 +1,42 @@
+{
+  "job_id": 249814,
+  "scheduler_state": "FAILED",
+  "scheduler_exit_code": "2:0",
+  "wall_seconds": 832,
+  "gpu_name": "NVIDIA A40",
+  "peak_gpu_allocated_gib": 28.26281976699829,
+  "peak_gpu_reserved_gib": 28.72265625,
+  "expected_turns": 5,
+  "successful_turns_audited": 2,
+  "failed_turns": 1,
+  "unattempted_turns": 2,
+  "complete_dialogues": 0,
+  "actual_calls": {
+    "generate": 55,
+    "reward": 42
+  },
+  "scored_candidates": 42,
+  "input_truncations": 0,
+  "generation_cap_hits": 1,
+  "failure": {
+    "dialogue_id": 1,
+    "turn_index": 2,
+    "iteration": 1,
+    "slot": 2,
+    "stage": "update",
+    "error": "ValueError: Optimizer output must contain exactly one ordered IMPROVED_VARIABLE span",
+    "completion_tokens": 1024,
+    "opening_tag_count": 1,
+    "closing_tag_count": 0,
+    "observed_other_tags": [
+      "</LM_INPUT>",
+      "<LM_OUTPUT>",
+      "</LM_OUTPUT>",
+      "</CONVERSATION>",
+      "<FEEDBACK>"
+    ]
+  },
+  "interpretation": "Malformed optimizer response copied feedback-context markup then hit cap; increasing budget alone is not a verified remedy. Strict validation rejected it. Unchanged deterministic retry may reproduce it.",
+  "full_validation_passed": false,
+  "paid_judging_performed": false
+}

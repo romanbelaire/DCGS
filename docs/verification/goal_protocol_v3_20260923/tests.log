@@ -1,0 +1,30 @@
+test_dry_run_has_no_client_or_output_side_effects (test_distill_safedial_goals.GoalExtractionTests.test_dry_run_has_no_client_or_output_side_effects) ... ok
+test_earlier_user_evidence_valid_even_with_generic_final_message (test_distill_safedial_goals.GoalExtractionTests.test_earlier_user_evidence_valid_even_with_generic_final_message) ... ok
+test_evidence_cannot_quote_assistant_or_wrong_turn (test_distill_safedial_goals.GoalExtractionTests.test_evidence_cannot_quote_assistant_or_wrong_turn) ... ok
+test_final_user_evidence_is_also_valid (test_distill_safedial_goals.GoalExtractionTests.test_final_user_evidence_is_also_valid) ... ok
+test_full_conversation_through_final_user_without_answer_or_category_leakage (test_distill_safedial_goals.GoalExtractionTests.test_full_conversation_through_final_user_without_answer_or_category_leakage) ... ok
+test_goal_export_contains_success_only_and_no_status (test_distill_safedial_goals.GoalExtractionTests.test_goal_export_contains_success_only_and_no_status) ... ok
+test_grounding_empty_goals_and_classification_rejected (test_distill_safedial_goals.GoalExtractionTests.test_grounding_empty_goals_and_classification_rejected) ... ok
+test_input_duplicate_missing_id_and_bad_history_fail (test_distill_safedial_goals.GoalExtractionTests.test_input_duplicate_missing_id_and_bad_history_fail) ... ok
+test_main_resumes_success_and_requires_explicit_error_retry (test_distill_safedial_goals.GoalExtractionTests.test_main_resumes_success_and_requires_explicit_error_retry) ... {"selected_dialogues": 1, "pending_requests": 1, "model": "gpt-5.6-sol", "context": "conversation_through_final_user", "dry_run": true}
+dialogue=7 extraction=success
+dialogue=8 extraction=error
+{"protocol": "safedial_conversation_goals_v3", "selected_dialogues": 2, "counts": {"success": 1, "error": 1}, "complete": false, "incomplete_dialogues": [{"dialogue_id": 8, "extraction_status": "error", "error": "Extractor refused annotation"}], "annotation_source": "LLM inferred, unreviewed; conversation-level user goals regardless of harmfulness", "updated_at": "2026-09-23T13:55:33.233582+00:00"}
+{"protocol": "safedial_conversation_goals_v3", "selected_dialogues": 2, "counts": {"success": 1, "error": 1}, "complete": false, "incomplete_dialogues": [{"dialogue_id": 8, "extraction_status": "error", "error": "Extractor refused annotation"}], "annotation_source": "LLM inferred, unreviewed; conversation-level user goals regardless of harmfulness", "updated_at": "2026-09-23T13:55:33.235266+00:00"}
+dialogue=8 extraction=success
+ok
+test_output_lock_excludes_another_writer (test_distill_safedial_goals.GoalExtractionTests.test_output_lock_excludes_another_writer) ... ok
+test_protective_and_informational_goals_survive_extraction_and_export (test_distill_safedial_goals.GoalExtractionTests.test_protective_and_informational_goals_survive_extraction_and_export) ... ok
+test_refusal_incomplete_and_invalid_json_remain_errors (test_distill_safedial_goals.GoalExtractionTests.test_refusal_incomplete_and_invalid_json_remain_errors) ... ok
+test_resume_provenance_and_torn_journal (test_distill_safedial_goals.GoalExtractionTests.test_resume_provenance_and_torn_journal) ... ok
+test_success_keeps_raw_response_and_usage (test_distill_safedial_goals.GoalExtractionTests.test_success_keeps_raw_response_and_usage) ... ok
+test_transient_retry_but_no_credential_leak (test_distill_safedial_goals.GoalExtractionTests.test_transient_retry_but_no_credential_leak) ... ok
+test_v2_run_is_rejected_without_rewriting_its_results (test_distill_safedial_goals.GoalExtractionTests.test_v2_run_is_rejected_without_rewriting_its_results) ... ok
+test_whitespace_prior_turn_is_preserved_like_real_dialogue_645 (test_distill_safedial_goals.GoalExtractionTests.test_whitespace_prior_turn_is_preserved_like_real_dialogue_645) ... ok
+
+----------------------------------------------------------------------
+Ran 17 tests in 0.030s
+
+OK
+{"protocol": "safedial_conversation_goals_v3", "selected_dialogues": 2, "counts": {"success": 2}, "complete": true, "incomplete_dialogues": [], "annotation_source": "LLM inferred, unreviewed; conversation-level user goals regardless of harmfulness", "updated_at": "2026-09-23T13:55:33.237865+00:00"}
+{"protocol": "safedial_conversation_goals_v3", "selected_dialogues": 2, "counts": {"success": 2}, "complete": true, "incomplete_dialogues": [], "annotation_source": "LLM inferred, unreviewed; conversation-level user goals regardless of harmfulness", "updated_at": "2026-09-23T13:55:33.239498+00:00"}

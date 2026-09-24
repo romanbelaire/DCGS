@@ -1,0 +1,409 @@
+test_softmax_tie_and_extreme_scores (test_judge_safedial_llamaguard.DecisionTests.test_softmax_tie_and_extreme_scores) ... ok
+test_altered_judgment_is_rejected (test_judge_safedial_llamaguard.Fixture.test_altered_judgment_is_rejected) ... ok
+test_answers_input_maps_declared_choice_and_detects_partial_dialogue (test_judge_safedial_llamaguard.Fixture.test_answers_input_maps_declared_choice_and_detects_partial_dialogue) ... ok
+test_bad_complete_json_line_is_not_silently_ignored (test_judge_safedial_llamaguard.Fixture.test_bad_complete_json_line_is_not_silently_ignored) ... ok
+test_configuration_drift_rejected (test_judge_safedial_llamaguard.Fixture.test_configuration_drift_rejected) ... ok
+test_dataset_hash_mismatch_rejected (test_judge_safedial_llamaguard.Fixture.test_dataset_hash_mismatch_rejected) ... ok
+test_duplicate_success_conflict_rejected_but_retry_error_supported (test_judge_safedial_llamaguard.Fixture.test_duplicate_success_conflict_rejected_but_retry_error_supported) ... ok
+test_fatal_error_is_journaled_before_stopping (test_judge_safedial_llamaguard.Fixture.test_fatal_error_is_journaled_before_stopping) ... Judged 1: 1/0 error
+ok
+test_history_uses_gold_not_prior_generation_and_preserves_full_text (test_judge_safedial_llamaguard.Fixture.test_history_uses_gold_not_prior_generation_and_preserves_full_text) ... ok
+test_input_checksum_and_reference_history_validation (test_judge_safedial_llamaguard.Fixture.test_input_checksum_and_reference_history_validation) ... ok
+test_journal_torn_tail_recovery_and_foreign_record_rejection (test_judge_safedial_llamaguard.Fixture.test_journal_torn_tail_recovery_and_foreign_record_rejection) ... ok
+test_lock_rejects_concurrent_writer (test_judge_safedial_llamaguard.Fixture.test_lock_rejects_concurrent_writer) ... ok
+test_missing_and_error_turns_never_become_safe (test_judge_safedial_llamaguard.Fixture.test_missing_and_error_turns_never_become_safe) ... ok
+test_one_unsafe_turn_fails_dialogue_not_turn_average (test_judge_safedial_llamaguard.Fixture.test_one_unsafe_turn_fails_dialogue_not_turn_average) ... ok
+test_output_cannot_replace_run_root (test_judge_safedial_llamaguard.Fixture.test_output_cannot_replace_run_root) ... ok
+test_partial_unsafe_reported_without_entering_complete_denominator (test_judge_safedial_llamaguard.Fixture.test_partial_unsafe_reported_without_entering_complete_denominator) ... ok
+test_prepare_cli_never_loads_model_and_resume_does_not_refresh_inputs (test_judge_safedial_llamaguard.Fixture.test_prepare_cli_never_loads_model_and_resume_does_not_refresh_inputs) ... ok
+test_resume_skips_success_and_errors_unless_explicitly_requested (test_judge_safedial_llamaguard.Fixture.test_resume_skips_success_and_errors_unless_explicitly_requested) ... {
+  "output_dir": "/tmp/tmpcosy__vp/judge",
+  "complete": false,
+  "generation": {
+    "available": 3
+  },
+  "turns": {
+    "judge_pending": 3
+  },
+  "overall": {
+    "expected_dialogues": 2,
+    "complete_dialogues": 0,
+    "incomplete_dialogues": 2,
+    "safe_dialogues": 0,
+    "unsafe_dialogues": 0,
+    "ASR_LG_percent": null,
+    "DSR_LG_percent": null,
+    "incomplete_with_observed_unsafe": 0
+  }
+}
+{
+  "output_dir": "/tmp/tmpcosy__vp/judge",
+  "complete": false,
+  "generation": {
+    "available": 3
+  },
+  "turns": {
+    "judge_pending": 3
+  },
+  "overall": {
+    "expected_dialogues": 2,
+    "complete_dialogues": 0,
+    "incomplete_dialogues": 2,
+    "safe_dialogues": 0,
+    "unsafe_dialogues": 0,
+    "ASR_LG_percent": null,
+    "DSR_LG_percent": null,
+    "incomplete_with_observed_unsafe": 0
+  }
+}
+Judged 1: 1/0 error
+Judged 2: 1/1 safe
+Judged 1: 2/0 safe
+Judged 1: 1/0 safe
+ok
+test_snapshot_excludes_appends_and_torn_tail (test_judge_safedial_llamaguard.Fixture.test_snapshot_excludes_appends_and_torn_tail) ... ok
+test_next_token_forward_and_two_label_normalization (test_judge_safedial_llamaguard.ForwardTests.test_next_token_forward_and_two_label_normalization) ... ok
+test_overflow_rejected_before_forward_without_truncation (test_judge_safedial_llamaguard.ForwardTests.test_overflow_rejected_before_forward_without_truncation) ... ok
+test_unrelated_top_token_is_error_not_a_forced_safe_label (test_judge_safedial_llamaguard.ForwardTests.test_unrelated_top_token_is_error_not_a_forced_safe_label) ... ok
+test_blank_line_prefill_is_added_once_and_unknown_suffix_rejected (test_judge_safedial_llamaguard.PromptFormatTests.test_blank_line_prefill_is_added_once_and_unknown_suffix_rejected) ... ok
+test_cached_pinned_tokenizer_places_separator_before_label (test_judge_safedial_llamaguard.PromptFormatTests.test_cached_pinned_tokenizer_places_separator_before_label) ... ok
+test_judging_resumes_without_reloading_and_rejects_config_drift (test_safedial_llamaguard_full.FullRunTests.test_judging_resumes_without_reloading_and_rejects_config_drift) ... {
+  "output_dir": "/tmp/tmpp3n3uiil/out",
+  "complete": false,
+  "generation": {
+    "available": 3
+  },
+  "turns": {
+    "judge_pending": 3
+  },
+  "overall": {
+    "expected_dialogues": 2,
+    "complete_dialogues": 0,
+    "incomplete_dialogues": 2,
+    "safe_dialogues": 0,
+    "unsafe_dialogues": 0,
+    "ASR_LG_percent": null,
+    "DSR_LG_percent": null,
+    "incomplete_with_observed_unsafe": 0
+  }
+}
+Checking gated tokenizer access and all formatted input lengths before loading weights.
+{
+  "available_turns_audited": 3,
+  "effective_context_limit": 16000,
+  "input_tokens_min": 1939,
+  "input_tokens_max": 4418,
+  "input_tokens_p50": 1939,
+  "input_tokens_p95": 4418,
+  "input_tokens_p99": 4418,
+  "overflow_turns": [],
+  "passed": true,
+  "truncation": "none; counts include full guard template and conversation",
+  "inputs_sha256": "568ffb9b8fb754039b421ffd156b412bb49abcf1857828af2feb0b306db42cce",
+  "judge_config_sha256": "cd278b92cc6b4fefab1d25726751138e510fab333dc9da1cbf1141422d5b1294",
+  "model": "meta-llama/Llama-Guard-3-8B",
+  "revision": "7327bd9f6efbbe6101dc6cc4736302b3cbb6e425",
+  "label_prefix": "\n\n",
+  "model_context_limit": 16000,
+  "model_config_sha256": "fixture-config",
+  "tokenizer_template_sha256": "34f75d07c9fb3b8a3dd4af6227e60f42fbd1b6921a7c112cd3008e5b6a3f7095"
+}
+Judged 1: 1/0 safe
+Judged 2: 1/1 safe
+Judged 3: 2/0 safe
+ok
+test_missing_generation_stops_before_tokenizer_and_can_be_explicit (test_safedial_llamaguard_full.FullRunTests.test_missing_generation_stops_before_tokenizer_and_can_be_explicit) ... Full snapshot has missing/failed generation. Use a fresh snapshot after generation finishes, or explicitly --allow-incomplete-generation in a fresh directory.
+ok
+test_overflow_aborts_all_inference_and_reports_turn_ids (test_safedial_llamaguard_full.FullRunTests.test_overflow_aborts_all_inference_and_reports_turn_ids) ... {
+  "expected_dialogues": 2,
+  "complete_dialogues": 2,
+  "incomplete_dialogues": 0,
+  "safe_dialogues": 2,
+  "unsafe_dialogues": 0,
+  "ASR_LG_percent": 0.0,
+  "DSR_LG_percent": 100.0,
+  "incomplete_with_observed_unsafe": 0
+}
+{
+  "output_dir": "/tmp/tmpp3n3uiil/out",
+  "complete": true,
+  "generation": {
+    "available": 3
+  },
+  "turns": {
+    "safe": 3
+  },
+  "overall": {
+    "expected_dialogues": 2,
+    "complete_dialogues": 2,
+    "incomplete_dialogues": 0,
+    "safe_dialogues": 2,
+    "unsafe_dialogues": 0,
+    "ASR_LG_percent": 0.0,
+    "DSR_LG_percent": 100.0,
+    "incomplete_with_observed_unsafe": 0
+  }
+}
+{
+  "expected_dialogues": 2,
+  "complete_dialogues": 2,
+  "incomplete_dialogues": 0,
+  "safe_dialogues": 2,
+  "unsafe_dialogues": 0,
+  "ASR_LG_percent": 0.0,
+  "DSR_LG_percent": 100.0,
+  "incomplete_with_observed_unsafe": 0
+}
+{
+  "output_dir": "/tmp/tmpuzu7aqmk/out",
+  "complete": false,
+  "generation": {
+    "available": 2,
+    "missing": 1
+  },
+  "turns": {
+    "judge_pending": 2,
+    "generation_missing": 1
+  },
+  "overall": {
+    "expected_dialogues": 2,
+    "complete_dialogues": 0,
+    "incomplete_dialogues": 2,
+    "safe_dialogues": 0,
+    "unsafe_dialogues": 0,
+    "ASR_LG_percent": null,
+    "DSR_LG_percent": null,
+    "incomplete_with_observed_unsafe": 0
+  }
+}
+{
+  "output_dir": "/tmp/tmpuzu7aqmk/out",
+  "complete": false,
+  "generation": {
+    "available": 2,
+    "missing": 1
+  },
+  "turns": {
+    "judge_pending": 2,
+    "generation_missing": 1
+  },
+  "overall": {
+    "expected_dialogues": 2,
+    "complete_dialogues": 0,
+    "incomplete_dialogues": 2,
+    "safe_dialogues": 0,
+    "unsafe_dialogues": 0,
+    "ASR_LG_percent": null,
+    "DSR_LG_percent": null,
+    "incomplete_with_observed_unsafe": 0
+  }
+}
+{
+  "output_dir": "/tmp/tmpuzu7aqmk/partial",
+  "complete": false,
+  "generation": {
+    "available": 2,
+    "missing": 1
+  },
+  "turns": {
+    "judge_pending": 2,
+    "generation_missing": 1
+  },
+  "overall": {
+    "expected_dialogues": 2,
+    "complete_dialogues": 0,
+    "incomplete_dialogues": 2,
+    "safe_dialogues": 0,
+    "unsafe_dialogues": 0,
+    "ASR_LG_percent": null,
+    "DSR_LG_percent": null,
+    "incomplete_with_observed_unsafe": 0
+  }
+}
+Full-dataset preparation passed; tokenizer/model not loaded.
+{
+  "output_dir": "/tmp/tmpgzkxch_y/out",
+  "complete": false,
+  "generation": {
+    "available": 3
+  },
+  "turns": {
+    "judge_pending": 3
+  },
+  "overall": {
+    "expected_dialogues": 2,
+    "complete_dialogues": 0,
+    "incomplete_dialogues": 2,
+    "safe_dialogues": 0,
+    "unsafe_dialogues": 0,
+    "ASR_LG_percent": null,
+    "DSR_LG_percent": null,
+    "incomplete_with_observed_unsafe": 0
+  }
+}
+Checking gated tokenizer access and all formatted input lengths before loading weights.
+{
+  "available_turns_audited": 3,
+  "effective_context_limit": 2000,
+  "input_tokens_min": 1939,
+  "input_tokens_max": 4418,
+  "input_tokens_p50": 1939,
+  "input_tokens_p95": 4418,
+  "input_tokens_p99": 4418,
+  "overflow_turns": [
+    {
+      "dialogue_id": 1,
+      "turn_index": 1,
+      "input_tokens": 4418
+    }
+  ],
+  "passed": false,
+  "truncation": "none; counts include full guard template and conversation",
+  "inputs_sha256": "568ffb9b8fb754039b421ffd156b412bb49abcf1857828af2feb0b306db42cce",
+  "judge_config_sha256": "4ae91941109c3a387e916b066a7efdf0fa5c2e174809afb6dfe06ca48ec091ec",
+  "model": "meta-llama/Llama-Guard-3-8B",
+  "revision": "7327bd9f6efbbe6101dc6cc4736302b3cbb6e425",
+  "label_prefix": "\n\n",
+  "model_context_limit": 16000,
+  "model_config_sha256": "fixture-config",
+  "tokenizer_template_sha256": "34f75d07c9fb3b8a3dd4af6227e60f42fbd1b6921a7c112cd3008e5b6a3f7095"
+}
+Context preflight failed; no weights loaded or inputs truncated. Inspect context_preflight.json.
+ok
+test_partial_snapshot_does_not_ingest_new_generation_on_resume (test_safedial_llamaguard_full.FullRunTests.test_partial_snapshot_does_not_ingest_new_generation_on_resume) ... ok
+test_preflight_counts_complete_prefix_and_response_without_loading_weights (test_safedial_llamaguard_full.FullRunTests.test_preflight_counts_complete_prefix_and_response_without_loading_weights) ... {
+  "output_dir": "/tmp/tmphr57afh3/out",
+  "complete": false,
+  "generation": {
+    "available": 2,
+    "missing": 1
+  },
+  "turns": {
+    "judge_pending": 2,
+    "generation_missing": 1
+  },
+  "overall": {
+    "expected_dialogues": 2,
+    "complete_dialogues": 0,
+    "incomplete_dialogues": 2,
+    "safe_dialogues": 0,
+    "unsafe_dialogues": 0,
+    "ASR_LG_percent": null,
+    "DSR_LG_percent": null,
+    "incomplete_with_observed_unsafe": 0
+  }
+}
+Full-dataset preparation passed; tokenizer/model not loaded.
+{
+  "output_dir": "/tmp/tmphr57afh3/out",
+  "complete": false,
+  "generation": {
+    "available": 2,
+    "missing": 1
+  },
+  "turns": {
+    "judge_pending": 2,
+    "generation_missing": 1
+  },
+  "overall": {
+    "expected_dialogues": 2,
+    "complete_dialogues": 0,
+    "incomplete_dialogues": 2,
+    "safe_dialogues": 0,
+    "unsafe_dialogues": 0,
+    "ASR_LG_percent": null,
+    "DSR_LG_percent": null,
+    "incomplete_with_observed_unsafe": 0
+  }
+}
+Full-dataset preparation passed; tokenizer/model not loaded.
+{
+  "output_dir": "/tmp/tmpwdovou84/out",
+  "complete": false,
+  "generation": {
+    "available": 3
+  },
+  "turns": {
+    "judge_pending": 3
+  },
+  "overall": {
+    "expected_dialogues": 2,
+    "complete_dialogues": 0,
+    "incomplete_dialogues": 2,
+    "safe_dialogues": 0,
+    "unsafe_dialogues": 0,
+    "ASR_LG_percent": null,
+    "DSR_LG_percent": null,
+    "incomplete_with_observed_unsafe": 0
+  }
+}
+Checking gated tokenizer access and all formatted input lengths before loading weights.
+{
+  "available_turns_audited": 3,
+  "effective_context_limit": 16000,
+  "input_tokens_min": 1939,
+  "input_tokens_max": 4418,
+  "input_tokens_p50": 1939,
+  "input_tokens_p95": 4418,
+  "input_tokens_p99": 4418,
+  "overflow_turns": [],
+  "passed": true,
+  "truncation": "none; counts include full guard template and conversation",
+  "inputs_sha256": "568ffb9b8fb754039b421ffd156b412bb49abcf1857828af2feb0b306db42cce",
+  "judge_config_sha256": "cd278b92cc6b4fefab1d25726751138e510fab333dc9da1cbf1141422d5b1294",
+  "model": "meta-llama/Llama-Guard-3-8B",
+  "revision": "7327bd9f6efbbe6101dc6cc4736302b3cbb6e425",
+  "label_prefix": "\n\n",
+  "model_context_limit": 16000,
+  "model_config_sha256": "fixture-config",
+  "tokenizer_template_sha256": "34f75d07c9fb3b8a3dd4af6227e60f42fbd1b6921a7c112cd3008e5b6a3f7095"
+}
+ok
+test_prepare_is_full_scope_and_loads_no_tokenizer_or_weights (test_safedial_llamaguard_full.FullRunTests.test_prepare_is_full_scope_and_loads_no_tokenizer_or_weights) ... ok
+test_rejects_subset_even_if_all_selected_outputs_exist (test_safedial_llamaguard_full.FullRunTests.test_rejects_subset_even_if_all_selected_outputs_exist) ... ok
+
+----------------------------------------------------------------------
+Ran 31 tests in 68.096s
+
+OK
+{
+  "output_dir": "/tmp/tmpsgg6go1j/out",
+  "complete": false,
+  "generation": {
+    "available": 3
+  },
+  "turns": {
+    "judge_pending": 3
+  },
+  "overall": {
+    "expected_dialogues": 2,
+    "complete_dialogues": 0,
+    "incomplete_dialogues": 2,
+    "safe_dialogues": 0,
+    "unsafe_dialogues": 0,
+    "ASR_LG_percent": null,
+    "DSR_LG_percent": null,
+    "incomplete_with_observed_unsafe": 0
+  }
+}
+Full-dataset preparation passed; tokenizer/model not loaded.
+{
+  "output_dir": "/tmp/tmpoybioo84/out",
+  "complete": false,
+  "generation": {
+    "available": 2
+  },
+  "turns": {
+    "judge_pending": 2
+  },
+  "overall": {
+    "expected_dialogues": 1,
+    "complete_dialogues": 0,
+    "incomplete_dialogues": 1,
+    "safe_dialogues": 0,
+    "unsafe_dialogues": 0,
+    "ASR_LG_percent": null,
+    "DSR_LG_percent": null,
+    "incomplete_with_observed_unsafe": 0
+  }
+}

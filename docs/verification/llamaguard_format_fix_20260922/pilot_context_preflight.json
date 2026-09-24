@@ -1,0 +1,22 @@
+{
+  "available_turns_audited": 15,
+  "effective_context_limit": 16384,
+  "input_tokens_min": 1024,
+  "input_tokens_max": 2710,
+  "input_tokens_p50": 1597,
+  "input_tokens_p95": 2710,
+  "input_tokens_p99": 2710,
+  "overflow_turns": [],
+  "passed": true,
+  "truncation": "none; counts include full guard template and conversation",
+  "model_context_limit": 131072,
+  "model_config_sha256": "2fc8239c581986bc8aceffab5e9bbec2c9e1e383fe39409d86e5ca97b6368901",
+  "tokenizer_template_sha256": "97c1b0417e3f1b2c4abbbc894f64361b136bcc973b594ca1ea5db69853e3c247",
+  "tokenizer_versions": {
+    "transformers": "4.57.6",
+    "tokenizers": "0.22.2",
+    "huggingface-hub": "0.36.2"
+  },
+  "label_prefix": "\n\n",
+  "inputs_sha256": "7786dd0df93b60362e838084d435cb9131464d4ddd47b1a3174fc30303795c9c"
+}

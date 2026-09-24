@@ -1,4 +1,44 @@
-# Partial SafeDial judging of the 96-token DCGS runs
+# Partial SafeDial judging of DCGS runs
+
+## 384-token snapshot, 22 September 2026
+
+Prepared and validated `outputs/safedial_partial_judging/dcgs_384tokens_20260922_v1`
+from the current belief-only 384-token outputs. VDCGS generation can continue;
+RDCGS generation was preempted. The judge reads immutable copies, not live exports.
+
+| Method | Complete dialogues | Turn judgments |
+|---|---:|---:|
+| VDCGS-384 | 923 | 4,462 |
+| RDCGS-384 | 497 | 2,403 |
+
+The batch makes 6,865 GPT-4o-mini requests before retries, with four concurrent
+requests per method and the same native rubric/settings as the earlier evaluation.
+Cached Zephyr scores cover every selected ID. The main three-way comparison uses
+496 shared dialogue IDs; each method's additional completed dialogues are also
+judged and reported separately. This is a preliminary completed-prefix sample,
+not a full-benchmark result or a direct causal comparison with the 96-token runs.
+
+Submit from the DCGS root (CPU only; no GPU request):
+
+```bash
+sbatch scripts/slurm/run_safedial_dcgs_partial_judge.sbatch \
+  outputs/safedial_partial_judging/dcgs_384tokens_20260922_v1
+```
+
+The same command resumes successful turn judgments without repeating them.
+Native Identification/Handling/Consistency scores use per-dialogue minima; this
+batch does not run LlamaGuard or compute combined safety pass rates.
+Results are written to `comparison.json` in the snapshot directory.
+
+Preparation checked answer/journal equality, model identity, gold histories,
+384-token configuration, cached-baseline provenance and all snapshot hashes.
+VDCGS terminal failures at 178/turn4 and 903/turn4 remain coverage exclusions;
+RDCGS has no recorded generation failures. Incomplete dialogues are excluded.
+The preparation program is retained as `preparation.py` inside the snapshot.
+Both native judge dry runs, four partial-judge regression tests and batch shell
+syntax passed. No paid API requests or Slurm submissions during preparation.
+
+## 96-token snapshot, 20 September 2026
 
 User requested judging processed outputs before deciding whether to change the
 belief budget. Generation jobs remain user-owned and may keep running; judging

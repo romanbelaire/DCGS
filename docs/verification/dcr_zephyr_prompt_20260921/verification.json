@@ -1,0 +1,62 @@
+{
+  "passed": true,
+  "tests": 17,
+  "preflight": {
+    "passed": true,
+    "prompt_format": "zephyr",
+    "dialogues": 3,
+    "turns": 15,
+    "max_prompt_tokens": 1554,
+    "input_token_limit": 130048,
+    "max_new_tokens": 1024,
+    "truncated_turns": 0,
+    "system_message": null,
+    "history": "dataset_reference_assistant",
+    "marker_diagnostics": {
+      "markers": {
+        "<|user|>": {
+          "token_ids": [
+            27,
+            91,
+            872,
+            91,
+            29
+          ],
+          "registered_special_token": false
+        },
+        "<|assistant|>": {
+          "token_ids": [
+            27,
+            91,
+            77091,
+            91,
+            29
+          ],
+          "registered_special_token": false
+        },
+        "</s>": {
+          "token_ids": [
+            522,
+            82,
+            29
+          ],
+          "registered_special_token": false
+        }
+      },
+      "generation_eos_token": "<|endoftext|>",
+      "generation_eos_token_id": 151643,
+      "added_stop_sequences": []
+    }
+  },
+  "native_zephyr_render_matches_turns": 15,
+  "previous_runners_and_original_smoke_unchanged": true,
+  "bash_syntax": "passed",
+  "files_sha256": {
+    "scripts/run_safedial_dcr_zephyr_prompt.py": "427fb79f72e2a85da42233fc7c5b27760687147717bdb6be288e08651ddb25d8",
+    "scripts/slurm/run_safedial_dcr_zephyr_smoke.sbatch": "fae473392a3db956ce95b5a4bd48f843f4f21e1d578e29d162dcfc8c831620c7",
+    "tests/test_safedial_dcr_zephyr_prompt.py": "af8c35cc6a04bb0ae8b16393f3546e7944838eb73797e804232bf044633fdd9f"
+  },
+  "real_dcr_inference_performed": false,
+  "jobs_submitted": false,
+  "judge_api_calls": 0
+}

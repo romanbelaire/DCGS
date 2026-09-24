@@ -1,0 +1,13 @@
+{
+  "expected_turns": 10029,
+  "processed_turns": 55,
+  "successful_turns": 55,
+  "failed_turns": 0,
+  "pending_turns": 9974,
+  "processing_complete": false,
+  "complete_without_failures": false,
+  "exported_dialogues": 11,
+  "skipped_candidates": 0,
+  "empty_candidates_scored": 0,
+  "fatal_events": 0
+}

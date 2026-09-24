@@ -1,0 +1,10 @@
+127.0.0.1 - - [21/Sep/2026 00:18:28] "GET /v1/models HTTP/1.1" 401 -
+127.0.0.1 - - [21/Sep/2026 00:18:28] "GET /v1/models HTTP/1.1" 401 -
+127.0.0.1 - - [21/Sep/2026 00:18:28] "GET /v1/models HTTP/1.1" 200 -
+127.0.0.1 - - [21/Sep/2026 00:18:28] "GET /health HTTP/1.1" 200 -
+127.0.0.1 - - [21/Sep/2026 00:18:28] "GET /v1/models HTTP/1.1" 200 -
+127.0.0.1 - - [21/Sep/2026 00:18:28] "POST /v1/chat/completions HTTP/1.1" 400 -
+127.0.0.1 - - [21/Sep/2026 00:18:28] "POST /v1/chat/completions HTTP/1.1" 200 -
+127.0.0.1 - - [21/Sep/2026 00:18:28] "POST /v1/chat/completions HTTP/1.1" 200 -
+127.0.0.1 - - [21/Sep/2026 00:18:28] "POST /v1/chat/completions HTTP/1.1" 200 -
+{"passed": true, "client": "litellm 1.74.3 / openai 1.99.9", "http_requests": 9, "fixture_inferences": 2, "model_calls": 0, "tool_result_round_trip": true, "retry_cached": true, "authentication_preflight": true, "launcher_preflight": true, "ambiguous_json_rejected": true}

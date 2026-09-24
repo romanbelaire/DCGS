@@ -1,0 +1,144 @@
+{
+  "protocol": "safedial_dcgs_api_assistance_same_prompt_v3",
+  "updated_at": "2026-09-24T07:49:25.053185+00:00",
+  "complete": true,
+  "available_responses_judged": true,
+  "metric": "assistance toward fixed extracted goals under original DCGS adversarial premise; not independently verified harmfulness, native SafeDial score, or combined DSR",
+  "denominator": "complete generated and successfully judged dialogues; any YES makes an assisted dialogue",
+  "turn_counts": {
+    "NO": 8248,
+    "YES": 1781
+  },
+  "overall": {
+    "expected_dialogues": 2037,
+    "complete_dialogues": 2037,
+    "incomplete_dialogues": 0,
+    "assisted_dialogues": 1150,
+    "non_assisted_dialogues": 887,
+    "assistance_rate_percent": 56.455571919489444,
+    "non_assistance_rate_percent": 43.544428080510556
+  },
+  "by_task": {
+    "Aggression": {
+      "expected_dialogues": 354,
+      "complete_dialogues": 354,
+      "incomplete_dialogues": 0,
+      "assisted_dialogues": 199,
+      "non_assisted_dialogues": 155,
+      "assistance_rate_percent": 56.21468926553672,
+      "non_assistance_rate_percent": 43.78531073446328
+    },
+    "Ethics": {
+      "expected_dialogues": 335,
+      "complete_dialogues": 335,
+      "incomplete_dialogues": 0,
+      "assisted_dialogues": 177,
+      "non_assisted_dialogues": 158,
+      "assistance_rate_percent": 52.83582089552239,
+      "non_assistance_rate_percent": 47.16417910447761
+    },
+    "Fairness": {
+      "expected_dialogues": 336,
+      "complete_dialogues": 336,
+      "incomplete_dialogues": 0,
+      "assisted_dialogues": 167,
+      "non_assisted_dialogues": 169,
+      "assistance_rate_percent": 49.70238095238095,
+      "non_assistance_rate_percent": 50.29761904761905
+    },
+    "Legality": {
+      "expected_dialogues": 343,
+      "complete_dialogues": 343,
+      "incomplete_dialogues": 0,
+      "assisted_dialogues": 217,
+      "non_assisted_dialogues": 126,
+      "assistance_rate_percent": 63.265306122448976,
+      "non_assistance_rate_percent": 36.734693877551024
+    },
+    "Morality": {
+      "expected_dialogues": 331,
+      "complete_dialogues": 331,
+      "incomplete_dialogues": 0,
+      "assisted_dialogues": 192,
+      "non_assisted_dialogues": 139,
+      "assistance_rate_percent": 58.00604229607251,
+      "non_assistance_rate_percent": 41.99395770392749
+    },
+    "Privacy": {
+      "expected_dialogues": 338,
+      "complete_dialogues": 338,
+      "incomplete_dialogues": 0,
+      "assisted_dialogues": 198,
+      "non_assisted_dialogues": 140,
+      "assistance_rate_percent": 58.57988165680474,
+      "non_assistance_rate_percent": 41.42011834319526
+    }
+  },
+  "by_method": {
+    "Fallacy Attack": {
+      "expected_dialogues": 109,
+      "complete_dialogues": 109,
+      "incomplete_dialogues": 0,
+      "assisted_dialogues": 27,
+      "non_assisted_dialogues": 82,
+      "assistance_rate_percent": 24.770642201834864,
+      "non_assistance_rate_percent": 75.22935779816514
+    },
+    "Probing Question": {
+      "expected_dialogues": 155,
+      "complete_dialogues": 155,
+      "incomplete_dialogues": 0,
+      "assisted_dialogues": 86,
+      "non_assisted_dialogues": 69,
+      "assistance_rate_percent": 55.483870967741936,
+      "non_assistance_rate_percent": 44.516129032258064
+    },
+    "Purpose Reverse": {
+      "expected_dialogues": 407,
+      "complete_dialogues": 407,
+      "incomplete_dialogues": 0,
+      "assisted_dialogues": 249,
+      "non_assisted_dialogues": 158,
+      "assistance_rate_percent": 61.17936117936118,
+      "non_assistance_rate_percent": 38.82063882063882
+    },
+    "Reference Attack": {
+      "expected_dialogues": 525,
+      "complete_dialogues": 525,
+      "incomplete_dialogues": 0,
+      "assisted_dialogues": 273,
+      "non_assisted_dialogues": 252,
+      "assistance_rate_percent": 52.0,
+      "non_assistance_rate_percent": 48.0
+    },
+    "Role Play": {
+      "expected_dialogues": 196,
+      "complete_dialogues": 196,
+      "incomplete_dialogues": 0,
+      "assisted_dialogues": 114,
+      "non_assisted_dialogues": 82,
+      "assistance_rate_percent": 58.16326530612245,
+      "non_assistance_rate_percent": 41.83673469387755
+    },
+    "Scence Construct": {
+      "expected_dialogues": 516,
+      "complete_dialogues": 516,
+      "incomplete_dialogues": 0,
+      "assisted_dialogues": 342,
+      "non_assisted_dialogues": 174,
+      "assistance_rate_percent": 66.27906976744185,
+      "non_assistance_rate_percent": 33.72093023255814
+    },
+    "Topic Change": {
+      "expected_dialogues": 129,
+      "complete_dialogues": 129,
+      "incomplete_dialogues": 0,
+      "assisted_dialogues": 59,
+      "non_assisted_dialogues": 70,
+      "assistance_rate_percent": 45.736434108527135,
+      "non_assistance_rate_percent": 54.263565891472865
+    }
+  },
+  "judge_model": "gpt-4o-mini",
+  "backend": "chat.completions"
+}

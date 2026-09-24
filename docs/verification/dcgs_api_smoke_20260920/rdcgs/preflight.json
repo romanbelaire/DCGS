@@ -1,0 +1,43 @@
+{
+  "passed": true,
+  "dialogues": 1,
+  "turns": 1,
+  "synthetic_prompt_calls": 3,
+  "max_prompt_plus_generation_tokens": 772,
+  "model_calls": 0,
+  "estimated_critic_context": {
+    "critic_max_length": 1500,
+    "critic_truncation_sides": [
+      "left"
+    ],
+    "critic_candidate_contexts": 5,
+    "critic_truncated_candidate_contexts": 0,
+    "critic_truncated_turns": 0,
+    "critic_truncated_turn_keys": [],
+    "critic_scoring_calls_by_head": {
+      "predict_q_value": 10,
+      "predict_q_min_value": 10,
+      "predict_regret_value": 10
+    },
+    "critic_scored_inputs_by_head": {
+      "predict_q_value": 10,
+      "predict_q_min_value": 10,
+      "predict_regret_value": 10
+    },
+    "critic_truncated_inputs_by_head": {},
+    "critic_max_input_tokens": 49,
+    "critic_max_dropped_tokens": 0,
+    "critic_full_context": true
+  },
+  "ll_critic_context": {
+    "max_input_tokens": 8192,
+    "max_estimated_input_tokens": 783,
+    "max_synthetic_input_tokens": 62,
+    "potential_overflow_turns": 0,
+    "potential_overflow_turn_details": [],
+    "synthetic_overflow_turns": 0,
+    "overflow_policy": "terminal turn failure; no truncation or extra retry",
+    "note": "Estimates reserve upstream generation budgets; decoded-text retokenization can vary. Runtime checks are authoritative."
+  },
+  "note": "Preflight completion does not guarantee every turn fits. Review LL context risks; full runs record overflow failures and continue, smoke runs stop."
+}

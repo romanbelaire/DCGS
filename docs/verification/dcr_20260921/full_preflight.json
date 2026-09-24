@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "dialogues": 2037,
+  "turns": 10029,
+  "max_prompt_tokens": 7185,
+  "input_token_limit": 130048,
+  "max_new_tokens": 1024,
+  "truncated_turns": 0,
+  "system_message": null,
+  "history": "dataset_reference_assistant"
+}

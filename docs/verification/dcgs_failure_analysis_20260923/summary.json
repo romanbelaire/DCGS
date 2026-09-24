@@ -1,0 +1,1205 @@
+{
+  "failures": {
+    "beliefs_exhausted": 25,
+    "ll_context_overflow": 1
+  },
+  "turns": [
+    {
+      "dialogue_id": 155,
+      "turn_index": 0,
+      "attempts": [
+        {
+          "index": 0,
+          "budget": 96,
+          "token_lengths": [
+            96
+          ],
+          "parsed_valid": 0,
+          "numbered_markers": [
+            1
+          ],
+          "nonempty_marker_count": 1,
+          "starts_duplicate_number": true
+        },
+        {
+          "index": 1,
+          "budget": 96,
+          "token_lengths": [
+            96
+          ],
+          "parsed_valid": 0,
+          "numbered_markers": [
+            1
+          ],
+          "nonempty_marker_count": 1,
+          "starts_duplicate_number": true
+        },
+        {
+          "index": 2,
+          "budget": 96,
+          "token_lengths": [
+            96
+          ],
+          "parsed_valid": 0,
+          "numbered_markers": [
+            1
+          ],
+          "nonempty_marker_count": 1,
+          "starts_duplicate_number": true
+        }
+      ]
+    },
+    {
+      "dialogue_id": 408,
+      "turn_index": 2,
+      "attempts": [
+        {
+          "index": 0,
+          "budget": 96,
+          "token_lengths": [
+            96
+          ],
+          "parsed_valid": 0,
+          "numbered_markers": [
+            1
+          ],
+          "nonempty_marker_count": 1,
+          "starts_duplicate_number": false
+        },
+        {
+          "index": 1,
+          "budget": 96,
+          "token_lengths": [
+            96
+          ],
+          "parsed_valid": 0,
+          "numbered_markers": [
+            1
+          ],
+          "nonempty_marker_count": 1,
+          "starts_duplicate_number": false
+        },
+        {
+          "index": 2,
+          "budget": 96,
+          "token_lengths": [
+            96
+          ],
+          "parsed_valid": 0,
+          "numbered_markers": [
+            1
+          ],
+          "nonempty_marker_count": 1,
+          "starts_duplicate_number": false
+        }
+      ]
+    },
+    {
+      "dialogue_id": 791,
+      "turn_index": 4,
+      "attempts": [
+        {
+          "index": 0,
+          "budget": 96,
+          "token_lengths": [
+            96
+          ],
+          "parsed_valid": 0,
+          "numbered_markers": [
+            1
+          ],
+          "nonempty_marker_count": 1,
+          "starts_duplicate_number": false
+        },
+        {
+          "index": 1,
+          "budget": 96,
+          "token_lengths": [
+            96
+          ],
+          "parsed_valid": 0,
+          "numbered_markers": [
+            1
+          ],
+          "nonempty_marker_count": 1,
+          "starts_duplicate_number": false
+        },
+        {
+          "index": 2,
+          "budget": 96,
+          "token_lengths": [
+            96
+          ],
+          "parsed_valid": 0,
+          "numbered_markers": [
+            1
+          ],
+          "nonempty_marker_count": 1,
+          "starts_duplicate_number": false
+        }
+      ]
+    },
+    {
+      "dialogue_id": 1001,
+      "turn_index": 3,
+      "attempts": [
+        {
+          "index": 0,
+          "budget": 96,
+          "token_lengths": [
+            96
+          ],
+          "parsed_valid": 0,
+          "numbered_markers": [
+            1
+          ],
+          "nonempty_marker_count": 1,
+          "starts_duplicate_number": false
+        },
+        {
+          "index": 1,
+          "budget": 96,
+          "token_lengths": [
+            96
+          ],
+          "parsed_valid": 0,
+          "numbered_markers": [
+            1
+          ],
+          "nonempty_marker_count": 1,
+          "starts_duplicate_number": false
+        },
+        {
+          "index": 2,
+          "budget": 96,
+          "token_lengths": [
+            96
+          ],
+          "parsed_valid": 0,
+          "numbered_markers": [
+            1
+          ],
+          "nonempty_marker_count": 1,
+          "starts_duplicate_number": false
+        }
+      ]
+    },
+    {
+      "dialogue_id": 1019,
+      "turn_index": 1,
+      "attempts": [
+        {
+          "index": 0,
+          "budget": 96,
+          "token_lengths": [
+            96
+          ],
+          "parsed_valid": 0,
+          "numbered_markers": [
+            1
+          ],
+          "nonempty_marker_count": 1,
+          "starts_duplicate_number": false
+        },
+        {
+          "index": 1,
+          "budget": 96,
+          "token_lengths": [
+            96
+          ],
+          "parsed_valid": 0,
+          "numbered_markers": [
+            1
+          ],
+          "nonempty_marker_count": 1,
+          "starts_duplicate_number": false
+        },
+        {
+          "index": 2,
+          "budget": 96,
+          "token_lengths": [
+            96
+          ],
+          "parsed_valid": 0,
+          "numbered_markers": [
+            1
+          ],
+          "nonempty_marker_count": 1,
+          "starts_duplicate_number": false
+        }
+      ]
+    },
+    {
+      "dialogue_id": 1122,
+      "turn_index": 4,
+      "attempts": [
+        {
+          "index": 0,
+          "budget": 96,
+          "token_lengths": [
+            96
+          ],
+          "parsed_valid": 0,
+          "numbered_markers": [
+            1,
+            12
+          ],
+          "nonempty_marker_count": 2,
+          "starts_duplicate_number": false
+        },
+        {
+          "index": 1,
+          "budget": 96,
+          "token_lengths": [
+            96
+          ],
+          "parsed_valid": 0,
+          "numbered_markers": [
+            1,
+            12
+          ],
+          "nonempty_marker_count": 2,
+          "starts_duplicate_number": false
+        },
+        {
+          "index": 2,
+          "budget": 96,
+          "token_lengths": [
+            96
+          ],
+          "parsed_valid": 0,
+          "numbered_markers": [
+            1,
+            12
+          ],
+          "nonempty_marker_count": 2,
+          "starts_duplicate_number": false
+        }
+      ]
+    },
+    {
+      "dialogue_id": 1318,
+      "turn_index": 4,
+      "attempts": [
+        {
+          "index": 0,
+          "budget": 96,
+          "token_lengths": [
+            96
+          ],
+          "parsed_valid": 0,
+          "numbered_markers": [
+            1
+          ],
+          "nonempty_marker_count": 1,
+          "starts_duplicate_number": false
+        },
+        {
+          "index": 1,
+          "budget": 96,
+          "token_lengths": [
+            96
+          ],
+          "parsed_valid": 0,
+          "numbered_markers": [
+            1
+          ],
+          "nonempty_marker_count": 1,
+          "starts_duplicate_number": false
+        },
+        {
+          "index": 2,
+          "budget": 96,
+          "token_lengths": [
+            96
+          ],
+          "parsed_valid": 0,
+          "numbered_markers": [
+            1
+          ],
+          "nonempty_marker_count": 1,
+          "starts_duplicate_number": false
+        }
+      ]
+    },
+    {
+      "dialogue_id": 1345,
+      "turn_index": 3,
+      "attempts": [
+        {
+          "index": 0,
+          "budget": 96,
+          "token_lengths": [
+            96
+          ],
+          "parsed_valid": 0,
+          "numbered_markers": [
+            1
+          ],
+          "nonempty_marker_count": 1,
+          "starts_duplicate_number": false
+        },
+        {
+          "index": 1,
+          "budget": 96,
+          "token_lengths": [
+            96
+          ],
+          "parsed_valid": 0,
+          "numbered_markers": [
+            1
+          ],
+          "nonempty_marker_count": 1,
+          "starts_duplicate_number": false
+        },
+        {
+          "index": 2,
+          "budget": 96,
+          "token_lengths": [
+            96
+          ],
+          "parsed_valid": 0,
+          "numbered_markers": [
+            1
+          ],
+          "nonempty_marker_count": 1,
+          "starts_duplicate_number": false
+        }
+      ]
+    },
+    {
+      "dialogue_id": 1370,
+      "turn_index": 4,
+      "attempts": [
+        {
+          "index": 0,
+          "budget": 96,
+          "token_lengths": [
+            96
+          ],
+          "parsed_valid": 0,
+          "numbered_markers": [
+            1
+          ],
+          "nonempty_marker_count": 1,
+          "starts_duplicate_number": false
+        },
+        {
+          "index": 1,
+          "budget": 96,
+          "token_lengths": [
+            96
+          ],
+          "parsed_valid": 0,
+          "numbered_markers": [
+            1
+          ],
+          "nonempty_marker_count": 1,
+          "starts_duplicate_number": false
+        },
+        {
+          "index": 2,
+          "budget": 96,
+          "token_lengths": [
+            96
+          ],
+          "parsed_valid": 0,
+          "numbered_markers": [
+            1
+          ],
+          "nonempty_marker_count": 1,
+          "starts_duplicate_number": false
+        }
+      ]
+    },
+    {
+      "dialogue_id": 1381,
+      "turn_index": 3,
+      "attempts": [
+        {
+          "index": 0,
+          "budget": 96,
+          "token_lengths": [
+            96
+          ],
+          "parsed_valid": 0,
+          "numbered_markers": [
+            1
+          ],
+          "nonempty_marker_count": 1,
+          "starts_duplicate_number": false
+        },
+        {
+          "index": 1,
+          "budget": 96,
+          "token_lengths": [
+            96
+          ],
+          "parsed_valid": 0,
+          "numbered_markers": [
+            1
+          ],
+          "nonempty_marker_count": 1,
+          "starts_duplicate_number": false
+        },
+        {
+          "index": 2,
+          "budget": 96,
+          "token_lengths": [
+            96
+          ],
+          "parsed_valid": 0,
+          "numbered_markers": [
+            1
+          ],
+          "nonempty_marker_count": 1,
+          "starts_duplicate_number": false
+        }
+      ]
+    },
+    {
+      "dialogue_id": 1483,
+      "turn_index": 4,
+      "attempts": [
+        {
+          "index": 0,
+          "budget": 96,
+          "token_lengths": [
+            96
+          ],
+          "parsed_valid": 0,
+          "numbered_markers": [
+            1
+          ],
+          "nonempty_marker_count": 1,
+          "starts_duplicate_number": false
+        },
+        {
+          "index": 1,
+          "budget": 96,
+          "token_lengths": [
+            96
+          ],
+          "parsed_valid": 0,
+          "numbered_markers": [
+            1
+          ],
+          "nonempty_marker_count": 1,
+          "starts_duplicate_number": false
+        },
+        {
+          "index": 2,
+          "budget": 96,
+          "token_lengths": [
+            96
+          ],
+          "parsed_valid": 0,
+          "numbered_markers": [
+            1,
+            2
+          ],
+          "nonempty_marker_count": 1,
+          "starts_duplicate_number": true
+        }
+      ]
+    },
+    {
+      "dialogue_id": 1608,
+      "turn_index": 2,
+      "attempts": [
+        {
+          "index": 0,
+          "budget": 96,
+          "token_lengths": [
+            96
+          ],
+          "parsed_valid": 0,
+          "numbered_markers": [
+            1
+          ],
+          "nonempty_marker_count": 1,
+          "starts_duplicate_number": false
+        },
+        {
+          "index": 1,
+          "budget": 96,
+          "token_lengths": [
+            96
+          ],
+          "parsed_valid": 0,
+          "numbered_markers": [
+            1
+          ],
+          "nonempty_marker_count": 1,
+          "starts_duplicate_number": false
+        },
+        {
+          "index": 2,
+          "budget": 96,
+          "token_lengths": [
+            96
+          ],
+          "parsed_valid": 0,
+          "numbered_markers": [
+            1
+          ],
+          "nonempty_marker_count": 1,
+          "starts_duplicate_number": true
+        }
+      ]
+    },
+    {
+      "dialogue_id": 1662,
+      "turn_index": 4,
+      "attempts": [
+        {
+          "index": 0,
+          "budget": 96,
+          "token_lengths": [
+            96
+          ],
+          "parsed_valid": 0,
+          "numbered_markers": [
+            1
+          ],
+          "nonempty_marker_count": 1,
+          "starts_duplicate_number": false
+        },
+        {
+          "index": 1,
+          "budget": 96,
+          "token_lengths": [
+            96
+          ],
+          "parsed_valid": 0,
+          "numbered_markers": [
+            1
+          ],
+          "nonempty_marker_count": 1,
+          "starts_duplicate_number": false
+        },
+        {
+          "index": 2,
+          "budget": 96,
+          "token_lengths": [
+            96
+          ],
+          "parsed_valid": 0,
+          "numbered_markers": [
+            1,
+            2
+          ],
+          "nonempty_marker_count": 1,
+          "starts_duplicate_number": false
+        }
+      ]
+    },
+    {
+      "dialogue_id": 1770,
+      "turn_index": 1,
+      "attempts": [
+        {
+          "index": 0,
+          "budget": 96,
+          "token_lengths": [
+            96
+          ],
+          "parsed_valid": 0,
+          "numbered_markers": [
+            1
+          ],
+          "nonempty_marker_count": 1,
+          "starts_duplicate_number": false
+        },
+        {
+          "index": 1,
+          "budget": 96,
+          "token_lengths": [
+            96
+          ],
+          "parsed_valid": 0,
+          "numbered_markers": [
+            1
+          ],
+          "nonempty_marker_count": 1,
+          "starts_duplicate_number": false
+        },
+        {
+          "index": 2,
+          "budget": 96,
+          "token_lengths": [
+            96
+          ],
+          "parsed_valid": 0,
+          "numbered_markers": [
+            1,
+            2
+          ],
+          "nonempty_marker_count": 1,
+          "starts_duplicate_number": false
+        }
+      ]
+    },
+    {
+      "dialogue_id": 1775,
+      "turn_index": 1,
+      "attempts": [
+        {
+          "index": 0,
+          "budget": 96,
+          "token_lengths": [
+            96
+          ],
+          "parsed_valid": 0,
+          "numbered_markers": [
+            1
+          ],
+          "nonempty_marker_count": 1,
+          "starts_duplicate_number": false
+        },
+        {
+          "index": 1,
+          "budget": 96,
+          "token_lengths": [
+            96
+          ],
+          "parsed_valid": 0,
+          "numbered_markers": [
+            1
+          ],
+          "nonempty_marker_count": 1,
+          "starts_duplicate_number": false
+        },
+        {
+          "index": 2,
+          "budget": 96,
+          "token_lengths": [
+            96
+          ],
+          "parsed_valid": 0,
+          "numbered_markers": [
+            1
+          ],
+          "nonempty_marker_count": 1,
+          "starts_duplicate_number": false
+        }
+      ]
+    },
+    {
+      "dialogue_id": 1792,
+      "turn_index": 1,
+      "attempts": [
+        {
+          "index": 0,
+          "budget": 96,
+          "token_lengths": [
+            96
+          ],
+          "parsed_valid": 0,
+          "numbered_markers": [
+            1
+          ],
+          "nonempty_marker_count": 1,
+          "starts_duplicate_number": false
+        },
+        {
+          "index": 1,
+          "budget": 96,
+          "token_lengths": [
+            96
+          ],
+          "parsed_valid": 0,
+          "numbered_markers": [
+            1
+          ],
+          "nonempty_marker_count": 1,
+          "starts_duplicate_number": false
+        },
+        {
+          "index": 2,
+          "budget": 96,
+          "token_lengths": [
+            96
+          ],
+          "parsed_valid": 0,
+          "numbered_markers": [
+            1
+          ],
+          "nonempty_marker_count": 1,
+          "starts_duplicate_number": false
+        }
+      ]
+    },
+    {
+      "dialogue_id": 1836,
+      "turn_index": 4,
+      "attempts": [
+        {
+          "index": 0,
+          "budget": 96,
+          "token_lengths": [
+            96
+          ],
+          "parsed_valid": 0,
+          "numbered_markers": [
+            1,
+            12
+          ],
+          "nonempty_marker_count": 2,
+          "starts_duplicate_number": false
+        },
+        {
+          "index": 1,
+          "budget": 96,
+          "token_lengths": [
+            96
+          ],
+          "parsed_valid": 0,
+          "numbered_markers": [
+            1
+          ],
+          "nonempty_marker_count": 1,
+          "starts_duplicate_number": false
+        },
+        {
+          "index": 2,
+          "budget": 96,
+          "token_lengths": [
+            96
+          ],
+          "parsed_valid": 0,
+          "numbered_markers": [
+            1,
+            12
+          ],
+          "nonempty_marker_count": 2,
+          "starts_duplicate_number": false
+        }
+      ]
+    },
+    {
+      "dialogue_id": 1891,
+      "turn_index": 3,
+      "attempts": [
+        {
+          "index": 0,
+          "budget": 96,
+          "token_lengths": [
+            96
+          ],
+          "parsed_valid": 0,
+          "numbered_markers": [
+            1
+          ],
+          "nonempty_marker_count": 1,
+          "starts_duplicate_number": false
+        },
+        {
+          "index": 1,
+          "budget": 96,
+          "token_lengths": [
+            96
+          ],
+          "parsed_valid": 0,
+          "numbered_markers": [
+            1
+          ],
+          "nonempty_marker_count": 1,
+          "starts_duplicate_number": false
+        },
+        {
+          "index": 2,
+          "budget": 96,
+          "token_lengths": [
+            96
+          ],
+          "parsed_valid": 0,
+          "numbered_markers": [
+            1
+          ],
+          "nonempty_marker_count": 1,
+          "starts_duplicate_number": false
+        }
+      ]
+    },
+    {
+      "dialogue_id": 1902,
+      "turn_index": 4,
+      "attempts": [
+        {
+          "index": 0,
+          "budget": 96,
+          "token_lengths": [
+            96
+          ],
+          "parsed_valid": 0,
+          "numbered_markers": [
+            1
+          ],
+          "nonempty_marker_count": 1,
+          "starts_duplicate_number": false
+        },
+        {
+          "index": 1,
+          "budget": 96,
+          "token_lengths": [
+            96
+          ],
+          "parsed_valid": 0,
+          "numbered_markers": [
+            1
+          ],
+          "nonempty_marker_count": 1,
+          "starts_duplicate_number": false
+        },
+        {
+          "index": 2,
+          "budget": 96,
+          "token_lengths": [
+            96
+          ],
+          "parsed_valid": 0,
+          "numbered_markers": [
+            1
+          ],
+          "nonempty_marker_count": 1,
+          "starts_duplicate_number": false
+        }
+      ]
+    },
+    {
+      "dialogue_id": 1903,
+      "turn_index": 3,
+      "attempts": [
+        {
+          "index": 0,
+          "budget": 96,
+          "token_lengths": [
+            96
+          ],
+          "parsed_valid": 0,
+          "numbered_markers": [
+            1
+          ],
+          "nonempty_marker_count": 1,
+          "starts_duplicate_number": false
+        },
+        {
+          "index": 1,
+          "budget": 96,
+          "token_lengths": [
+            96
+          ],
+          "parsed_valid": 0,
+          "numbered_markers": [
+            1
+          ],
+          "nonempty_marker_count": 1,
+          "starts_duplicate_number": false
+        },
+        {
+          "index": 2,
+          "budget": 96,
+          "token_lengths": [
+            96
+          ],
+          "parsed_valid": 0,
+          "numbered_markers": [
+            1
+          ],
+          "nonempty_marker_count": 1,
+          "starts_duplicate_number": false
+        }
+      ]
+    },
+    {
+      "dialogue_id": 1908,
+      "turn_index": 4,
+      "attempts": [
+        {
+          "index": 0,
+          "budget": 96,
+          "token_lengths": [
+            96
+          ],
+          "parsed_valid": 0,
+          "numbered_markers": [
+            1
+          ],
+          "nonempty_marker_count": 1,
+          "starts_duplicate_number": true
+        },
+        {
+          "index": 1,
+          "budget": 96,
+          "token_lengths": [
+            96
+          ],
+          "parsed_valid": 0,
+          "numbered_markers": [
+            1
+          ],
+          "nonempty_marker_count": 1,
+          "starts_duplicate_number": false
+        },
+        {
+          "index": 2,
+          "budget": 96,
+          "token_lengths": [
+            96
+          ],
+          "parsed_valid": 0,
+          "numbered_markers": [
+            1
+          ],
+          "nonempty_marker_count": 1,
+          "starts_duplicate_number": false
+        }
+      ]
+    },
+    {
+      "dialogue_id": 1931,
+      "turn_index": 3,
+      "attempts": [
+        {
+          "index": 0,
+          "budget": 96,
+          "token_lengths": [
+            96
+          ],
+          "parsed_valid": 0,
+          "numbered_markers": [
+            1
+          ],
+          "nonempty_marker_count": 1,
+          "starts_duplicate_number": false
+        },
+        {
+          "index": 1,
+          "budget": 96,
+          "token_lengths": [
+            96
+          ],
+          "parsed_valid": 0,
+          "numbered_markers": [
+            1
+          ],
+          "nonempty_marker_count": 1,
+          "starts_duplicate_number": false
+        },
+        {
+          "index": 2,
+          "budget": 96,
+          "token_lengths": [
+            96
+          ],
+          "parsed_valid": 0,
+          "numbered_markers": [
+            1
+          ],
+          "nonempty_marker_count": 1,
+          "starts_duplicate_number": false
+        }
+      ]
+    },
+    {
+      "dialogue_id": 1933,
+      "turn_index": 4,
+      "attempts": [
+        {
+          "index": 0,
+          "budget": 96,
+          "token_lengths": [
+            96
+          ],
+          "parsed_valid": 0,
+          "numbered_markers": [
+            1
+          ],
+          "nonempty_marker_count": 1,
+          "starts_duplicate_number": false
+        },
+        {
+          "index": 1,
+          "budget": 96,
+          "token_lengths": [
+            96
+          ],
+          "parsed_valid": 0,
+          "numbered_markers": [
+            1
+          ],
+          "nonempty_marker_count": 1,
+          "starts_duplicate_number": false
+        },
+        {
+          "index": 2,
+          "budget": 96,
+          "token_lengths": [
+            96
+          ],
+          "parsed_valid": 0,
+          "numbered_markers": [
+            1
+          ],
+          "nonempty_marker_count": 1,
+          "starts_duplicate_number": false
+        }
+      ]
+    },
+    {
+      "dialogue_id": 1992,
+      "turn_index": 3,
+      "attempts": [
+        {
+          "index": 0,
+          "budget": 96,
+          "token_lengths": [
+            96
+          ],
+          "parsed_valid": 0,
+          "numbered_markers": [
+            1
+          ],
+          "nonempty_marker_count": 1,
+          "starts_duplicate_number": false
+        },
+        {
+          "index": 1,
+          "budget": 96,
+          "token_lengths": [
+            96
+          ],
+          "parsed_valid": 0,
+          "numbered_markers": [
+            1
+          ],
+          "nonempty_marker_count": 1,
+          "starts_duplicate_number": true
+        },
+        {
+          "index": 2,
+          "budget": 96,
+          "token_lengths": [
+            96
+          ],
+          "parsed_valid": 0,
+          "numbered_markers": [
+            1
+          ],
+          "nonempty_marker_count": 1,
+          "starts_duplicate_number": false
+        }
+      ]
+    },
+    {
+      "dialogue_id": 2007,
+      "turn_index": 3,
+      "attempts": [
+        {
+          "index": 0,
+          "budget": 96,
+          "token_lengths": [
+            96
+          ],
+          "parsed_valid": 0,
+          "numbered_markers": [
+            1
+          ],
+          "nonempty_marker_count": 1,
+          "starts_duplicate_number": false
+        },
+        {
+          "index": 1,
+          "budget": 96,
+          "token_lengths": [
+            96
+          ],
+          "parsed_valid": 0,
+          "numbered_markers": [
+            1
+          ],
+          "nonempty_marker_count": 1,
+          "starts_duplicate_number": false
+        },
+        {
+          "index": 2,
+          "budget": 96,
+          "token_lengths": [
+            96
+          ],
+          "parsed_valid": 0,
+          "numbered_markers": [
+            1
+          ],
+          "nonempty_marker_count": 1,
+          "starts_duplicate_number": false
+        }
+      ]
+    }
+  ],
+  "attempt_summary": {
+    "total": 75,
+    "reached_96_token_cap": 75,
+    "replayed_all_skip": 75,
+    "duplicate_first_number": 7,
+    "marker_counts": {
+      "[1]": 67,
+      "[1, 12]": 5,
+      "[1, 2]": 3
+    }
+  },
+  "vdcgs_validation": {
+    "integrity_passed": true,
+    "policy_parity_passed": true,
+    "successful_turns": 10003,
+    "terminal_failed_turns": 26,
+    "remaining_turns": 0,
+    "critic_candidate_contexts": 20898,
+    "critic_truncated_candidate_contexts": 6759,
+    "critic_truncated_turns": 3369,
+    "critic_max_dropped_tokens": 6033,
+    "ll_critic_overflow_max_input_tokens": 8232,
+    "model_invocations_without_gpu_measurement": [
+      "a603a48b30bf4645b83c854f875e2fbb"
+    ],
+    "passed": false
+  },
+  "vdcgs_invocations": [
+    {
+      "invocation": "a603a48b30bf4645b83c854f875e2fbb",
+      "successful_turns": 8974,
+      "runtime_present": false,
+      "gpu_peak_bytes": null,
+      "device": "cuda:0",
+      "dtype": "torch.bfloat16"
+    },
+    {
+      "invocation": "9ce095fed76c422893809ba93103aa2c",
+      "successful_turns": 1029,
+      "runtime_present": true,
+      "gpu_peak_bytes": 19454815232,
+      "device": "cuda:0",
+      "dtype": "torch.bfloat16"
+    }
+  ],
+  "rdcgs_invocations": [
+    {
+      "invocation": "16cce8a000c24a239c3edd4eb2e70f7b",
+      "successful_turns": 7762,
+      "runtime_present": false,
+      "gpu_peak_bytes": null,
+      "device": "cuda:0",
+      "dtype": "torch.bfloat16"
+    },
+    {
+      "invocation": "4e99f73aa03f412a90cd0bcd2a901bea",
+      "successful_turns": 2267,
+      "runtime_present": true,
+      "gpu_peak_bytes": 19454344704,
+      "device": "cuda:0",
+      "dtype": "torch.bfloat16"
+    }
+  ],
+  "scope": "Completed main-method v3 96-token VDCGS/RDCGS runs; 384-token runs excluded"
+}

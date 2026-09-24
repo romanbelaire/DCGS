@@ -1,0 +1,7 @@
+{
+  "elapsed_seconds": 32.61065869597951,
+  "device": "cuda:0",
+  "gpu": "NVIDIA GeForce RTX 3090",
+  "peak_allocated_bytes": 14801073664,
+  "peak_reserved_bytes": 14984151040
+}

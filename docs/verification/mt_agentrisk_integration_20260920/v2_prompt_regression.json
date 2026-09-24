@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "model_calls": 0,
+  "source_job": "259882",
+  "recorded_response_still_invalid": true,
+  "prompt_version": "dcgs-tool-candidates-v2",
+  "complete_chat_roles": true,
+  "original_prefill_preserved": true,
+  "policy_replay_passed": true,
+  "ll_actor_tokens_with_output_reservation": 1286,
+  "engine_sha256": "f6a9789f08545d2e69f207b548e796b60ddb690d0902378221ae9e255d4e4746"
+}

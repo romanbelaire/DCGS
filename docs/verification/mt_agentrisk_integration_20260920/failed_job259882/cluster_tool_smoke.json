@@ -1,0 +1,9 @@
+{
+  "passed": false,
+  "method": "vdcgs",
+  "api_base": "http://albert:43315/v1",
+  "server_job_id": "259882",
+  "responses": [],
+  "tools_executed": false,
+  "error": "RuntimeError: Server HTTP 422: {\"error\": {\"message\": \"Selected response is not one complete JSON action; no repair/resampling\", \"type\": \"ProtocolError\", \"request_id\": \"3a6a4d5260ac038166118847c1bb5a25d7bc5a1e8ffe217e29f8d397512e937d\", \"automatic_retry\": false}, \"elapsed_seconds\": 11.709849638995365}"
+}

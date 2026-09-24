@@ -1,0 +1,198 @@
+{
+  "vdcgs-belief-only": {
+    "passed": true,
+    "dialogues": 1,
+    "turns": 5,
+    "synthetic_prompt_calls": 10,
+    "max_prompt_plus_generation_tokens": 2332,
+    "model_calls": 0,
+    "estimated_critic_context": {
+      "critic_max_length": 1500,
+      "critic_truncation_sides": [
+        "left"
+      ],
+      "critic_candidate_contexts": 25,
+      "critic_truncated_candidate_contexts": 5,
+      "critic_truncated_turns": 1,
+      "critic_truncated_turn_keys": [
+        [
+          1,
+          4
+        ]
+      ],
+      "critic_scoring_calls_by_head": {
+        "predict_q_value": 25
+      },
+      "critic_scored_inputs_by_head": {
+        "predict_q_value": 25
+      },
+      "critic_truncated_inputs_by_head": {
+        "predict_q_value": 5
+      },
+      "critic_max_input_tokens": 1743,
+      "critic_max_dropped_tokens": 243,
+      "critic_full_context": false
+    },
+    "ll_critic_context": {
+      "max_input_tokens": 8192,
+      "max_estimated_input_tokens": 2765,
+      "max_synthetic_input_tokens": 1756,
+      "potential_overflow_turns": 0,
+      "potential_overflow_turn_details": [],
+      "synthetic_overflow_turns": 0,
+      "overflow_policy": "terminal turn failure; no truncation or extra retry",
+      "note": "Estimates reserve upstream generation budgets; decoded-text retokenization can vary. Runtime checks are authoritative."
+    },
+    "note": "Preflight completion does not guarantee every turn fits. Review LL context risks; full runs record overflow failures and continue, smoke runs stop."
+  },
+  "vdcgs-history": {
+    "passed": true,
+    "dialogues": 1,
+    "turns": 5,
+    "synthetic_prompt_calls": 10,
+    "max_prompt_plus_generation_tokens": 2502,
+    "model_calls": 0,
+    "estimated_critic_context": {
+      "critic_max_length": 1500,
+      "critic_truncation_sides": [
+        "left"
+      ],
+      "critic_candidate_contexts": 25,
+      "critic_truncated_candidate_contexts": 5,
+      "critic_truncated_turns": 1,
+      "critic_truncated_turn_keys": [
+        [
+          1,
+          4
+        ]
+      ],
+      "critic_scoring_calls_by_head": {
+        "predict_q_value": 25
+      },
+      "critic_scored_inputs_by_head": {
+        "predict_q_value": 25
+      },
+      "critic_truncated_inputs_by_head": {
+        "predict_q_value": 5
+      },
+      "critic_max_input_tokens": 1743,
+      "critic_max_dropped_tokens": 243,
+      "critic_full_context": false
+    },
+    "ll_critic_context": {
+      "max_input_tokens": 8192,
+      "max_estimated_input_tokens": 2765,
+      "max_synthetic_input_tokens": 1756,
+      "potential_overflow_turns": 0,
+      "potential_overflow_turn_details": [],
+      "synthetic_overflow_turns": 0,
+      "overflow_policy": "terminal turn failure; no truncation or extra retry",
+      "note": "Estimates reserve upstream generation budgets; decoded-text retokenization can vary. Runtime checks are authoritative."
+    },
+    "note": "Preflight completion does not guarantee every turn fits. Review LL context risks; full runs record overflow failures and continue, smoke runs stop."
+  },
+  "rdcgs-belief-only": {
+    "passed": true,
+    "dialogues": 1,
+    "turns": 5,
+    "synthetic_prompt_calls": 15,
+    "max_prompt_plus_generation_tokens": 2429,
+    "model_calls": 0,
+    "estimated_critic_context": {
+      "critic_max_length": 1500,
+      "critic_truncation_sides": [
+        "left"
+      ],
+      "critic_candidate_contexts": 25,
+      "critic_truncated_candidate_contexts": 5,
+      "critic_truncated_turns": 1,
+      "critic_truncated_turn_keys": [
+        [
+          1,
+          4
+        ]
+      ],
+      "critic_scoring_calls_by_head": {
+        "predict_q_value": 50,
+        "predict_q_min_value": 50,
+        "predict_regret_value": 50
+      },
+      "critic_scored_inputs_by_head": {
+        "predict_q_value": 50,
+        "predict_q_min_value": 50,
+        "predict_regret_value": 50
+      },
+      "critic_truncated_inputs_by_head": {
+        "predict_q_value": 10,
+        "predict_q_min_value": 10,
+        "predict_regret_value": 10
+      },
+      "critic_max_input_tokens": 1743,
+      "critic_max_dropped_tokens": 243,
+      "critic_full_context": false
+    },
+    "ll_critic_context": {
+      "max_input_tokens": 8192,
+      "max_estimated_input_tokens": 2765,
+      "max_synthetic_input_tokens": 1756,
+      "potential_overflow_turns": 0,
+      "potential_overflow_turn_details": [],
+      "synthetic_overflow_turns": 0,
+      "overflow_policy": "terminal turn failure; no truncation or extra retry",
+      "note": "Estimates reserve upstream generation budgets; decoded-text retokenization can vary. Runtime checks are authoritative."
+    },
+    "note": "Preflight completion does not guarantee every turn fits. Review LL context risks; full runs record overflow failures and continue, smoke runs stop."
+  },
+  "rdcgs-history": {
+    "passed": true,
+    "dialogues": 1,
+    "turns": 5,
+    "synthetic_prompt_calls": 15,
+    "max_prompt_plus_generation_tokens": 2502,
+    "model_calls": 0,
+    "estimated_critic_context": {
+      "critic_max_length": 1500,
+      "critic_truncation_sides": [
+        "left"
+      ],
+      "critic_candidate_contexts": 25,
+      "critic_truncated_candidate_contexts": 5,
+      "critic_truncated_turns": 1,
+      "critic_truncated_turn_keys": [
+        [
+          1,
+          4
+        ]
+      ],
+      "critic_scoring_calls_by_head": {
+        "predict_q_value": 50,
+        "predict_q_min_value": 50,
+        "predict_regret_value": 50
+      },
+      "critic_scored_inputs_by_head": {
+        "predict_q_value": 50,
+        "predict_q_min_value": 50,
+        "predict_regret_value": 50
+      },
+      "critic_truncated_inputs_by_head": {
+        "predict_q_value": 10,
+        "predict_q_min_value": 10,
+        "predict_regret_value": 10
+      },
+      "critic_max_input_tokens": 1743,
+      "critic_max_dropped_tokens": 243,
+      "critic_full_context": false
+    },
+    "ll_critic_context": {
+      "max_input_tokens": 8192,
+      "max_estimated_input_tokens": 2765,
+      "max_synthetic_input_tokens": 1756,
+      "potential_overflow_turns": 0,
+      "potential_overflow_turn_details": [],
+      "synthetic_overflow_turns": 0,
+      "overflow_policy": "terminal turn failure; no truncation or extra retry",
+      "note": "Estimates reserve upstream generation budgets; decoded-text retokenization can vary. Runtime checks are authoritative."
+    },
+    "note": "Preflight completion does not guarantee every turn fits. Review LL context risks; full runs record overflow failures and continue, smoke runs stop."
+  }
+}

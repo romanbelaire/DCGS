@@ -1,0 +1,137 @@
+{
+  "started_at": "2026-09-24T15:13:10.800751+08:00",
+  "runs": [
+    {
+      "name": "Zephyr",
+      "source": "outputs/safedial_baseline/zephyr_7b_beta_full",
+      "output": "outputs/assistance/gpt4o_mini_zephyr_full_v1",
+      "guard": "outputs/llamaguard/zephyr_7b_beta_full_v2",
+      "preflight": {
+        "passed": true,
+        "available_turns": 10029,
+        "context_limit": 128000,
+        "max_input_token_upper_bound": 6665,
+        "counting": "UTF-8 bytes plus 32 framing tokens; conservative bound, not exact token count",
+        "overflow_turns": [],
+        "truncation": false
+      },
+      "guard_join_validated": true,
+      "scope_dialogues": 2037,
+      "turn_counts_before_api_calls": {
+        "judge_pending": 10029
+      },
+      "combined_complete": false
+    },
+    {
+      "name": "CAT",
+      "source": "outputs/safedial_baseline/cat_zephyr_full",
+      "output": "outputs/assistance/gpt4o_mini_cat_full_v1",
+      "guard": "outputs/llamaguard/cat_zephyr_full_v2",
+      "preflight": {
+        "passed": true,
+        "available_turns": 10029,
+        "context_limit": 128000,
+        "max_input_token_upper_bound": 6887,
+        "counting": "UTF-8 bytes plus 32 framing tokens; conservative bound, not exact token count",
+        "overflow_turns": [],
+        "truncation": false
+      },
+      "guard_join_validated": true,
+      "scope_dialogues": 2037,
+      "turn_counts_before_api_calls": {
+        "judge_pending": 10029
+      },
+      "combined_complete": false
+    },
+    {
+      "name": "GPT-4o",
+      "source": "outputs/safedial_baseline/gpt4o_full",
+      "output": "outputs/assistance/gpt4o_mini_gpt4o_full_v1",
+      "guard": "outputs/llamaguard/gpt4o_full_v2_available",
+      "preflight": {
+        "passed": true,
+        "available_turns": 10028,
+        "context_limit": 128000,
+        "max_input_token_upper_bound": 7360,
+        "counting": "UTF-8 bytes plus 32 framing tokens; conservative bound, not exact token count",
+        "overflow_turns": [],
+        "truncation": false
+      },
+      "guard_join_validated": true,
+      "scope_dialogues": 2037,
+      "turn_counts_before_api_calls": {
+        "judge_pending": 10028,
+        "generation_missing": 1
+      },
+      "combined_complete": false
+    },
+    {
+      "name": "SmoothLLM primary",
+      "source": "outputs/safedial_baseline/smoothllm_zephyr_full_turn_resume",
+      "output": "outputs/assistance/gpt4o_mini_smoothllm_primary_full_v1",
+      "guard": "outputs/llamaguard/smoothllm_primary_full_v2_available",
+      "preflight": {
+        "passed": true,
+        "available_turns": 10028,
+        "context_limit": 128000,
+        "max_input_token_upper_bound": 6395,
+        "counting": "UTF-8 bytes plus 32 framing tokens; conservative bound, not exact token count",
+        "overflow_turns": [],
+        "truncation": false
+      },
+      "guard_join_validated": true,
+      "scope_dialogues": 2037,
+      "turn_counts_before_api_calls": {
+        "judge_pending": 10028,
+        "generation_error": 1
+      },
+      "combined_complete": false
+    },
+    {
+      "name": "VDCGS-96",
+      "source": "outputs/safedial_dcgs/zephyr_vdcgs_main_wildjailbreak_full_v3",
+      "output": "outputs/assistance/gpt4o_mini_vdcgs96_full_v1",
+      "guard": "outputs/llamaguard/vdcgs96_full_v2_available",
+      "preflight": {
+        "passed": true,
+        "available_turns": 10003,
+        "context_limit": 128000,
+        "max_input_token_upper_bound": 3792,
+        "counting": "UTF-8 bytes plus 32 framing tokens; conservative bound, not exact token count",
+        "overflow_turns": [],
+        "truncation": false
+      },
+      "guard_join_validated": true,
+      "scope_dialogues": 2037,
+      "turn_counts_before_api_calls": {
+        "judge_pending": 10003,
+        "generation_missing": 26
+      },
+      "combined_complete": false
+    },
+    {
+      "name": "RDCGS-96",
+      "source": "outputs/safedial_dcgs/zephyr_rdcgs_main_wildjailbreak_full_v3",
+      "output": "outputs/assistance/gpt4o_mini_rdcgs96_full_v1",
+      "guard": "outputs/llamaguard/rdcgs96_full_v2",
+      "preflight": {
+        "passed": true,
+        "available_turns": 10029,
+        "context_limit": 128000,
+        "max_input_token_upper_bound": 3905,
+        "counting": "UTF-8 bytes plus 32 framing tokens; conservative bound, not exact token count",
+        "overflow_turns": [],
+        "truncation": false
+      },
+      "guard_join_validated": true,
+      "scope_dialogues": 2037,
+      "turn_counts_before_api_calls": {
+        "judge_pending": 10029
+      },
+      "combined_complete": false
+    }
+  ],
+  "paid_api_calls": 0,
+  "jobs_submitted": 0,
+  "finished_at": "2026-09-24T15:14:01.642749+08:00"
+}

@@ -1,0 +1,48 @@
+{
+  "timestamp_utc": "2026-09-21T02:27:28.214809+00:00",
+  "passed": true,
+  "tests": {
+    "dcr": 7,
+    "shared_adapter": 6
+  },
+  "full_preflight": {
+    "passed": true,
+    "dialogues": 2037,
+    "turns": 10029,
+    "max_prompt_tokens": 7185,
+    "input_token_limit": 130048,
+    "max_new_tokens": 1024,
+    "truncated_turns": 0,
+    "system_message": null,
+    "history": "dataset_reference_assistant"
+  },
+  "artifact_validation": {
+    "passed": true,
+    "lock": "configs/safedial/dcr.lock.json",
+    "base_revision": "8faed761d45a263340a0528343f099c05c9a4323",
+    "tensor_count": 168,
+    "nonzero_lora_b_count": 84,
+    "fixture": "USER: Hello.\nASSISTANT: "
+  },
+  "shell_syntax": "passed",
+  "protected_runtime_matches_HEAD": [
+    "scripts/run_safedial_baseline.py",
+    "scripts/safedial_adapters.py",
+    "scripts/validate_safedial_generation.py",
+    "scripts/judge_safedial.py"
+  ],
+  "source_sha256": {
+    "scripts/run_safedial_dcr.py": "beaf1db51b077b2f772019c55e2c7bfde11b90ae9fbafae2b022ac014003b949",
+    "scripts/prepare_safedial_dcr.py": "bed0e28f338b81b1752f68e2372dc48c0ba34250360eb9074ea917ef092c242e",
+    "scripts/slurm/run_safedial_dcr_smoke.sbatch": "b939175c7116ddc881b263796b7e5c426d096aca55433499e336b8a91b8cf482",
+    "configs/safedial/dcr.lock.json": "91c583185c1ef8048c3328d6ce7b693e1f17df749af7717858482658191c4308",
+    "tests/test_safedial_dcr.py": "d45a835256af92c01bb7914f2feed28baf25791aef71c8c5af4984ce66fa75fb",
+    "scripts/run_safedial_baseline.py": "5cd217d99793c99536c837423b816d0f0baa0bae1088a7b76e616d30b0997d82",
+    "scripts/safedial_adapters.py": "dcc2e06fa77f342f5de172761138f4f4ceb670c11f3d075daa40c6512f7edd8e",
+    "scripts/validate_safedial_generation.py": "0d05c0b3917e5ed6e46cd017e2f769f82d302cd43852a69b275808b46f580f2f",
+    "scripts/judge_safedial.py": "71308a7a042537a4b5577726f929549ca0f939c9a468a80f77a6e8a221f3ad22"
+  },
+  "real_dcr_inference_performed": false,
+  "gpu_smoke_submitted": false,
+  "judge_api_calls": 0
+}

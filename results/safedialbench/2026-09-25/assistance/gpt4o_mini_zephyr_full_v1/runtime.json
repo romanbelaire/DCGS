@@ -1,0 +1,7 @@
+{
+  "model": "gpt-4o-mini",
+  "backend": "chat.completions",
+  "parallel_workers": 8,
+  "elapsed_seconds": 880.5777194380062,
+  "journal_records_written": 10029
+}

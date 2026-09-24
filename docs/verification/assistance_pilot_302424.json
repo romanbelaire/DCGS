@@ -1,0 +1,40 @@
+{
+  "job": 302424,
+  "state": "FAILED",
+  "exit_code": "2:0",
+  "ended_at": "2026-09-24T14:34:50+08:00",
+  "node": "aloha",
+  "partition": "researchshort",
+  "runtime": {
+    "elapsed_seconds": 32.61065869597951,
+    "device": "cuda:0",
+    "gpu": "NVIDIA GeForce RTX 3090",
+    "peak_allocated_bytes": 14801073664,
+    "peak_reserved_bytes": 14984151040
+  },
+  "preflight": {
+    "passed": true,
+    "available_turns": 15,
+    "max_prompt_tokens": 1217,
+    "input_limit": 8192,
+    "overflow_turns": [],
+    "truncation": false,
+    "versions": {
+      "transformers": "4.57.6",
+      "tokenizers": "0.22.2",
+      "torch": "2.13.0"
+    }
+  },
+  "journal_rows": 15,
+  "successes": 0,
+  "errors": 15,
+  "completion_tokens": [
+    24
+  ],
+  "diagnosis": "All outputs failed strict YES/NO parsing; prose or malformed continuation. GPU/context passed. No usable assistance labels; do not launch full runs or retry unchanged deterministic inputs.",
+  "other_jobs": {
+    "302292": "CANCELLED by user at14:33:26",
+    "302423": "RUNNING onlagoon; exported through1852 at14:34,1850index0empty",
+    "302425": "PENDING ReqNodeNotAvail; tentative24Sep23:10:04 onlexicon"
+  }
+}

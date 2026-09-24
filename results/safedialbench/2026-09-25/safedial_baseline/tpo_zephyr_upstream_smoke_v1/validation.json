@@ -1,0 +1,22 @@
+{
+  "expected_turns": 5,
+  "processed_turns": 5,
+  "successful_turns": 5,
+  "failed_turns": 0,
+  "pending_turns": 0,
+  "processing_complete": true,
+  "complete_without_failures": true,
+  "exported_dialogues": 1,
+  "skipped_candidates": 0,
+  "empty_candidates_scored": 0,
+  "fatal_events": 0,
+  "audit_passed": true,
+  "passed": true,
+  "partial_events": 0,
+  "candidates": 75,
+  "actual_generation_calls": 95,
+  "actual_reward_calls": 75,
+  "extra_generation_retries": 0,
+  "judge_calls": 0,
+  "gpu_evidence_passed": true
+}

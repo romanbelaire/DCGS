@@ -23,6 +23,33 @@ def read_jsonl_prefix(path):
     return complete, records, len(data) - end
 
 
+def compact_turn_prefix(path):
+    """Capture a bounded journal prefix without retaining model-call payloads."""
+    latest, records, consumed = {}, 0, 0
+    with path.open('rb') as handle:
+        size = path.stat().st_size
+        while consumed < size:
+            raw = handle.readline(size - consumed)
+            if not raw:
+                raise ValueError(f'Journal shortened during snapshot: {path}')
+            if not raw.endswith(b'\n'):
+                break
+            consumed += len(raw)
+            if not raw.strip():
+                continue
+            record = json.loads(raw)
+            records += 1
+            key = (record['dialogue_id'], record.get('choice_index', 0), record['turn_index'])
+            item = {k: record[k] for k in ('dialogue_id', 'choice_index', 'turn_index', 'seed', 'error',
+                    'completion_tokens', 'prompt_tokens', 'latency_seconds', 'tstamp') if k in record}
+            item['generated_response_sha256'] = hashlib.sha256(str(record.get('generated_response')).encode()).hexdigest()
+            if 'tpo' in record:
+                item['candidate_count'] = len(record['tpo'].get('candidates', []))
+                item['skipped_candidates'] = sum(bool(e.get('candidate_failure')) for e in record['tpo'].get('events', []))
+            latest[key] = item
+    return [latest[key] for key in sorted(latest)], records, size - consumed
+
+
 def snapshot(source, destination):
     destination.mkdir(parents=True, exist_ok=False)
     started = datetime.datetime.now().astimezone().isoformat()
@@ -81,28 +108,33 @@ def snapshot(source, destination):
                 save(relative / f.relative_to(folder), data, f, details)
             f = folder / 'turns.jsonl'
             if f.exists():
-                _, records, trailing = read_jsonl_prefix(f)
-                latest = {}
-                for record in records:
-                    latest[(record['dialogue_id'], record.get('choice_index', 0), record['turn_index'])] = record
-                compact = []
-                for key, record in sorted(latest.items()):
-                    item = {k: record[k] for k in ('dialogue_id', 'choice_index', 'turn_index', 'seed', 'error',
-                            'completion_tokens', 'prompt_tokens', 'latency_seconds', 'tstamp') if k in record}
-                    item['generated_response_sha256'] = hashlib.sha256(str(record.get('generated_response')).encode()).hexdigest()
-                    if 'tpo' in record:
-                        item['candidate_count'] = len(record['tpo'].get('candidates', []))
-                        item['skipped_candidates'] = sum(bool(e.get('candidate_failure')) for e in record['tpo'].get('events', []))
-                    compact.append(item)
+                compact, records, trailing = compact_turn_prefix(f)
                 data = ''.join(json.dumps(r, sort_keys=True) + '\n' for r in compact).encode()
-                save(relative / 'turn_status.jsonl', data, f, {'derived': True, 'source_records': len(records),
+                save(relative / 'turn_status.jsonl', data, f, {'derived': True, 'source_records': records,
                      'incomplete_tail_bytes_omitted': trailing})
-                row.update(unique_recorded_turns=len(latest), successful_recorded_turns=sum(not r.get('error') for r in latest.values()),
-                           error_recorded_turns=sum(bool(r.get('error')) for r in latest.values()))
+                row.update(unique_recorded_turns=len(compact), successful_recorded_turns=sum(not r.get('error') for r in compact),
+                           error_recorded_turns=sum(bool(r.get('error')) for r in compact))
             row['generation_complete_claim'] = 'only_if_saved_validation_or_coverage_explicitly_confirms; counts_alone_are_not_validation'
             runs.append(row)
+    # Preserve evaluator inputs/provenance, raw labels and aggregates separately
+    # from generation. Only data files are captured; locks and secrets are not.
+    for family in ('llamaguard', 'assistance', 'safedial_goals'):
+        for folder in sorted((source / 'outputs' / family).glob('*')):
+            if not folder.is_dir():
+                continue
+            for f in sorted(folder.rglob('*')):
+                if not f.is_file() or f.suffix not in ('.json', '.jsonl'):
+                    continue
+                if f.suffix == '.jsonl':
+                    data, records, trailing = read_jsonl_prefix(f)
+                    details = {'records': len(records), 'incomplete_tail_bytes_omitted': trailing}
+                else:
+                    data = f.read_bytes()
+                    json.loads(data)
+                    details = {}
+                save(Path(family) / folder.name / f.relative_to(folder), data, f, details)
     summary = {'snapshot_started': started, 'snapshot_finished': datetime.datetime.now().astimezone().isoformat(),
-               'scope': 'all_local_SafeDial_run_directories; historical_and_active_runs_kept_separate',
+               'scope': 'all_local_SafeDial_run_directories_and_guard_assistance_goal_evaluations; historical_and_active_runs_kept_separate',
                'limitations': ['Live files captured independently; counts may differ across files.',
                               'No new GPU audit or judge execution performed by snapshot.',
                               'Full per-call journals and original turns remain local; compact turn_status is not a replay journal.',
@@ -123,6 +155,10 @@ def snapshot(source, destination):
               'Exported dialogues can contain errors in legacy runners; check the error fields. '
               'Original call journals, model weights, caches, credentials, and the external dataset are not included. '
               'This snapshot cannot be used as a resumable execution directory.', '']
+    lines += ['The `llamaguard/`, `assistance/`, and `safedial_goals/` directories preserve '
+              'frozen inputs, configurations, raw evaluator records and saved aggregates. '
+              'An aggregate may lag a captured live journal; no missing result is inferred. '
+              'Older protocols and failed pilots are retained separately.', '']
     (destination / 'README.md').write_text('\n'.join(lines))
     print(json.dumps({'runs': len(runs), 'files': len(inventory), 'stored_bytes': sum(f['bytes'] for f in inventory),
                       'destination': str(destination)}))

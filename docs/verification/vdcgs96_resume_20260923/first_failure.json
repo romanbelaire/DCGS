@@ -1,0 +1,10 @@
+{
+  "dialogue_id": 13,
+  "turn_index": 4,
+  "old_audit_reproduced": true,
+  "old_audit_mutated_first_event_texts_in_memory": true,
+  "isolated_audit_passed": true,
+  "final_response_identical": true,
+  "selected_belief_identical": true,
+  "model_calls": 0
+}

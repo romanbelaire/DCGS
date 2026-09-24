@@ -1,9 +1,16 @@
 # SafeDialBench DSR implementation plan
 
-Date: 2026-09-22. Status: proposed extension; only the standalone LlamaGuard
-stage, including its full-dataset wrapper and context preflight, is implemented
-and CPU-validated. This document does not launch jobs,
-download models, or execute API judging.
+Date: 2026-09-22; implementation status updated 2026-09-24. This document
+retains the original design proposal. LlamaGuard, goal extraction, assistance
+judging and the saved-label join now have standalone implementations; see the
+update below for the implemented scope and outstanding GPU validation.
+
+Update, 24 September: the [assistance runner](SAFEDIALBENCH_ASSISTANCE.md) now
+implements the original DCGS local Zephyr rubric, the user-approved v3 goals,
+and an optional join with saved LlamaGuard results. Its guide is authoritative
+for the implemented protocol; GPU pilot validation remains pending. The older
+classification, goal-applicability and three-label proposals below were not
+adopted: the user requested the extracted conversation goals and original judge.
 
 ## 1. Goal and scope
 

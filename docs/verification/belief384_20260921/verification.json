@@ -1,0 +1,15 @@
+{
+  "tests_passed": 51,
+  "shell_syntax": "passed",
+  "artifact_hashes": "passed",
+  "pinned_source_checks": {
+    "vdcgs_full": 102,
+    "rdcgs_full": 102,
+    "vdcgs_history_smoke": 104,
+    "mismatches": 0
+  },
+  "tokenizer_preflight": "1 dialogue / 5 turns, both methods and context modes",
+  "full_preflight": "performed by batch before generation; local full scan intentionally interrupted",
+  "gpu_generation_performed": false,
+  "jobs_submitted": false
+}

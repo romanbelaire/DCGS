@@ -1,0 +1,77 @@
+test_api_failure_does_not_reuse_previous_response (test_judge_safedial.JudgeDiagnosticsTest.test_api_failure_does_not_reuse_previous_response) ... ok
+test_diagnostics_survive_success_and_subsequent_runs (test_judge_safedial.JudgeDiagnosticsTest.test_diagnostics_survive_success_and_subsequent_runs) ... ok
+test_parse_failure_retains_raw_response_and_usage (test_judge_safedial.JudgeDiagnosticsTest.test_parse_failure_retains_raw_response_and_usage) ... ok
+test_refusal_retained_without_inventing_scores (test_judge_safedial.JudgeDiagnosticsTest.test_refusal_retained_without_inventing_scores) ... ok
+test_success_preserves_scores_and_request_settings (test_judge_safedial.JudgeDiagnosticsTest.test_success_preserves_scores_and_request_settings) ... ok
+test_softmax_tie_and_extreme_scores (test_judge_safedial_llamaguard.DecisionTests.test_softmax_tie_and_extreme_scores) ... ok
+test_altered_judgment_is_rejected (test_judge_safedial_llamaguard.Fixture.test_altered_judgment_is_rejected) ... ok
+test_answers_input_maps_declared_choice_and_detects_partial_dialogue (test_judge_safedial_llamaguard.Fixture.test_answers_input_maps_declared_choice_and_detects_partial_dialogue) ... ok
+test_bad_complete_json_line_is_not_silently_ignored (test_judge_safedial_llamaguard.Fixture.test_bad_complete_json_line_is_not_silently_ignored) ... ok
+test_configuration_drift_rejected (test_judge_safedial_llamaguard.Fixture.test_configuration_drift_rejected) ... ok
+test_dataset_hash_mismatch_rejected (test_judge_safedial_llamaguard.Fixture.test_dataset_hash_mismatch_rejected) ... ok
+test_duplicate_success_conflict_rejected_but_retry_error_supported (test_judge_safedial_llamaguard.Fixture.test_duplicate_success_conflict_rejected_but_retry_error_supported) ... ok
+test_fatal_error_is_journaled_before_stopping (test_judge_safedial_llamaguard.Fixture.test_fatal_error_is_journaled_before_stopping) ... Judged 1: 1/0 error
+ok
+test_history_uses_gold_not_prior_generation_and_preserves_full_text (test_judge_safedial_llamaguard.Fixture.test_history_uses_gold_not_prior_generation_and_preserves_full_text) ... ok
+test_input_checksum_and_reference_history_validation (test_judge_safedial_llamaguard.Fixture.test_input_checksum_and_reference_history_validation) ... ok
+test_journal_torn_tail_recovery_and_foreign_record_rejection (test_judge_safedial_llamaguard.Fixture.test_journal_torn_tail_recovery_and_foreign_record_rejection) ... ok
+test_lock_rejects_concurrent_writer (test_judge_safedial_llamaguard.Fixture.test_lock_rejects_concurrent_writer) ... ok
+test_missing_and_error_turns_never_become_safe (test_judge_safedial_llamaguard.Fixture.test_missing_and_error_turns_never_become_safe) ... ok
+test_one_unsafe_turn_fails_dialogue_not_turn_average (test_judge_safedial_llamaguard.Fixture.test_one_unsafe_turn_fails_dialogue_not_turn_average) ... ok
+test_output_cannot_replace_run_root (test_judge_safedial_llamaguard.Fixture.test_output_cannot_replace_run_root) ... ok
+test_partial_unsafe_reported_without_entering_complete_denominator (test_judge_safedial_llamaguard.Fixture.test_partial_unsafe_reported_without_entering_complete_denominator) ... ok
+test_prepare_cli_never_loads_model_and_resume_does_not_refresh_inputs (test_judge_safedial_llamaguard.Fixture.test_prepare_cli_never_loads_model_and_resume_does_not_refresh_inputs) ... ok
+test_resume_skips_success_and_errors_unless_explicitly_requested (test_judge_safedial_llamaguard.Fixture.test_resume_skips_success_and_errors_unless_explicitly_requested) ... {
+  "output_dir": "/tmp/tmp7lfo8zqi/judge",
+  "complete": false,
+  "generation": {
+    "available": 3
+  },
+  "turns": {
+    "judge_pending": 3
+  },
+  "overall": {
+    "expected_dialogues": 2,
+    "complete_dialogues": 0,
+    "incomplete_dialogues": 2,
+    "safe_dialogues": 0,
+    "unsafe_dialogues": 0,
+    "ASR_LG_percent": null,
+    "DSR_LG_percent": null,
+    "incomplete_with_observed_unsafe": 0
+  }
+}
+{
+  "output_dir": "/tmp/tmp7lfo8zqi/judge",
+  "complete": false,
+  "generation": {
+    "available": 3
+  },
+  "turns": {
+    "judge_pending": 3
+  },
+  "overall": {
+    "expected_dialogues": 2,
+    "complete_dialogues": 0,
+    "incomplete_dialogues": 2,
+    "safe_dialogues": 0,
+    "unsafe_dialogues": 0,
+    "ASR_LG_percent": null,
+    "DSR_LG_percent": null,
+    "incomplete_with_observed_unsafe": 0
+  }
+}
+Judged 1: 1/0 error
+Judged 2: 1/1 safe
+Judged 1: 2/0 safe
+Judged 1: 1/0 safe
+ok
+test_snapshot_excludes_appends_and_torn_tail (test_judge_safedial_llamaguard.Fixture.test_snapshot_excludes_appends_and_torn_tail) ... ok
+test_next_token_forward_and_two_label_normalization (test_judge_safedial_llamaguard.ForwardTests.test_next_token_forward_and_two_label_normalization) ... ok
+test_overflow_rejected_before_forward_without_truncation (test_judge_safedial_llamaguard.ForwardTests.test_overflow_rejected_before_forward_without_truncation) ... ok
+test_unrelated_top_token_is_error_not_a_forced_safe_label (test_judge_safedial_llamaguard.ForwardTests.test_unrelated_top_token_is_error_not_a_forced_safe_label) ... ok
+
+----------------------------------------------------------------------
+Ran 27 tests in 1.120s
+
+OK

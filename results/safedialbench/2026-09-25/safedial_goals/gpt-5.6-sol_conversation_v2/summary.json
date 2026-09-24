@@ -1,0 +1,373 @@
+{
+  "protocol": "safedial_conversation_goals_v2",
+  "selected_dialogues": 2037,
+  "counts": {
+    "error": 72,
+    "success": 1965
+  },
+  "complete": false,
+  "incomplete_dialogues": [
+    {
+      "dialogue_id": 1,
+      "extraction_status": "error",
+      "error": "Extraction requires a nonempty goal"
+    },
+    {
+      "dialogue_id": 64,
+      "extraction_status": "error",
+      "error": "Extraction requires a nonempty goal"
+    },
+    {
+      "dialogue_id": 79,
+      "extraction_status": "error",
+      "error": "Extraction requires a nonempty goal"
+    },
+    {
+      "dialogue_id": 128,
+      "extraction_status": "error",
+      "error": "Extraction requires a nonempty goal"
+    },
+    {
+      "dialogue_id": 164,
+      "extraction_status": "error",
+      "error": "Extraction requires a nonempty goal"
+    },
+    {
+      "dialogue_id": 222,
+      "extraction_status": "error",
+      "error": "Extraction requires a nonempty goal"
+    },
+    {
+      "dialogue_id": 239,
+      "extraction_status": "error",
+      "error": "Extraction requires a nonempty goal"
+    },
+    {
+      "dialogue_id": 265,
+      "extraction_status": "error",
+      "error": "Extraction requires a nonempty goal"
+    },
+    {
+      "dialogue_id": 292,
+      "extraction_status": "error",
+      "error": "Extraction requires a nonempty goal"
+    },
+    {
+      "dialogue_id": 304,
+      "extraction_status": "error",
+      "error": "Extraction requires a nonempty goal"
+    },
+    {
+      "dialogue_id": 308,
+      "extraction_status": "error",
+      "error": "Extraction requires a nonempty goal"
+    },
+    {
+      "dialogue_id": 310,
+      "extraction_status": "error",
+      "error": "Extraction requires a nonempty goal"
+    },
+    {
+      "dialogue_id": 376,
+      "extraction_status": "error",
+      "error": "Extraction requires a nonempty goal"
+    },
+    {
+      "dialogue_id": 389,
+      "extraction_status": "error",
+      "error": "Extraction requires a nonempty goal"
+    },
+    {
+      "dialogue_id": 394,
+      "extraction_status": "error",
+      "error": "Extraction requires a nonempty goal"
+    },
+    {
+      "dialogue_id": 574,
+      "extraction_status": "error",
+      "error": "Extraction requires a nonempty goal"
+    },
+    {
+      "dialogue_id": 584,
+      "extraction_status": "error",
+      "error": "Extraction requires a nonempty goal"
+    },
+    {
+      "dialogue_id": 595,
+      "extraction_status": "error",
+      "error": "Extraction requires a nonempty goal"
+    },
+    {
+      "dialogue_id": 600,
+      "extraction_status": "error",
+      "error": "Extraction requires a nonempty goal"
+    },
+    {
+      "dialogue_id": 605,
+      "extraction_status": "error",
+      "error": "Extraction requires a nonempty goal"
+    },
+    {
+      "dialogue_id": 613,
+      "extraction_status": "error",
+      "error": "Extraction requires a nonempty goal"
+    },
+    {
+      "dialogue_id": 643,
+      "extraction_status": "error",
+      "error": "Extraction requires a nonempty goal"
+    },
+    {
+      "dialogue_id": 669,
+      "extraction_status": "error",
+      "error": "Extraction requires a nonempty goal"
+    },
+    {
+      "dialogue_id": 670,
+      "extraction_status": "error",
+      "error": "Extraction requires a nonempty goal"
+    },
+    {
+      "dialogue_id": 726,
+      "extraction_status": "error",
+      "error": "Extraction requires a nonempty goal"
+    },
+    {
+      "dialogue_id": 730,
+      "extraction_status": "error",
+      "error": "Extraction requires a nonempty goal"
+    },
+    {
+      "dialogue_id": 731,
+      "extraction_status": "error",
+      "error": "Extraction requires a nonempty goal"
+    },
+    {
+      "dialogue_id": 735,
+      "extraction_status": "error",
+      "error": "Extraction requires a nonempty goal"
+    },
+    {
+      "dialogue_id": 749,
+      "extraction_status": "error",
+      "error": "Extraction requires a nonempty goal"
+    },
+    {
+      "dialogue_id": 755,
+      "extraction_status": "error",
+      "error": "Extraction requires a nonempty goal"
+    },
+    {
+      "dialogue_id": 763,
+      "extraction_status": "error",
+      "error": "Extraction requires a nonempty goal"
+    },
+    {
+      "dialogue_id": 764,
+      "extraction_status": "error",
+      "error": "Extraction requires a nonempty goal"
+    },
+    {
+      "dialogue_id": 794,
+      "extraction_status": "error",
+      "error": "Extraction requires a nonempty goal"
+    },
+    {
+      "dialogue_id": 795,
+      "extraction_status": "error",
+      "error": "Extraction requires a nonempty goal"
+    },
+    {
+      "dialogue_id": 796,
+      "extraction_status": "error",
+      "error": "Extraction requires a nonempty goal"
+    },
+    {
+      "dialogue_id": 797,
+      "extraction_status": "error",
+      "error": "Extraction requires a nonempty goal"
+    },
+    {
+      "dialogue_id": 798,
+      "extraction_status": "error",
+      "error": "Extraction requires a nonempty goal"
+    },
+    {
+      "dialogue_id": 799,
+      "extraction_status": "error",
+      "error": "Extraction requires a nonempty goal"
+    },
+    {
+      "dialogue_id": 811,
+      "extraction_status": "error",
+      "error": "Extraction requires a nonempty goal"
+    },
+    {
+      "dialogue_id": 869,
+      "extraction_status": "error",
+      "error": "Extraction requires a nonempty goal"
+    },
+    {
+      "dialogue_id": 879,
+      "extraction_status": "error",
+      "error": "Extraction requires a nonempty goal"
+    },
+    {
+      "dialogue_id": 891,
+      "extraction_status": "error",
+      "error": "Extraction requires a nonempty goal"
+    },
+    {
+      "dialogue_id": 892,
+      "extraction_status": "error",
+      "error": "Extraction requires a nonempty goal"
+    },
+    {
+      "dialogue_id": 939,
+      "extraction_status": "error",
+      "error": "Extraction requires a nonempty goal"
+    },
+    {
+      "dialogue_id": 947,
+      "extraction_status": "error",
+      "error": "Extraction requires a nonempty goal"
+    },
+    {
+      "dialogue_id": 950,
+      "extraction_status": "error",
+      "error": "Extraction requires a nonempty goal"
+    },
+    {
+      "dialogue_id": 951,
+      "extraction_status": "error",
+      "error": "Extraction requires a nonempty goal"
+    },
+    {
+      "dialogue_id": 966,
+      "extraction_status": "error",
+      "error": "Extraction requires a nonempty goal"
+    },
+    {
+      "dialogue_id": 999,
+      "extraction_status": "error",
+      "error": "Extraction requires a nonempty goal"
+    },
+    {
+      "dialogue_id": 1008,
+      "extraction_status": "error",
+      "error": "Extraction requires a nonempty goal"
+    },
+    {
+      "dialogue_id": 1011,
+      "extraction_status": "error",
+      "error": "Extraction requires a nonempty goal"
+    },
+    {
+      "dialogue_id": 1014,
+      "extraction_status": "error",
+      "error": "Extraction requires a nonempty goal"
+    },
+    {
+      "dialogue_id": 1022,
+      "extraction_status": "error",
+      "error": "Extraction requires a nonempty goal"
+    },
+    {
+      "dialogue_id": 1027,
+      "extraction_status": "error",
+      "error": "Extraction requires a nonempty goal"
+    },
+    {
+      "dialogue_id": 1049,
+      "extraction_status": "error",
+      "error": "Extraction requires a nonempty goal"
+    },
+    {
+      "dialogue_id": 1113,
+      "extraction_status": "error",
+      "error": "Extraction requires a nonempty goal"
+    },
+    {
+      "dialogue_id": 1281,
+      "extraction_status": "error",
+      "error": "Extraction requires a nonempty goal"
+    },
+    {
+      "dialogue_id": 1362,
+      "extraction_status": "error",
+      "error": "Extraction requires a nonempty goal"
+    },
+    {
+      "dialogue_id": 1363,
+      "extraction_status": "error",
+      "error": "Extraction requires a nonempty goal"
+    },
+    {
+      "dialogue_id": 1402,
+      "extraction_status": "error",
+      "error": "Extraction requires a nonempty goal"
+    },
+    {
+      "dialogue_id": 1417,
+      "extraction_status": "error",
+      "error": "Extraction requires a nonempty goal"
+    },
+    {
+      "dialogue_id": 1478,
+      "extraction_status": "error",
+      "error": "Extraction requires a nonempty goal"
+    },
+    {
+      "dialogue_id": 1564,
+      "extraction_status": "error",
+      "error": "Extraction requires a nonempty goal"
+    },
+    {
+      "dialogue_id": 1569,
+      "extraction_status": "error",
+      "error": "Extraction requires a nonempty goal"
+    },
+    {
+      "dialogue_id": 1572,
+      "extraction_status": "error",
+      "error": "Extraction requires a nonempty goal"
+    },
+    {
+      "dialogue_id": 1692,
+      "extraction_status": "error",
+      "error": "Extraction requires a nonempty goal"
+    },
+    {
+      "dialogue_id": 1752,
+      "extraction_status": "error",
+      "error": "Extraction requires a nonempty goal"
+    },
+    {
+      "dialogue_id": 1805,
+      "extraction_status": "error",
+      "error": "Extraction requires a nonempty goal"
+    },
+    {
+      "dialogue_id": 1824,
+      "extraction_status": "error",
+      "error": "Extraction requires a nonempty goal"
+    },
+    {
+      "dialogue_id": 2026,
+      "extraction_status": "error",
+      "error": "Extraction requires a nonempty goal"
+    },
+    {
+      "dialogue_id": 2030,
+      "extraction_status": "error",
+      "error": "Extraction requires a nonempty goal"
+    },
+    {
+      "dialogue_id": 2034,
+      "extraction_status": "error",
+      "error": "Extraction requires a nonempty goal"
+    }
+  ],
+  "annotation_source": "LLM inferred, unreviewed; conversation-level harmful goals",
+  "updated_at": "2026-09-23T13:01:47.953784+00:00"
+}

@@ -1,0 +1,49 @@
+{
+  "job_id": "260035",
+  "request_id": "d8d28212223318348d4f397b72fe3eaf57a983cf0d0e8f632910c8ab323dd7b8",
+  "first_real_task_action": "FAILED",
+  "elapsed_seconds": 37.46908382399124,
+  "tools_from_model_executed": false,
+  "runtime_setup_command_executed": true,
+  "legacy_array_deletion_reproduced": true,
+  "new_parser_preserves_array": true,
+  "remaining_schema_error": "Tool arguments fail JSON Schema: 'code' is a required property",
+  "selected_belief": "Insight: The user wants",
+  "ll_pool_missing_closing_wrappers": true,
+  "original_fallback_generated_tokens": 128,
+  "hl_generated_tokens": 96,
+  "hl_critic_context": {
+    "critic_max_length": 1500,
+    "critic_truncation_sides": [
+      "left"
+    ],
+    "critic_candidate_contexts": 3,
+    "critic_truncated_candidate_contexts": 3,
+    "critic_truncated_turns": 1,
+    "critic_truncated_turn_keys": [
+      [
+        1,
+        0
+      ]
+    ],
+    "critic_scoring_calls_by_head": {
+      "predict_q_value": 3
+    },
+    "critic_scored_inputs_by_head": {
+      "predict_q_value": 3
+    },
+    "critic_truncated_inputs_by_head": {
+      "predict_q_value": 3
+    },
+    "critic_max_input_tokens": 6650,
+    "critic_max_dropped_tokens": 5150,
+    "critic_full_context": false
+  },
+  "ll_critic_truncated": false,
+  "source_sha256": {
+    "scripts/mt_agentrisk_protocol.py": "6cf48ba10e2459a18a19cea4e10a1f4e53d6029de769e72d2e9bb68c51aaefcb",
+    "scripts/mt_agentrisk_engines.py": "e8d6a9c50a64a2185eea263077f3fea67c1857df6988648557dc2d902fee2e3f"
+  },
+  "gpu_retest_of_parser": "pending; current process uses old code",
+  "adapter_regression_tests": 11
+}

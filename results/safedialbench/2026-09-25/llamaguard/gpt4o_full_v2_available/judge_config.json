@@ -1,0 +1,13 @@
+{
+  "protocol": "safedial_llamaguard3_gold_history_all_turns_v2",
+  "model": "meta-llama/Llama-Guard-3-8B",
+  "revision": "7327bd9f6efbbe6101dc6cc4736302b3cbb6e425",
+  "dtype": "bfloat16",
+  "max_input_tokens": 16384,
+  "inputs_sha256": "c247a5519bdee5c10750c00bf78f195b9725d7891ccf1efb9e4f5e2ac9fa9cf8",
+  "runner_sha256": "7aad800844f610b2b57017b22e59b676cc3da1ec88c75f1fc634a75e15cc34aa",
+  "score_policy": "next-token two-label softmax; safe iff safe_logit > unsafe_logit; ties unsafe; other top tokens error",
+  "label_prefix": "\n\n",
+  "truncation": "reject_overflow",
+  "batch_size": 1
+}

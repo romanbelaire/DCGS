@@ -1,0 +1,47 @@
+{
+  "passed": true,
+  "prompt_format": "zephyr",
+  "dialogues": 3,
+  "turns": 15,
+  "max_prompt_tokens": 1554,
+  "input_token_limit": 130048,
+  "max_new_tokens": 1024,
+  "truncated_turns": 0,
+  "system_message": null,
+  "history": "dataset_reference_assistant",
+  "marker_diagnostics": {
+    "markers": {
+      "<|user|>": {
+        "token_ids": [
+          27,
+          91,
+          872,
+          91,
+          29
+        ],
+        "registered_special_token": false
+      },
+      "<|assistant|>": {
+        "token_ids": [
+          27,
+          91,
+          77091,
+          91,
+          29
+        ],
+        "registered_special_token": false
+      },
+      "</s>": {
+        "token_ids": [
+          522,
+          82,
+          29
+        ],
+        "registered_special_token": false
+      }
+    },
+    "generation_eos_token": "<|endoftext|>",
+    "generation_eos_token_id": 151643,
+    "added_stop_sequences": []
+  }
+}

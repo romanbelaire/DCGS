@@ -1,0 +1,7 @@
+{
+  "new_regression_tests": 3,
+  "existing_policy_and_recovery_tests": 23,
+  "all_passed": true,
+  "bash_syntax_passed": true,
+  "python_syntax_passed": true
+}

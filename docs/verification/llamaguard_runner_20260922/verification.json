@@ -1,0 +1,30 @@
+{
+  "checked_at": "2026-09-22T10:49:15.781901+08:00",
+  "tests": {
+    "command": "HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 .venv/bin/python -B -m unittest discover -s tests -p 'test_judge_safedial*.py' -v",
+    "passed": 27,
+    "failed": 0,
+    "model_forward_tests": "CPU synthetic tensors only"
+  },
+  "shell_syntax": "bash -n scripts/slurm/run_safedial_llamaguard.sbatch: PASS",
+  "real_input_runs_passed": 8,
+  "pilot": "outputs/llamaguard/dcr_inference_format_pilot_v1",
+  "pilot_turns": 15,
+  "model": {
+    "id": "meta-llama/Llama-Guard-3-8B",
+    "revision": "7327bd9f6efbbe6101dc6cc4736302b3cbb6e425",
+    "revision_source": "https://huggingface.co/api/models/meta-llama/Llama-Guard-3-8B"
+  },
+  "limitations": [
+    "No weights downloaded",
+    "No real guard inference or CUDA validation",
+    "Gated access not verified",
+    "No Slurm jobs submitted"
+  ],
+  "source_sha256": {
+    "scripts/judge_safedial_llamaguard.py": "dbbfda2cad1b616638119039c5cbeb133bfeb09a825bcc12a6e5a5d326561e52",
+    "scripts/slurm/run_safedial_llamaguard.sbatch": "9f2ef98185694d4f8bdf54b8616d9423a16ccc17d4454bb4623b3c42c18d3718",
+    "tests/test_judge_safedial_llamaguard.py": "7b5a4da5547fb2970f7ccea8f9f6d362effdce29a4961ab8e996ec381825fe21",
+    "docs/SAFEDIALBENCH_LLAMAGUARD.md": "06f4b578295f65a8df28e1813f692a01b26a505b7aed8e95fe54e54d1140aa32"
+  }
+}

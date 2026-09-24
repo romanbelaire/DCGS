@@ -1,0 +1,104 @@
+{
+  "job_id": 271289,
+  "output_dir": "outputs/safedial_baseline/dcr_qwen_1.5b_smoke_v1",
+  "runtime_sources_match_manifest": true,
+  "validation": {
+    "passed": true,
+    "dialogues": 1,
+    "turns": 5,
+    "input_truncated_turns": 0,
+    "adapter_required": true,
+    "judge_calls": 0,
+    "protocol": "safedial_dcr_gold_history_training_template_v1",
+    "training_template_verified": true
+  },
+  "runtime": {
+    "elapsed_seconds": 126.66479870199692,
+    "device": "cuda:0",
+    "gpu_name": "NVIDIA L40",
+    "peak_gpu_allocated_bytes": 3244599808,
+    "peak_gpu_reserved_bytes": 3342860288,
+    "includes_model_loading": true,
+    "scope": "current_invocation"
+  },
+  "adapter_effect": {
+    "passed": true,
+    "max_abs_logit_difference": 7.6220703125,
+    "active_adapters": [
+      "default"
+    ],
+    "merged": false
+  },
+  "turn_metrics": [
+    {
+      "turn_index": 0,
+      "prompt_tokens": 18,
+      "completion_tokens": 385,
+      "hit_token_cap": false,
+      "input_truncated": false,
+      "error": null,
+      "cjk_character_count": 548,
+      "generated_role_marker_count": 0
+    },
+    {
+      "turn_index": 1,
+      "prompt_tokens": 345,
+      "completion_tokens": 1024,
+      "hit_token_cap": true,
+      "input_truncated": false,
+      "error": null,
+      "cjk_character_count": 0,
+      "generated_role_marker_count": 6
+    },
+    {
+      "turn_index": 2,
+      "prompt_tokens": 717,
+      "completion_tokens": 1024,
+      "hit_token_cap": true,
+      "input_truncated": false,
+      "error": null,
+      "cjk_character_count": 0,
+      "generated_role_marker_count": 4
+    },
+    {
+      "turn_index": 3,
+      "prompt_tokens": 1135,
+      "completion_tokens": 1024,
+      "hit_token_cap": true,
+      "input_truncated": false,
+      "error": null,
+      "cjk_character_count": 0,
+      "generated_role_marker_count": 6
+    },
+    {
+      "turn_index": 4,
+      "prompt_tokens": 1517,
+      "completion_tokens": 1024,
+      "hit_token_cap": true,
+      "input_truncated": false,
+      "error": null,
+      "cjk_character_count": 0,
+      "generated_role_marker_count": 0
+    }
+  ],
+  "observations": [
+    "First response is Chinese despite an English user prompt; preserve as an evaluation outcome.",
+    "Token-cap hits are reported, not automatically retried or trimmed.",
+    "Turns at indices 1, 2 and 3 generate additional USER/ASSISTANT role lines inside the saved response; the runner does not strip them."
+  ],
+  "artifact_sha256": {
+    "preflight.json": "53690cbbac68082b5d3954899f161e0cec33d4820d551531223a30a07dd4ce17",
+    "validation.json": "d5d9194613111c2db16241a787fbfa420eb9de8c70badcb92cc8a079fe99e78c",
+    "runtime_stats.json": "7c2d0b1b06c35c4cce31af60786c606c7cc26483c0f457d55c81936bacfb888d",
+    "answers.jsonl": "7a5e94a1bcbc3695acc74c78c301029feeb4d39e8f1edc14cc40be25b37e5ba3",
+    "run_config.json": "0981977547256f3215b582798e8d8100cf85581c1b98670f0695fb2ae30e53bb",
+    "attempts.jsonl": "fd377bfb1486a24caa5ead6f42a1041b085b06b0d9740ad7b9fbdc8d7c06c171",
+    "turns.jsonl": "7a0a1ea4c7c6b33500448b55e25a6dfd1f48b148a0f6fd0ea0460c63f6c7f1dd",
+    "adapter_validation.json": "cad0cc55291280395067dab452d2b7d65804db3829d5d006353ccb881f59bc09"
+  },
+  "judge_api_calls": 0,
+  "scheduler_state": "COMPLETED",
+  "exit_code": "0:0",
+  "elapsed": "00:02:53",
+  "node": "lagoon"
+}

@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "prompt_format": "training",
+  "dialogues": 2,
+  "turns": 10,
+  "max_prompt_tokens": 1458,
+  "input_token_limit": 130048,
+  "max_new_tokens": 1024,
+  "truncated_turns": 0,
+  "system_message": null,
+  "history": "dataset_reference_assistant"
+}

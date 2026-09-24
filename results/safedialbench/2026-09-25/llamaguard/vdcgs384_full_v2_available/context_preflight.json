@@ -1,0 +1,25 @@
+{
+  "available_turns_audited": 10022,
+  "effective_context_limit": 16384,
+  "input_tokens_min": 212,
+  "input_tokens_max": 7422,
+  "input_tokens_p50": 957,
+  "input_tokens_p95": 3841,
+  "input_tokens_p99": 5061,
+  "overflow_turns": [],
+  "passed": true,
+  "truncation": "none; counts include full guard template and conversation",
+  "inputs_sha256": "367e92fe9dda3b0728fabc3c0192fc253ed714b0b35763f1cd479012e219a221",
+  "judge_config_sha256": "2a4a236c396f8d9f566272b79ae1c2129fbe36c07cdb4790ffa90ff5db826ec7",
+  "model": "meta-llama/Llama-Guard-3-8B",
+  "revision": "7327bd9f6efbbe6101dc6cc4736302b3cbb6e425",
+  "label_prefix": "\n\n",
+  "model_context_limit": 131072,
+  "model_config_sha256": "2fc8239c581986bc8aceffab5e9bbec2c9e1e383fe39409d86e5ca97b6368901",
+  "tokenizer_template_sha256": "97c1b0417e3f1b2c4abbbc894f64361b136bcc973b594ca1ea5db69853e3c247",
+  "tokenizer_versions": {
+    "transformers": "4.57.6",
+    "tokenizers": "0.22.2",
+    "huggingface-hub": "0.36.2"
+  }
+}

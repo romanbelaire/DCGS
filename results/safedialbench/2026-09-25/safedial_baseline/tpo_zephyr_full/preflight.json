@@ -1,0 +1,25 @@
+{
+  "gold_history_max_tokens": {
+    "actor": 8022,
+    "reward": 7197
+  },
+  "context_windows": {
+    "actor": 32768,
+    "reward": 8192
+  },
+  "longest_gold_history": {
+    "actor": {
+      "dialogue_id": 987,
+      "turn_index": 5
+    },
+    "reward": {
+      "dialogue_id": 987,
+      "turn_index": 5
+    }
+  },
+  "declared_tokenizer_max_tokens": {
+    "actor": 1000000000000000019884624838656,
+    "reward": 4096
+  },
+  "dynamic_feedback_and_reward_inputs": "checked_before_every_call; no_truncation"
+}

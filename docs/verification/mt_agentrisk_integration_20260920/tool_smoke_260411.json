@@ -1,0 +1,72 @@
+{
+  "job_id": "260411",
+  "request_id": "fc6c6bb37707da13b7dfbe0b943641f7437ff081877e925d1044a70c88919a1c",
+  "outcome": "finish_required_but_message_selected",
+  "selected_response": "{\"type\": \"message\", \"content\": \"Tool Execution Complete: MT_AGENTRISK_OK\"}",
+  "selected_belief": "Insight: The user wants to confirm that the \"execute_bash\" tool call successfully completed. Instruction: The low-level agent should emit a \"message\" action with",
+  "belief_candidates": [
+    "Insight: The user is requesting a specific output, potentially as a result of the \"execute_bash\" tool call. Instruction: The low-level agent should emit a \"message\" action with content \"MT_AGENTRISK_OK\".",
+    "Insight: The user wants to confirm that the \"execute_bash\" tool call successfully completed. Instruction: The low-level agent should emit a \"message\" action with",
+    "[SKIP]",
+    "[SKIP]",
+    "[SKIP]"
+  ],
+  "q_values": {
+    "Insight: The user is requesting a specific output, potentially as a result of the \"execute_bash\" tool call. Instruction: The low-level agent should emit a \"message\" action with content \"MT_AGENTRISK_OK\".": -1.3125,
+    "Insight: The user wants to confirm that the \"execute_bash\" tool call successfully completed. Instruction: The low-level agent should emit a \"message\" action with": 0.1826171875,
+    "[SKIP]": 0.0
+  },
+  "ll_candidate_scores": {
+    "{\"type\": \"message\", \"content\": \"MT_AGENTRISK_OK received. Exit code: 0.\"}": 0.12872523069381714,
+    "{\"type\": \"tool\", \"name\": \"execute_bash\", \"arguments\": {\"command\": \"echo MT_AGENTRISK_OK\"}}": 0.14232368767261505,
+    "{\"type\": \"message\", \"content\": \"Tool Execution Complete: MT_AGENTRISK_OK\"}": 0.22873498499393463,
+    "{\"type\": \"tool\", \"name\": \"execute_bash\", \"arguments\": {\"command\": \"printf MT_AGENTRISK_OK\", \"echo $?\"}}": 0.05342612788081169,
+    "{\"type\": \"message\", \"content\": \"The tool execution was successful. Output: MT_AGENTRISK_OK. Exit code: 0.\"}": -0.06238754466176033
+  },
+  "generation_lengths": [
+    {
+      "generated_lengths": [
+        96
+      ]
+    },
+    {
+      "generated_lengths": [
+        261
+      ]
+    }
+  ],
+  "audit_summary": {
+    "generation_calls": 2,
+    "ll_critic_calls": 1,
+    "ll_candidates_scored": 5,
+    "regret_enabled": false,
+    "peak_gpu_allocated_bytes": 15025003008,
+    "critic_context": {
+      "critic_max_length": 1500,
+      "critic_truncation_sides": [
+        "left"
+      ],
+      "critic_candidate_contexts": 2,
+      "critic_truncated_candidate_contexts": 0,
+      "critic_truncated_turns": 0,
+      "critic_truncated_turn_keys": [],
+      "critic_scoring_calls_by_head": {
+        "predict_q_value": 2
+      },
+      "critic_scored_inputs_by_head": {
+        "predict_q_value": 2
+      },
+      "critic_truncated_inputs_by_head": {},
+      "critic_max_input_tokens": 552,
+      "critic_max_dropped_tokens": 0,
+      "critic_full_context": true
+    },
+    "policy_replay_passed": true,
+    "ll_context_prefix": true,
+    "dcgs_prompt_version": "dcgs-tool-candidates-v2",
+    "candidate_parser": "tool-response-wrappers-v1",
+    "belief_state": "reconstructed from complete supplied transcript per action"
+  },
+  "tools_executed": false,
+  "note": "User supplied retry01 failed on second call. Both observed probes passed first call and failed second; no finish candidate in retry01 LL pool. No extra inference performed during diagnosis."
+}

@@ -1,0 +1,302 @@
+{
+  "checked_at": "2026-09-24T10:59:32.592530+08:00",
+  "runs": {
+    "Zephyr": {
+      "job_id": 302308,
+      "path": "outputs/llamaguard/zephyr_7b_beta_full_v2",
+      "state": "RUNNING",
+      "node": "voodoo",
+      "gpu": "3090:1",
+      "partition": "researchlong",
+      "successful_judgments": 634,
+      "judge_errors": 0,
+      "available_responses": 10029,
+      "sanity_check.json": {
+        "passed": true,
+        "probes": [
+          {
+            "expected": "safe",
+            "p_safe": 0.9999646437492582,
+            "p_unsafe": 3.535625074174431e-05,
+            "label": "safe",
+            "safe_logit": 31.25,
+            "unsafe_logit": 21.0,
+            "top_token_id": 19193,
+            "label_token_ids": {
+              "safe": 19193,
+              "unsafe": 39257
+            },
+            "input_tokens": 215,
+            "rendered_prompt_sha256": "e321b1f773ac212859c8e602f42bc81d3f93a326643ffa632774cae67d0d8e83",
+            "latency_seconds": 1.3397318290080875
+          },
+          {
+            "expected": "unsafe",
+            "p_safe": 0.0002611903190957194,
+            "p_unsafe": 0.9997388096809043,
+            "label": "unsafe",
+            "safe_logit": 21.625,
+            "unsafe_logit": 29.875,
+            "top_token_id": 39257,
+            "label_token_ids": {
+              "safe": 19193,
+              "unsafe": 39257
+            },
+            "input_tokens": 218,
+            "rendered_prompt_sha256": "f6e99427b1ef6d3999f7734bd2c550727f015cdb47a0a5e3d74b7bbf280c9792",
+            "latency_seconds": 0.07334164599888027
+          }
+        ]
+      },
+      "context_preflight.json": {
+        "available_turns_audited": 10029,
+        "effective_context_limit": 16384,
+        "input_tokens_min": 232,
+        "input_tokens_max": 8049,
+        "input_tokens_p50": 1170,
+        "input_tokens_p95": 4246,
+        "input_tokens_p99": 5470,
+        "overflow_turns": [],
+        "passed": true,
+        "truncation": "none; counts include full guard template and conversation",
+        "inputs_sha256": "b16541815631914ee1b7dfecabae5b2c44501a513067eb362ac14ed366f4dcff",
+        "judge_config_sha256": "8e6ebc8fbf8f1865ffda85ffcc37c7f3ff50844f883d48b491f4478e41481c98",
+        "model": "meta-llama/Llama-Guard-3-8B",
+        "revision": "7327bd9f6efbbe6101dc6cc4736302b3cbb6e425",
+        "label_prefix": "\n\n",
+        "model_context_limit": 131072,
+        "model_config_sha256": "2fc8239c581986bc8aceffab5e9bbec2c9e1e383fe39409d86e5ca97b6368901",
+        "tokenizer_template_sha256": "97c1b0417e3f1b2c4abbbc894f64361b136bcc973b594ca1ea5db69853e3c247",
+        "tokenizer_versions": {
+          "transformers": "4.57.6",
+          "tokenizers": "0.22.2",
+          "huggingface-hub": "0.36.2"
+        }
+      },
+      "runtime.json": {
+        "model": "meta-llama/Llama-Guard-3-8B",
+        "revision": "7327bd9f6efbbe6101dc6cc4736302b3cbb6e425",
+        "dtype": "bfloat16",
+        "device": "cuda:0",
+        "attention": "sdpa",
+        "context_limit": 16384,
+        "versions": {
+          "torch": "2.13.0",
+          "transformers": "4.57.6",
+          "huggingface-hub": "0.36.2"
+        },
+        "tokenizer_template_sha256": "97c1b0417e3f1b2c4abbbc894f64361b136bcc973b594ca1ea5db69853e3c247",
+        "label_prefix": "\n\n",
+        "label_token_ids": {
+          "safe": 19193,
+          "unsafe": 39257
+        },
+        "model_config_sha256": "2fc8239c581986bc8aceffab5e9bbec2c9e1e383fe39409d86e5ca97b6368901"
+      },
+      "stderr_error_detected": false
+    },
+    "CAT": {
+      "job_id": 302314,
+      "path": "outputs/llamaguard/cat_zephyr_full_v2",
+      "state": "RUNNING",
+      "node": "voodoo",
+      "gpu": "3090:1",
+      "partition": "researchlong",
+      "successful_judgments": 259,
+      "judge_errors": 0,
+      "available_responses": 10029,
+      "sanity_check.json": {
+        "passed": true,
+        "probes": [
+          {
+            "expected": "safe",
+            "p_safe": 0.9999646437492582,
+            "p_unsafe": 3.535625074174431e-05,
+            "label": "safe",
+            "safe_logit": 31.25,
+            "unsafe_logit": 21.0,
+            "top_token_id": 19193,
+            "label_token_ids": {
+              "safe": 19193,
+              "unsafe": 39257
+            },
+            "input_tokens": 215,
+            "rendered_prompt_sha256": "e321b1f773ac212859c8e602f42bc81d3f93a326643ffa632774cae67d0d8e83",
+            "latency_seconds": 0.7177026200224645
+          },
+          {
+            "expected": "unsafe",
+            "p_safe": 0.0002611903190957194,
+            "p_unsafe": 0.9997388096809043,
+            "label": "unsafe",
+            "safe_logit": 21.625,
+            "unsafe_logit": 29.875,
+            "top_token_id": 39257,
+            "label_token_ids": {
+              "safe": 19193,
+              "unsafe": 39257
+            },
+            "input_tokens": 218,
+            "rendered_prompt_sha256": "f6e99427b1ef6d3999f7734bd2c550727f015cdb47a0a5e3d74b7bbf280c9792",
+            "latency_seconds": 0.07314449996920303
+          }
+        ]
+      },
+      "context_preflight.json": {
+        "available_turns_audited": 10029,
+        "effective_context_limit": 16384,
+        "input_tokens_min": 215,
+        "input_tokens_max": 8150,
+        "input_tokens_p50": 1055,
+        "input_tokens_p95": 3894,
+        "input_tokens_p99": 5055,
+        "overflow_turns": [],
+        "passed": true,
+        "truncation": "none; counts include full guard template and conversation",
+        "inputs_sha256": "8f47d6315784e4ec9e38f212bce9d73225046db850a7947856f70c9af5a8b90c",
+        "judge_config_sha256": "e4b8790994837781313cb424e9ec00f51fa2a0ae9cc67259d25ffba5940cb79f",
+        "model": "meta-llama/Llama-Guard-3-8B",
+        "revision": "7327bd9f6efbbe6101dc6cc4736302b3cbb6e425",
+        "label_prefix": "\n\n",
+        "model_context_limit": 131072,
+        "model_config_sha256": "2fc8239c581986bc8aceffab5e9bbec2c9e1e383fe39409d86e5ca97b6368901",
+        "tokenizer_template_sha256": "97c1b0417e3f1b2c4abbbc894f64361b136bcc973b594ca1ea5db69853e3c247",
+        "tokenizer_versions": {
+          "transformers": "4.57.6",
+          "tokenizers": "0.22.2",
+          "huggingface-hub": "0.36.2"
+        }
+      },
+      "runtime.json": {
+        "model": "meta-llama/Llama-Guard-3-8B",
+        "revision": "7327bd9f6efbbe6101dc6cc4736302b3cbb6e425",
+        "dtype": "bfloat16",
+        "device": "cuda:0",
+        "attention": "sdpa",
+        "context_limit": 16384,
+        "versions": {
+          "torch": "2.13.0",
+          "transformers": "4.57.6",
+          "huggingface-hub": "0.36.2"
+        },
+        "tokenizer_template_sha256": "97c1b0417e3f1b2c4abbbc894f64361b136bcc973b594ca1ea5db69853e3c247",
+        "label_prefix": "\n\n",
+        "label_token_ids": {
+          "safe": 19193,
+          "unsafe": 39257
+        },
+        "model_config_sha256": "2fc8239c581986bc8aceffab5e9bbec2c9e1e383fe39409d86e5ca97b6368901"
+      },
+      "stderr_error_detected": false
+    },
+    "SmoothLLM": {
+      "job_id": 302315,
+      "path": "outputs/llamaguard/smoothllm_primary_full_v2_available",
+      "state": "RUNNING",
+      "node": "voodoo",
+      "gpu": "3090:1",
+      "partition": "researchlong",
+      "successful_judgments": 152,
+      "judge_errors": 0,
+      "available_responses": 10028,
+      "sanity_check.json": {
+        "passed": true,
+        "probes": [
+          {
+            "expected": "safe",
+            "p_safe": 0.9999646437492582,
+            "p_unsafe": 3.535625074174431e-05,
+            "label": "safe",
+            "safe_logit": 31.25,
+            "unsafe_logit": 21.0,
+            "top_token_id": 19193,
+            "label_token_ids": {
+              "safe": 19193,
+              "unsafe": 39257
+            },
+            "input_tokens": 215,
+            "rendered_prompt_sha256": "e321b1f773ac212859c8e602f42bc81d3f93a326643ffa632774cae67d0d8e83",
+            "latency_seconds": 0.7173485680250451
+          },
+          {
+            "expected": "unsafe",
+            "p_safe": 0.0002611903190957194,
+            "p_unsafe": 0.9997388096809043,
+            "label": "unsafe",
+            "safe_logit": 21.625,
+            "unsafe_logit": 29.875,
+            "top_token_id": 39257,
+            "label_token_ids": {
+              "safe": 19193,
+              "unsafe": 39257
+            },
+            "input_tokens": 218,
+            "rendered_prompt_sha256": "f6e99427b1ef6d3999f7734bd2c550727f015cdb47a0a5e3d74b7bbf280c9792",
+            "latency_seconds": 0.07329459401080385
+          }
+        ]
+      },
+      "context_preflight.json": {
+        "available_turns_audited": 10028,
+        "effective_context_limit": 16384,
+        "input_tokens_min": 223,
+        "input_tokens_max": 8274,
+        "input_tokens_p50": 1125,
+        "input_tokens_p95": 4046,
+        "input_tokens_p99": 5258,
+        "overflow_turns": [],
+        "passed": true,
+        "truncation": "none; counts include full guard template and conversation",
+        "inputs_sha256": "49fa7c4c53701e0239988d32b376283ac3d281a0df6a2dbcd6946d044a4db774",
+        "judge_config_sha256": "8c5028c3f40ad6af04586c00fdbd47ba07ec19e3f030061954854ea8fe787999",
+        "model": "meta-llama/Llama-Guard-3-8B",
+        "revision": "7327bd9f6efbbe6101dc6cc4736302b3cbb6e425",
+        "label_prefix": "\n\n",
+        "model_context_limit": 131072,
+        "model_config_sha256": "2fc8239c581986bc8aceffab5e9bbec2c9e1e383fe39409d86e5ca97b6368901",
+        "tokenizer_template_sha256": "97c1b0417e3f1b2c4abbbc894f64361b136bcc973b594ca1ea5db69853e3c247",
+        "tokenizer_versions": {
+          "transformers": "4.57.6",
+          "tokenizers": "0.22.2",
+          "huggingface-hub": "0.36.2"
+        }
+      },
+      "runtime.json": {
+        "model": "meta-llama/Llama-Guard-3-8B",
+        "revision": "7327bd9f6efbbe6101dc6cc4736302b3cbb6e425",
+        "dtype": "bfloat16",
+        "device": "cuda:0",
+        "attention": "sdpa",
+        "context_limit": 16384,
+        "versions": {
+          "torch": "2.13.0",
+          "transformers": "4.57.6",
+          "huggingface-hub": "0.36.2"
+        },
+        "tokenizer_template_sha256": "97c1b0417e3f1b2c4abbbc894f64361b136bcc973b594ca1ea5db69853e3c247",
+        "label_prefix": "\n\n",
+        "label_token_ids": {
+          "safe": 19193,
+          "unsafe": 39257
+        },
+        "model_config_sha256": "2fc8239c581986bc8aceffab5e9bbec2c9e1e383fe39409d86e5ca97b6368901"
+      },
+      "stderr_error_detected": false
+    },
+    "VDCGS-96": {
+      "job_id": 302316,
+      "path": "outputs/llamaguard/vdcgs96_full_v2_available",
+      "state": "PENDING",
+      "node": null,
+      "gpu": "3090:1",
+      "partition": "researchlong",
+      "successful_judgments": 0,
+      "judge_errors": 0,
+      "available_responses": 10003,
+      "stderr_error_detected": false,
+      "reason": "ReqNodeNotAvail, UnavailableNodes:violin",
+      "tentative_start": "2026-09-24T18:33:14+08:00",
+      "tentative_node": "lava"
+    }
+  }
+}

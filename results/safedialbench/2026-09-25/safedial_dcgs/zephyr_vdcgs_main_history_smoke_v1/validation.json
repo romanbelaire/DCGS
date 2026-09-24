@@ -1,0 +1,89 @@
+{
+  "method_spec": {
+    "upstream_commit": "576ae184b8f49586456a136f8e14a93039cfeb88",
+    "critic_pooling": "last_nonpad",
+    "regret_min_target_mode": "min_q_over_states",
+    "ll_selection": "trained_token_critic_argmax",
+    "ll_candidate_generation": "upstream_numbered_list_with_upstream_fallback",
+    "ll_candidates": 5,
+    "ll_critic_max_input_tokens": 8192,
+    "ll_context_overflow": "terminal turn failure; no truncation or extra retry",
+    "critic_training": "frozen indexed checkpoint; no training performed by this runner",
+    "ll_input_context": "gold_history_and_selected_belief",
+    "ll_history_policy": "all supplied prior gold turns and current user; no current reference answer",
+    "actor_context_policy": "original tokenizer behavior and input-plus-output capacity check; no added trimming",
+    "experiment": "safedial_main_wildjailbreak_ll_context_v1"
+  },
+  "integrity_passed": true,
+  "policy_parity_passed": true,
+  "expected_turns": 5,
+  "successful_turns": 5,
+  "terminal_failed_turns": 0,
+  "remaining_turns": 0,
+  "terminal_failed_turn_keys": [],
+  "execution_finished": true,
+  "complete_without_failures": true,
+  "dialogues": 1,
+  "turns": 5,
+  "critic_max_length": 1500,
+  "critic_truncation_sides": [
+    "left"
+  ],
+  "critic_candidate_contexts": 10,
+  "critic_truncated_candidate_contexts": 2,
+  "critic_truncated_turns": 1,
+  "critic_truncated_turn_keys": [
+    [
+      1,
+      4
+    ]
+  ],
+  "critic_scoring_calls_by_head": {
+    "predict_q_value": 10
+  },
+  "critic_scored_inputs_by_head": {
+    "predict_q_value": 10
+  },
+  "critic_truncated_inputs_by_head": {
+    "predict_q_value": 2
+  },
+  "critic_max_input_tokens": 1779,
+  "critic_max_dropped_tokens": 279,
+  "critic_full_context": false,
+  "failed_or_interrupted_critic_context": {
+    "critic_max_length": 1500,
+    "critic_truncation_sides": [],
+    "critic_candidate_contexts": 0,
+    "critic_truncated_candidate_contexts": 0,
+    "critic_truncated_turns": 0,
+    "critic_truncated_turn_keys": [],
+    "critic_scoring_calls_by_head": {},
+    "critic_scored_inputs_by_head": {},
+    "critic_truncated_inputs_by_head": {},
+    "critic_max_input_tokens": 0,
+    "critic_max_dropped_tokens": 0,
+    "critic_full_context": null
+  },
+  "journal_events": 29,
+  "non_successful_turn_events": 0,
+  "interrupted_calls_with_unknown_cost": 0,
+  "generation_calls": 14,
+  "custom_empty_retries": 0,
+  "judge_calls": 0,
+  "generated_tokens_including_failed_and_interrupted": 3924,
+  "ll_critic_calls": 5,
+  "ll_scored_candidates": 25,
+  "ll_critic_objectives": [
+    "shapley"
+  ],
+  "ll_critic_max_input_tokens": 1863,
+  "ll_critic_context_limit": 8192,
+  "ll_critic_overflow_turns": 0,
+  "ll_critic_overflow_max_input_tokens": 0,
+  "startup_failures_without_gpu_measurement": 0,
+  "model_invocations_without_gpu_measurement": [],
+  "elapsed_seconds_recorded": 130.2170471540012,
+  "peak_gpu_allocated_bytes": 15801572864,
+  "gpu_evidence_passed": true,
+  "passed": true
+}

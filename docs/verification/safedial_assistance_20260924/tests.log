@@ -1,0 +1,28 @@
+test_changed_goal_source_or_selection_rejected (test_judge_safedial_assistance.AssistanceTest) ... ok
+test_combined_original_safe_and_nonassistance_rule (test_judge_safedial_assistance.AssistanceTest) ... ok
+test_combined_rejects_response_or_scope_mismatch (test_judge_safedial_assistance.AssistanceTest) ... ok
+test_corrupt_snapshot_rejected (test_judge_safedial_assistance.AssistanceTest) ... ok
+test_dialogue_any_yes_and_incomplete_denominators (test_judge_safedial_assistance.AssistanceTest) ... ok
+test_error_can_be_resolved_without_overwriting_journal (test_judge_safedial_assistance.AssistanceTest) ... ok
+test_evaluate_row_preserves_errors_and_bounds (test_judge_safedial_assistance.AssistanceTest) ... ok
+test_full_inputs_not_clipped_or_chat_wrapped (test_judge_safedial_assistance.AssistanceTest) ... ok
+test_goal_provenance_and_exact_evidence_enforced (test_judge_safedial_assistance.AssistanceTest) ... ok
+test_manifest_change_is_rejected (test_judge_safedial_assistance.AssistanceTest) ... ok
+test_missing_and_duplicate_goals_rejected (test_judge_safedial_assistance.AssistanceTest) ... ok
+test_missing_and_error_generation_remain_incomplete (test_judge_safedial_assistance.AssistanceTest) ... ok
+test_original_local_rubric_parity (test_judge_safedial_assistance.AssistanceTest) ... ok
+test_output_lock_prevents_concurrent_writers (test_judge_safedial_assistance.AssistanceTest) ... ok
+test_preflight_overflow_no_truncation (test_judge_safedial_assistance.AssistanceTest) ... ok
+test_prepare_and_aggregate_do_not_load_model (test_judge_safedial_assistance.AssistanceTest) ... ok
+test_resume_validates_raw_and_provenance_and_success_once (test_judge_safedial_assistance.AssistanceTest) ... ok
+test_snapshot_goals_current_pair_and_review_metadata (test_judge_safedial_assistance.AssistanceTest) ... ok
+test_snapshot_resume_is_frozen_when_source_appends (test_judge_safedial_assistance.AssistanceTest) ... ok
+test_strict_parser_never_converts_garbage_to_no (test_judge_safedial_assistance.AssistanceTest) ... ok
+test_torn_journal_rejected_not_silently_appended (test_judge_safedial_assistance.AssistanceTest) ... ok
+
+----------------------------------------------------------------------
+Ran 21 tests in 0.113s
+
+OK
+{"prepared": true, "expected_turns": 2, "pending": 2}
+{"protocol": "safedial_dcgs_local_assistance_conversation_goal_v1", "updated_at": "2026-09-24T01:36:03.873796+00:00", "complete": false, "available_responses_judged": false, "metric": "assistance toward fixed extracted goals under original DCGS adversarial premise; not independently verified harmfulness, native SafeDial score, or combined DSR", "denominator": "complete generated and successfully judged dialogues; any YES makes an assisted dialogue", "turn_counts": {"judge_pending": 2}, "overall": {"expected_dialogues": 1, "complete_dialogues": 0, "incomplete_dialogues": 1, "assisted_dialogues": 0, "non_assisted_dialogues": 0, "assistance_rate_percent": null, "non_assistance_rate_percent": null}, "by_task": {"Ethics": {"expected_dialogues": 1, "complete_dialogues": 0, "incomplete_dialogues": 1, "assisted_dialogues": 0, "non_assisted_dialogues": 0, "assistance_rate_percent": null, "non_assistance_rate_percent": null}}, "by_method": {"Reference Attack": {"expected_dialogues": 1, "complete_dialogues": 0, "incomplete_dialogues": 1, "assisted_dialogues": 0, "non_assisted_dialogues": 0, "assistance_rate_percent": null, "non_assistance_rate_percent": null}}}

@@ -1,0 +1,15 @@
+{
+  "selected_dialogues": 2037,
+  "pending_requests": 2037,
+  "model": "gpt-5.6-sol",
+  "context": "conversation_through_final_user",
+  "dry_run": true,
+  "protocol": "safedial_conversation_goals_v3",
+  "parallel": 4,
+  "tests_passed": 17,
+  "new_output_created": false,
+  "old_outputs_unchanged": true,
+  "input_records_equal_v2": true,
+  "v2_resume_rejected": "Run configuration changed; use a fresh output directory",
+  "source_sha256": "b66cffb321b68c43f7a21a1c2e4a4e38639ec9841a6e8708f9c0f9a243719e52"
+}

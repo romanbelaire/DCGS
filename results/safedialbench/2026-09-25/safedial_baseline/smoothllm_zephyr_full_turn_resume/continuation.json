@@ -1,0 +1,14 @@
+{
+  "source_directory": "/common/home/users/d/darrius.ng.2024/projects/RL-Defense/DCGS/outputs/safedial_baseline/smoothllm_zephyr_full",
+  "original_file_sha256": {
+    "run_config.json": "92cc38afdd57d6017df2881d1e385c4608bd18a581e42387da40fa1b4043cb62",
+    "turns.jsonl": "bf0384267c6af3619732172488890158a0a7539d6b3ff83eee695280c8958b8a",
+    "answers.jsonl": "9ca801ee047f5648372866fa8d252d5c9133bf2dd2beb70e0b2e43c7f34ad5c2"
+  },
+  "source_run_id": "b8cc0f3face48b7ea46036b9",
+  "destination_run_id": "a700047a49d354d238d4f370",
+  "reused_successful_turns": 7841,
+  "retained_error_turns": 1,
+  "model_calls_during_import": 0,
+  "only_turn_identifier_fields_changed": true
+}

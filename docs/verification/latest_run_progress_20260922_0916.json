@@ -1,0 +1,215 @@
+{
+  "checked_at": "2026-09-22T09:16:20.079970+08:00",
+  "runs": [
+    {
+      "job": 258754,
+      "directory": "outputs/safedial_dcgs/zephyr_vdcgs_main_wildjailbreak_full_v3",
+      "turns": {
+        "count": 8580,
+        "age_seconds": 12,
+        "percent": 85.55,
+        "statuses": {
+          "None": 8580
+        }
+      },
+      "last_turn_fields": [
+        "choice_index",
+        "dcgs_original",
+        "dialogue_id",
+        "generated_response",
+        "invocation",
+        "model_id",
+        "prompt_history",
+        "seed",
+        "turn_index"
+      ],
+      "last_turn_identity": {
+        "dialogue_id": 1754,
+        "turn_index": 4
+      },
+      "answers": {
+        "count": 1740,
+        "age_seconds": 12
+      },
+      "failures": {
+        "count": 14,
+        "age_seconds": 9397,
+        "codes": {
+          "beliefs_exhausted": 13,
+          "ll_context_overflow": 1
+        }
+      },
+      "scheduler_state": "RUNNING"
+    },
+    {
+      "job": 258755,
+      "directory": "outputs/safedial_dcgs/zephyr_rdcgs_main_wildjailbreak_full_v3",
+      "turns": {
+        "count": 7422,
+        "age_seconds": 10,
+        "percent": 74.01,
+        "statuses": {
+          "None": 7422
+        }
+      },
+      "last_turn_fields": [
+        "choice_index",
+        "dcgs_original",
+        "dialogue_id",
+        "generated_response",
+        "invocation",
+        "model_id",
+        "prompt_history",
+        "seed",
+        "turn_index"
+      ],
+      "last_turn_identity": {
+        "dialogue_id": 1521,
+        "turn_index": 1
+      },
+      "answers": {
+        "count": 1520,
+        "age_seconds": 47
+      },
+      "failures": {
+        "count": 0
+      },
+      "scheduler_state": "RUNNING"
+    },
+    {
+      "job": 271170,
+      "directory": "outputs/safedial_dcgs/zephyr_vdcgs_main_belief-only_belief384_full_v1",
+      "turns": {
+        "count": 3386,
+        "age_seconds": 8,
+        "percent": 33.76,
+        "statuses": {
+          "None": 3386
+        }
+      },
+      "last_turn_fields": [
+        "choice_index",
+        "dcgs_original",
+        "dialogue_id",
+        "generated_response",
+        "invocation",
+        "model_id",
+        "prompt_history",
+        "seed",
+        "turn_index"
+      ],
+      "last_turn_identity": {
+        "dialogue_id": 702,
+        "turn_index": 4
+      },
+      "answers": {
+        "count": 701,
+        "age_seconds": 7
+      },
+      "failures": {
+        "count": 1,
+        "age_seconds": 64579,
+        "codes": {
+          "beliefs_exhausted": 1
+        }
+      },
+      "scheduler_state": "RUNNING"
+    },
+    {
+      "job": 271171,
+      "directory": "outputs/safedial_dcgs/zephyr_rdcgs_main_belief-only_belief384_full_v1",
+      "turns": {
+        "count": 2406,
+        "age_seconds": 649,
+        "percent": 23.99,
+        "statuses": {
+          "None": 2406
+        }
+      },
+      "last_turn_fields": [
+        "choice_index",
+        "dcgs_original",
+        "dialogue_id",
+        "generated_response",
+        "invocation",
+        "model_id",
+        "prompt_history",
+        "seed",
+        "turn_index"
+      ],
+      "last_turn_identity": {
+        "dialogue_id": 498,
+        "turn_index": 2
+      },
+      "answers": {
+        "count": 497,
+        "age_seconds": 741
+      },
+      "failures": {
+        "count": 0
+      },
+      "scheduler_state": "PREEMPTED"
+    },
+    {
+      "job": 285307,
+      "directory": "outputs/safedial_baseline/dcr_qwen_1.5b_inference_format_full_v1",
+      "turns": {
+        "count": 1393,
+        "age_seconds": 47,
+        "percent": 13.89,
+        "statuses": {
+          "None": 1393
+        }
+      },
+      "last_turn_fields": [
+        "answer_id",
+        "benchmark",
+        "choice_index",
+        "completion_token_ids",
+        "completion_tokens",
+        "dataset_model_type",
+        "dialogue_id",
+        "error",
+        "generated_response",
+        "input_truncated",
+        "latency_seconds",
+        "method",
+        "model",
+        "model_id",
+        "original_prompt_tokens",
+        "prompt_format",
+        "prompt_history",
+        "prompt_tokens",
+        "protocol",
+        "reference_response",
+        "rendered_prompt",
+        "rendered_prompt_sha256",
+        "run_id",
+        "scene",
+        "seed",
+        "task",
+        "turn_index",
+        "user_message"
+      ],
+      "last_turn_identity": {
+        "dialogue_id": 290,
+        "error": null,
+        "turn_index": 3
+      },
+      "answers": {
+        "count": 290,
+        "age_seconds": 47
+      },
+      "failures": {
+        "count": 0
+      },
+      "scheduler_state": "RUNNING"
+    }
+  ],
+  "dcr_checks": {
+    "checked_turns": 1393,
+    "errors": 0,
+    "token_cap_1024": 1081,
+    "input_truncated": 0
+  }
+}

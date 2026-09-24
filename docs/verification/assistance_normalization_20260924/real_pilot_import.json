@@ -1,0 +1,20 @@
+{
+  "origin": {
+    "source_dir": "/common/home/users/d/darrius.ng.2024/projects/RL-Defense/DCGS/outputs/assistance/gpt4o_mini_zephyr_pilot_v2",
+    "source_files_sha256": {
+      "judge_config.json": "94c920f48deba98ace847abf81f8c83440c68528e56dcdc0b17fc18253dfd756",
+      "frozen/snapshot.json": "44f48afc64dcab6be34d924998357f5e12a452c8f49998d7961e8ce8be0d0ab4",
+      "frozen/inputs.jsonl": "dbe5789affb306bcbfd024ad9629ce1cb342c8a4d26e9933a205ef5976554811",
+      "judgments.jsonl": "7053eaa69f67a3f03f13033f255146ca0aa020dfc1255790f8c92690f90f2bbd"
+    }
+  },
+  "destination_config_sha256": "9ab113690014c2388d2bac34c83ee9a52e902b634d408b5dc8764bd8d54af94c",
+  "imported_records": 15,
+  "corrected_records": [],
+  "turn_counts_after_import": {
+    "NO": 12,
+    "YES": 3
+  },
+  "raw_outputs_unchanged": true,
+  "api_calls_for_import": 0
+}

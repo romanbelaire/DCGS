@@ -1,0 +1,20 @@
+{
+  "tests": {
+    "command": "HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 .venv/bin/python -B -m unittest discover -s tests -p '*llamaguard*.py' -v",
+    "passed": 29
+  },
+  "shell_syntax": "PASS",
+  "python_syntax_and_help": "PASS",
+  "documentation_links": "PASS",
+  "original_pilot_source_hash": "UNCHANGED",
+  "real_model_or_tokenizer_inference": false,
+  "slurm_submitted": false,
+  "limitations": [
+    "Gated model access failed with HF403 in pilot294077; no real tokenizer or GPU validation yet."
+  ],
+  "sha256": {
+    "scripts/run_safedial_llamaguard_full.py": "de2bfaa0429d6aaf1f6c0bd106b3aaae331b3856a645f536b493764de77be17d",
+    "scripts/slurm/run_safedial_llamaguard_full.sbatch": "ad418432fce1cd31b6d5b5d4a57d8ebc8fe3854677e0a0aa0bdf8b0676eb43d7",
+    "tests/test_safedial_llamaguard_full.py": "efb3bee02ede6e18de379426b6cb2424a2bd401b6ba67c0f4cc407802d2dc468"
+  }
+}

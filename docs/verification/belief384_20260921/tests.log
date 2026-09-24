@@ -1,0 +1,357 @@
+.....[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+Saved dialogue 1 turn 0
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+Saved dialogue 1 turn 1
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+Saved dialogue 1 turn 0
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+Saved dialogue 1 turn 1
+..[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+Saved dialogue 1 turn 0
+Terminal failure dialogue=1 turn=1: ll_context_overflow
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+Saved dialogue 1 turn 2
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+Saved dialogue 1 turn 0
+Terminal failure dialogue=1 turn=1: ll_context_overflow
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+Saved dialogue 1 turn 2
+.....[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=2 objective=shapley scored 5 LL candidates; selected score=0.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=0.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=0.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+Saved dialogue 1 turn 1
+......[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+Saved dialogue 1 turn 0
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+Saved dialogue 1 turn 1
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+Saved dialogue 1 turn 0
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+Saved dialogue 1 turn 1
+...........[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+Reusing shared backbone for LL token critic on cpu
+LL critic encoder is CausalLM.model (last_hidden_state, matches action-token dump)
+Loaded LL token critic from /tmp/tmpqonre3bx/critic.pt (objective=shapley, n_examples=1)
+[ValueFunction] Initialized:
+  Base model: 12 parameters, frozen (LoRA r=0)
+  MLP width mult: 1.0
+  MLP hidden dims: [12]
+  Target heads: tau=0.0
+  Behavior snapshot: False
+  TD target Z-norm: False
+  Q MLP head: trainable
+  V MLP head: trainable
+  Token critic head: trainable
+  Q_min MLP head: trainable (min_s Q(s,a) / worst-state counterfactual)
+  V_min MLP head: trainable (adversarial robustness)
+  Regret MLP head: trainable (adversarial robustness)
+  Optimizer: Adam heads_lr=0.0001 lora_lr=2e-05
+[ValueFunction] Saved checkpoint to /tmp/tmp9qk05kho/hl.pt (7589 bytes)
+[ValueFunction] Initialized:
+  Base model: 12 parameters, frozen (LoRA r=0)
+  MLP width mult: 1.0
+  MLP hidden dims: [4]
+  Target heads: tau=0.0
+  Behavior snapshot: False
+  TD target Z-norm: False
+  Q MLP head: trainable
+  V MLP head: trainable
+  Token critic head: trainable
+  Optimizer: Adam heads_lr=0.0001 lora_lr=2e-05
+[ValueFunction] Checkpoint MLP hidden dims [12] != constructed [4] (mlp_width_mult=1.0); rebuilding heads from weights.
+[ValueFunction] Rebuilt MLP heads with hidden dims [12]
+[ValueFunction] Loaded Q and V MLP heads from checkpoint
+[ValueFunction] Skipping optimizer state loading (evaluation mode)
+[ValueFunction] Loaded checkpoint from /tmp/tmp9qk05kho/hl.pt
+Reusing shared backbone for LL token critic on cpu
+LL critic encoder is CausalLM.model (last_hidden_state, matches action-token dump)
+Loaded LL token critic from /tmp/tmp9qk05kho/ll.pt (objective=shapley, n_examples=1)
+[ValueFunction] Initialized:
+  Base model: 12 parameters, frozen (LoRA r=0)
+  MLP width mult: 1.0
+  MLP hidden dims: [4]
+  Target heads: tau=0.0
+  Behavior snapshot: False
+  TD target Z-norm: False
+  Q MLP head: trainable
+  V MLP head: trainable
+  Token critic head: trainable
+  Q_min MLP head: trainable (min_s Q(s,a) / worst-state counterfactual)
+  V_min MLP head: trainable (adversarial robustness)
+  Regret MLP head: trainable (adversarial robustness)
+  Optimizer: Adam heads_lr=0.0001 lora_lr=2e-05
+[ValueFunction] Checkpoint MLP hidden dims [12] != constructed [4] (mlp_width_mult=1.0); rebuilding heads from weights.
+[ValueFunction] Rebuilt MLP heads with hidden dims [12]
+[ValueFunction] Loaded Q and V MLP heads from checkpoint
+[ValueFunction] Loaded Q_min, V_min, Regret MLP heads from checkpoint
+[ValueFunction] Skipping optimizer state loading (evaluation mode)
+[ValueFunction] Loaded checkpoint from /tmp/tmp9qk05kho/hl.pt
+Reusing shared backbone for LL token critic on cpu
+LL critic encoder is CausalLM.model (last_hidden_state, matches action-token dump)
+Loaded LL token critic from /tmp/tmp9qk05kho/ll.pt (objective=shapley, n_examples=1)
+[ll_token_critic] episode=1 objective=td scored 5 LL candidates; selected score=1.0000
+[ll_token_critic] episode=1 objective=td scored 5 LL candidates; selected score=1.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+Saved dialogue 1 turn 0
+
+[DEBUG] Empty action after parsing (index 0):
+  Raw response: '\n'
+  Prompt length: 332
+  Parsed result: ''
+Terminal failure dialogue=1 turn=1: blank_ll_candidate
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+Saved dialogue 1 turn 2
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+
+[DEBUG] Empty action after parsing (index 0):
+  Raw response: '\n'
+  Prompt length: 332
+  Parsed result: ''
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+
+[DEBUG] Empty action after parsing (index 0):
+  Raw response: '\n'
+  Prompt length: 332
+  Parsed result: ''
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+
+[DEBUG] Empty action after parsing (index 0):
+  Raw response: '\n'
+  Prompt length: 332
+  Parsed result: ''
+....[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[DEBUG] All candidates are [SKIP] for 1 episode(s). Attempting batched retry 2/3...
+[DEBUG] All candidates are [SKIP] for 1 episode(s). Attempting batched retry 3/3...
+[WARNING] Episode 1 terminated after 3 failed belief generation attempts.
+[WARNING] 1 episode(s) terminated due to max belief retries: [1]
+[DEBUG] All candidates are [SKIP] for 1 episode(s). Attempting batched retry 2/3...
+[DEBUG] All candidates are [SKIP] for 1 episode(s). Attempting batched retry 3/3...
+[WARNING] Episode 1 terminated after 3 failed belief generation attempts.
+[WARNING] 1 episode(s) terminated due to max belief retries: [1]
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+
+[DEBUG] Empty action after parsing (index 0):
+  Raw response: ''
+  Prompt length: 332
+  Parsed result: ''
+
+[DEBUG] Empty action after parsing (index 0):
+  Raw response: ''
+  Prompt length: 332
+  Parsed result: ''
+
+[DEBUG] Empty action after parsing (index 0):
+  Raw response: ''
+  Prompt length: 332
+  Parsed result: ''
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+Saved dialogue 1 turn 1
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+
+[DEBUG] Empty action after parsing (index 0):
+  Raw response: ''
+  Prompt length: 332
+  Parsed result: ''
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+
+[DEBUG] Empty action after parsing (index 0):
+  Raw response: ''
+  Prompt length: 332
+  Parsed result: ''
+..[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=0.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+Saved dialogue 1 turn 0
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+Saved dialogue 1 turn 1
+.[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+Saved dialogue 1 turn 0
+.[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+Saved dialogue 1 turn 0
+...[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+Saved dialogue 1 turn 0
+.[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+
+[DEBUG] Empty action after parsing (index 0):
+  Raw response: ''
+  Prompt length: 332
+  Parsed result: ''
+
+[DEBUG] Empty action after parsing (index 0):
+  Raw response: ''
+  Prompt length: 332
+  Parsed result: ''
+
+[DEBUG] Empty action after parsing (index 0):
+  Raw response: ''
+  Prompt length: 332
+  Parsed result: ''
+
+[DEBUG] Empty action after parsing (index 0):
+  Raw response: ''
+  Prompt length: 332
+  Parsed result: ''
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+Saved dialogue 1 turn 1
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+
+[DEBUG] Empty action after parsing (index 0):
+  Raw response: ''
+  Prompt length: 332
+  Parsed result: ''
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+
+[DEBUG] Empty action after parsing (index 0):
+  Raw response: ''
+  Prompt length: 332
+  Parsed result: ''
+.[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+Saved dialogue 1 turn 0
+..[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+
+[DEBUG] Empty action after parsing (index 0):
+  Raw response: '\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n'
+  Prompt length: 332
+  Parsed result: ''
+......[DEBUG] All candidates are [SKIP] for 1 episode(s). Attempting batched retry 2/3...
+[DEBUG] All candidates are [SKIP] for 1 episode(s). Attempting batched retry 3/3...
+[WARNING] Episode 1 terminated after 3 failed belief generation attempts.
+[WARNING] 1 episode(s) terminated due to max belief retries: [1]
+[DEBUG] All candidates are [SKIP] for 1 episode(s). Attempting batched retry 2/3...
+[DEBUG] All candidates are [SKIP] for 1 episode(s). Attempting batched retry 3/3...
+[WARNING] Episode 1 terminated after 3 failed belief generation attempts.
+[WARNING] 1 episode(s) terminated due to max belief retries: [1]
+[DEBUG] All candidates are [SKIP] for 1 episode(s). Attempting batched retry 2/3...
+[DEBUG] All candidates are [SKIP] for 1 episode(s). Attempting batched retry 3/3...
+[WARNING] Episode 1 terminated after 3 failed belief generation attempts.
+[WARNING] 1 episode(s) terminated due to max belief retries: [1]
+[DEBUG] All candidates are [SKIP] for 1 episode(s). Attempting batched retry 2/3...
+[WARNING] Retry succeeded: All episode(s) that had all-[SKIP] candidates now have valid candidates after regeneration.
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+Saved dialogue 1 turn 0
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+Saved dialogue 1 turn 1
+.
+----------------------------------------------------------------------
+Ran 51 tests in 1.959s
+
+OK
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000

@@ -1,0 +1,27 @@
+{
+  "full_preflight_passed": true,
+  "full_dialogues": 2037,
+  "full_turns": 10029,
+  "max_prompt_tokens": 7185,
+  "prior_matching_format_gpu_audit_passed": true,
+  "bash_syntax_passed": true,
+  "contract_creation_noop_resume_and_conflict_rejection_passed": true,
+  "prior_source_checks": [
+    {
+      "run": "dcr_qwen_1.5b_smoke_v1",
+      "frozen_source_hashes_match": true
+    },
+    {
+      "run": "dcr_qwen_1.5b_prompt_training_ids2-3_smoke_v1",
+      "frozen_source_hashes_match": true
+    }
+  ],
+  "new_gpu_inference": false,
+  "jobs_submitted": false,
+  "paid_judge_calls": 0,
+  "files_sha256": {
+    "scripts/slurm/run_safedial_dcr_full.sbatch": "677b9b787759290b0319eccfd1d95275c20346f51a6b738fab29a96380f6cea2",
+    "configs/safedial/dcr_inference_format_full_v1.json": "45f0dbc16ae1b4ead9ee5d9fcb6842685669911141c909092dc3ac97571983fc"
+  },
+  "environment_note": "Use source /etc/profile.d/z00_lmod.sh before module load in non-login shells; modules.sh selects incompatible Tcl Modules for Lua modulefiles."
+}

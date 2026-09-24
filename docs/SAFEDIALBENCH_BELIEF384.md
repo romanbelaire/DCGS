@@ -47,6 +47,37 @@ so these runs do not share exact per-turn random seeds with the 96-token runs.
 A comparison with the current belief-only runs also changes LL context when
 `history` is selected; it cannot isolate the effect of the belief budget.
 
+## Resume after timeout with isolated replay
+
+The original resume audit can raise `Original-policy selection/audit mismatch`
+when a saved turn used an all-SKIP belief retry. Replay returns a reference to
+saved text, and the original retry code mutates that in-memory evidence. The
+separate launcher below uses the existing replay-isolation helper to copy the
+replay input. It preserves the original generation policy, source/configuration
+manifest, saved answers, and terminal failures.
+
+```bash
+cd /common/home/users/d/darrius.ng.2024/projects/RL-Defense/DCGS
+sbatch --job-name=safedial-vdcgs-b384-resume \
+  scripts/slurm/run_safedial_dcgs_belief384_replay_isolated_full.sbatch \
+  vdcgs belief-only \
+  outputs/safedial_dcgs/zephyr_vdcgs_main_belief-only_belief384_full_v1
+```
+
+Requests one L40S, 64 GB RAM, eight CPUs and 48 hours. The existing directory is
+required to retain progress; saved successes and terminal failures are not
+regenerated. An interrupted turn restarts with its original seed. Existing
+terminal failures can still produce exit 2 after processing the remaining turns.
+The 2026-09-23 CPU replay audit passed integrity, policy, failure and native-export
+checks for all 6,762 saved successes and four terminal failures, with 3,263
+remaining turns and one interrupted call of unknown cost. Full prospective
+manifest/source hashes match; nine regression tests and launcher/CLI checks pass.
+Evidence: `docs/verification/vdcgs384_resume_20260923/`. This is a resume-integrity
+check, not complete-run or historical GPU-memory validation.
+
+The new runner also supports the same `--audit-only` and `--allow-incomplete`
+options as the original 384-token runner. Submission remains user-owned.
+
 ## Verification
 
 51 DCGS tests pass, including actual 384-token request construction, context

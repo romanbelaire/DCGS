@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "available_turns": 10029,
+  "context_limit": 128000,
+  "max_input_token_upper_bound": 6665,
+  "counting": "UTF-8 bytes plus 32 framing tokens; conservative bound, not exact token count",
+  "overflow_turns": [],
+  "truncation": false
+}

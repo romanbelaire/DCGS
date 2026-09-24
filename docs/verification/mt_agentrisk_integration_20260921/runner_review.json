@@ -1,0 +1,47 @@
+{
+  "date": "2026-09-21",
+  "scope": "AgentRisk runner pre-trial review",
+  "policy_protocol_tests": 15,
+  "launcher_tests": 12,
+  "http_integration": {
+    "passed": true,
+    "requests": 9,
+    "fake_inferences": 2,
+    "live_model_calls": 0
+  },
+  "recorded_requests_replayed": 5,
+  "protected_source_hashes_unchanged": 95,
+  "slurm_syntax": "passed",
+  "new_gpu_runs": 0,
+  "paid_api_calls": 0,
+  "slurm_mutations": 0,
+  "requires_client_update": true,
+  "requires_fresh_server": true,
+  "source_sha256": {
+    "scripts/mt_agentrisk_engines.py": "77cc2452b44080be315d827ed81929829fd076a2633f7e3267a885bc907a5522",
+    "scripts/mt_agentrisk_protocol.py": "2d53c5a0fdce7d98b22499f0ad021409caa69630cf760a14336f6fcaf3b628be",
+    "scripts/serve_mt_agentrisk.py": "52cf4a033495e451d2d077abfa51be41063da55c28ac020b75b1e99bdc45da57",
+    "tests/test_mt_agentrisk.py": "3cb4385431d92c05367831b2095d29dca89ee2e23f910c15e8827832bf7fafd4",
+    "tests/check_mt_agentrisk_http.py": "1ca1c12f11a7cbe2a8f8f5ea962571d16abd83aac327f290883bdb7d4cb3f1fb",
+    "../mt_agentrisk_transfer/ToolShield/local_setup/run_baseline.py": "31e4abc11a2c4d05673e9a5b102e7c44791f9b9afa3dd7b6b41452f0cbd497af",
+    "../mt_agentrisk_transfer/ToolShield/local_setup/test_configuration.py": "4db2e0bde926e670329408b4f7102205b745ee7fa9903ee1701b4d166f136d8a"
+  },
+  "artifacts": {
+    "mt_agentrisk_integration_update.tar.gz": {
+      "sha256": "697d0d52aecce00fb2c599bafa032b40b6feab150144276274a39ec548de7d99",
+      "bytes": 21338,
+      "updated_members_verified": 8
+    },
+    "mt_agentrisk_official_baseline.tar.gz": {
+      "sha256": "44033b1c1cf39612d1440c8b5dfdba82e44874cb7df67e66ed958b15511dc4ae",
+      "bytes": 16793242,
+      "updated_members_verified": 8
+    }
+  },
+  "limitations": [
+    "Windows Docker end-to-end run pending",
+    "Official post-evaluation remains separate",
+    "Upstream keyword turn progression and legacy per-turn iteration behavior preserved",
+    "Model mistakes are outcomes, not a correctness gate for the authorized single-task diagnostic"
+  ]
+}

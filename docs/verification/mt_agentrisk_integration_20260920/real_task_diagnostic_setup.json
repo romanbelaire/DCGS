@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "configuration_tests": 8,
+  "dry_run": "PASS task hashes, failed probe included, no tools/model calls",
+  "live_service": {
+    "job_id": "260035",
+    "host": "albert",
+    "port": 44241,
+    "ok": true,
+    "attempts": 2,
+    "max_requests": 40
+  },
+  "user_authorization": "Real AgentRisk task smoke despite failed synthetic protocol probe",
+  "diagnostic_scope": "local methods, task multi.71 only",
+  "native_task_executed": false,
+  "pending": "User must execute Windows/WSL Docker runner; no access from cluster",
+  "update_sha256": "08b0de2542d23f194c7b951e6aee44ec000ef0282a24c0fc30255237e82f6f0d",
+  "source_sha256": {
+    "run_baseline.py": "6bac68b7993cc718f5e31673f4de6c7952d95df03177640aea6875507d7d087f",
+    "test_configuration.py": "d32766eea41b9b9665536af60942da3cc3760f7a9a4fbd54fcd144fe696522cd"
+  }
+}

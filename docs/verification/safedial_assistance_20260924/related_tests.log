@@ -1,0 +1,74 @@
+test_changed_goal_source_or_selection_rejected (test_judge_safedial_assistance.AssistanceTest) ... ok
+test_combined_original_safe_and_nonassistance_rule (test_judge_safedial_assistance.AssistanceTest) ... ok
+test_combined_rejects_response_or_scope_mismatch (test_judge_safedial_assistance.AssistanceTest) ... ok
+test_corrupt_snapshot_rejected (test_judge_safedial_assistance.AssistanceTest) ... ok
+test_dialogue_any_yes_and_incomplete_denominators (test_judge_safedial_assistance.AssistanceTest) ... ok
+test_error_can_be_resolved_without_overwriting_journal (test_judge_safedial_assistance.AssistanceTest) ... ok
+test_evaluate_row_preserves_errors_and_bounds (test_judge_safedial_assistance.AssistanceTest) ... ok
+test_full_inputs_not_clipped_or_chat_wrapped (test_judge_safedial_assistance.AssistanceTest) ... ok
+test_goal_provenance_and_exact_evidence_enforced (test_judge_safedial_assistance.AssistanceTest) ... ok
+test_manifest_change_is_rejected (test_judge_safedial_assistance.AssistanceTest) ... ok
+test_missing_and_duplicate_goals_rejected (test_judge_safedial_assistance.AssistanceTest) ... ok
+test_missing_and_error_generation_remain_incomplete (test_judge_safedial_assistance.AssistanceTest) ... ok
+test_original_local_rubric_parity (test_judge_safedial_assistance.AssistanceTest) ... ok
+test_output_lock_prevents_concurrent_writers (test_judge_safedial_assistance.AssistanceTest) ... ok
+test_preflight_overflow_no_truncation (test_judge_safedial_assistance.AssistanceTest) ... ok
+test_prepare_and_aggregate_do_not_load_model (test_judge_safedial_assistance.AssistanceTest) ... ok
+test_resume_validates_raw_and_provenance_and_success_once (test_judge_safedial_assistance.AssistanceTest) ... ok
+test_snapshot_goals_current_pair_and_review_metadata (test_judge_safedial_assistance.AssistanceTest) ... ok
+test_snapshot_resume_is_frozen_when_source_appends (test_judge_safedial_assistance.AssistanceTest) ... ok
+test_strict_parser_never_converts_garbage_to_no (test_judge_safedial_assistance.AssistanceTest) ... ok
+test_torn_journal_rejected_not_silently_appended (test_judge_safedial_assistance.AssistanceTest) ... ok
+test_softmax_tie_and_extreme_scores (test_judge_safedial_llamaguard.DecisionTests) ... ok
+test_altered_judgment_is_rejected (test_judge_safedial_llamaguard.Fixture) ... ok
+test_answers_input_maps_declared_choice_and_detects_partial_dialogue (test_judge_safedial_llamaguard.Fixture) ... ok
+test_bad_complete_json_line_is_not_silently_ignored (test_judge_safedial_llamaguard.Fixture) ... ok
+test_configuration_drift_rejected (test_judge_safedial_llamaguard.Fixture) ... ok
+test_dataset_hash_mismatch_rejected (test_judge_safedial_llamaguard.Fixture) ... ok
+test_duplicate_success_conflict_rejected_but_retry_error_supported (test_judge_safedial_llamaguard.Fixture) ... ok
+test_fatal_error_is_journaled_before_stopping (test_judge_safedial_llamaguard.Fixture) ... ok
+test_history_uses_gold_not_prior_generation_and_preserves_full_text (test_judge_safedial_llamaguard.Fixture) ... ok
+test_input_checksum_and_reference_history_validation (test_judge_safedial_llamaguard.Fixture) ... ok
+test_journal_torn_tail_recovery_and_foreign_record_rejection (test_judge_safedial_llamaguard.Fixture) ... ok
+test_lock_rejects_concurrent_writer (test_judge_safedial_llamaguard.Fixture) ... ok
+test_missing_and_error_turns_never_become_safe (test_judge_safedial_llamaguard.Fixture) ... ok
+test_one_unsafe_turn_fails_dialogue_not_turn_average (test_judge_safedial_llamaguard.Fixture) ... ok
+test_output_cannot_replace_run_root (test_judge_safedial_llamaguard.Fixture) ... ok
+test_partial_unsafe_reported_without_entering_complete_denominator (test_judge_safedial_llamaguard.Fixture) ... ok
+test_prepare_cli_never_loads_model_and_resume_does_not_refresh_inputs (test_judge_safedial_llamaguard.Fixture) ... ok
+test_resume_skips_success_and_errors_unless_explicitly_requested (test_judge_safedial_llamaguard.Fixture) ... ok
+test_snapshot_excludes_appends_and_torn_tail (test_judge_safedial_llamaguard.Fixture) ... ok
+test_next_token_forward_and_two_label_normalization (test_judge_safedial_llamaguard.ForwardTests) ... skipped 'PyTorch is only needed for model-forward fixtures'
+test_overflow_rejected_before_forward_without_truncation (test_judge_safedial_llamaguard.ForwardTests) ... skipped 'PyTorch is only needed for model-forward fixtures'
+test_unrelated_top_token_is_error_not_a_forced_safe_label (test_judge_safedial_llamaguard.ForwardTests) ... skipped 'PyTorch is only needed for model-forward fixtures'
+test_blank_line_prefill_is_added_once_and_unknown_suffix_rejected (test_judge_safedial_llamaguard.PromptFormatTests) ... ok
+test_cached_pinned_tokenizer_places_separator_before_label (test_judge_safedial_llamaguard.PromptFormatTests) ... skipped 'Pinned tokenizer not cached; no download allowed'
+test_judging_resumes_without_reloading_and_rejects_config_drift (test_safedial_llamaguard_full.FullRunTests) ... ok
+test_missing_generation_stops_before_tokenizer_and_can_be_explicit (test_safedial_llamaguard_full.FullRunTests) ... ok
+test_overflow_aborts_all_inference_and_reports_turn_ids (test_safedial_llamaguard_full.FullRunTests) ... ok
+test_partial_snapshot_does_not_ingest_new_generation_on_resume (test_safedial_llamaguard_full.FullRunTests) ... ok
+test_preflight_counts_complete_prefix_and_response_without_loading_weights (test_safedial_llamaguard_full.FullRunTests) ... ok
+test_prepare_is_full_scope_and_loads_no_tokenizer_or_weights (test_safedial_llamaguard_full.FullRunTests) ... ok
+test_rejects_subset_even_if_all_selected_outputs_exist (test_safedial_llamaguard_full.FullRunTests) ... ok
+test_dry_run_has_no_client_or_output_side_effects (test_distill_safedial_goals.GoalExtractionTests) ... ok
+test_earlier_user_evidence_valid_even_with_generic_final_message (test_distill_safedial_goals.GoalExtractionTests) ... ok
+test_evidence_cannot_quote_assistant_or_wrong_turn (test_distill_safedial_goals.GoalExtractionTests) ... ok
+test_final_user_evidence_is_also_valid (test_distill_safedial_goals.GoalExtractionTests) ... ok
+test_full_conversation_through_final_user_without_answer_or_category_leakage (test_distill_safedial_goals.GoalExtractionTests) ... ok
+test_goal_export_contains_success_only_and_no_status (test_distill_safedial_goals.GoalExtractionTests) ... ok
+test_grounding_empty_goals_and_classification_rejected (test_distill_safedial_goals.GoalExtractionTests) ... ok
+test_input_duplicate_missing_id_and_bad_history_fail (test_distill_safedial_goals.GoalExtractionTests) ... ok
+test_main_resumes_success_and_requires_explicit_error_retry (test_distill_safedial_goals.GoalExtractionTests) ... ok
+test_output_lock_excludes_another_writer (test_distill_safedial_goals.GoalExtractionTests) ... ok
+test_protective_and_informational_goals_survive_extraction_and_export (test_distill_safedial_goals.GoalExtractionTests) ... ok
+test_refusal_incomplete_and_invalid_json_remain_errors (test_distill_safedial_goals.GoalExtractionTests) ... ok
+test_resume_provenance_and_torn_journal (test_distill_safedial_goals.GoalExtractionTests) ... ok
+test_success_keeps_raw_response_and_usage (test_distill_safedial_goals.GoalExtractionTests) ... ok
+test_transient_retry_but_no_credential_leak (test_distill_safedial_goals.GoalExtractionTests) ... ok
+test_v2_run_is_rejected_without_rewriting_its_results (test_distill_safedial_goals.GoalExtractionTests) ... ok
+test_whitespace_prior_turn_is_preserved_like_real_dialogue_645 (test_distill_safedial_goals.GoalExtractionTests) ... ok
+
+----------------------------------------------------------------------
+Ran 69 tests in 0.229s
+
+OK (skipped=4)

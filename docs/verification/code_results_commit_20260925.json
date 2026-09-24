@@ -1,0 +1,28 @@
+{
+  "snapshot_files_verified": 714,
+  "jsonl_records_verified": 1037967,
+  "snapshot_stored_bytes": 694321821,
+  "hash_size_gzip_json_checks": "passed in full verification",
+  "credential_scan": "passed; no known local credentials found; two regex false positives in encrypted API content reviewed",
+  "reviewed_pattern_exceptions": [
+    {
+      "path": "safedial_goals/gpt-5.6-sol_conversation_v2/extractions.jsonl.gz",
+      "row": 1596,
+      "field": "attempts[0].response.output[0].encrypted_content",
+      "matched_bytes_sha256": "2be97ed8910ae34180c78c6658fa826c146e328a60256a1ed120daca6963e9d0",
+      "classification": "random encrypted API content; not a plaintext credential"
+    },
+    {
+      "path": "safedial_goals/gpt-5.6-sol_conversation_v3/extractions.jsonl.gz",
+      "row": 1966,
+      "field": "attempts[0].response.output[0].encrypted_content",
+      "matched_bytes_sha256": "83d0fc75149adf57f90709c9d8df44be8b9ffe79281ae1ac08a1ffc5287f3082",
+      "classification": "random encrypted API content; not a plaintext credential"
+    }
+  ],
+  "offline_tests": 321,
+  "offline_tests_passed": true,
+  "active_runtime_sources_changed": false,
+  "slurm_mutations": false,
+  "api_calls": 0
+}

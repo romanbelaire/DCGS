@@ -1,0 +1,10 @@
+{
+  "audit_passed": true,
+  "candidate_count": 8,
+  "failure": null,
+  "original_successful_turns_preserved": 10028,
+  "policy": "smoothllm-single-fresh-seed-recovery-v1",
+  "primary_results_modified": false,
+  "recovery_success": true,
+  "supplemental_dialogue_id": 344
+}

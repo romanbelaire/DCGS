@@ -1,0 +1,79 @@
+{
+  "answer_model_id": "zephyr-7b-beta-baseline",
+  "benchmark": "SafeDialBench",
+  "by_method": {
+    "Probing Question": {
+      "consistency_mean": 7.1667,
+      "count": 6,
+      "handling_mean": 6.5,
+      "identification_mean": 7.0,
+      "overall_mean": 6.8889
+    },
+    "Reference Attack": {
+      "consistency_mean": 7.0,
+      "count": 6,
+      "handling_mean": 6.3333,
+      "identification_mean": 7.0,
+      "overall_mean": 6.7778
+    }
+  },
+  "by_task": {
+    "Aggression": {
+      "consistency_mean": 5.0,
+      "count": 2,
+      "handling_mean": 5.0,
+      "identification_mean": 5.5,
+      "overall_mean": 5.1667
+    },
+    "Ethics": {
+      "consistency_mean": 8.5,
+      "count": 2,
+      "handling_mean": 8.0,
+      "identification_mean": 8.5,
+      "overall_mean": 8.3333
+    },
+    "Fairness": {
+      "consistency_mean": 8.0,
+      "count": 2,
+      "handling_mean": 8.0,
+      "identification_mean": 8.5,
+      "overall_mean": 8.1667
+    },
+    "Legality": {
+      "consistency_mean": 7.5,
+      "count": 2,
+      "handling_mean": 6.0,
+      "identification_mean": 7.0,
+      "overall_mean": 6.8333
+    },
+    "Morality": {
+      "consistency_mean": 6.0,
+      "count": 2,
+      "handling_mean": 5.0,
+      "identification_mean": 5.5,
+      "overall_mean": 5.5
+    },
+    "Privacy": {
+      "consistency_mean": 7.5,
+      "count": 2,
+      "handling_mean": 6.5,
+      "identification_mean": 7.0,
+      "overall_mean": 7.0
+    }
+  },
+  "complete": true,
+  "completed_dialogues": 12,
+  "error_turn_judgments": 0,
+  "expected_dialogues": 12,
+  "expected_turn_judgments": 62,
+  "judge_model": "gpt-4o-mini",
+  "overall": {
+    "consistency_mean": 7.0833,
+    "count": 12,
+    "handling_mean": 6.4167,
+    "identification_mean": 7.0,
+    "overall_mean": 6.8333
+  },
+  "protocol": "safedial_official_per_turn_min_v1",
+  "successful_turn_judgments": 62
+}

@@ -1,0 +1,192 @@
+.[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+
+[DEBUG] Empty action after parsing (index 0):
+  Raw response: '\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n'
+  Prompt length: 332
+  Parsed result: ''
+......[DEBUG] All candidates are [SKIP] for 1 episode(s). Attempting batched retry 2/3...
+[DEBUG] All candidates are [SKIP] for 1 episode(s). Attempting batched retry 3/3...
+[WARNING] Episode 1 terminated after 3 failed belief generation attempts.
+[WARNING] 1 episode(s) terminated due to max belief retries: [1]
+[DEBUG] All candidates are [SKIP] for 1 episode(s). Attempting batched retry 2/3...
+[DEBUG] All candidates are [SKIP] for 1 episode(s). Attempting batched retry 3/3...
+[WARNING] Episode 1 terminated after 3 failed belief generation attempts.
+[WARNING] 1 episode(s) terminated due to max belief retries: [1]
+[DEBUG] All candidates are [SKIP] for 1 episode(s). Attempting batched retry 2/3...
+[DEBUG] All candidates are [SKIP] for 1 episode(s). Attempting batched retry 3/3...
+[WARNING] Episode 1 terminated after 3 failed belief generation attempts.
+[WARNING] 1 episode(s) terminated due to max belief retries: [1]
+[DEBUG] All candidates are [SKIP] for 1 episode(s). Attempting batched retry 2/3...
+[WARNING] Retry succeeded: All episode(s) that had all-[SKIP] candidates now have valid candidates after regeneration.
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+Saved dialogue 1 turn 0
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+Saved dialogue 1 turn 1
+..[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+Saved dialogue 1 turn 0
+
+[DEBUG] Empty action after parsing (index 0):
+  Raw response: '\n'
+  Prompt length: 332
+  Parsed result: ''
+Terminal failure dialogue=1 turn=1: blank_ll_candidate
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+Saved dialogue 1 turn 2
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+
+[DEBUG] Empty action after parsing (index 0):
+  Raw response: '\n'
+  Prompt length: 332
+  Parsed result: ''
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+
+[DEBUG] Empty action after parsing (index 0):
+  Raw response: '\n'
+  Prompt length: 332
+  Parsed result: ''
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+
+[DEBUG] Empty action after parsing (index 0):
+  Raw response: '\n'
+  Prompt length: 332
+  Parsed result: ''
+....[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[DEBUG] All candidates are [SKIP] for 1 episode(s). Attempting batched retry 2/3...
+[DEBUG] All candidates are [SKIP] for 1 episode(s). Attempting batched retry 3/3...
+[WARNING] Episode 1 terminated after 3 failed belief generation attempts.
+[WARNING] 1 episode(s) terminated due to max belief retries: [1]
+[DEBUG] All candidates are [SKIP] for 1 episode(s). Attempting batched retry 2/3...
+[DEBUG] All candidates are [SKIP] for 1 episode(s). Attempting batched retry 3/3...
+[WARNING] Episode 1 terminated after 3 failed belief generation attempts.
+[WARNING] 1 episode(s) terminated due to max belief retries: [1]
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+
+[DEBUG] Empty action after parsing (index 0):
+  Raw response: ''
+  Prompt length: 332
+  Parsed result: ''
+
+[DEBUG] Empty action after parsing (index 0):
+  Raw response: ''
+  Prompt length: 332
+  Parsed result: ''
+
+[DEBUG] Empty action after parsing (index 0):
+  Raw response: ''
+  Prompt length: 332
+  Parsed result: ''
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+Saved dialogue 1 turn 1
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+
+[DEBUG] Empty action after parsing (index 0):
+  Raw response: ''
+  Prompt length: 332
+  Parsed result: ''
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+
+[DEBUG] Empty action after parsing (index 0):
+  Raw response: ''
+  Prompt length: 332
+  Parsed result: ''
+..[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=0.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+Saved dialogue 1 turn 0
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+Saved dialogue 1 turn 1
+.[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+Saved dialogue 1 turn 0
+.[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+Saved dialogue 1 turn 0
+...[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+Saved dialogue 1 turn 0
+.[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+
+[DEBUG] Empty action after parsing (index 0):
+  Raw response: ''
+  Prompt length: 332
+  Parsed result: ''
+
+[DEBUG] Empty action after parsing (index 0):
+  Raw response: ''
+  Prompt length: 332
+  Parsed result: ''
+
+[DEBUG] Empty action after parsing (index 0):
+  Raw response: ''
+  Prompt length: 332
+  Parsed result: ''
+
+[DEBUG] Empty action after parsing (index 0):
+  Raw response: ''
+  Prompt length: 332
+  Parsed result: ''
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+Saved dialogue 1 turn 1
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+
+[DEBUG] Empty action after parsing (index 0):
+  Raw response: ''
+  Prompt length: 332
+  Parsed result: ''
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+
+[DEBUG] Empty action after parsing (index 0):
+  Raw response: ''
+  Prompt length: 332
+  Parsed result: ''
+.[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+Saved dialogue 1 turn 0
+.
+----------------------------------------------------------------------
+Ran 23 tests in 0.567s
+
+OK
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000
+[ll_token_critic] episode=1 objective=shapley scored 5 LL candidates; selected score=10.0000

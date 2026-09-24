@@ -1,0 +1,120 @@
+{
+  "checked_at": "2026-09-21T15:45:49.325981+08:00",
+  "runs": [
+    {
+      "job": 258754,
+      "directory": "zephyr_vdcgs_main_wildjailbreak_full_v3",
+      "successful_turns": 5376,
+      "unique_turns": 5376,
+      "percent": 53.6,
+      "exported_dialogues": 1111,
+      "failures": [
+        {
+          "dialogue_id": 155,
+          "turn_index": 0,
+          "category": "terminal_output",
+          "code": "beliefs_exhausted",
+          "message": "Original policy exhausted all-SKIP belief attempts"
+        },
+        {
+          "dialogue_id": 408,
+          "turn_index": 2,
+          "category": "terminal_output",
+          "code": "beliefs_exhausted",
+          "message": "Original policy exhausted all-SKIP belief attempts"
+        },
+        {
+          "dialogue_id": 791,
+          "turn_index": 4,
+          "category": "terminal_output",
+          "code": "beliefs_exhausted",
+          "message": "Original policy exhausted all-SKIP belief attempts"
+        },
+        {
+          "dialogue_id": 987,
+          "turn_index": 5,
+          "category": "terminal_output",
+          "code": "ll_context_overflow",
+          "message": "Sequence length 8232 exceeds 8192 (refusing to truncate action tokens)"
+        },
+        {
+          "dialogue_id": 1001,
+          "turn_index": 3,
+          "category": "terminal_output",
+          "code": "beliefs_exhausted",
+          "message": "Original policy exhausted all-SKIP belief attempts"
+        },
+        {
+          "dialogue_id": 1019,
+          "turn_index": 1,
+          "category": "terminal_output",
+          "code": "beliefs_exhausted",
+          "message": "Original policy exhausted all-SKIP belief attempts"
+        }
+      ],
+      "last_turn": {
+        "dialogue_id": 1118,
+        "turn_index": 3,
+        "error": null,
+        "status": null
+      },
+      "turn_file_age_seconds": 7
+    },
+    {
+      "job": 258755,
+      "directory": "zephyr_rdcgs_main_wildjailbreak_full_v3",
+      "successful_turns": 4590,
+      "unique_turns": 4590,
+      "percent": 45.8,
+      "exported_dialogues": 948,
+      "failures": [],
+      "last_turn": {
+        "dialogue_id": 949,
+        "turn_index": 3,
+        "error": null,
+        "status": null
+      },
+      "turn_file_age_seconds": 8
+    },
+    {
+      "job": 271170,
+      "directory": "zephyr_vdcgs_main_belief-only_belief384_full_v1",
+      "successful_turns": 912,
+      "unique_turns": 912,
+      "percent": 9.1,
+      "exported_dialogues": 189,
+      "failures": [
+        {
+          "dialogue_id": 178,
+          "turn_index": 4,
+          "category": "terminal_output",
+          "code": "beliefs_exhausted",
+          "message": "Original policy exhausted all-SKIP belief attempts"
+        }
+      ],
+      "last_turn": {
+        "dialogue_id": 191,
+        "turn_index": 1,
+        "error": null,
+        "status": null
+      },
+      "turn_file_age_seconds": 2
+    },
+    {
+      "job": 271171,
+      "directory": "zephyr_rdcgs_main_belief-only_belief384_full_v1",
+      "successful_turns": 645,
+      "unique_turns": 645,
+      "percent": 6.4,
+      "exported_dialogues": 132,
+      "failures": [],
+      "last_turn": {
+        "dialogue_id": 133,
+        "turn_index": 4,
+        "error": null,
+        "status": null
+      },
+      "turn_file_age_seconds": 28
+    }
+  ]
+}

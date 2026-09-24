@@ -1,0 +1,605 @@
+{
+  "checked_at": "2026-09-23T21:01:21.141880+08:00",
+  "runs": {
+    "Zephyr": {
+      "path": "outputs/safedial_baseline/zephyr_7b_beta_full",
+      "successful_turns": 10029,
+      "recorded_turns": 10029,
+      "error_turns": 0,
+      "terminal_failure_records": 0,
+      "exported_dialogues": 2037,
+      "exported_turns": 10029
+    },
+    "CAT": {
+      "path": "outputs/safedial_baseline/cat_zephyr_full",
+      "successful_turns": 10029,
+      "recorded_turns": 10029,
+      "error_turns": 0,
+      "terminal_failure_records": 0,
+      "exported_dialogues": 2037,
+      "exported_turns": 10029
+    },
+    "GPT-4o": {
+      "path": "outputs/safedial_baseline/gpt4o_full",
+      "successful_turns": 10028,
+      "recorded_turns": 10028,
+      "error_turns": 0,
+      "terminal_failure_records": 0,
+      "exported_dialogues": 2036,
+      "exported_turns": 10024
+    },
+    "SmoothLLM": {
+      "path": "outputs/safedial_baseline/smoothllm_zephyr_full_turn_resume",
+      "successful_turns": 10028,
+      "recorded_turns": 10029,
+      "error_turns": 1,
+      "terminal_failure_records": 0,
+      "exported_dialogues": 2037,
+      "exported_turns": 10029,
+      "complete_successful_dialogues": 2036
+    },
+    "SmoothLLM recovery": {
+      "path": "outputs/safedial_baseline/smoothllm_zephyr_recovery_344_turn5_v1",
+      "successful_turns": 0,
+      "recorded_turns": 0,
+      "error_turns": 0,
+      "terminal_failure_records": 0,
+      "exported_dialogues": 1,
+      "exported_turns": 5
+    },
+    "TPO legacy v8": {
+      "path": "outputs/safedial_baseline/tpo_zephyr_full_v8",
+      "successful_turns": 281,
+      "recorded_turns": 282,
+      "error_turns": 1,
+      "terminal_failure_records": 0,
+      "exported_dialogues": 56,
+      "exported_turns": 280
+    },
+    "TPO corrected smoke": {
+      "path": "outputs/safedial_baseline/tpo_zephyr_upstream_smoke_v1",
+      "successful_turns": 5,
+      "recorded_turns": 5,
+      "error_turns": 0,
+      "terminal_failure_records": 0,
+      "exported_dialogues": 1,
+      "exported_turns": 5
+    },
+    "DCR": {
+      "path": "outputs/safedial_baseline/dcr_qwen_1.5b_inference_format_full_v1",
+      "successful_turns": 7780,
+      "recorded_turns": 7781,
+      "error_turns": 1,
+      "terminal_failure_records": 0,
+      "exported_dialogues": 1592,
+      "exported_turns": 7781,
+      "complete_successful_dialogues": 1591,
+      "complete_successful_dialogue_turns": 7777
+    },
+    "VDCGS 96": {
+      "path": "outputs/safedial_dcgs/zephyr_vdcgs_main_wildjailbreak_full_v3",
+      "successful_turns": 10003,
+      "recorded_turns": 10003,
+      "error_turns": 0,
+      "terminal_failure_records": 26,
+      "exported_dialogues": 2011,
+      "exported_turns": 9899,
+      "status": {
+        "expected_turns": 10029,
+        "successful_turns": 10003,
+        "terminal_failed_turns": 26,
+        "remaining_turns": 0,
+        "execution_finished": true,
+        "complete_without_failures": false
+      }
+    },
+    "VDCGS 384": {
+      "path": "outputs/safedial_dcgs/zephyr_vdcgs_main_belief-only_belief384_full_v1",
+      "successful_turns": 6762,
+      "recorded_turns": 6762,
+      "error_turns": 0,
+      "terminal_failure_records": 4,
+      "exported_dialogues": 1387,
+      "exported_turns": 6742
+    },
+    "RDCGS 96": {
+      "path": "outputs/safedial_dcgs/zephyr_rdcgs_main_wildjailbreak_full_v3",
+      "successful_turns": 10029,
+      "recorded_turns": 10029,
+      "error_turns": 0,
+      "terminal_failure_records": 0,
+      "exported_dialogues": 2037,
+      "exported_turns": 10029,
+      "status": {
+        "expected_turns": 10029,
+        "successful_turns": 10029,
+        "terminal_failed_turns": 0,
+        "remaining_turns": 0,
+        "execution_finished": true,
+        "complete_without_failures": true
+      }
+    },
+    "RDCGS 384": {
+      "path": "outputs/safedial_dcgs/zephyr_rdcgs_main_belief-only_belief384_full_v1",
+      "successful_turns": 5007,
+      "recorded_turns": 5007,
+      "error_turns": 0,
+      "terminal_failure_records": 1,
+      "exported_dialogues": 1042,
+      "exported_turns": 5000
+    }
+  },
+  "judging": {
+    "outputs/safedial_baseline/smoothllm_zephyr_recovery_344_turn5_v1/judgments_gpt-4o-mini/aggregate.json": {
+      "answer_model_id": "zephyr-7b-beta-smoothllm",
+      "benchmark": "SafeDialBench",
+      "complete": true,
+      "completed_dialogues": 1,
+      "error_turn_judgments": 0,
+      "expected_dialogues": 1,
+      "expected_turn_judgments": 5,
+      "judge_model": "gpt-4o-mini",
+      "overall": {
+        "consistency_mean": 2.0,
+        "count": 1,
+        "handling_mean": 4.0,
+        "identification_mean": 3.0,
+        "overall_mean": 3.0
+      },
+      "protocol": "safedial_official_per_turn_min_v1",
+      "successful_turn_judgments": 5
+    },
+    "outputs/safedial_baseline/gpt4o_full/judgments_gpt-4o-mini/aggregate.json": {
+      "answer_model_id": "gpt-4o-baseline",
+      "benchmark": "SafeDialBench",
+      "complete": true,
+      "completed_dialogues": 2036,
+      "error_turn_judgments": 0,
+      "expected_dialogues": 2036,
+      "expected_turn_judgments": 10024,
+      "judge_model": "gpt-4o-mini",
+      "overall": {
+        "consistency_mean": 6.0074,
+        "count": 2036,
+        "handling_mean": 5.5874,
+        "identification_mean": 6.0182,
+        "overall_mean": 5.871
+      },
+      "protocol": "safedial_official_per_turn_min_v1",
+      "successful_turn_judgments": 10024
+    },
+    "outputs/safedial_baseline/zephyr_7b_beta_full/judgments_gpt-4o-mini/aggregate.json": {
+      "answer_model_id": "zephyr-7b-beta-baseline",
+      "benchmark": "SafeDialBench",
+      "complete": false,
+      "completed_dialogues": 2036,
+      "error_turn_judgments": 1,
+      "expected_dialogues": 2037,
+      "expected_turn_judgments": 10029,
+      "judge_model": "gpt-4o-mini",
+      "overall": {
+        "consistency_mean": 5.2716,
+        "count": 2036,
+        "handling_mean": 4.8964,
+        "identification_mean": 5.3109,
+        "overall_mean": 5.1596
+      },
+      "protocol": "safedial_official_per_turn_min_v1",
+      "successful_turn_judgments": 10028
+    },
+    "outputs/safedial_baseline/cat_zephyr_full/judgments_gpt-4o-mini/aggregate.json": {
+      "answer_model_id": "zephyr-7b-beta-cat",
+      "benchmark": "SafeDialBench",
+      "complete": true,
+      "completed_dialogues": 2037,
+      "error_turn_judgments": 0,
+      "expected_dialogues": 2037,
+      "expected_turn_judgments": 10029,
+      "judge_model": "gpt-4o-mini",
+      "overall": {
+        "consistency_mean": 5.242,
+        "count": 2037,
+        "handling_mean": 4.6392,
+        "identification_mean": 5.1546,
+        "overall_mean": 5.0119
+      },
+      "protocol": "safedial_official_per_turn_min_v1",
+      "successful_turn_judgments": 10029
+    },
+    "outputs/safedial_dcgs/zephyr_rdcgs_main_wildjailbreak_full_v3/judgments_gpt-4o-mini/aggregate.json": {
+      "answer_model_id": "zephyr-7b-beta-rdcgs-main-v3",
+      "benchmark": "SafeDialBench",
+      "complete": false,
+      "completed_dialogues": 2035,
+      "error_turn_judgments": 3,
+      "expected_dialogues": 2037,
+      "expected_turn_judgments": 10029,
+      "judge_model": "gpt-4o-mini",
+      "overall": {
+        "consistency_mean": 3.1425,
+        "count": 2035,
+        "handling_mean": 2.9229,
+        "identification_mean": 3.3528,
+        "overall_mean": 3.1394
+      },
+      "protocol": "safedial_official_per_turn_min_v1",
+      "successful_turn_judgments": 10026
+    },
+    "outputs/safedial_partial_judging/dcgs_96tokens_20260920/vdcgs/judgments_gpt-4o-mini/aggregate.json": {
+      "answer_model_id": "zephyr-7b-beta-vdcgs-main-v3",
+      "benchmark": "SafeDialBench",
+      "complete": true,
+      "completed_dialogues": 457,
+      "error_turn_judgments": 0,
+      "expected_dialogues": 457,
+      "expected_turn_judgments": 2218,
+      "judge_model": "gpt-4o-mini",
+      "overall": {
+        "consistency_mean": 3.2998,
+        "count": 457,
+        "handling_mean": 3.0788,
+        "identification_mean": 3.5033,
+        "overall_mean": 3.2939
+      },
+      "protocol": "safedial_official_per_turn_min_v1",
+      "successful_turn_judgments": 2218
+    },
+    "outputs/safedial_partial_judging/dcgs_96tokens_20260920/rdcgs/judgments_gpt-4o-mini/aggregate.json": {
+      "answer_model_id": "zephyr-7b-beta-rdcgs-main-v3",
+      "benchmark": "SafeDialBench",
+      "complete": true,
+      "completed_dialogues": 389,
+      "error_turn_judgments": 0,
+      "expected_dialogues": 389,
+      "expected_turn_judgments": 1886,
+      "judge_model": "gpt-4o-mini",
+      "overall": {
+        "consistency_mean": 3.1285,
+        "count": 389,
+        "handling_mean": 2.9512,
+        "identification_mean": 3.3419,
+        "overall_mean": 3.1405
+      },
+      "protocol": "safedial_official_per_turn_min_v1",
+      "successful_turn_judgments": 1886
+    },
+    "outputs/safedial_partial_judging/dcgs_384tokens_20260922_v1/vdcgs/judgments_gpt-4o-mini/aggregate.json": {
+      "answer_model_id": "zephyr-7b-beta-vdcgs-main-belief384-belief-only-v1",
+      "benchmark": "SafeDialBench",
+      "complete": true,
+      "completed_dialogues": 923,
+      "error_turn_judgments": 0,
+      "expected_dialogues": 923,
+      "expected_turn_judgments": 4462,
+      "judge_model": "gpt-4o-mini",
+      "overall": {
+        "consistency_mean": 3.6327,
+        "count": 923,
+        "handling_mean": 3.3521,
+        "identification_mean": 3.8451,
+        "overall_mean": 3.61
+      },
+      "protocol": "safedial_official_per_turn_min_v1",
+      "successful_turn_judgments": 4462
+    },
+    "outputs/safedial_partial_judging/dcgs_384tokens_20260922_v1/rdcgs/judgments_gpt-4o-mini/aggregate.json": {
+      "answer_model_id": "zephyr-7b-beta-rdcgs-main-belief384-belief-only-v1",
+      "benchmark": "SafeDialBench",
+      "complete": true,
+      "completed_dialogues": 497,
+      "error_turn_judgments": 0,
+      "expected_dialogues": 497,
+      "expected_turn_judgments": 2403,
+      "judge_model": "gpt-4o-mini",
+      "overall": {
+        "consistency_mean": 3.6278,
+        "count": 497,
+        "handling_mean": 3.3924,
+        "identification_mean": 3.8109,
+        "overall_mean": 3.6103
+      },
+      "protocol": "safedial_official_per_turn_min_v1",
+      "successful_turn_judgments": 2403
+    },
+    "outputs/llamaguard/dcr_inference_format_pilot_v1/aggregate.json": {
+      "updated_at": "2026-09-22T04:24:28.773462+00:00",
+      "protocol": "safedial_llamaguard3_gold_history_all_turns_v1",
+      "complete": false,
+      "scope": "frozen selected snapshot, not the live generation run",
+      "metric": "safety-only proxy under fixed reference histories; no harmful-goal assistance or GCR judgment",
+      "denominator": "fully generated and successfully judged dialogues only; partial results are provisional",
+      "turn_counts": {
+        "judge_pending": 15
+      },
+      "overall": {
+        "expected_dialogues": 3,
+        "complete_dialogues": 0,
+        "incomplete_dialogues": 3,
+        "safe_dialogues": 0,
+        "unsafe_dialogues": 0,
+        "ASR_LG_percent": null,
+        "DSR_LG_percent": null,
+        "incomplete_with_observed_unsafe": 0
+      }
+    },
+    "outputs/llamaguard/gpt4o_full_v2/aggregate.json": {
+      "updated_at": "2026-09-22T04:46:41.592847+00:00",
+      "protocol": "safedial_llamaguard3_gold_history_all_turns_v2",
+      "complete": false,
+      "scope": "frozen selected snapshot, not the live generation run",
+      "metric": "safety-only proxy under fixed reference histories; no harmful-goal assistance or GCR judgment",
+      "denominator": "fully generated and successfully judged dialogues only; partial results are provisional",
+      "turn_counts": {
+        "judge_pending": 10028,
+        "generation_missing": 1
+      },
+      "overall": {
+        "expected_dialogues": 2037,
+        "complete_dialogues": 0,
+        "incomplete_dialogues": 2037,
+        "safe_dialogues": 0,
+        "unsafe_dialogues": 0,
+        "ASR_LG_percent": null,
+        "DSR_LG_percent": null,
+        "incomplete_with_observed_unsafe": 0
+      }
+    },
+    "outputs/llamaguard/dcr_inference_format_pilot_v2/aggregate.json": {
+      "updated_at": "2026-09-22T04:36:32.414081+00:00",
+      "protocol": "safedial_llamaguard3_gold_history_all_turns_v2",
+      "complete": true,
+      "scope": "frozen selected snapshot, not the live generation run",
+      "metric": "safety-only proxy under fixed reference histories; no harmful-goal assistance or GCR judgment",
+      "denominator": "fully generated and successfully judged dialogues only; partial results are provisional",
+      "turn_counts": {
+        "safe": 15
+      },
+      "overall": {
+        "expected_dialogues": 3,
+        "complete_dialogues": 3,
+        "incomplete_dialogues": 0,
+        "safe_dialogues": 3,
+        "unsafe_dialogues": 0,
+        "ASR_LG_percent": 0.0,
+        "DSR_LG_percent": 100.0,
+        "incomplete_with_observed_unsafe": 0
+      }
+    },
+    "outputs/llamaguard/gpt4o_full_v2_available/aggregate.json": {
+      "updated_at": "2026-09-22T08:48:45.446982+00:00",
+      "protocol": "safedial_llamaguard3_gold_history_all_turns_v2",
+      "complete": false,
+      "scope": "frozen selected snapshot, not the live generation run",
+      "metric": "safety-only proxy under fixed reference histories; no harmful-goal assistance or GCR judgment",
+      "denominator": "fully generated and successfully judged dialogues only; partial results are provisional",
+      "turn_counts": {
+        "safe": 9594,
+        "unsafe": 434,
+        "generation_missing": 1
+      },
+      "overall": {
+        "expected_dialogues": 2037,
+        "complete_dialogues": 2036,
+        "incomplete_dialogues": 1,
+        "safe_dialogues": 1627,
+        "unsafe_dialogues": 409,
+        "ASR_LG_percent": 20.088408644400786,
+        "DSR_LG_percent": 79.91159135559921,
+        "incomplete_with_observed_unsafe": 0
+      }
+    },
+    "outputs/llamaguard/rdcgs96_full_v2/aggregate.json": {
+      "updated_at": "2026-09-23T03:56:24.765272+00:00",
+      "protocol": "safedial_llamaguard3_gold_history_all_turns_v2",
+      "complete": true,
+      "scope": "frozen selected snapshot, not the live generation run",
+      "metric": "safety-only proxy under fixed reference histories; no harmful-goal assistance or GCR judgment",
+      "denominator": "fully generated and successfully judged dialogues only; partial results are provisional",
+      "turn_counts": {
+        "safe": 9804,
+        "unsafe": 225
+      },
+      "overall": {
+        "expected_dialogues": 2037,
+        "complete_dialogues": 2037,
+        "incomplete_dialogues": 0,
+        "safe_dialogues": 1836,
+        "unsafe_dialogues": 201,
+        "ASR_LG_percent": 9.867452135493373,
+        "DSR_LG_percent": 90.13254786450663,
+        "incomplete_with_observed_unsafe": 0
+      }
+    },
+    "results/safedialbench/2026-09-18/safedial_baseline/gpt4o_full/judgments_gpt-4o-mini/aggregate.json": {
+      "answer_model_id": "gpt-4o-baseline",
+      "benchmark": "SafeDialBench",
+      "complete": true,
+      "completed_dialogues": 2036,
+      "error_turn_judgments": 0,
+      "expected_dialogues": 2036,
+      "expected_turn_judgments": 10024,
+      "judge_model": "gpt-4o-mini",
+      "overall": {
+        "consistency_mean": 6.0074,
+        "count": 2036,
+        "handling_mean": 5.5874,
+        "identification_mean": 6.0182,
+        "overall_mean": 5.871
+      },
+      "protocol": "safedial_official_per_turn_min_v1",
+      "successful_turn_judgments": 10024
+    },
+    "results/safedialbench/2026-09-18/safedial_baseline/zephyr_7b_beta_full/judgments_gpt-4o-mini/aggregate.json": {
+      "answer_model_id": "zephyr-7b-beta-baseline",
+      "benchmark": "SafeDialBench",
+      "complete": false,
+      "completed_dialogues": 2036,
+      "error_turn_judgments": 1,
+      "expected_dialogues": 2037,
+      "expected_turn_judgments": 10029,
+      "judge_model": "gpt-4o-mini",
+      "overall": {
+        "consistency_mean": 5.2716,
+        "count": 2036,
+        "handling_mean": 4.8964,
+        "identification_mean": 5.3109,
+        "overall_mean": 5.1596
+      },
+      "protocol": "safedial_official_per_turn_min_v1",
+      "successful_turn_judgments": 10028
+    },
+    "results/safedialbench/2026-09-18/safedial_baseline/cat_zephyr_full/judgments_gpt-4o-mini/aggregate.json": {
+      "answer_model_id": "zephyr-7b-beta-cat",
+      "benchmark": "SafeDialBench",
+      "complete": true,
+      "completed_dialogues": 2037,
+      "error_turn_judgments": 0,
+      "expected_dialogues": 2037,
+      "expected_turn_judgments": 10029,
+      "judge_model": "gpt-4o-mini",
+      "overall": {
+        "consistency_mean": 5.242,
+        "count": 2037,
+        "handling_mean": 4.6392,
+        "identification_mean": 5.1546,
+        "overall_mean": 5.0119
+      },
+      "protocol": "safedial_official_per_turn_min_v1",
+      "successful_turn_judgments": 10029
+    },
+    "results/safedialbench/2026-09-19/safedial_baseline/gpt4o_full/judgments_gpt-4o-mini/aggregate.json": {
+      "answer_model_id": "gpt-4o-baseline",
+      "benchmark": "SafeDialBench",
+      "complete": true,
+      "completed_dialogues": 2036,
+      "error_turn_judgments": 0,
+      "expected_dialogues": 2036,
+      "expected_turn_judgments": 10024,
+      "judge_model": "gpt-4o-mini",
+      "overall": {
+        "consistency_mean": 6.0074,
+        "count": 2036,
+        "handling_mean": 5.5874,
+        "identification_mean": 6.0182,
+        "overall_mean": 5.871
+      },
+      "protocol": "safedial_official_per_turn_min_v1",
+      "successful_turn_judgments": 10024
+    },
+    "results/safedialbench/2026-09-19/safedial_baseline/zephyr_7b_beta_full/judgments_gpt-4o-mini/aggregate.json": {
+      "answer_model_id": "zephyr-7b-beta-baseline",
+      "benchmark": "SafeDialBench",
+      "complete": false,
+      "completed_dialogues": 2036,
+      "error_turn_judgments": 1,
+      "expected_dialogues": 2037,
+      "expected_turn_judgments": 10029,
+      "judge_model": "gpt-4o-mini",
+      "overall": {
+        "consistency_mean": 5.2716,
+        "count": 2036,
+        "handling_mean": 4.8964,
+        "identification_mean": 5.3109,
+        "overall_mean": 5.1596
+      },
+      "protocol": "safedial_official_per_turn_min_v1",
+      "successful_turn_judgments": 10028
+    },
+    "results/safedialbench/2026-09-19/safedial_baseline/cat_zephyr_full/judgments_gpt-4o-mini/aggregate.json": {
+      "answer_model_id": "zephyr-7b-beta-cat",
+      "benchmark": "SafeDialBench",
+      "complete": true,
+      "completed_dialogues": 2037,
+      "error_turn_judgments": 0,
+      "expected_dialogues": 2037,
+      "expected_turn_judgments": 10029,
+      "judge_model": "gpt-4o-mini",
+      "overall": {
+        "consistency_mean": 5.242,
+        "count": 2037,
+        "handling_mean": 4.6392,
+        "identification_mean": 5.1546,
+        "overall_mean": 5.0119
+      },
+      "protocol": "safedial_official_per_turn_min_v1",
+      "successful_turn_judgments": 10029
+    },
+    "results/safedialbench/2026-09-19-smoothllm-judging/judgments_gpt-4o-mini/aggregate.json": {
+      "answer_model_id": "zephyr-7b-beta-smoothllm",
+      "benchmark": "SafeDialBench",
+      "complete": true,
+      "completed_dialogues": 2036,
+      "error_turn_judgments": 0,
+      "expected_dialogues": 2036,
+      "expected_turn_judgments": 10024,
+      "judge_model": "gpt-4o-mini",
+      "overall": {
+        "consistency_mean": 3.5928,
+        "count": 2036,
+        "handling_mean": 3.2795,
+        "identification_mean": 3.7412,
+        "overall_mean": 3.5378
+      },
+      "protocol": "safedial_official_per_turn_min_v1",
+      "successful_turn_judgments": 10024
+    }
+  },
+  "notes": [
+    "Sequential read-only snapshot started 21:01 SGT; active files can advance.",
+    "DCR exported1592 dialogue records include failed416;1591 are complete and error-free.",
+    "SmoothLLM original export2037 includes failed344;2036 valid plus separate repaired344.",
+    "No paid API/model execution or scheduler mutations performed."
+  ],
+  "goals": {
+    "job_id": 301583,
+    "state": "FAILED",
+    "exit_code": "2:0",
+    "ended": "2026-09-23T21:01:48+08:00",
+    "successful_dialogues": 1965,
+    "error_dialogues": 72,
+    "pending_dialogues": 0,
+    "errors": "72 empty goals; both earlier HTTP400 cases now successful"
+  },
+  "scheduler": {
+    "DCR": {
+      "job": 285307,
+      "state": "RUNNING",
+      "node": "albert"
+    },
+    "RDCGS 384": {
+      "job": 296812,
+      "state": "RUNNING",
+      "node": "lunar"
+    },
+    "VDCGS 384": {
+      "job": 300540,
+      "state": "PENDING",
+      "reason": "ReqNodeNotAvail, UnavailableNodes:violin"
+    }
+  },
+  "verification": {
+    "bash_blocks": "12 passed; generated native batch also passed",
+    "native_dry_runs": {
+      "VDCGS96": [
+        2011,
+        9899
+      ],
+      "RDCGS96": [
+        2037,
+        10029
+      ],
+      "TPOlegacy": [
+        56,
+        280
+      ],
+      "DCR_temporary_later_snapshot": [
+        1594,
+        7792
+      ]
+    },
+    "goals_retry_dryrun_pending": 72,
+    "DCR_subset": "Documented snippet executed with temporary destination; excluded416; no source writes",
+    "SmoothLLM_recovery_LG": "Temporary prepare-only rejected recovery manifest with KeyError dataset; direct command removed; compatible export/adapter needed",
+    "no_api_gpu_or_slurm_mutations": true
+  }
+}

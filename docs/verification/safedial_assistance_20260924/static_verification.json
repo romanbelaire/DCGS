@@ -1,0 +1,9 @@
+{
+  "related_tests_passed": 69,
+  "python_compile": true,
+  "bash_syntax": true,
+  "doc_links": true,
+  "whitespace": true,
+  "gpu_inference_run": false,
+  "api_calls": 0
+}

@@ -1,0 +1,48 @@
+{
+  "checked_at": "2026-09-23T21:49:30.669493+08:00",
+  "empty_cases": 72,
+  "completed_responses": 72,
+  "refusals": 0,
+  "empty_evidence": 55,
+  "nonempty_evidence": 17,
+  "output_tokens_min": 93,
+  "output_tokens_max": 425,
+  "max_output_tokens": 4096,
+  "resolved_prior_empty_ids": [
+    26,
+    31,
+    48,
+    73,
+    141,
+    307,
+    483,
+    667,
+    725,
+    800,
+    805,
+    810,
+    885,
+    910,
+    918,
+    920,
+    1029,
+    1091,
+    1416,
+    1459,
+    1627,
+    1695
+  ],
+  "persistent_empty_count": 69,
+  "new_empty_ids": [
+    2026,
+    2030,
+    2034
+  ],
+  "source_sha256": {
+    "run_config.json": "c610ca5b73dd4f8e36cfb8f4b33957c0e299f207095a52ac66155201d872e81d",
+    "inputs.jsonl": "190a93e4cd1cdfaacf7172fb314c3493cccba0d243104ad657bac90df33f1970",
+    "extractions.jsonl": "9f0676a580620edbd8b6b59e83dfe470f0fc7d26dd0cbbec4a907c5ce6c9fe01",
+    "goals.jsonl": "f86c207eb7d7d16bf7cc615d8753048ae7f624ea53c1dfdf53529492fdcf7667",
+    "summary.json": "f4a09738ecd205a8f3c5788c88a4f22b3a5378d28093cbc4afca9e7ef676fe9a"
+  }
+}

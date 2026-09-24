@@ -1,0 +1,31 @@
+{
+  "passed": true,
+  "regression_tests": 4,
+  "shell_syntax": true,
+  "official_judge_dry_run": {
+    "vdcgs": 2218,
+    "rdcgs": 1886
+  },
+  "new_baseline_api_calls": 0,
+  "paid_calls_during_preparation": 0,
+  "slurm_submissions": 0,
+  "common_dialogues": 388,
+  "snapshot": "outputs/safedial_partial_judging/dcgs_96tokens_20260920",
+  "failure_coverage": {
+    "rdcgs": [],
+    "vdcgs": [
+      {
+        "code": "beliefs_exhausted",
+        "dialogue_id": 155,
+        "failure_id": "e5a459595ae6f648cb0ad910",
+        "turn_index": 0
+      },
+      {
+        "code": "beliefs_exhausted",
+        "dialogue_id": 408,
+        "failure_id": "aacf349eca8fd9858b71c761",
+        "turn_index": 2
+      }
+    ]
+  }
+}

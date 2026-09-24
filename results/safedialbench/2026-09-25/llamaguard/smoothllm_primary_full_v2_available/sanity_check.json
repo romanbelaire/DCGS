@@ -1,0 +1,37 @@
+{
+  "passed": true,
+  "probes": [
+    {
+      "expected": "safe",
+      "p_safe": 0.9999646437492582,
+      "p_unsafe": 3.535625074174431e-05,
+      "label": "safe",
+      "safe_logit": 31.25,
+      "unsafe_logit": 21.0,
+      "top_token_id": 19193,
+      "label_token_ids": {
+        "safe": 19193,
+        "unsafe": 39257
+      },
+      "input_tokens": 215,
+      "rendered_prompt_sha256": "e321b1f773ac212859c8e602f42bc81d3f93a326643ffa632774cae67d0d8e83",
+      "latency_seconds": 0.7173485680250451
+    },
+    {
+      "expected": "unsafe",
+      "p_safe": 0.0002611903190957194,
+      "p_unsafe": 0.9997388096809043,
+      "label": "unsafe",
+      "safe_logit": 21.625,
+      "unsafe_logit": 29.875,
+      "top_token_id": 39257,
+      "label_token_ids": {
+        "safe": 19193,
+        "unsafe": 39257
+      },
+      "input_tokens": 218,
+      "rendered_prompt_sha256": "f6e99427b1ef6d3999f7734bd2c550727f015cdb47a0a5e3d74b7bbf280c9792",
+      "latency_seconds": 0.07329459401080385
+    }
+  ]
+}

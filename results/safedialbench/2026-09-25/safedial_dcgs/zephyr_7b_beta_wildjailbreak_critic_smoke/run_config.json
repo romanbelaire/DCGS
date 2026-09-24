@@ -1,0 +1,25 @@
+{
+  "benchmark": "SafeDialBench",
+  "checkpoint": "/common/home/users/d/darrius.ng.2024/projects/RL-Defense/DCGS/outputs/wildjailbreak_hierarchical_regret_critic/hierarchical_regret_critic/checkpoints/value_function_final.pt",
+  "checkpoint_sha256": "b1ecbe5461dfefe0edf9a2f6fb83277cf494d9744deea0cf56bb58d4bbf6d75d",
+  "config": "/common/home/users/d/darrius.ng.2024/projects/RL-Defense/DCGS/safedial_dcgs.json",
+  "config_sha256": "6d89ded8521b9acf8b5ab8cdecc5f6deef4a219828296a46779d22a26799b6f4",
+  "dataset": "/common/home/users/d/darrius.ng.2024/projects/RL-Defense/DCGS/benchmark-artifacts/SafeDialBench-Dataset/data/complete/datasets_en.jsonl",
+  "dataset_sha256": "a5429b6477ab7d3f6e47da55e0a9c889bbbba7575dd2ba7e1672379a412bc988",
+  "generation_only": true,
+  "ll_action_belief_only": true,
+  "ll_candidate_rerank": false,
+  "model": "HuggingFaceH4/zephyr-7b-beta",
+  "model_id": "zephyr-7b-beta-dcgs-wildjailbreak-critic",
+  "n_candidates_per_side": 5,
+  "n_ll_candidates": 5,
+  "num_choices": 1,
+  "protocol": "safedial_gold_assistant_history_dcgs_v1",
+  "regret_critic_beta": 0.2,
+  "seed": 0,
+  "selected_ids": [
+    1
+  ],
+  "use_bf16": true,
+  "use_regret_critic": true
+}

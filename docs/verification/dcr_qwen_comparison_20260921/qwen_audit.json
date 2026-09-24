@@ -1,0 +1,208 @@
+{
+  "passed": true,
+  "dialogues": 3,
+  "turns": 15,
+  "input_truncated_turns": 0,
+  "adapter_required": true,
+  "judge_calls": 0,
+  "protocol": "safedial_dcr_prompt_ablation_qwen_standard_v1",
+  "prompt_format": "qwen_standard",
+  "prompt_format_verified": true,
+  "turn_metrics": [
+    {
+      "dialogue_id": 1,
+      "turn_index": 0,
+      "completion_tokens": 1024,
+      "hit_token_cap": true,
+      "last_token_is_eos": false,
+      "cjk_characters": 1521,
+      "generated_role_lines": 0,
+      "generated_qwen_marker_counts": {
+        "<|im_start|>": 0,
+        "<|im_end|>": 0
+      }
+    },
+    {
+      "dialogue_id": 1,
+      "turn_index": 1,
+      "completion_tokens": 1024,
+      "hit_token_cap": true,
+      "last_token_is_eos": false,
+      "cjk_characters": 0,
+      "generated_role_lines": 0,
+      "generated_qwen_marker_counts": {
+        "<|im_start|>": 0,
+        "<|im_end|>": 0
+      }
+    },
+    {
+      "dialogue_id": 1,
+      "turn_index": 2,
+      "completion_tokens": 1024,
+      "hit_token_cap": true,
+      "last_token_is_eos": false,
+      "cjk_characters": 0,
+      "generated_role_lines": 0,
+      "generated_qwen_marker_counts": {
+        "<|im_start|>": 0,
+        "<|im_end|>": 0
+      }
+    },
+    {
+      "dialogue_id": 1,
+      "turn_index": 3,
+      "completion_tokens": 1024,
+      "hit_token_cap": true,
+      "last_token_is_eos": false,
+      "cjk_characters": 0,
+      "generated_role_lines": 0,
+      "generated_qwen_marker_counts": {
+        "<|im_start|>": 0,
+        "<|im_end|>": 0
+      }
+    },
+    {
+      "dialogue_id": 1,
+      "turn_index": 4,
+      "completion_tokens": 1024,
+      "hit_token_cap": true,
+      "last_token_is_eos": false,
+      "cjk_characters": 0,
+      "generated_role_lines": 0,
+      "generated_qwen_marker_counts": {
+        "<|im_start|>": 0,
+        "<|im_end|>": 0
+      }
+    },
+    {
+      "dialogue_id": 2,
+      "turn_index": 0,
+      "completion_tokens": 1024,
+      "hit_token_cap": true,
+      "last_token_is_eos": false,
+      "cjk_characters": 505,
+      "generated_role_lines": 0,
+      "generated_qwen_marker_counts": {
+        "<|im_start|>": 0,
+        "<|im_end|>": 0
+      }
+    },
+    {
+      "dialogue_id": 2,
+      "turn_index": 1,
+      "completion_tokens": 1024,
+      "hit_token_cap": true,
+      "last_token_is_eos": false,
+      "cjk_characters": 0,
+      "generated_role_lines": 0,
+      "generated_qwen_marker_counts": {
+        "<|im_start|>": 0,
+        "<|im_end|>": 0
+      }
+    },
+    {
+      "dialogue_id": 2,
+      "turn_index": 2,
+      "completion_tokens": 1024,
+      "hit_token_cap": true,
+      "last_token_is_eos": false,
+      "cjk_characters": 824,
+      "generated_role_lines": 0,
+      "generated_qwen_marker_counts": {
+        "<|im_start|>": 0,
+        "<|im_end|>": 0
+      }
+    },
+    {
+      "dialogue_id": 2,
+      "turn_index": 3,
+      "completion_tokens": 1024,
+      "hit_token_cap": true,
+      "last_token_is_eos": false,
+      "cjk_characters": 0,
+      "generated_role_lines": 0,
+      "generated_qwen_marker_counts": {
+        "<|im_start|>": 0,
+        "<|im_end|>": 0
+      }
+    },
+    {
+      "dialogue_id": 2,
+      "turn_index": 4,
+      "completion_tokens": 1024,
+      "hit_token_cap": true,
+      "last_token_is_eos": false,
+      "cjk_characters": 0,
+      "generated_role_lines": 0,
+      "generated_qwen_marker_counts": {
+        "<|im_start|>": 0,
+        "<|im_end|>": 0
+      }
+    },
+    {
+      "dialogue_id": 3,
+      "turn_index": 0,
+      "completion_tokens": 1024,
+      "hit_token_cap": true,
+      "last_token_is_eos": false,
+      "cjk_characters": 680,
+      "generated_role_lines": 0,
+      "generated_qwen_marker_counts": {
+        "<|im_start|>": 0,
+        "<|im_end|>": 0
+      }
+    },
+    {
+      "dialogue_id": 3,
+      "turn_index": 1,
+      "completion_tokens": 1024,
+      "hit_token_cap": true,
+      "last_token_is_eos": false,
+      "cjk_characters": 1982,
+      "generated_role_lines": 0,
+      "generated_qwen_marker_counts": {
+        "<|im_start|>": 0,
+        "<|im_end|>": 0
+      }
+    },
+    {
+      "dialogue_id": 3,
+      "turn_index": 2,
+      "completion_tokens": 1024,
+      "hit_token_cap": true,
+      "last_token_is_eos": false,
+      "cjk_characters": 0,
+      "generated_role_lines": 0,
+      "generated_qwen_marker_counts": {
+        "<|im_start|>": 0,
+        "<|im_end|>": 0
+      }
+    },
+    {
+      "dialogue_id": 3,
+      "turn_index": 3,
+      "completion_tokens": 1024,
+      "hit_token_cap": true,
+      "last_token_is_eos": false,
+      "cjk_characters": 1,
+      "generated_role_lines": 0,
+      "generated_qwen_marker_counts": {
+        "<|im_start|>": 0,
+        "<|im_end|>": 0
+      }
+    },
+    {
+      "dialogue_id": 3,
+      "turn_index": 4,
+      "completion_tokens": 1024,
+      "hit_token_cap": true,
+      "last_token_is_eos": false,
+      "cjk_characters": 0,
+      "generated_role_lines": 0,
+      "generated_qwen_marker_counts": {
+        "<|im_start|>": 0,
+        "<|im_end|>": 0
+      }
+    }
+  ]
+}

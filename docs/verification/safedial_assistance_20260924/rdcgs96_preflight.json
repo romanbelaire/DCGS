@@ -1,0 +1,19 @@
+{
+  "preflight": {
+    "passed": true,
+    "available_turns": 10029,
+    "max_prompt_tokens": 825,
+    "input_limit": 8192,
+    "overflow_turns": [],
+    "truncation": false,
+    "versions": {
+      "transformers": "4.57.6",
+      "tokenizers": "0.22.2",
+      "torch": "2.13.0"
+    }
+  },
+  "turn_counts": {
+    "judge_pending": 10029
+  },
+  "expected_dialogues": 2037
+}

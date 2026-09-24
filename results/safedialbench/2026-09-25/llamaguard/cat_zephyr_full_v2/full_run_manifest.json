@@ -1,0 +1,12 @@
+{
+  "wrapper_sha256": "896e332edd3db8c7993c9df8b04e22f9517bf5c8718d30b6148f9944cfb81634",
+  "judge_config_sha256": "e4b8790994837781313cb424e9ec00f51fa2a0ae9cc67259d25ffba5940cb79f",
+  "allow_incomplete_generation": false,
+  "scope": "entire pinned dataset, frozen source snapshot",
+  "expected_dialogues": 2037,
+  "expected_turns": 10029,
+  "generation_status_counts": {
+    "available": 10029
+  },
+  "generation_complete": true
+}

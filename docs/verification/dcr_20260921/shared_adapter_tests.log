@@ -1,0 +1,13 @@
+test_lock_validates_and_rejects_wrong_base_or_revision (test_safedial_cat.CATSetupTest.test_lock_validates_and_rejects_wrong_base_or_revision) ... ok
+test_modified_weights_rejected (test_safedial_cat.CATSetupTest.test_modified_weights_rejected) ... ok
+test_plain_manifest_schema_unchanged_and_adapter_included_when_requested (test_safedial_cat.CATSetupTest.test_plain_manifest_schema_unchanged_and_adapter_included_when_requested) ... ok
+test_verification_flag_requires_adapter (test_safedial_cat.CATSetupTest.test_verification_flag_requires_adapter) ... ok
+test_complete_history_and_errors (test_safedial_cat.GenerationValidationTest.test_complete_history_and_errors) ... ok
+test_local_adapter_is_loaded_frozen_and_changes_logits (test_safedial_cat.PeftCPUIntegrationTest.test_local_adapter_is_loaded_frozen_and_changes_logits) ... /common/home/users/d/darrius.ng.2024/projects/RL-Defense/DCGS/.venv/lib/python3.11/site-packages/peft/utils/save_and_load.py:438: UserWarning: Could not find a config file in  - will assume that the vocabulary was not modified.
+  warnings.warn(
+ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 3.802s
+
+OK

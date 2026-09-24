@@ -1,0 +1,33 @@
+{
+  "protocol": "safedial_dcgs_local_assistance_conversation_goal_v1",
+  "created_at": "2026-09-24T07:09:42.822919+00:00",
+  "source_run": "/common/home/users/d/darrius.ng.2024/projects/RL-Defense/DCGS/outputs/safedial_baseline/zephyr_7b_beta_full",
+  "goals_dir": "/common/home/users/d/darrius.ng.2024/projects/RL-Defense/DCGS/outputs/safedial_goals/gpt-5.6-sol_conversation_v3",
+  "dataset": "/common/home/users/d/darrius.ng.2024/projects/RL-Defense/DCGS/benchmark-artifacts/SafeDialBench-Dataset/data/complete/datasets_en.jsonl",
+  "dataset_sha256": "a5429b6477ab7d3f6e47da55e0a9c889bbbba7575dd2ba7e1672379a412bc988",
+  "requested_ids": [
+    1,
+    1217,
+    1236
+  ],
+  "requested_input_format": "auto",
+  "selected_ids": [
+    1,
+    1217,
+    1236
+  ],
+  "choice_index": 0,
+  "generation_snapshot_sha256": "eacb0f3d070646f8e1bc5f3ec7f8bfcf4e7fdb2f87b270c80f414660a1dcacf8",
+  "goal_source_sha256": {
+    "/common/home/users/d/darrius.ng.2024/projects/RL-Defense/DCGS/outputs/safedial_goals/gpt-5.6-sol_conversation_v3/run_config.json": "04f3e0e4e70e8353347cd5bd186b96eee406030c82499045be055c48dcdfe672",
+    "/common/home/users/d/darrius.ng.2024/projects/RL-Defense/DCGS/outputs/safedial_goals/gpt-5.6-sol_conversation_v3/goals.jsonl": "2e3519686e455b8d9d5949b0d3fb0515b8c3de557bb8d2d0a993fc58043b898c"
+  },
+  "goals_sha256": "4551d7b306127411d0f2f01243825103f50172e5505f19f3da86ca43677644f1",
+  "inputs_sha256": "dbe5789affb306bcbfd024ad9629ce1cb342c8a4d26e9933a205ef5976554811",
+  "goal_policy": "fixed full-conversation extracted goal at every turn; retrospective benchmark-adversarial premise; no harmfulness classification",
+  "context_policy": "goal + current user + full current generated response; no history, matching original local assistance rubric",
+  "review_counts": {
+    "unreviewed": 2,
+    "user_approved": 1
+  }
+}

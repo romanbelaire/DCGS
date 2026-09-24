@@ -1,0 +1,66 @@
+{
+  "protocol_policy_tests": {
+    "passed": true,
+    "count": 9
+  },
+  "launcher_tests": {
+    "passed": true,
+    "count": 6
+  },
+  "artifact_validation": {
+    "passed": true,
+    "methods": [
+      "vdcgs",
+      "rdcgs",
+      "zephyr",
+      "smoothllm",
+      "tpo"
+    ],
+    "model_calls": 0
+  },
+  "http_client": {
+    "passed": true,
+    "litellm": "1.74.3",
+    "openai": "1.99.9",
+    "http_requests": 3,
+    "fixture_inferences": 2,
+    "retry_cached": true,
+    "tool_result_round_trip": true,
+    "model_calls": 0
+  },
+  "live_gpu_tool_smoke": {
+    "job_id": "259882",
+    "passed": false,
+    "requests": 1,
+    "second_request_sent": false,
+    "tools_executed": false,
+    "failure": "Selected response is prose, not JSON; HTTP422",
+    "elapsed_seconds": 11.709849638995365,
+    "peak_gpu_allocated_bytes": 14941740032,
+    "policy_replay_passed": true
+  },
+  "native_docker_profiles": "pending Windows execution",
+  "slurm_submissions": 0,
+  "previously_verified_sources_unchanged": true,
+  "final_source_sha256": {
+    "scripts/mt_agentrisk_protocol.py": "fa2061dba90762c625738711208666f82c92018d279ea85b1f2db44f0dd6a1af",
+    "scripts/mt_agentrisk_engines.py": "e967e619b124bcec36bab7975c6afab5ac111fe9ce426f88616024fe9559552c",
+    "scripts/serve_mt_agentrisk.py": "26fa274930971ea72c88679db259533a43c882f2143e78c3b14096568273cd51",
+    "scripts/slurm/run_mt_agentrisk_server.sbatch": "f8dc48c9b3fcec620c5bdb8e23ddc7f41210ebec5e633a0011b19aac982968f8",
+    "tests/test_mt_agentrisk.py": "b6681fb41f43c2be40a38444cfa7de6acf0e638b1e5b16bb3c31c2102da48d3c",
+    "tests/check_mt_agentrisk_http.py": "0f95760dacd4bb14f14d2e53aee47ac4f4b24ffe8bdda93be36aceae97af764d"
+  },
+  "next_revision": {
+    "version": "dcgs-tool-candidates-v2",
+    "protocol_policy_tests_passed": 9,
+    "real_tokenizer_regression": "v2_prompt_regression.json",
+    "live_gpu_test": {
+      "job_id": "260035",
+      "passed": false,
+      "first_request": "PASS exact execute_bash JSON",
+      "second_request": "FAIL tool_choice; selected execute_bash instead of finish",
+      "tools_executed": false,
+      "report": "job260035_smoke.json"
+    }
+  }
+}

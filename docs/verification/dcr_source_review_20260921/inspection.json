@@ -1,0 +1,73 @@
+{
+  "scope": "Static source review and isolated pure preprocessing control-flow fixture; no real template helper, weights, inference, training or upstream module imports.",
+  "source_sha256": {
+    "models/dcr_sft_lora_171151/DCR-main/base_model_contrastive.py": "04c49576a38becddd01fa5c96a4d21c4f8be617b6970bf78a8a7318373894a94",
+    "models/dcr_sft_lora_171151/DCR-main/contrastive+lora+evaluate_pipeline.py": "b4ca96507b71ccb5f8bc8a3d7c3a73a79e51c488081070c8b15aed49058acfaf",
+    "models/dcr_sft_lora_171151/DCR-main/experiment/KT_similarity_jvp.py": "e592bfb145e4b60c462ae11bee273de9d966b459bb54590caf999071d4d2d479",
+    "models/dcr_sft_lora_171151/DCR-main/experiment/contrastive+lora+evaluate+differentdata.py": "69a945ac4843a00df0b55a3afa58e26def73fa6cdcc7613032cf422b3a3ffff6",
+    "models/dcr_sft_lora_171151/DCR-main/experiment/contrastive+lora+evaluate+differentdata_circle.py": "8a9dda65ec4e89099f139c62564c4ac762f46dcf441d15c164453ada6d607435",
+    "models/dcr_sft_lora_171151/DCR-main/experiment/llama_guard_safety.py": "7813e67ade91107fe9cde9ea27b82d200b64ac964f7c718a3ddd1ff29f1d2741",
+    "models/dcr_sft_lora_171151/DCR-main/experiment/lora+evaluate+differentdata.py": "9921a6f168095f04502dac91e16523571e9ea245403a25a0f64b328e6f1feb96",
+    "models/dcr_sft_lora_171151/DCR-main/experiment/over_refusal_performance.py": "afc06d5c0cb18a8476a6f8ef70bfbae62b4cff1129d81e5c5d0fa2b748d79e85",
+    "models/dcr_sft_lora_171151/DCR-main/experiment/rejection_response_probability.py": "e0bc566b1bf6908b250dc4fdc43b35914f952d3795c1374e07ede42d9247c789",
+    "models/dcr_sft_lora_171151/DCR-main/experiment/response_quality.py": "8f8ba82e7488bf93f297e978f23148180cb9a4bd10bd6883c52edb54444044df",
+    "models/dcr_sft_lora_171151/DCR-main/experiment/seemingly_toxic_filter.py": "2b7ad70ce8fc7cc6bc8df629b2b74f94b8127b3ee2df685cefc7f97d691b953a",
+    "models/dcr_sft_lora_171151/DCR-main/finetuning_inference_evaluate.py": "05e6167533ccf7d4affe95444425ec5e9e341bddf1510b9d1f303109c1b7bb88",
+    "models/dcr_sft_lora_171151/DCR-main/training/SFT_full.py": "16e1f5d22a549740fceda82bf1085e0eb88e6ae29f15d4ab41a96bde5bf807c9",
+    "models/dcr_sft_lora_171151/DCR-main/training/SFT_lora.py": "fdab100142e0ee44c3c67d5531d78c073f9c0c2539c10a7260969a7b06b7e7da",
+    "models/dcr_sft_lora_171151/DCR-main/training/classifier_unsupervised+activations.py": "ab7b731c6de67120c5b429fd8f99ca85fb05691fc973a90f791eea15ede85db6"
+  },
+  "preprocessing_fixture": {
+    "captured": {
+      "template_arguments": {
+        "messages": [
+          {
+            "role": "system",
+            "content": "You are Qwen, created by Alibaba Cloud. You are a helpful assistant."
+          },
+          {
+            "role": "user",
+            "content": "BENIGN INSTRUCTION\nBENIGN INPUT"
+          },
+          {
+            "role": "assistant",
+            "content": "BENIGN ANSWER"
+          }
+        ],
+        "add_generation_prompt": false
+      },
+      "tokenization_options": {
+        "truncation": true,
+        "max_length": 1024,
+        "padding": false,
+        "return_tensors": null
+      }
+    },
+    "result": {
+      "input_ids": [
+        7,
+        8,
+        99
+      ],
+      "attention_mask": [
+        1,
+        1,
+        1
+      ],
+      "labels": [
+        7,
+        8,
+        99
+      ]
+    },
+    "eos_appended_despite_outer_add_eos_false": true
+  },
+  "missing_referenced_paths": [
+    "models/dcr_sft_lora_171151/DCR-main/AttnLRP_Analysis/utils.py",
+    "models/dcr_sft_lora_171151/DCR-main/inference/vllm_inference_lora.py",
+    "models/dcr_sft_lora_171151/DCR-main/vllm_inference_lora.py",
+    "models/dcr_sft_lora_171151/DCR-main/training/SFT_lora_regularized.py"
+  ],
+  "known_current_adapter_base": "Qwen/Qwen2.5-1.5B",
+  "user_confirmed_exact_training_script": true
+}
