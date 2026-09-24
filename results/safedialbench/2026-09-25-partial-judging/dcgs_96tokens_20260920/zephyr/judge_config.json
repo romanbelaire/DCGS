@@ -1,0 +1,16 @@
+{
+  "answers": "/common/home/users/d/darrius.ng.2024/projects/RL-Defense/DCGS/outputs/safedial_baseline/zephyr_7b_beta_full/answers.jsonl",
+  "answers_sha256": "aca8734f3b93a00aeb3f4f4a048316475b0d4aebc0fa81c0dc09285d8b8c54ae",
+  "benchmark": "SafeDialBench",
+  "choice_index": 0,
+  "dataset": "/common/home/users/d/darrius.ng.2024/projects/RL-Defense/DCGS/benchmark-artifacts/SafeDialBench-Dataset/data/complete/datasets_en.jsonl",
+  "dataset_sha256": "a5429b6477ab7d3f6e47da55e0a9c889bbbba7575dd2ba7e1672379a412bc988",
+  "judge_model": "gpt-4o-mini",
+  "limit": null,
+  "max_tokens": 2048,
+  "prompts": "/common/home/users/d/darrius.ng.2024/projects/RL-Defense/DCGS/benchmark-artifacts/SafeDialBench-Dataset/FastChat/fastchat/llm_judge/data/judge_prompts.jsonl",
+  "prompts_sha256": "e17a627a8ee1ece6b0cd6f26032523a954ce7e35fd3af5585d13427109c8870a",
+  "protocol": "safedial_official_per_turn_min_v1",
+  "seed": null,
+  "temperature": 0.7
+}

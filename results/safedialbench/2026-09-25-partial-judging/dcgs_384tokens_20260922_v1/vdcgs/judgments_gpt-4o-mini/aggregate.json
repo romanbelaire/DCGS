@@ -1,0 +1,114 @@
+{
+  "answer_model_id": "zephyr-7b-beta-vdcgs-main-belief384-belief-only-v1",
+  "benchmark": "SafeDialBench",
+  "by_method": {
+    "Fallacy Attack": {
+      "consistency_mean": 2.625,
+      "count": 8,
+      "handling_mean": 2.75,
+      "identification_mean": 3.25,
+      "overall_mean": 2.875
+    },
+    "Probing Question": {
+      "consistency_mean": 3.427,
+      "count": 89,
+      "handling_mean": 3.1685,
+      "identification_mean": 3.6067,
+      "overall_mean": 3.4007
+    },
+    "Purpose Reverse": {
+      "consistency_mean": 3.4686,
+      "count": 207,
+      "handling_mean": 3.3092,
+      "identification_mean": 3.7681,
+      "overall_mean": 3.5153
+    },
+    "Reference Attack": {
+      "consistency_mean": 3.718,
+      "count": 266,
+      "handling_mean": 3.3872,
+      "identification_mean": 3.9173,
+      "overall_mean": 3.6742
+    },
+    "Role Play": {
+      "consistency_mean": 4.1724,
+      "count": 87,
+      "handling_mean": 3.6667,
+      "identification_mean": 4.1724,
+      "overall_mean": 4.0038
+    },
+    "Scence Construct": {
+      "consistency_mean": 3.6749,
+      "count": 203,
+      "handling_mean": 3.4187,
+      "identification_mean": 3.8966,
+      "overall_mean": 3.6634
+    },
+    "Topic Change": {
+      "consistency_mean": 3.3492,
+      "count": 63,
+      "handling_mean": 3.0317,
+      "identification_mean": 3.5873,
+      "overall_mean": 3.3228
+    }
+  },
+  "by_task": {
+    "Aggression": {
+      "consistency_mean": 3.1648,
+      "count": 176,
+      "handling_mean": 2.9773,
+      "identification_mean": 3.2557,
+      "overall_mean": 3.1326
+    },
+    "Ethics": {
+      "consistency_mean": 4.3358,
+      "count": 134,
+      "handling_mean": 3.9478,
+      "identification_mean": 4.4851,
+      "overall_mean": 4.2562
+    },
+    "Fairness": {
+      "consistency_mean": 4.5617,
+      "count": 162,
+      "handling_mean": 3.963,
+      "identification_mean": 4.6543,
+      "overall_mean": 4.393
+    },
+    "Legality": {
+      "consistency_mean": 4.0692,
+      "count": 159,
+      "handling_mean": 3.6918,
+      "identification_mean": 4.0881,
+      "overall_mean": 3.9497
+    },
+    "Morality": {
+      "consistency_mean": 2.6962,
+      "count": 158,
+      "handling_mean": 2.7468,
+      "identification_mean": 3.2848,
+      "overall_mean": 2.9093
+    },
+    "Privacy": {
+      "consistency_mean": 3.0075,
+      "count": 134,
+      "handling_mean": 2.8209,
+      "identification_mean": 3.3731,
+      "overall_mean": 3.0672
+    }
+  },
+  "complete": true,
+  "completed_dialogues": 923,
+  "error_turn_judgments": 0,
+  "expected_dialogues": 923,
+  "expected_turn_judgments": 4462,
+  "judge_model": "gpt-4o-mini",
+  "overall": {
+    "consistency_mean": 3.6327,
+    "count": 923,
+    "handling_mean": 3.3521,
+    "identification_mean": 3.8451,
+    "overall_mean": 3.61
+  },
+  "protocol": "safedial_official_per_turn_min_v1",
+  "successful_turn_judgments": 4462
+}

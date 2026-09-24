@@ -118,7 +118,7 @@ def snapshot(source, destination):
             runs.append(row)
     # Preserve evaluator inputs/provenance, raw labels and aggregates separately
     # from generation. Only data files are captured; locks and secrets are not.
-    for family in ('llamaguard', 'assistance', 'safedial_goals'):
+    for family in ('llamaguard', 'assistance', 'safedial_goals', 'safedial_partial_judging'):
         for folder in sorted((source / 'outputs' / family).glob('*')):
             if not folder.is_dir():
                 continue
@@ -134,7 +134,7 @@ def snapshot(source, destination):
                     details = {}
                 save(Path(family) / folder.name / f.relative_to(folder), data, f, details)
     summary = {'snapshot_started': started, 'snapshot_finished': datetime.datetime.now().astimezone().isoformat(),
-               'scope': 'all_local_SafeDial_run_directories_and_guard_assistance_goal_evaluations; historical_and_active_runs_kept_separate',
+               'scope': 'all_local_SafeDial_run_directories_and_guard_assistance_goal_partial_evaluations; historical_and_active_runs_kept_separate',
                'limitations': ['Live files captured independently; counts may differ across files.',
                               'No new GPU audit or judge execution performed by snapshot.',
                               'Full per-call journals and original turns remain local; compact turn_status is not a replay journal.',
@@ -155,7 +155,7 @@ def snapshot(source, destination):
               'Exported dialogues can contain errors in legacy runners; check the error fields. '
               'Original call journals, model weights, caches, credentials, and the external dataset are not included. '
               'This snapshot cannot be used as a resumable execution directory.', '']
-    lines += ['The `llamaguard/`, `assistance/`, and `safedial_goals/` directories preserve '
+    lines += ['The `llamaguard/`, `assistance/`, `safedial_goals/`, and `safedial_partial_judging/` directories preserve '
               'frozen inputs, configurations, raw evaluator records and saved aggregates. '
               'An aggregate may lag a captured live journal; no missing result is inferred. '
               'Older protocols and failed pilots are retained separately.', '']

@@ -61,6 +61,7 @@ The `llamaguard/`, `assistance/`, and `safedial_goals/` directories preserve fro
 
 ## Current experiment interpretation
 
+- The [partial-judging supplement](../2026-09-25-partial-judging/README.md) preserves four completed historical native judging scopes that were outside the original exporter folders. Their scores remain separate from final full-run results.
 - Finished 96-token VDCGS/RDCGS and baseline results retain generation gaps and native-judge refusals. See [score comparison](../../../docs/SAFEDIALBENCH_SCORE_COMPARISON.md).
 - VDCGS-384 generation processed all 10,029 turns: 10,022 successful, seven terminal failures, 2,030 complete exported dialogues. Integrity and policy checks passed; historical GPU-memory evidence remains incomplete. Native judging is partial at capture; assistance has 10,021 valid labels and one truncated-response error. Its LlamaGuard snapshot is prepared with zero labels. Prepared combined aggregates are not final scores.
 - DCR is actively generating; RDCGS-384 is awaiting its resume allocation. TPO was stopped by the user. These files are independently captured prefixes and must not be used to resume execution. See [scheduler observation](scheduler.txt).

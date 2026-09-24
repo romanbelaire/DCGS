@@ -42,7 +42,7 @@ class SnapshotTests(unittest.TestCase):
             source = Path(temporary) / 'source'
             for family in ('safedial_baseline', 'safedial_dcgs'):
                 (source / 'outputs' / family).mkdir(parents=True)
-            for family in ('llamaguard', 'assistance', 'safedial_goals'):
+            for family in ('llamaguard', 'assistance', 'safedial_goals', 'safedial_partial_judging'):
                 folder = source / 'outputs' / family / 'run'
                 folder.mkdir(parents=True)
                 (folder / 'config.json').write_text('{"complete": false}\n')
@@ -52,7 +52,7 @@ class SnapshotTests(unittest.TestCase):
             destination = Path(temporary) / 'snapshot'
             snapshot.snapshot(source, destination)
             report = json.loads((destination / 'snapshot.json').read_text())
-            self.assertEqual(len(report['files']), 6)
+            self.assertEqual(len(report['files']), 8)
             for entry in report['files']:
                 stored = (destination / entry['path']).read_bytes()
                 self.assertEqual(hashlib.sha256(stored).hexdigest(), entry['sha256'])

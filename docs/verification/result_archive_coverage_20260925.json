@@ -1,0 +1,102 @@
+{
+  "completed_aggregates": [
+    {
+      "source": "outputs/safedial_baseline/smoothllm_zephyr_recovery_344_turn5_v1/judgments_gpt-4o-mini/aggregate.json",
+      "archive": "2026-09-25",
+      "matches_saved_aggregate": true
+    },
+    {
+      "source": "outputs/safedial_baseline/gpt4o_full/judgments_gpt-4o-mini/aggregate.json",
+      "archive": "2026-09-25",
+      "matches_saved_aggregate": true
+    },
+    {
+      "source": "outputs/safedial_baseline/zephyr_7b_beta_smoke/judge_live_smoke_1/aggregate.json",
+      "archive": "2026-09-25",
+      "matches_saved_aggregate": true
+    },
+    {
+      "source": "outputs/safedial_baseline/zephyr_7b_beta_smoke/judgments_gpt-4o-mini/aggregate.json",
+      "archive": "2026-09-25",
+      "matches_saved_aggregate": true
+    },
+    {
+      "source": "outputs/safedial_baseline/cat_zephyr_full/judgments_gpt-4o-mini/aggregate.json",
+      "archive": "2026-09-25",
+      "matches_saved_aggregate": true
+    },
+    {
+      "source": "outputs/safedial_baseline/cat_zephyr_smoke/judgments_gpt-4o-mini/aggregate.json",
+      "archive": "2026-09-25",
+      "matches_saved_aggregate": true
+    },
+    {
+      "source": "outputs/llamaguard/dcr_inference_format_pilot_v2/aggregate.json",
+      "archive": "2026-09-25",
+      "matches_saved_aggregate": true
+    },
+    {
+      "source": "outputs/llamaguard/rdcgs96_full_v2/aggregate.json",
+      "archive": "2026-09-25",
+      "matches_saved_aggregate": true
+    },
+    {
+      "source": "outputs/llamaguard/zephyr_7b_beta_full_v2/aggregate.json",
+      "archive": "2026-09-25",
+      "matches_saved_aggregate": true
+    },
+    {
+      "source": "outputs/llamaguard/cat_zephyr_full_v2/aggregate.json",
+      "archive": "2026-09-25",
+      "matches_saved_aggregate": true
+    },
+    {
+      "source": "outputs/assistance/gpt4o_mini_cat_full_v2/aggregate.json",
+      "archive": "2026-09-25",
+      "matches_saved_aggregate": true
+    },
+    {
+      "source": "outputs/assistance/gpt4o_mini_zephyr_pilot_v2/aggregate.json",
+      "archive": "2026-09-25",
+      "matches_saved_aggregate": true
+    },
+    {
+      "source": "outputs/assistance/gpt4o_mini_rdcgs96_full_v2/aggregate.json",
+      "archive": "2026-09-25",
+      "matches_saved_aggregate": true
+    },
+    {
+      "source": "outputs/assistance/gpt4o_mini_zephyr_full_v2/aggregate.json",
+      "archive": "2026-09-25",
+      "matches_saved_aggregate": true
+    },
+    {
+      "source": "outputs/safedial_partial_judging/dcgs_96tokens_20260920/vdcgs/judgments_gpt-4o-mini/aggregate.json",
+      "archive": "2026-09-25-partial-judging",
+      "matches_saved_aggregate": true
+    },
+    {
+      "source": "outputs/safedial_partial_judging/dcgs_96tokens_20260920/rdcgs/judgments_gpt-4o-mini/aggregate.json",
+      "archive": "2026-09-25-partial-judging",
+      "matches_saved_aggregate": true
+    },
+    {
+      "source": "outputs/safedial_partial_judging/dcgs_384tokens_20260922_v1/vdcgs/judgments_gpt-4o-mini/aggregate.json",
+      "archive": "2026-09-25-partial-judging",
+      "matches_saved_aggregate": true
+    },
+    {
+      "source": "outputs/safedial_partial_judging/dcgs_384tokens_20260922_v1/rdcgs/judgments_gpt-4o-mini/aggregate.json",
+      "archive": "2026-09-25-partial-judging",
+      "matches_saved_aggregate": true
+    }
+  ],
+  "all_checked_completed_aggregates_match": true,
+  "smoothllm_completed_native_archive_already_in_history": "results/safedialbench/2026-09-19-smoothllm-judging/judgments_gpt-4o-mini/aggregate.json",
+  "main_snapshot_cutoff": "2026-09-25T00:51:12+08:00",
+  "exclusions": [
+    "Full generation turns/events/attempts journals (compact status and exported answers retained)",
+    "New records written by active jobs after independent file captures",
+    "Weights, caches and credentials"
+  ]
+}

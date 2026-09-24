@@ -1,0 +1,400 @@
+{
+  "captured_at": "2026-09-25T01:05:39.815223+08:00",
+  "scope": "Four completed historical partial native judging scopes, separate from final full-run scopes",
+  "files": [
+    {
+      "path": "dcgs_384tokens_20260922_v1/comparison.json",
+      "source": "outputs/safedial_partial_judging/dcgs_384tokens_20260922_v1/comparison.json",
+      "bytes": 23302,
+      "sha256": "c754df19bfef57d5aa5bfcb3c12725a9cf9341f1ecb9798cff07d0dba9418e5b",
+      "uncompressed_sha256": "c754df19bfef57d5aa5bfcb3c12725a9cf9341f1ecb9798cff07d0dba9418e5b"
+    },
+    {
+      "path": "dcgs_384tokens_20260922_v1/preparation.py",
+      "source": "outputs/safedial_partial_judging/dcgs_384tokens_20260922_v1/preparation.py",
+      "bytes": 8079,
+      "sha256": "9d5d84a44cee492b131b31a99738e51e621116fad80cc4d03c896f842744a958",
+      "uncompressed_sha256": "9d5d84a44cee492b131b31a99738e51e621116fad80cc4d03c896f842744a958"
+    },
+    {
+      "path": "dcgs_384tokens_20260922_v1/rdcgs/answers.jsonl.gz",
+      "source": "outputs/safedial_partial_judging/dcgs_384tokens_20260922_v1/rdcgs/answers.jsonl",
+      "bytes": 454542,
+      "sha256": "1ec7a9e74325857056443b453630bb2e1151e6409388c9db15becd80d545d2d4",
+      "uncompressed_sha256": "27cee9fbd3f6712a05c5d9b01f7517ac7da87fa181745bea8258b87bb3dfd52a",
+      "records": 497
+    },
+    {
+      "path": "dcgs_384tokens_20260922_v1/rdcgs/belief_flags.jsonl",
+      "source": "outputs/safedial_partial_judging/dcgs_384tokens_20260922_v1/rdcgs/belief_flags.jsonl",
+      "bytes": 198851,
+      "sha256": "b6e6f805c1b5e86642a9576351b512d3f4d976bf3c0fa2faa3bbe359428773ee",
+      "uncompressed_sha256": "b6e6f805c1b5e86642a9576351b512d3f4d976bf3c0fa2faa3bbe359428773ee",
+      "records": 2403
+    },
+    {
+      "path": "dcgs_384tokens_20260922_v1/rdcgs/generation_config.json",
+      "source": "outputs/safedial_partial_judging/dcgs_384tokens_20260922_v1/rdcgs/generation_config.json",
+      "bytes": 40825,
+      "sha256": "8897ddc98c9ed4b95963dace83c51ef647881ae62983269b35c69b56db298da9",
+      "uncompressed_sha256": "8897ddc98c9ed4b95963dace83c51ef647881ae62983269b35c69b56db298da9"
+    },
+    {
+      "path": "dcgs_384tokens_20260922_v1/rdcgs/generation_failures.jsonl",
+      "source": "outputs/safedial_partial_judging/dcgs_384tokens_20260922_v1/rdcgs/generation_failures.jsonl",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "uncompressed_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "records": 0
+    },
+    {
+      "path": "dcgs_384tokens_20260922_v1/rdcgs/judgments_gpt-4o-mini/aggregate.json",
+      "source": "outputs/safedial_partial_judging/dcgs_384tokens_20260922_v1/rdcgs/judgments_gpt-4o-mini/aggregate.json",
+      "bytes": 2699,
+      "sha256": "8f6b147301637efa90c622194c43e8f2711ea27eb27dd86cd19e6f91a781793a",
+      "uncompressed_sha256": "8f6b147301637efa90c622194c43e8f2711ea27eb27dd86cd19e6f91a781793a"
+    },
+    {
+      "path": "dcgs_384tokens_20260922_v1/rdcgs/judgments_gpt-4o-mini/dialogue_scores.jsonl.gz",
+      "source": "outputs/safedial_partial_judging/dcgs_384tokens_20260922_v1/rdcgs/judgments_gpt-4o-mini/dialogue_scores.jsonl",
+      "bytes": 3406259,
+      "sha256": "706db1a8d6aca0c3154cf1b4f7d8efbbef7e713ef0b1d4dd55a07f65c34a19cb",
+      "uncompressed_sha256": "bea5b3f5db0408d674dd3bf5a5ff4238fdd733d15f2f0b060d80dc92f4cd60ef",
+      "records": 497
+    },
+    {
+      "path": "dcgs_384tokens_20260922_v1/rdcgs/judgments_gpt-4o-mini/human_adjudication.json",
+      "source": "outputs/safedial_partial_judging/dcgs_384tokens_20260922_v1/rdcgs/judgments_gpt-4o-mini/human_adjudication.json",
+      "bytes": 1821,
+      "sha256": "051c79ef8dbd6bd2b809e2fd12331be2ed8a06a6bc46b3b8f39958ecd714634a",
+      "uncompressed_sha256": "051c79ef8dbd6bd2b809e2fd12331be2ed8a06a6bc46b3b8f39958ecd714634a"
+    },
+    {
+      "path": "dcgs_384tokens_20260922_v1/rdcgs/judgments_gpt-4o-mini/judge_config.json",
+      "source": "outputs/safedial_partial_judging/dcgs_384tokens_20260922_v1/rdcgs/judgments_gpt-4o-mini/judge_config.json",
+      "bytes": 963,
+      "sha256": "e50a164bca1feb4a91bf92228d9c6c0a4ac892b4000d4e666a5903c89203e0c7",
+      "uncompressed_sha256": "e50a164bca1feb4a91bf92228d9c6c0a4ac892b4000d4e666a5903c89203e0c7"
+    },
+    {
+      "path": "dcgs_384tokens_20260922_v1/rdcgs/judgments_gpt-4o-mini/judgments.jsonl.gz",
+      "source": "outputs/safedial_partial_judging/dcgs_384tokens_20260922_v1/rdcgs/judgments_gpt-4o-mini/judgments.jsonl",
+      "bytes": 3951384,
+      "sha256": "ba0507414ee31a92cd30b477b94a29fd9186562735a97deac439c48513797a9f",
+      "uncompressed_sha256": "cac708e4d79f52ce7c548f3fe69aaa2c9b074a3c49356c3b20a1f437e736072b",
+      "records": 2403
+    },
+    {
+      "path": "dcgs_384tokens_20260922_v1/snapshot.json",
+      "source": "outputs/safedial_partial_judging/dcgs_384tokens_20260922_v1/snapshot.json",
+      "bytes": 33565,
+      "sha256": "0cea97547c832d427a4cbd672e7692ebe08f1053d1e1bc6dc1bf1adf27cb3193",
+      "uncompressed_sha256": "0cea97547c832d427a4cbd672e7692ebe08f1053d1e1bc6dc1bf1adf27cb3193"
+    },
+    {
+      "path": "dcgs_384tokens_20260922_v1/vdcgs/answers.jsonl.gz",
+      "source": "outputs/safedial_partial_judging/dcgs_384tokens_20260922_v1/vdcgs/answers.jsonl",
+      "bytes": 857695,
+      "sha256": "9cb0a8d98cc6bfb2ce7ab40f254b8289ae150979236603087de37132acaacffb",
+      "uncompressed_sha256": "b61982a4dc523dddf59d38ecb5adc5c2fcea64c0c38202b77d01fd71296453a2",
+      "records": 923
+    },
+    {
+      "path": "dcgs_384tokens_20260922_v1/vdcgs/belief_flags.jsonl",
+      "source": "outputs/safedial_partial_judging/dcgs_384tokens_20260922_v1/vdcgs/belief_flags.jsonl",
+      "bytes": 369731,
+      "sha256": "167c92bc700c57d37644cdb0d3355452b66f90023027683913730c93149e34df",
+      "uncompressed_sha256": "167c92bc700c57d37644cdb0d3355452b66f90023027683913730c93149e34df",
+      "records": 4462
+    },
+    {
+      "path": "dcgs_384tokens_20260922_v1/vdcgs/generation_config.json",
+      "source": "outputs/safedial_partial_judging/dcgs_384tokens_20260922_v1/vdcgs/generation_config.json",
+      "bytes": 40826,
+      "sha256": "66a3c564b86b950cea01d7e597a47461462f7bb200ee69d23b9a54d4a6554d51",
+      "uncompressed_sha256": "66a3c564b86b950cea01d7e597a47461462f7bb200ee69d23b9a54d4a6554d51"
+    },
+    {
+      "path": "dcgs_384tokens_20260922_v1/vdcgs/generation_failures.jsonl",
+      "source": "outputs/safedial_partial_judging/dcgs_384tokens_20260922_v1/vdcgs/generation_failures.jsonl",
+      "bytes": 218,
+      "sha256": "c5163630501929a4457fef352bcc4b9c1567dbb72ae06974002c7c3e1b54f324",
+      "uncompressed_sha256": "c5163630501929a4457fef352bcc4b9c1567dbb72ae06974002c7c3e1b54f324",
+      "records": 2
+    },
+    {
+      "path": "dcgs_384tokens_20260922_v1/vdcgs/judgments_gpt-4o-mini/aggregate.json",
+      "source": "outputs/safedial_partial_judging/dcgs_384tokens_20260922_v1/vdcgs/judgments_gpt-4o-mini/aggregate.json",
+      "bytes": 2886,
+      "sha256": "817c446a572a349a7aa2c520aa79e117ae40c40fcb8c52c6f1850098bebd22d7",
+      "uncompressed_sha256": "817c446a572a349a7aa2c520aa79e117ae40c40fcb8c52c6f1850098bebd22d7"
+    },
+    {
+      "path": "dcgs_384tokens_20260922_v1/vdcgs/judgments_gpt-4o-mini/dialogue_scores.jsonl.gz",
+      "source": "outputs/safedial_partial_judging/dcgs_384tokens_20260922_v1/vdcgs/judgments_gpt-4o-mini/dialogue_scores.jsonl",
+      "bytes": 6271484,
+      "sha256": "4bbb1f271de75852c3465e85dd2d5510e7b881112d4b45cd741c8eda248494cb",
+      "uncompressed_sha256": "3f1b64a98967c9e5132f7e7d5178f4ec90db2a5d4aec0a6b7bef71f77e322546",
+      "records": 923
+    },
+    {
+      "path": "dcgs_384tokens_20260922_v1/vdcgs/judgments_gpt-4o-mini/human_adjudication.json",
+      "source": "outputs/safedial_partial_judging/dcgs_384tokens_20260922_v1/vdcgs/judgments_gpt-4o-mini/human_adjudication.json",
+      "bytes": 1821,
+      "sha256": "794148f7bf26e7a3a64de191a0804a3e7b256bb4f07728242dbc2a8a11bdb31d",
+      "uncompressed_sha256": "794148f7bf26e7a3a64de191a0804a3e7b256bb4f07728242dbc2a8a11bdb31d"
+    },
+    {
+      "path": "dcgs_384tokens_20260922_v1/vdcgs/judgments_gpt-4o-mini/judge_config.json",
+      "source": "outputs/safedial_partial_judging/dcgs_384tokens_20260922_v1/vdcgs/judgments_gpt-4o-mini/judge_config.json",
+      "bytes": 963,
+      "sha256": "afb5821d239a7dbea108d8a8f890c2fa2aadaa53d2e57a15e4fa785a4012bf44",
+      "uncompressed_sha256": "afb5821d239a7dbea108d8a8f890c2fa2aadaa53d2e57a15e4fa785a4012bf44"
+    },
+    {
+      "path": "dcgs_384tokens_20260922_v1/vdcgs/judgments_gpt-4o-mini/judgments.jsonl.gz",
+      "source": "outputs/safedial_partial_judging/dcgs_384tokens_20260922_v1/vdcgs/judgments_gpt-4o-mini/judgments.jsonl",
+      "bytes": 7257909,
+      "sha256": "0ca6788286fad291bba59f9a48fafe8350d8e48461017b87671d530a9eb89736",
+      "uncompressed_sha256": "d7da6ef687478cbec68c1a54ef7a6b6945b0bb530d48577e635dc973e756f617",
+      "records": 4462
+    },
+    {
+      "path": "dcgs_384tokens_20260922_v1/zephyr/dialogue_scores.jsonl",
+      "source": "outputs/safedial_partial_judging/dcgs_384tokens_20260922_v1/zephyr/dialogue_scores.jsonl",
+      "bytes": 209838,
+      "sha256": "d58b7aeb424fb1812d27a1743b259b6d3e09026ffa7564d0afca4aaa72df3d76",
+      "uncompressed_sha256": "d58b7aeb424fb1812d27a1743b259b6d3e09026ffa7564d0afca4aaa72df3d76",
+      "records": 924
+    },
+    {
+      "path": "dcgs_384tokens_20260922_v1/zephyr/judge_config.json",
+      "source": "outputs/safedial_partial_judging/dcgs_384tokens_20260922_v1/zephyr/judge_config.json",
+      "bytes": 943,
+      "sha256": "86fd1680f92c257e2d85db6f3175626f32132f344c491e1aa01d29fa8f50e887",
+      "uncompressed_sha256": "86fd1680f92c257e2d85db6f3175626f32132f344c491e1aa01d29fa8f50e887"
+    },
+    {
+      "path": "dcgs_96tokens_20260920/comparison.json",
+      "source": "outputs/safedial_partial_judging/dcgs_96tokens_20260920/comparison.json",
+      "bytes": 20728,
+      "sha256": "86bb552e92e7c0bc38406dc94e10f045e750e8ebd84d3983c81b97fac17f75ae",
+      "uncompressed_sha256": "86bb552e92e7c0bc38406dc94e10f045e750e8ebd84d3983c81b97fac17f75ae"
+    },
+    {
+      "path": "dcgs_96tokens_20260920/rdcgs/answers.jsonl.gz",
+      "source": "outputs/safedial_partial_judging/dcgs_96tokens_20260920/rdcgs/answers.jsonl",
+      "bytes": 341319,
+      "sha256": "533d365f288d91f1df1be9a1205290f5a332d635f120cbe92e0267d5d4bc457a",
+      "uncompressed_sha256": "4f85ab02ffb79470c7dbfa7916d1856d1383c2c31a27b24d7fcb46603e4fd032",
+      "records": 389
+    },
+    {
+      "path": "dcgs_96tokens_20260920/rdcgs/belief_flags.jsonl",
+      "source": "outputs/safedial_partial_judging/dcgs_96tokens_20260920/rdcgs/belief_flags.jsonl",
+      "bytes": 155479,
+      "sha256": "c8573cb0b0c2b828717a87218879809ce052971092634b3b157ea9256c48c385",
+      "uncompressed_sha256": "c8573cb0b0c2b828717a87218879809ce052971092634b3b157ea9256c48c385",
+      "records": 1886
+    },
+    {
+      "path": "dcgs_96tokens_20260920/rdcgs/generation_config.json",
+      "source": "outputs/safedial_partial_judging/dcgs_96tokens_20260920/rdcgs/generation_config.json",
+      "bytes": 40088,
+      "sha256": "c519a1e6b9f7682b8b8def412e791506e8dedc959fa9ee2cbad6e0c8bcc926a5",
+      "uncompressed_sha256": "c519a1e6b9f7682b8b8def412e791506e8dedc959fa9ee2cbad6e0c8bcc926a5"
+    },
+    {
+      "path": "dcgs_96tokens_20260920/rdcgs/generation_failures.jsonl",
+      "source": "outputs/safedial_partial_judging/dcgs_96tokens_20260920/rdcgs/generation_failures.jsonl",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "uncompressed_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "records": 0
+    },
+    {
+      "path": "dcgs_96tokens_20260920/rdcgs/judgments_gpt-4o-mini/aggregate.json",
+      "source": "outputs/safedial_partial_judging/dcgs_96tokens_20260920/rdcgs/judgments_gpt-4o-mini/aggregate.json",
+      "bytes": 2682,
+      "sha256": "f56ff7906f54959b9800baa01797cc4f245da44f4c68f272a5ef10d1d2eff651",
+      "uncompressed_sha256": "f56ff7906f54959b9800baa01797cc4f245da44f4c68f272a5ef10d1d2eff651"
+    },
+    {
+      "path": "dcgs_96tokens_20260920/rdcgs/judgments_gpt-4o-mini/dialogue_scores.jsonl.gz",
+      "source": "outputs/safedial_partial_judging/dcgs_96tokens_20260920/rdcgs/judgments_gpt-4o-mini/dialogue_scores.jsonl",
+      "bytes": 2592725,
+      "sha256": "41673d39d4b2b84a48b547824ca63ac79067b1905eb63807a944b1cf4f5fc5a4",
+      "uncompressed_sha256": "1480c37eedf0b8542b607f0e56e0cf5f7cf0daced9e1849d7cee187f80605f72",
+      "records": 389
+    },
+    {
+      "path": "dcgs_96tokens_20260920/rdcgs/judgments_gpt-4o-mini/human_adjudication.json",
+      "source": "outputs/safedial_partial_judging/dcgs_96tokens_20260920/rdcgs/judgments_gpt-4o-mini/human_adjudication.json",
+      "bytes": 1813,
+      "sha256": "332b8a0df67e664a56784232846d152ca57b964119127537121bfcef1d8c334b",
+      "uncompressed_sha256": "332b8a0df67e664a56784232846d152ca57b964119127537121bfcef1d8c334b"
+    },
+    {
+      "path": "dcgs_96tokens_20260920/rdcgs/judgments_gpt-4o-mini/judge_config.json",
+      "source": "outputs/safedial_partial_judging/dcgs_96tokens_20260920/rdcgs/judgments_gpt-4o-mini/judge_config.json",
+      "bytes": 959,
+      "sha256": "76299e5a53e7b67a30d24e92fcb589dacc402435b6f9a56be6f110a96ee7a5b4",
+      "uncompressed_sha256": "76299e5a53e7b67a30d24e92fcb589dacc402435b6f9a56be6f110a96ee7a5b4"
+    },
+    {
+      "path": "dcgs_96tokens_20260920/rdcgs/judgments_gpt-4o-mini/judgments.jsonl.gz",
+      "source": "outputs/safedial_partial_judging/dcgs_96tokens_20260920/rdcgs/judgments_gpt-4o-mini/judgments.jsonl",
+      "bytes": 3000964,
+      "sha256": "14acbf55eb930e7bab3c4e0ea6b3664479203131dcbc65ef15584606d2a2f7e7",
+      "uncompressed_sha256": "b4a12e736d83e3a700ee308f7e56358fb1de5e1f3f5a8d9b254a33caa27df1eb",
+      "records": 1886
+    },
+    {
+      "path": "dcgs_96tokens_20260920/snapshot.json",
+      "source": "outputs/safedial_partial_judging/dcgs_96tokens_20260920/snapshot.json",
+      "bytes": 20419,
+      "sha256": "d4a43124a9cec1b67b795c28b3b1a60cd2f75ed088806e91aec8883bd6608930",
+      "uncompressed_sha256": "d4a43124a9cec1b67b795c28b3b1a60cd2f75ed088806e91aec8883bd6608930"
+    },
+    {
+      "path": "dcgs_96tokens_20260920/vdcgs/answers.jsonl.gz",
+      "source": "outputs/safedial_partial_judging/dcgs_96tokens_20260920/vdcgs/answers.jsonl",
+      "bytes": 414461,
+      "sha256": "9578df692ea666b8dda146ae1d51c2d9ae99f76ef962478771027f1d1c200077",
+      "uncompressed_sha256": "edd25c170681b540dd80df8db5f79dc2dead4fbe7246452abb8621221c528a13",
+      "records": 457
+    },
+    {
+      "path": "dcgs_96tokens_20260920/vdcgs/belief_flags.jsonl",
+      "source": "outputs/safedial_partial_judging/dcgs_96tokens_20260920/vdcgs/belief_flags.jsonl",
+      "bytes": 182978,
+      "sha256": "3f4b2eee774e8b5e9b6f467b410356381580b2400a62992d696a031e3b7cd86f",
+      "uncompressed_sha256": "3f4b2eee774e8b5e9b6f467b410356381580b2400a62992d696a031e3b7cd86f",
+      "records": 2218
+    },
+    {
+      "path": "dcgs_96tokens_20260920/vdcgs/generation_config.json",
+      "source": "outputs/safedial_partial_judging/dcgs_96tokens_20260920/vdcgs/generation_config.json",
+      "bytes": 40089,
+      "sha256": "ecd80b2436c5ff7607f116065ebed4da57e9f1f801de2e4c99a8a0584a50ebbe",
+      "uncompressed_sha256": "ecd80b2436c5ff7607f116065ebed4da57e9f1f801de2e4c99a8a0584a50ebbe"
+    },
+    {
+      "path": "dcgs_96tokens_20260920/vdcgs/generation_failures.jsonl",
+      "source": "outputs/safedial_partial_judging/dcgs_96tokens_20260920/vdcgs/generation_failures.jsonl",
+      "bytes": 218,
+      "sha256": "707a3f6641b85f6177c4ad889621dcb785216ccc6b90e929ccf3fb302cb4ba08",
+      "uncompressed_sha256": "707a3f6641b85f6177c4ad889621dcb785216ccc6b90e929ccf3fb302cb4ba08",
+      "records": 2
+    },
+    {
+      "path": "dcgs_96tokens_20260920/vdcgs/judgments_gpt-4o-mini/aggregate.json",
+      "source": "outputs/safedial_partial_judging/dcgs_96tokens_20260920/vdcgs/judgments_gpt-4o-mini/aggregate.json",
+      "bytes": 2687,
+      "sha256": "62b955e46e920a32ad097d881a4c3de2761bd38c3e6e51869f38bcd4d32ba3a7",
+      "uncompressed_sha256": "62b955e46e920a32ad097d881a4c3de2761bd38c3e6e51869f38bcd4d32ba3a7"
+    },
+    {
+      "path": "dcgs_96tokens_20260920/vdcgs/judgments_gpt-4o-mini/dialogue_scores.jsonl.gz",
+      "source": "outputs/safedial_partial_judging/dcgs_96tokens_20260920/vdcgs/judgments_gpt-4o-mini/dialogue_scores.jsonl",
+      "bytes": 3096384,
+      "sha256": "005a92ff7e239fee784081f216744e82c617b6a008f5edc9a855ba9ea847fc4c",
+      "uncompressed_sha256": "9e99bb1d6924d01b6a2d74099ebbc3bc57b94432b7c91a0b70f448f29f1085ff",
+      "records": 457
+    },
+    {
+      "path": "dcgs_96tokens_20260920/vdcgs/judgments_gpt-4o-mini/human_adjudication.json",
+      "source": "outputs/safedial_partial_judging/dcgs_96tokens_20260920/vdcgs/judgments_gpt-4o-mini/human_adjudication.json",
+      "bytes": 1813,
+      "sha256": "0f76e3d1adc50bf2fc7732c534e77848e1d628c59351ac8034d870909504f71b",
+      "uncompressed_sha256": "0f76e3d1adc50bf2fc7732c534e77848e1d628c59351ac8034d870909504f71b"
+    },
+    {
+      "path": "dcgs_96tokens_20260920/vdcgs/judgments_gpt-4o-mini/judge_config.json",
+      "source": "outputs/safedial_partial_judging/dcgs_96tokens_20260920/vdcgs/judgments_gpt-4o-mini/judge_config.json",
+      "bytes": 959,
+      "sha256": "7bb0cb5d885d8e4361316dd894f90cc067c503742973da42ee24b308662e98cc",
+      "uncompressed_sha256": "7bb0cb5d885d8e4361316dd894f90cc067c503742973da42ee24b308662e98cc"
+    },
+    {
+      "path": "dcgs_96tokens_20260920/vdcgs/judgments_gpt-4o-mini/judgments.jsonl.gz",
+      "source": "outputs/safedial_partial_judging/dcgs_96tokens_20260920/vdcgs/judgments_gpt-4o-mini/judgments.jsonl",
+      "bytes": 3597432,
+      "sha256": "c96cc1c91ecc17d9a2461cea0c2c9b12ae925f60ccfbd8dc896be3dc636cf950",
+      "uncompressed_sha256": "ae4bdf5883d998908d5683a22c0b9617c88b0815dc3acd243610b196a4ef9ef2",
+      "records": 2218
+    },
+    {
+      "path": "dcgs_96tokens_20260920/zephyr/dialogue_scores.jsonl",
+      "source": "outputs/safedial_partial_judging/dcgs_96tokens_20260920/zephyr/dialogue_scores.jsonl",
+      "bytes": 104054,
+      "sha256": "33062694dd3b468082b0bb8d52b97cd09ff8a5e3d8c345ba07819ac91d246b63",
+      "uncompressed_sha256": "33062694dd3b468082b0bb8d52b97cd09ff8a5e3d8c345ba07819ac91d246b63",
+      "records": 458
+    },
+    {
+      "path": "dcgs_96tokens_20260920/zephyr/judge_config.json",
+      "source": "outputs/safedial_partial_judging/dcgs_96tokens_20260920/zephyr/judge_config.json",
+      "bytes": 943,
+      "sha256": "86fd1680f92c257e2d85db6f3175626f32132f344c491e1aa01d29fa8f50e887",
+      "uncompressed_sha256": "86fd1680f92c257e2d85db6f3175626f32132f344c491e1aa01d29fa8f50e887"
+    }
+  ],
+  "scores": [
+    {
+      "path": "dcgs_384tokens_20260922_v1/rdcgs/judgments_gpt-4o-mini/aggregate.json",
+      "dialogues": 497,
+      "turn_judgments": 2403,
+      "overall": {
+        "consistency_mean": 3.6278,
+        "count": 497,
+        "handling_mean": 3.3924,
+        "identification_mean": 3.8109,
+        "overall_mean": 3.6103
+      }
+    },
+    {
+      "path": "dcgs_384tokens_20260922_v1/vdcgs/judgments_gpt-4o-mini/aggregate.json",
+      "dialogues": 923,
+      "turn_judgments": 4462,
+      "overall": {
+        "consistency_mean": 3.6327,
+        "count": 923,
+        "handling_mean": 3.3521,
+        "identification_mean": 3.8451,
+        "overall_mean": 3.61
+      }
+    },
+    {
+      "path": "dcgs_96tokens_20260920/rdcgs/judgments_gpt-4o-mini/aggregate.json",
+      "dialogues": 389,
+      "turn_judgments": 1886,
+      "overall": {
+        "consistency_mean": 3.1285,
+        "count": 389,
+        "handling_mean": 2.9512,
+        "identification_mean": 3.3419,
+        "overall_mean": 3.1405
+      }
+    },
+    {
+      "path": "dcgs_96tokens_20260920/vdcgs/judgments_gpt-4o-mini/aggregate.json",
+      "dialogues": 457,
+      "turn_judgments": 2218,
+      "overall": {
+        "consistency_mean": 3.2998,
+        "count": 457,
+        "handling_mean": 3.0788,
+        "identification_mean": 3.5033,
+        "overall_mean": 3.2939
+      }
+    }
+  ],
+  "validation": {
+    "source_unchanged": true,
+    "hashes_json_gzip": "passed",
+    "credential_scan": "passed",
+    "snapshot_tests": 3,
+    "snapshot_tests_passed": true
+  }
+}

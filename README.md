@@ -213,7 +213,7 @@ Then remove `--dry-run` to start paid API judging using `OPENAI_API_KEY` from `.
 
 ## Saved benchmark snapshot
 
-The latest [25 September snapshot](results/safedialbench/2026-09-25/README.md) contains generation outputs, native judging, LlamaGuard, assistance evaluation and goal extraction. It includes partial active runs; consult its timestamps and file inventory. The [score comparison](docs/SAFEDIALBENCH_SCORE_COMPARISON.md) distinguishes native scores, LlamaGuard DSR and combined DSR, including missing responses and unresolved judge errors.
+The latest [25 September snapshot](results/safedialbench/2026-09-25/README.md) contains generation outputs, native judging, LlamaGuard, assistance evaluation and goal extraction. The [partial-judging supplement](results/safedialbench/2026-09-25-partial-judging/README.md) adds the four completed historical VDCGS/RDCGS judging subsets. The main snapshot includes partial active runs; consult its timestamps and file inventory. The [score comparison](docs/SAFEDIALBENCH_SCORE_COMPARISON.md) distinguishes native scores, LlamaGuard DSR and combined DSR, including missing responses and unresolved judge errors.
 
 The following table is historical, from the September 19 snapshot.
 
