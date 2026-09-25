@@ -1,0 +1,8 @@
+{
+  "hashes_and_json_valid": true,
+  "new_files": 8,
+  "referenced_files": 753,
+  "jsonl_records_validated": 1071626,
+  "snapshot_utility_tests": "3 passed",
+  "largest_new_file_bytes": 17495360
+}

@@ -1,0 +1,9 @@
+{
+  "elapsed_seconds": 8497.177105726965,
+  "device": "cuda:0",
+  "gpu_name": "NVIDIA A100-SXM4-40GB",
+  "peak_gpu_allocated_bytes": 3723413504,
+  "peak_gpu_reserved_bytes": 4244635648,
+  "includes_model_loading": true,
+  "scope": "current_invocation"
+}
